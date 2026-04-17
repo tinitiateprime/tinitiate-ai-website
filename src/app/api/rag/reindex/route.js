@@ -1,6 +1,6 @@
 // app/api/rag/reindex/route.js
 import { NextResponse } from "next/server";
-import { reindex } from "@/lib/rag";
+import { reindex } from "../../../lib/rag";
 
 export const runtime = "nodejs";
 
