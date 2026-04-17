@@ -1,18 +1,11 @@
 // app/api/chat/route.js
 import { NextResponse } from "next/server";
-import { openai, CHAT_MODEL } from "@lib/openai.js"; 
-import { searchTopK } from "@lib/rag.js";
+import { openai, CHAT_MODEL } from "@lib/openai"; 
+import { searchTopK } from "@lib/rag";
 
 export const runtime = "nodejs";
 
-// Centralize contact details (so the model always shows the same, correct info)
-// const CONTACT_CARD = `
-// Contact TINITIATE:
-// • WhatsApp: https://wa.me/919553495553
-// • Email: contact@tinitiate.com
-// • Phone (India): +91 95534 95553
-// • Phone (USA): +1 973 653 6870, +1 206 802 4102
-// `.trim();
+
 
 const CONTACT_TOKEN = "<CONTACT_CARD />"; // already used
 const LINK_EXAMPLE = `<LINK href="/work-experience-program" label="Open Work Experience Program" />`;
