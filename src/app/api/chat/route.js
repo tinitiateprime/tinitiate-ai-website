@@ -1,7 +1,7 @@
 // app/api/chat/route.js
 import { NextResponse } from "next/server";
-import { openai, CHAT_MODEL } from "../../../lib/openai.js"; 
-import { searchTopK } from "../../../lib/rag.js";
+import { openai, CHAT_MODEL } from "@lib/openai.js"; 
+import { searchTopK } from "@lib/rag.js";
 
 export const runtime = "nodejs";
 

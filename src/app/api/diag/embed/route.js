@@ -1,6 +1,6 @@
 // app/api/diag/embed/route.js
 import { NextResponse } from "next/server";
-import { openai } from "../../../lib/openai.js";
+import { openai } from "@lib/openai.js";
 
 export const runtime = "nodejs";
 

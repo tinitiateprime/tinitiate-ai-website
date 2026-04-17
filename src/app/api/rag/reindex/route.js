@@ -1,6 +1,6 @@
 // app/api/rag/reindex/route.js
 import { NextResponse } from "next/server";
-import { reindex } from "../../../lib/rag.js";
+import { reindex } from "@lib/rag";
 
 export const runtime = "nodejs";
 
@@ -14,6 +14,6 @@ export async function POST(req) {
     return NextResponse.json({ ok: true, origin, ...stats });
   } catch (e) {
     console.error(e);
-    return NextResponse.json({ ok: false, error: e.message }, { status: 501 });
+    return NextResponse.json({ ok: false, error: e.message }, { status: 500 });
   }
 }
