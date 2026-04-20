@@ -1,8 +1,5 @@
 
 
-
-
-
 // File: src/app/components/header.js
 "use client";
 
@@ -99,8 +96,9 @@ export default function Header() {
   // ---------- Nav data ----------
   const navItems = [
     { label: "Home", href: "/" },
+  
     { label: "Work Experience Program", href: "/work-experience-program" },
- 
+   
     {
       label: "Training",
       href: "/training",
