@@ -54,8 +54,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-white text-gray-900 flex flex-col min-h-screen">
         <header className="fixed top-0 left-0 w-full z-[1000] bg-white ">
-          <Header />
-        </header>
+          </header>
         {/* <main className="flex-grow pt-14">
           {children}
         </main>

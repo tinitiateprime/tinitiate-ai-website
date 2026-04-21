@@ -147,7 +147,7 @@ export default function Header() {
             priority
           />
         </Link>
-
+        
         {/* Hamburger — visible below 1280px */}
         {!isDesktop && (
           <button
