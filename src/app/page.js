@@ -635,6 +635,7 @@ const COURSES = [
     ],
     href: '/courses/sql-server-beginner-course',
   },
+  
   {
   key: 'data-structures',
   name: 'Data Structures',
@@ -738,7 +739,7 @@ export default function HomePage() {
     
 
   {/* BEGINNER TRAINING SECTION */}
-  <section className="py-16 px-6 bg-white border-y border-gray-200">
+<section className="py-16 px-6 bg-gradient-to-b from-gray-50 to-white border-y border-gray-200">
   <div className="max-w-7xl mx-auto">
 
     {/* Title */}
@@ -756,23 +757,42 @@ export default function HomePage() {
       {COURSES.map((course) => {
         const Icon = course.Icon;
 
+        // 🎨 Color themes (matches your screenshot style)
+        const colorStyles = {
+          python: "bg-blue-50 border-blue-100",
+          javascript: "bg-green-50 border-green-100",
+          typescript: "bg-indigo-50 border-indigo-100",
+          java: "bg-orange-50 border-orange-100",
+          sql: "bg-teal-50 border-teal-100",
+          ds: "bg-purple-50 border-purple-100",
+        };
+
+        const iconStyles = {
+          python: "bg-blue-100 text-blue-600",
+          javascript: "bg-green-100 text-green-600",
+          typescript: "bg-indigo-100 text-indigo-600",
+          java: "bg-orange-100 text-orange-600",
+          sql: "bg-teal-100 text-teal-600",
+          ds: "bg-purple-100 text-purple-600",
+        };
+
         return (
           <div
             key={course.key}
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 hover:-translate-y-1"
+            className={`rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 border hover:-translate-y-1 ${colorStyles[course.key]}`}
           >
 
             {/* Icon + Title */}
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 rounded-xl bg-indigo-50">
-                <Icon className="w-6 h-6 text-indigo-600" />
+              <div className={`p-3 rounded-xl ${iconStyles[course.key]}`}>
+                <Icon className="w-6 h-6" />
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
                   {course.name}
                 </h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-600">
                   {course.level} • {course.duration}
                 </p>
               </div>
@@ -796,7 +816,7 @@ export default function HomePage() {
               href={course.href}
               className="inline-flex items-center gap-2 text-indigo-600 font-medium hover:text-indigo-800 transition"
             >
-              View Course
+              View syllabus
               <FiArrowRight className="w-4 h-4" />
             </Link>
 
@@ -806,11 +826,11 @@ export default function HomePage() {
 
     </div>
 
-    {/* ✅ View Beginner Training Button */}
+    {/* Button */}
     <div className="mt-10 flex justify-center">
       <Link
         href="/training/beginner-training"
-        className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-indigo-600 transition"
+        className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-indigo-600 transition shadow-sm hover:shadow-md"
       >
         View Beginner Training
         <FiArrowRight className="w-4 h-4" />
@@ -819,9 +839,11 @@ export default function HomePage() {
 
   </div>
 </section>
-  
+
+
+
 {/* PROFFESIONAL TRAINING SECTION */}
-<section className="bg-gray-50 py-16">
+<section className="bg-gradient-to-b from-rose-50 via-white to-amber-50 py-16">
   <div className="max-w-7xl mx-auto px-6">
 
     {/* Section Header */}
@@ -829,70 +851,74 @@ export default function HomePage() {
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
         Professional Training
       </h2>
-      <p className="mt-3 text-gray-600 max-w-2xl mx-auto  text-gray-500">
+      <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
         Deep-dive programs for working professionals and serious learners.
       </p>
     </div>
 
     {/* Full Stack Development */}
     <div className="mb-12">
-      <h3 className="text-2xl font-semibold mb-6 text-gray-900">
+      <h3 className="text-2xl font-semibold mb-6 text-gray-800">
         Full Stack Development
       </h3>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {STACK_COURSES.map((course) => (
-          <CourseCard
-            key={course.courseKey}
-            course={course}
-          />
-        ))}
+  <div
+    key={course.courseKey}
+    className="bg-white/80 backdrop-blur-sm border border-rose-100 rounded-2xl shadow-sm hover:shadow-md transition p-5"
+  >
+    <CourseCard course={course} />
+  </div>
+))}
+
       </div>
     </div>
 
     {/* Divider */}
-    <div className="border-t border-gray-300 my-12"></div>
+    <div className="border-t border-rose-100 my-12"></div>
 
     {/* Data Engineering */}
     <div className="mb-12">
-      <h3 className="text-2xl font-semibold mb-6  text-gray-900">
+      <h3 className="text-2xl font-semibold mb-6 text-gray-800">
         Data Engineering
       </h3>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {DATA_ENGINEERING_PACKAGES.map((course) => (
-          <CourseCard
-            key={course.courseKey}
-            course={course}
-          />
-        ))}
+       {DATA_ENGINEERING_PACKAGES.map((course) => (
+  <div
+    key={course.courseKey}
+    className="bg-white/80 backdrop-blur-sm border border-amber-100 rounded-2xl shadow-sm hover:shadow-md transition p-5"
+  >
+    <CourseCard course={course} />
+  </div>
+))}
       </div>
     </div>
 
     {/* Divider */}
-    <div className="border-t border-gray-300 my-12"></div>
+    <div className="border-t border-amber-100 my-12"></div>
 
     {/* Data Visualization */}
     <div className="mb-12">
-      <h3 className="text-2xl font-semibold mb-6  text-gray-900">
+      <h3 className="text-2xl font-semibold mb-6 text-gray-800">
         Data Visualization
       </h3>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Visualization.map((course) => (
-          <CourseCard
-            key={course.courseKey}
-            course={course}
-          />
+          <div className="bg-white/80 backdrop-blur-sm border border-cyan-100 rounded-2xl shadow-sm hover:shadow-md transition p-5">
+            <CourseCard key={course.courseKey} course={course} />
+          </div>
         ))}
       </div>
     </div>
 
-    {/* View All Button */}
+    {/* Button */}
     <div className="mt-10 flex justify-center">
       <Link
         href="/training/professional-training"
-        className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-indigo-600 transition"
+        className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-rose-600 transition shadow-sm hover:shadow-md"
       >
         View All Professional Training
         <FiArrowRight className="h-4 w-4" />
@@ -902,9 +928,15 @@ export default function HomePage() {
   </div>
 </section>
 
+<section className="relative py-16 bg-gradient-to-b from-gray-50 via-white to-gray-50">
+  
+  {/* subtle light accents */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-0 left-1/3 w-72 h-72 bg-rose-200/30 blur-3xl"></div>
+    <div className="absolute bottom-0 right-1/3 w-72 h-72 bg-amber-200/30 blur-3xl"></div>
+  </div>
 
-<section className="bg-gray-50 py-16">
-  <div className="max-w-7xl mx-auto px-6">
+  <div className="relative max-w-7xl mx-auto px-6">
 
     {/* Section Header */}
     <div className="text-center mb-12">
@@ -916,21 +948,21 @@ export default function HomePage() {
       </p>
     </div>
 
-    {/* Row 1 - Two Cards */}
+    {/* Row 1 */}
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
       {/* Corporate */}
       <Link
         href="/training/corporate-training"
-        className="group bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition"
+        className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-rose-50 shadow-sm hover:shadow-lg hover:-translate-y-1 transition"
       >
-        <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-indigo-600">
+        <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-rose-500">
           Corporate Training
         </h4>
         <p className="text-sm text-gray-600 mb-4">
           Upskill your workforce with industry-relevant corporate training programs.
         </p>
-        <span className="inline-flex items-center gap-2 text-indigo-600 font-medium text-sm">
+        <span className="inline-flex items-center gap-2 text-rose-500 font-medium text-sm">
           Explore <FiArrowRight className="w-4 h-4" />
         </span>
       </Link>
@@ -938,49 +970,50 @@ export default function HomePage() {
       {/* Campus */}
       <Link
         href="/training/campus-training"
-        className="group bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition"
+        className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-amber-50 shadow-sm hover:shadow-lg hover:-translate-y-1 transition"
       >
-        <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-indigo-600">
+        <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-amber-500">
           Campus Training
         </h4>
         <p className="text-sm text-gray-600 mb-4">
           Specialized programs designed for students and colleges to build job-ready skills.
         </p>
-        <span className="inline-flex items-center gap-2 text-indigo-600 font-medium text-sm">
+        <span className="inline-flex items-center gap-2 text-amber-500 font-medium text-sm">
           Explore <FiArrowRight className="w-4 h-4" />
         </span>
       </Link>
 
     </div>
 
-    {/* Row 2 - One Centered Card (same size) */}
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
-  
-  {/* Empty space (left) */}
-  <div className="hidden sm:block"></div>
+    {/* Row 2 */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+      
+      {/* Empty spacer */}
+      <div className="hidden sm:block"></div>
 
-  {/* OPT Training */}
-<Link
-  href="/training/opt-training"
-  className="group sm:col-span-2 lg:col-span-1 lg:col-start-1 
-             bg-white rounded-2xl p-6 border border-gray-200 shadow-sm 
-             hover:shadow-xl hover:-translate-y-1 transition"
->
-  <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-indigo-600">
-    OPT Training
-  </h4>
-  <p className="text-sm text-gray-600 mb-4">
-    Tailored training for international students to gain practical IT experience.
-  </p>
-  <span className="inline-flex items-center gap-2 text-indigo-600 font-medium text-sm">
-    Explore <FiArrowRight className="w-4 h-4" />
-  </span>
-</Link>
+      {/* OPT Training */}
+      <Link
+        href="/training/opt-training"
+        className="group sm:col-span-2 lg:col-span-1 lg:col-start-1 
+                   bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-cyan-100 
+                   shadow-sm hover:shadow-lg hover:-translate-y-1 transition"
+      >
+        <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-cyan-600">
+          OPT Training
+        </h4>
+        <p className="text-sm text-gray-600 mb-4">
+          Tailored training for international students to gain practical IT experience.
+        </p>
+        <span className="inline-flex items-center gap-2 text-cyan-600 font-medium text-sm">
+          Explore <FiArrowRight className="w-4 h-4" />
+        </span>
+      </Link>
 
-</div>
+    </div>
 
   </div>
 </section>
+
 
 {/**why choose tinitiate */}
 <section id="about" className="py-10 px-6 bg-gray-50">

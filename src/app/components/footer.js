@@ -131,24 +131,6 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* GitHub (optional, if you share code) */}
-              {/* <a
-                href="https://github.com/tinitiate" // ← replace or remove
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TINITIATE on GitHub"
-                className="text-gray-500 hover:text-gray-900 transition"
-                title="GitHub"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M12 .5C5.73.5.98 5.24.98 11.5c0 4.85 3.15 8.96 7.51 10.41.55.1.75-.24.75-.53v-1.86c-3.05.66-3.69-1.3-3.69-1.3-.5-1.26-1.22-1.6-1.22-1.6-.99-.67.08-.66.08-.66 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.19 3.2.9.1-.71.39-1.19.71-1.46-2.43-.28-4.98-1.21-4.98-5.37 0-1.19.43-2.16 1.13-2.92-.11-.28-.49-1.42.11-2.95 0 0 .92-.29 3.01 1.12.88-.24 1.82-.36 2.76-.36.94 0 1.88.12 2.76.36 2.09-1.41 3.01-1.12 3.01-1.12.6 1.53.22 2.67.11 2.95.7.76 1.13 1.73 1.13 2.92 0 4.17-2.56 5.09-5 5.36.4.35.76 1.03.76 2.08v3.09c0 .29.19.64.76.53 4.36-1.45 7.51-5.56 7.51-10.41C23.02 5.24 18.27.5 12 .5z" />
-                </svg>
-              </a> */}
             </div>
           </div>
         </div>
@@ -191,7 +173,7 @@ export default function Footer() {
         href="mailto:contact@tinitiate.com"
         className="hover:text-blue-600 transition"
       >
-        contact@tinitiate.com
+        contact@tinitiateai.com
       </a>
     </div>
 
