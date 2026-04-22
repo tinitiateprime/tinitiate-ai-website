@@ -1,11 +1,12 @@
 // app/api/diag/embed/route.js
 import { NextResponse } from "next/server";
-import { openai } from "@/lib/openai.js";
+import { getOpenAIClient } from "@/lib/openai.js";
 
 export const runtime = "nodejs";
 
 export async function GET() {
   try {
+    const openai = getOpenAIClient();
     const { data } = await openai.embeddings.create({
       model: process.env.OPENAI_EMBED_MODEL || "text-embedding-3-small",
       input: ["test"],

@@ -1,9 +1,23 @@
 // lib/openai.js
 import OpenAI from "openai";
 
-export const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // server-only
-});
+let openaiClient;
+
+export function getOpenAIClient() {
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+
+  if (!apiKey) {
+    throw new Error(
+      "Missing OPENAI_API_KEY. Set the environment variable before using OpenAI-backed routes."
+    );
+  }
+
+  if (!openaiClient) {
+    openaiClient = new OpenAI({ apiKey });
+  }
+
+  return openaiClient;
+}
 
 export const CHAT_MODEL =
   process.env.OPENAI_MODEL?.trim() || "gpt-4o-mini";

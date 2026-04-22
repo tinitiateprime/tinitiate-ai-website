@@ -1,6 +1,6 @@
 // app/api/chat/route.js
 import { NextResponse } from "next/server";
-import { openai, CHAT_MODEL } from "@/lib/openai.js";
+import { getOpenAIClient, CHAT_MODEL } from "@/lib/openai.js";
 import { searchTopK } from "@/lib/rag.js";
 
 export const runtime = "nodejs";
@@ -51,6 +51,7 @@ Formatting:
 
 export async function POST(req) {
   try {
+    const openai = getOpenAIClient();
     const { message, history, pageTitle, pageUrl } = await req.json();
 
     // RAG: fetch top docs (unchanged)

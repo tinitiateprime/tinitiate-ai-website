@@ -1,445 +1,233 @@
-// src/app/request-callback/page.js
 'use client'
 
-import { useState,useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { User, Mail, Phone, Clock, MessageSquare,Book } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Book, Clock, Mail, MessageSquare, Phone, User } from 'lucide-react'
+
+const INITIAL_FORM = {
+  name: '',
+  email: '',
+  phone: '',
+  course: '',
+  preferredTime: '',
+  message: '',
+}
 
 export default function RequestCallbackPage() {
   const searchParams = useSearchParams()
-     // accept either ?course=... or ?service=...
-  const courseFromQuery =
-    searchParams.get('course') ||
-    // searchParams.get('service') ||
-    ''
-  const [form, setForm] = useState({ name: '', email: '', phone: '',course:'', preferredTime: '', message: '' })
+  const courseFromQuery = searchParams.get('course') || ''
+
+  const [form, setForm] = useState(INITIAL_FORM)
   const [status, setStatus] = useState('idle')
-  
 
- useEffect(() => {
+  useEffect(() => {
     if (!courseFromQuery) return
-    setForm(prev => {
-      const next = { ...prev, course: courseFromQuery }
-      if (!prev.message?.trim()) {
-        next.message = `I am interested in the ${courseFromQuery}.`
-      }
-      return next
-    })
+
+    setForm((prev) => ({
+      ...prev,
+      course: courseFromQuery,
+      message: prev.message?.trim()
+        ? prev.message
+        : `I am interested in the ${courseFromQuery}.`,
+    }))
   }, [courseFromQuery])
-   
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-
-  const FORM_ENDPOINT = '/__forms.html'
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
 
   const encode = (data) =>
     Object.keys(data)
-      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
       .join('&')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault()
     setStatus('sending')
+
     try {
-      await fetch(FORM_ENDPOINT, {
+      await fetch('/__forms.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({ 'form-name': 'request-callback', ...form }),
       })
+
       setStatus('success')
-      setForm({ name: '', email: '', phone: '',course:'', preferredTime: '', message: '' })
-    } catch (err) {
-      console.error(err)
+      setForm(INITIAL_FORM)
+    } catch (error) {
+      console.error(error)
       setStatus('error')
     }
   }
 
   if (status === 'success') {
     return (
-      <section className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-green-50 to-white p-6">
-        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 20 }} className="bg-white p-8 rounded-2xl shadow-xl text-center max-w-sm">
-          <h2 className="text-3xl font-bold text-green-600 mb-4">Thank You!</h2>
-          <p className="text-gray-700 mb-6">We&apos;ve received your request and will call you shortly.</p>
-          <motion.button onClick={() => setStatus('idle')} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition">
+      <section className="bg-gradient-to-br from-green-50 to-white px-4 py-16 sm:px-6 sm:py-20">
+        <div className="mx-auto max-w-lg rounded-3xl border border-green-100 bg-white p-8 text-center shadow-xl sm:p-10">
+          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl text-green-600">
+            ✓
+          </div>
+          <h2 className="text-3xl font-bold text-green-600">Thank You!</h2>
+          <p className="mt-4 text-gray-700">
+            We&apos;ve received your request and will call you shortly.
+          </p>
+          <button
+            type="button"
+            onClick={() => setStatus('idle')}
+            className="touch-target mt-8 inline-flex items-center justify-center rounded-full bg-green-600 px-6 py-3 font-semibold text-white transition hover:bg-green-700"
+          >
             Submit Another
-          </motion.button>
-        </motion.div>
+          </button>
+        </div>
       </section>
     )
   }
 
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 to-white py-20 px-6">
-      <div className="relative max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-  
-        <div>
-          <h2 className="text-4xl font-extrabold text-gray-800 mb-4">Request a <span className="text-blue-600">Callback</span></h2>
-          <p className="text-gray-600 mb-6">Fill in your details and our expert consultant will reach out to you.</p>
-        </div>
-        
+    <section className="bg-gradient-to-br from-blue-50 to-white px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
+      <div className="mx-auto grid max-w-5xl items-start gap-8 rounded-[2rem] border border-blue-100/70 bg-white/80 p-5 shadow-[0_24px_80px_rgba(37,99,235,0.08)] backdrop-blur-sm sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:p-10">
+        <div className="space-y-6">
+          <div>
+            <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">
+              Let&apos;s Connect
+            </span>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
+              {form.course ? 'Course' : 'Request a'}{' '}
+              <span className="text-blue-600">{form.course ? 'Registration' : 'Callback'}</span>
+            </h1>
+            <p className="mt-4 max-w-xl text-base leading-7 text-gray-600 sm:text-lg">
+              {form.course
+                ? 'Tell us a bit about yourself and our team will help you with the next steps for enrollment.'
+                : 'Fill in your details and our expert consultant will reach out to you with the right training guidance.'}
+            </p>
+          </div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="bg-white shadow-xl rounded-2xl p-8">
-          <form name="request-callback" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {[
+              'Quick response from our team',
+              'Guidance for the right course track',
+              'Flexible timing based on your availability',
+            ].map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-blue-100 bg-blue-50/70 px-4 py-4 text-sm font-medium text-blue-900"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[1.75rem] border border-gray-200 bg-white p-5 shadow-lg sm:p-7">
+          <form
+            name="request-callback"
+            method="POST"
+            data-netlify="true"
+            onSubmit={handleSubmit}
+            className="space-y-4"
+          >
             <input type="hidden" name="form-name" value="request-callback" />
 
-            <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-              <User className="text-gray-400 m-3" />
-              <input name="name" type="text" placeholder="Your Name" required value={form.name} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
+            <FormField icon={User}>
+              <input
+                name="name"
+                type="text"
+                placeholder="Your Name"
+                required
+                value={form.name}
+                onChange={handleChange}
+                className="w-full bg-transparent py-3 text-gray-900 outline-none placeholder:text-gray-400"
+              />
+            </FormField>
+
+            <FormField icon={Mail}>
+              <input
+                name="email"
+                type="email"
+                placeholder="Your Email"
+                required
+                value={form.email}
+                onChange={handleChange}
+                className="w-full bg-transparent py-3 text-gray-900 outline-none placeholder:text-gray-400"
+              />
+            </FormField>
+
+            <FormField icon={Phone}>
+              <input
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                required
+                value={form.phone}
+                onChange={handleChange}
+                pattern="^[0-9]{10}$"
+                title="Phone number should be 10 digits"
+                className="w-full bg-transparent py-3 text-gray-900 outline-none placeholder:text-gray-400"
+              />
+            </FormField>
+
+            {form.course ? (
+              <FormField icon={Book}>
+                <input
+                  name="course"
+                  type="text"
+                  value={form.course}
+                  readOnly
+                  className="w-full bg-transparent py-3 text-gray-900 outline-none"
+                />
+              </FormField>
+            ) : null}
+
+            <FormField icon={Clock}>
+              <input
+                name="preferredTime"
+                type="text"
+                placeholder="Preferred Time (e.g. Mon-Fri, 2-4pm)"
+                required
+                value={form.preferredTime}
+                onChange={handleChange}
+                className="w-full bg-transparent py-3 text-gray-900 outline-none placeholder:text-gray-400"
+              />
+            </FormField>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-gray-200 bg-white px-4">
+              <MessageSquare className="mt-4 h-5 w-5 shrink-0 text-gray-400" />
+              <textarea
+                name="message"
+                rows={4}
+                placeholder="Additional Message (Optional)"
+                value={form.message}
+                onChange={handleChange}
+                className="w-full resize-y bg-transparent py-3 text-gray-900 outline-none placeholder:text-gray-400"
+              />
             </div>
 
-            <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-              <Mail className="text-gray-400 m-3" />
-              <input name="email" type="email" placeholder="Your Email" required value={form.email} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-            </div>
+            <button
+              type="submit"
+              disabled={status === 'sending'}
+              className="touch-target inline-flex w-full items-center justify-center rounded-full bg-blue-600 px-5 py-3.5 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {status === 'sending'
+                ? (form.course ? 'Submitting...' : 'Sending...')
+                : (form.course ? 'Register Now' : 'Request Callback')}
+            </button>
 
-            <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-              <Phone className="text-gray-400 m-3" />
-              <input name="phone" type="tel" placeholder="Phone Number" required value={form.phone} onChange={handleChange}  pattern="^[0-9]{10}$"
-              title="Phone number should be 10 digits" className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-            </div>
-             { form.course &&
-             <div className="flex items-center border-gray-200 rounded-lg border focus-within:ring-2 focus-within:ring-blue-500">
-              <Book className="text-gray-400 m-3" />
-              <input name="course" required type="text" placeholder="Requested Course" value={form.course} readOnly className="flex-1 p-3 bg-gray-100 text-gray-900 rounded-r-lg" />
-            </div>
-            }
-            
-            <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-              <Clock className="text-gray-400 m-3" />
-              <input name="preferredTime" type="text" placeholder="Preferred Time (e.g. Mon-Fri, 2-4pm)" required value={form.preferredTime} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-            </div>
-            
-            <div className="flex items-start border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-              <MessageSquare className="text-gray-400 m-3 mt-4" />
-              <textarea name="message" rows={4} placeholder="Additional Message (Optional)" value={form.message} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-            </div>
-
-            <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} disabled={status === 'sending'} className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 transition">
-              {status === 'sending' ? 'Sending…' : 'Request Callback'}
-            </motion.button>
-            
-            {status === 'error' && <p className="mt-2 text-red-600">Oops! Something went wrong.</p>}
+            {status === 'error' ? (
+              <p className="text-sm text-red-600">Something went wrong. Please try again.</p>
+            ) : null}
           </form>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // src/app/request-callback/page.js
-// 'use client'
-
-// import { useState,useEffect } from 'react'
-// import { useSearchParams } from 'next/navigation'
-// import { User, Mail, Phone, Clock, MessageSquare,Book } from 'lucide-react'
-// import { motion } from 'framer-motion'
-
-// export default function RequestCallbackPage() {
-//     const searchParams = useSearchParams()
-//    const courseFromQuery = searchParams.get('course') || ''
-//   const [form, setForm] = useState({ name: '', email: '', phone: '',course:'', preferredTime: '', message: '' })
-//   const [status, setStatus] = useState('idle')
-  
-
-
-//      useEffect(() => {
-//        setForm((prev) => ({ ...prev, course: courseFromQuery }))
-//      }, [courseFromQuery])
-   
-
-//   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-
-//   const FORM_ENDPOINT = '/__forms.html'
-
-//   const encode = (data) =>
-//     Object.keys(data)
-//       .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-//       .join('&')
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     setStatus('sending')
-//     try {
-//       await fetch(FORM_ENDPOINT, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-//         body: encode({ 'form-name': 'request-callback', ...form }),
-//       })
-//       setStatus('success')
-//       setForm({ name: '', email: '', phone: '',course:'', preferredTime: '', message: '' })
-//     } catch (err) {
-//       console.error(err)
-//       setStatus('error')
-//     }
-//   }
-
-//   if (status === 'success') {
-//     return (
-//       <section className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-green-50 to-white p-6">
-//         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 260, damping: 20 }} className="bg-white p-8 rounded-2xl shadow-xl text-center max-w-sm">
-//           <h2 className="text-3xl font-bold text-green-600 mb-4">Thank You!</h2>
-//           <p className="text-gray-700 mb-6">We&apos;ve received your request and will call you shortly.</p>
-//           <motion.button onClick={() => setStatus('idle')} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition">
-//             Submit Another
-//           </motion.button>
-//         </motion.div>
-//       </section>
-//     )
-//   }
-
-//   return (
-//     <section className="relative bg-gradient-to-br from-blue-50 to-white py-20 px-6">
-//       <div className="relative max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-//         { form.course?
-//            <div>
-//           <h2 className="text-4xl font-extrabold text-gray-800 mb-4">Course <span className="text-blue-600">Registration</span></h2>
-//           <p className="text-gray-600 mb-6">Register now and boost your career with expert-led training.</p>
-//         </div>
-//         :
-//         <div>
-//           <h2 className="text-4xl font-extrabold text-gray-800 mb-4">Request a <span className="text-blue-600">Callback</span></h2>
-//           <p className="text-gray-600 mb-6">Fill in your details and our expert consultant will reach out to you.</p>
-//         </div>
-//         }
-
-//         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="bg-white shadow-xl rounded-2xl p-8">
-//           <form name="request-callback" method="POST" data-netlify="true" onSubmit={handleSubmit} className="space-y-4">
-//             <input type="hidden" name="form-name" value="request-callback" />
-
-//             <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-//               <User className="text-gray-400 m-3" />
-//               <input name="name" type="text" placeholder="Your Name" required value={form.name} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-//             </div>
-
-//             <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-//               <Mail className="text-gray-400 m-3" />
-//               <input name="email" type="email" placeholder="Your Email" required value={form.email} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-//             </div>
-
-//             <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-//               <Phone className="text-gray-400 m-3" />
-//               <input name="phone" type="tel" placeholder="Phone Number" required value={form.phone} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-//             </div>
-             
-//              <div className="flex items-center border-gray-200 rounded-lg border focus-within:ring-2 focus-within:ring-blue-500">
-//               <Book className="text-gray-400 m-3" />
-//               <input name="course" required type="text" placeholder="Requested Course" value={form.course} readOnly className="flex-1 p-3 bg-gray-100 text-gray-900 rounded-r-lg" />
-//             </div>
-            
-//             <div className="flex items-center border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-//               <Clock className="text-gray-400 m-3" />
-//               <input name="preferredTime" type="text" placeholder="Preferred Time (e.g. Mon-Fri, 2-4pm)" required value={form.preferredTime} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-//             </div>
-            
-//             <div className="flex items-start border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500 border">
-//               <MessageSquare className="text-gray-400 m-3 mt-4" />
-//               <textarea name="message" rows={4} placeholder="Additional Message (Optional)" value={form.message} onChange={handleChange} className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg" />
-//             </div>
-
-//             { form.course?
-//               <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} disabled={status === 'sending'} className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 transition">
-//               {status === 'sending' ? 'Submitting...' : 'Register Now'}
-//             </motion.button>
-//               :
-//             <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} disabled={status === 'sending'} className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 transition">
-//               {status === 'sending' ? 'Sending…' : 'Request Callback'}
-//             </motion.button>
-//             }
-//             {status === 'error' && <p className="mt-2 text-red-600">Oops! Something went wrong.</p>}
-//           </form>
-//         </motion.div>
-//       </div>
-//     </section>
-//   )
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// src/app/request-callback/page.js
-// 'use client'
-
-// import { useState } from 'react'
-// import { User, Mail, Phone, Clock, MessageSquare } from 'lucide-react'
-// import { motion } from 'framer-motion'
-
-// export default function RequestCallbackPage() {
-//   const [form, setForm] = useState({ name: '', email: '', phone: '', preferredTime: '', message: '' })
-//   const [status, setStatus] = useState('idle')
-
-//   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-
-//   // encode form data for Netlify
-//   const encode = (data) =>
-//     Object.keys(data)
-//       .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-//       .join('&')
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-//     setStatus('sending')
-//     try {
-//       await fetch('/', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-//         body: encode({ 'form-name': 'request-callback', ...form }),
-//       })
-//       setStatus('success')
-//       setForm({ name: '', email: '', phone: '', preferredTime: '', message: '' })
-//     } catch (err) {
-//       console.error(err)
-//       setStatus('error')
-//     }
-//   }
-
-//   return (
-//     <section className="relative bg-gradient-to-br from-blue-50 to-white py-20 px-6">
-//       <div className="relative max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-//         {/* Left: Title and illustration */}
-//         <div>
-//           <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
-//             Request a <span className="text-blue-600">Callback</span>
-//           </h2>
-//           <p className="text-gray-600 mb-6">
-//             Fill in your details and our expert consultant will reach out to you.
-//           </p>
-//           {/* <img
-//             src="/images/callback-illustration.svg"
-//             alt="Callback Illustration"
-//             className="w-full max-w-sm mx-auto"
-//           /> */}
-//         </div>
-
-//         {/* Right: Netlify Form */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//           className="bg-white shadow-xl rounded-2xl p-8"
-//         >
-//           <form
-//             name="request-callback"
-//             method="POST"
-//             data-netlify="true"
-//             onSubmit={handleSubmit}
-//             className="space-y-4"
-//           >
-//             {/* required for Netlify */}
-//             <input type="hidden" name="form-name" value="request-callback" />
-
-//             {/* Name */}
-//             <div className="flex items-center border border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-//               <User className="text-gray-400 m-3" />
-//               <input
-//                 name="name"
-//                 type="text"
-//                 placeholder="Your Name"
-//                 required
-//                 value={form.name}
-//                 onChange={handleChange}
-//                 className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg"
-//               />
-//             </div>
-
-//             {/* Email */}
-//             <div className="flex items-center border border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-//               <Mail className="text-gray-400 m-3" />
-//               <input
-//                 name="email"
-//                 type="email"
-//                 placeholder="Your Email"
-//                 required
-//                 value={form.email}
-//                 onChange={handleChange}
-//                 className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg"
-//               />
-//             </div>
-
-//             {/* Phone */}
-//             <div className="flex items-center border border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-//               <Phone className="text-gray-400 m-3" />
-//               <input
-//                 name="phone"
-//                 type="tel"
-//                 placeholder="Phone Number"
-//                 required
-//                 value={form.phone}
-//                 onChange={handleChange}
-//                 className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg"
-//               />
-//             </div>
-
-//             {/* Preferred Time */}
-//             <div className="flex items-center border border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-//               <Clock className="text-gray-400 m-3" />
-//               <input
-//                 name="preferredTime"
-//                 type="text"
-//                 placeholder="Preferred Time (e.g. Mon-Fri, 2-4pm)"
-//                 required
-//                 value={form.preferredTime}
-//                 onChange={handleChange}
-//                 className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg"
-//               />
-//             </div>
-
-//             {/* Message */}
-//             <div className="flex items-start border border-gray-200 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-//               <MessageSquare className="text-gray-400 m-3 mt-4" />
-//               <textarea
-//                 name="message"
-//                 rows={4}
-//                 placeholder="Additional Message (Optional)"
-//                 value={form.message}
-//                 onChange={handleChange}
-//                 className="flex-1 p-3 placeholder-gray-500 text-gray-900 focus:outline-none rounded-r-lg"
-//               />
-//             </div>
-
-//             {/* Submit Button */}
-//             <motion.button
-//               type="submit"
-//               whileHover={{ scale: 1.02 }}
-//               whileTap={{ scale: 0.98 }}
-//               disabled={status === 'sending'}
-//               className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 transition"
-//             >
-//               {status === 'sending' ? 'Sending…' : 'Request Callback'}
-//             </motion.button>
-
-//             {/* Status Messages */}
-//             {status === 'success' && (
-//               <p className="mt-2 text-green-600">Thank you! We’ll call you soon.</p>
-//             )}
-//             {status === 'error' && (
-//               <p className="mt-2 text-red-600">Oops! Something went wrong.</p>
-//             )}
-//           </form>
-//         </motion.div>
-//       </div>
-//     </section>
-//   )
-// }
+function FormField({ children, icon: Icon }) {
+  return (
+    <div className="flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4">
+      <Icon className="h-5 w-5 shrink-0 text-gray-400" />
+      {children}
+    </div>
+  )
+}

@@ -1,54 +1,57 @@
-
-
-
-
-
-// File: src/app/components/header.js
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X, Sun, Moon } from "lucide-react";
 
 export default function Header() {
-  // ---------- State ----------
-  const [isOpen, setIsOpen] = useState(false);      // mobile menu
-  const [openMenu, setOpenMenu] = useState(null);   // which desktop dropdown is open
-  const [expanded, setExpanded] = useState({});     // mobile accordion
-  const [innerOpen, setInnerOpen] = useState({});   // inner expand (FAQ) inside a panel
-
-  // responsive/interaction capability
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [expanded, setExpanded] = useState({});
+  const [innerOpen, setInnerOpen] = useState({});
   const [canHover, setCanHover] = useState(false);
 
-  // timers/refs
   const closeTimerRef = useRef(null);
   const navRef = useRef(null);
+  const [theme, setTheme] = useState("light");
 
-  // ---------- Responsive breakpoints & hover capability ----------
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const desktopMQ = window.matchMedia("(min-width: 1280px)");
     const hoverMQ = window.matchMedia("(hover: hover) and (pointer: fine)");
-
-    const updateDesktop = () => setIsDesktop(desktopMQ.matches);
     const updateHover = () => setCanHover(hoverMQ.matches);
 
-    updateDesktop();
     updateHover();
-
-    desktopMQ.addEventListener("change", updateDesktop);
     hoverMQ.addEventListener("change", updateHover);
 
-    return () => {
-      desktopMQ.removeEventListener("change", updateDesktop);
-      hoverMQ.removeEventListener("change", updateHover);
-    };
+    return () => hoverMQ.removeEventListener("change", updateHover);
   }, []);
 
-  // ---------- Close timer helpers ----------
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = isOpen ? "hidden" : previousOverflow;
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const handleResize = () => {
+      if (window.innerWidth >= 1280) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const clearCloseTimer = () => {
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     closeTimerRef.current = null;
@@ -67,40 +70,60 @@ export default function Header() {
     }, delay);
   };
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark" || saved === "light") {
+      setTheme(saved);
+      document.documentElement.classList.toggle("dark", saved === "dark");
+      return;
+    }
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(prefersDark ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", prefersDark);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", next);
+      document.documentElement.classList.toggle("dark", next === "dark");
+    }
+  };
+
   useEffect(() => () => clearCloseTimer(), []);
 
-  // close when clicking outside
   useEffect(() => {
-    const onDocPointerDown = (e) => {
-      if (!navRef.current) return;
-      if (!navRef.current.contains(e.target)) {
+    const onDocPointerDown = (event) => {
+      if (!navRef.current?.contains(event.target)) {
         setOpenMenu(null);
         setInnerOpen({});
       }
     };
+
     document.addEventListener("pointerdown", onDocPointerDown);
     return () => document.removeEventListener("pointerdown", onDocPointerDown);
   }, []);
 
-  // ---------- Helpers ----------
   const toggleExpand = (key) =>
-    setExpanded((p) => ({ ...p, [key]: !p[key] }));
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const toggleInner = (key, value) =>
-    setInnerOpen((p) => ({ ...p, [key]: value ?? !p[key] }));
+    setInnerOpen((prev) => ({ ...prev, [key]: value ?? !prev[key] }));
 
-  // only close if pointer truly left wrapper (prevents edge flicker)
-  const guardedLeave = (e) => {
-    const rt = e.relatedTarget;
-    if (rt && e.currentTarget.contains(rt)) return;
+  const guardedLeave = (event) => {
+    const relatedTarget = event.relatedTarget;
+    const currentTarget = event.currentTarget;
+    const isNode =
+      relatedTarget && typeof relatedTarget === "object" && relatedTarget !== null && typeof relatedTarget.nodeType === "number";
+    if (isNode && currentTarget && typeof currentTarget.contains === "function" && currentTarget.contains(relatedTarget)) return;
     scheduleClose();
   };
 
-  // ---------- Nav data ----------
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Work Experience Program", href: "/work-experience-program" },
- 
     {
       label: "Training",
       href: "/training",
@@ -108,17 +131,15 @@ export default function Header() {
       dropdown: [
         { label: "Beginner Training", href: "/training/beginner-training" },
         { label: "Professional Training", href: "/training/professional-training" },
-        // { label: "Personalized Training", href: "/training/personalized-training" },
         { label: "Corporate Training", href: "/training/corporate-training" },
-        { label: "Campus Training", href: "/training/campus-training" }, 
-        { label: "OPT Training", href: "/training/opt-training"}
-        
+        { label: "Campus Training", href: "/training/campus-training" },
+        { label: "OPT Training", href: "/training/opt-training" },
       ],
-    }, 
+    },
     {
       label: "Company",
       href: "/company",
-      align: "right", // open inward from the right edge
+      align: "right",
       dropdown: [
         { label: "About Us", href: "/company" },
         {
@@ -128,8 +149,8 @@ export default function Header() {
             { label: "Why TINITIATE", href: "/faq/why-tinitiate" },
             { label: "STEM Students", href: "/faq/students-stem" },
             { label: "Non-STEM Students", href: "/faq/students-nonstem" },
-            { label: "Parents — STEM", href: "/faq/parents-stem" },
-            { label: "Parents — Non-STEM", href: "/faq/parents-nonstem" },
+            { label: "Parents - STEM", href: "/faq/parents-stem" },
+            { label: "Parents - Non-STEM", href: "/faq/parents-nonstem" },
           ],
         },
       ],
@@ -137,9 +158,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white sticky top-0 z-[100] border-b border-gray-100">
-      <nav ref={navRef} className="container mx-auto px-4 py-2 flex justify-between items-center">
-        <Link href="/" className="block w-[140px] md:w-[170px] lg:w-[220px] xl:w-[220px]">
+    <div className="border-b border-gray-100 bg-white">
+      <nav
+        ref={navRef}
+        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8"
+      >
+        <Link href="/" className="block w-[138px] sm:w-[170px] lg:w-[210px]">
           <Image
             src="/images/tinitiatelogo.png"
             alt="TINITIATE Logo"
@@ -150,186 +174,174 @@ export default function Header() {
           />
         </Link>
 
-        {/* Hamburger — visible below 1280px */}
-        {!isDesktop && (
-          <button
-            className="text-gray-800 p-2 rounded-md hover:bg-gray-100"
-            onClick={() => setIsOpen((v) => !v)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        )}
+        <button
+          type="button"
+          className="touch-target rounded-md p-2 text-gray-800 transition hover:bg-gray-100 xl:hidden"
+          onClick={() => setIsOpen((value) => !value)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
 
-        {/* Desktop Menu */}
-        {isDesktop && (
-          <ul className="flex space-x-2 text-gray-800 items-center">
-            {navItems.map((item) => {
-              const hasDropdown = Array.isArray(item.dropdown) && item.dropdown.length > 0;
-
-              // Simple link
-              if (!hasDropdown) {
-                return (
-                  <li key={item.href} className="px-1 py-1">
-                    <Link
-                      href={item.href}
-                      className="px-4 py-2 rounded-full hover:bg-[#f2f2f2] transition inline-block whitespace-nowrap"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              }
-
-              const alignClass = item.align === "right" ? "right-0" : "left-0";
-              const open = openMenu === item.label;
-
-              // Conditionally attach hover handlers only if the device can hover
-              const triggerHandlers = canHover
-                ? {
-                    onPointerEnter: () => openWithCancel(item.label),
-                    onPointerLeave: guardedLeave,
-                    onPointerMove: () => {
-                      if (!open) openWithCancel(item.label);
-                    },
-                  }
-                : {
-                    // fallback click toggle on non-hover desktops (rare, but safe)
-                    onClick: () => (open ? setOpenMenu(null) : openWithCancel(item.label)),
-                  };
-
-              return (
-                <li
-                  key={item.label}
-                  className="relative px-1 py-1"
-                  {...triggerHandlers}
-                >
-                  <button
-                    type="button"
-                    className="flex items-center gap-1 px-4 py-2 rounded-full hover:bg-[#f2f2f2] transition"
-                    aria-haspopup="true"
-                    aria-expanded={open}
-                    onFocus={() => openWithCancel(item.label)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Escape") {
-                        setOpenMenu(null);
-                        (e.currentTarget).blur();
-                      }
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        open ? setOpenMenu(null) : openWithCancel(item.label);
-                      }
-                      if (e.key === "ArrowDown") openWithCancel(item.label);
-                    }}
-                  >
-                    {item.label}
-                    <ChevronDown size={16} />
-                  </button>
-
-                  {/* SAFE-ZONE buffer to bridge trigger→panel */}
-                  <span
-                    aria-hidden
-                    className="absolute left-0 right-0 top-full h-5 -translate-y-px"
-                  />
-
-                  {/* Panel */}
-                  <div
-                    className={[
-                      "absolute top-full", alignClass,
-                      "w-[22rem] max-w-[min(22rem,calc(100vw-1rem))]",
-                      "z-[1000] border border-gray-200 rounded-xl bg-white shadow-lg mt-2 p-2",
-                      "transition-opacity duration-150",
-                      open ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none",
-                    ].join(" ")}
-                    onPointerEnter={canHover ? () => openWithCancel(item.label) : undefined}
-                    onPointerLeave={canHover ? guardedLeave : undefined}
-                    role="menu"
-                  >
-                    <ul className="text-sm">
-                      {item.dropdown.map((sub) => {
-                        const hasInner = Array.isArray(sub.dropdown) && sub.dropdown.length > 0;
-
-                        if (!hasInner) {
-                          return (
-                            <li key={sub.href}>
-                              <Link
-                                href={sub.href}
-                                className="block px-3 py-2 rounded-md hover:bg-gray-100"
-                                onClick={() => setOpenMenu(null)}
-                              >
-                                {sub.label}
-                              </Link>
-                            </li>
-                          );
-                        }
-
-                        // inner expansion (FAQ)
-                        const innerKey = `${item.label}::${sub.label}`;
-                        const opened = !!innerOpen[innerKey];
-
-                        return (
-                          <li key={sub.label} className="rounded-md">
-                            <button
-                              type="button"
-                              className="w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-gray-100"
-                              aria-expanded={opened}
-                              onClick={() => toggleInner(innerKey)}
-                              onPointerEnter={canHover ? () => toggleInner(innerKey, true) : undefined}
-                            >
-                              <span>{sub.label}</span>
-                              <ChevronDown
-                                size={16}
-                                className={`transition-transform ${opened ? "rotate-180" : ""}`}
-                              />
-                            </button>
-
-                            {opened && (
-                              <ul className="mt-1 ml-2 border-l border-gray-200 pl-3">
-                                {sub.dropdown.map((leaf) => (
-                                  <li key={leaf.href}>
-                                    <Link
-                                      href={leaf.href}
-                                      className="block px-3 py-2 rounded-md hover:bg-gray-100"
-                                      onClick={() => setOpenMenu(null)}
-                                    >
-                                      {leaf.label}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </li>
-              );
-            })}
-
-            {/* Desktop CTA */}
-            <li className="pl-2">
-              <Link
-                href="/request-callback"
-                className="bg-blue-500 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition text-sm font-medium whitespace-nowrap"
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        )}
-      </nav>
-
-      {/* Mobile Menu */}
-      {!isDesktop && isOpen && (
-        <ul className="bg-white px-4 pb-4 space-y-2 text-gray-800 border-t border-gray-100">
+        <ul className="hidden items-center gap-2 text-gray-800 xl:flex">
           {navItems.map((item) => {
             const hasDropdown = Array.isArray(item.dropdown) && item.dropdown.length > 0;
 
             if (!hasDropdown) {
               return (
-                <li key={item.href} className="hover:bg-[#f2f2f2] rounded-md px-3 py-2 transition">
-                  <Link href={item.href} onClick={() => setIsOpen(false)} className="block">
+                <li key={item.href} className="px-1 py-1">
+                  <Link
+                    href={item.href}
+                    className="inline-flex min-h-[44px] items-center rounded-full px-4 py-2 whitespace-nowrap transition hover:bg-[#f2f2f2]"
+                    onClick={() => setOpenMenu(null)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            }
+
+            const alignClass = item.align === "right" ? "right-0" : "left-0";
+            const open = openMenu === item.label;
+
+            const triggerHandlers = canHover
+              ? {
+                  onPointerEnter: () => openWithCancel(item.label),
+                  onPointerLeave: guardedLeave,
+                  onPointerMove: () => {
+                    if (!open) openWithCancel(item.label);
+                  },
+                }
+              : {
+                  onClick: () => (open ? setOpenMenu(null) : openWithCancel(item.label)),
+                };
+
+            return (
+              <li key={item.label} className="relative px-1 py-1" {...triggerHandlers}>
+                <button
+                  type="button"
+                  className="touch-target flex items-center gap-1 rounded-full px-4 py-2 transition hover:bg-[#f2f2f2]"
+                  aria-haspopup="true"
+                  aria-expanded={open}
+                  onFocus={() => openWithCancel(item.label)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Escape") {
+                      setOpenMenu(null);
+                      event.currentTarget.blur();
+                    }
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      open ? setOpenMenu(null) : openWithCancel(item.label);
+                    }
+                    if (event.key === "ArrowDown") openWithCancel(item.label);
+                  }}
+                >
+                  {item.label}
+                  <ChevronDown size={16} />
+                </button>
+
+                <span
+                  aria-hidden
+                  className="absolute left-0 right-0 top-full h-5 -translate-y-px"
+                />
+
+                <div
+                  className={[
+                    "absolute top-full z-[1000] mt-2 w-[22rem] max-w-[min(22rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-2 shadow-lg transition-opacity duration-150",
+                    alignClass,
+                    open
+                      ? "visible pointer-events-auto opacity-100"
+                      : "invisible pointer-events-none opacity-0",
+                  ].join(" ")}
+                  onPointerEnter={canHover ? () => openWithCancel(item.label) : undefined}
+                  onPointerLeave={canHover ? guardedLeave : undefined}
+                  role="menu"
+                >
+                  <ul className="text-sm">
+                    {item.dropdown.map((sub) => {
+                      const hasInner = Array.isArray(sub.dropdown) && sub.dropdown.length > 0;
+
+                      if (!hasInner) {
+                        return (
+                          <li key={sub.href}>
+                            <Link
+                              href={sub.href}
+                              className="block rounded-md px-3 py-2 hover:bg-gray-100"
+                              onClick={() => setOpenMenu(null)}
+                            >
+                              {sub.label}
+                            </Link>
+                          </li>
+                        );
+                      }
+
+                      const innerKey = `${item.label}::${sub.label}`;
+                      const opened = !!innerOpen[innerKey];
+
+                      return (
+                        <li key={sub.label} className="rounded-md">
+                          <button
+                            type="button"
+                            className="flex w-full items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            aria-expanded={opened}
+                            onClick={() => toggleInner(innerKey)}
+                            onPointerEnter={canHover ? () => toggleInner(innerKey, true) : undefined}
+                          >
+                            <span>{sub.label}</span>
+                            <ChevronDown
+                              size={16}
+                              className={`transition-transform ${opened ? "rotate-180" : ""}`}
+                            />
+                          </button>
+
+                          {opened ? (
+                            <ul className="mt-1 ml-2 border-l border-gray-200 pl-3">
+                              {sub.dropdown.map((leaf) => (
+                                <li key={leaf.href}>
+                                  <Link
+                                    href={leaf.href}
+                                    className="block rounded-md px-3 py-2 hover:bg-gray-100"
+                                    onClick={() => setOpenMenu(null)}
+                                  >
+                                    {leaf.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </li>
+            );
+          })}
+
+          <li className="pl-2">
+            <Link
+              href="/request-callback"
+              className="inline-flex min-h-[44px] items-center rounded-full bg-blue-500 px-5 py-2 text-sm font-medium whitespace-nowrap text-white transition hover:bg-blue-700"
+            >
+              Contact Us
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
+      <div className={`${isOpen ? "block" : "hidden"} border-t border-gray-100 xl:hidden`}>
+        <ul className="max-h-[calc(100vh-5rem)] space-y-2 overflow-y-auto px-4 pb-4 pt-3 text-gray-800 sm:px-6">
+          {navItems.map((item) => {
+            const hasDropdown = Array.isArray(item.dropdown) && item.dropdown.length > 0;
+
+            if (!hasDropdown) {
+              return (
+                <li key={item.href} className="rounded-md transition hover:bg-[#f2f2f2]">
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block rounded-md px-3 py-3"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -343,16 +355,19 @@ export default function Header() {
               <li key={key} className="rounded-md">
                 <button
                   type="button"
-                  className="w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-gray-100"
+                  className="flex w-full items-center justify-between rounded-md px-3 py-3 hover:bg-gray-100"
                   onClick={() => toggleExpand(key)}
                   aria-expanded={sectionOpen}
                 >
                   <span>{item.label}</span>
-                  <ChevronDown className={`transition-transform ${sectionOpen ? "rotate-180" : ""}`} size={18} />
+                  <ChevronDown
+                    className={`transition-transform ${sectionOpen ? "rotate-180" : ""}`}
+                    size={18}
+                  />
                 </button>
 
-                {sectionOpen && (
-                  <ul className="ml-3 mt-1 space-y-1 border-l border-gray-200 pl-3">
+                {sectionOpen ? (
+                  <ul className="mt-1 ml-3 space-y-1 border-l border-gray-200 pl-3">
                     {item.dropdown.map((sub) => {
                       const hasInner = Array.isArray(sub.dropdown) && sub.dropdown.length > 0;
 
@@ -361,7 +376,7 @@ export default function Header() {
                           <li key={sub.href}>
                             <Link
                               href={sub.href}
-                              className="block px-3 py-2 rounded-md hover:bg-gray-100 text-sm"
+                              className="block rounded-md px-3 py-2.5 text-sm hover:bg-gray-100"
                               onClick={() => setIsOpen(false)}
                             >
                               {sub.label}
@@ -377,7 +392,7 @@ export default function Header() {
                         <li key={subKey} className="rounded-md">
                           <button
                             type="button"
-                            className="w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-gray-100 text-sm"
+                            className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm hover:bg-gray-100"
                             onClick={() => toggleExpand(subKey)}
                             aria-expanded={innerSectionOpen}
                           >
@@ -388,13 +403,13 @@ export default function Header() {
                             />
                           </button>
 
-                          {innerSectionOpen && (
-                            <ul className="ml-3 mt-1 space-y-1 border-l border-gray-200 pl-3">
+                          {innerSectionOpen ? (
+                            <ul className="mt-1 ml-3 space-y-1 border-l border-gray-200 pl-3">
                               {sub.dropdown.map((leaf) => (
                                 <li key={leaf.href}>
                                   <Link
                                     href={leaf.href}
-                                    className="block px-3 py-2 rounded-md hover:bg-gray-100 text-sm"
+                                    className="block rounded-md px-3 py-2.5 text-sm hover:bg-gray-100"
                                     onClick={() => setIsOpen(false)}
                                   >
                                     {leaf.label}
@@ -402,28 +417,27 @@ export default function Header() {
                                 </li>
                               ))}
                             </ul>
-                          )}
+                          ) : null}
                         </li>
                       );
                     })}
                   </ul>
-                )}
+                ) : null}
               </li>
             );
           })}
 
-          {/* Mobile CTA */}
           <li className="pt-2">
             <Link
               href="/request-callback"
-              className="bg-blue-600 text-white w-full block text-center px-5 py-2 rounded-full hover:bg-blue-700 transition text-sm font-medium"
+              className="block rounded-full bg-blue-600 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-blue-700"
               onClick={() => setIsOpen(false)}
             >
               Contact Us
             </Link>
           </li>
         </ul>
-      )}
-    </header>
+      </div>
+    </div>
   );
 }

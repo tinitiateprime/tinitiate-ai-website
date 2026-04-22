@@ -146,7 +146,7 @@ function Coachmark({ onDismiss, prefersReducedMotion }) {
         animate={prefersReducedMotion ? false : { opacity: 1, x: 0, scale: 1 }}
         exit={prefersReducedMotion ? false : { opacity: 0, x: 16, scale: 0.98 }}
         transition={{ duration: 0.2 }}
-        className="absolute right-16 bottom-1 max-w-[70vw] md:max-w-none"
+        className="hidden absolute bottom-1 right-16 max-w-[min(72vw,260px)] sm:block sm:max-w-none"
         aria-label="Dismiss chat hint"
         title="Chat with us"
       >
@@ -550,9 +550,9 @@ export default function ChatWidget() {
       transition={{ duration: 0.22 }}
       className={[
         "fixed z-[1003]",
-        "right-6 bottom-24",
-        "w-[min(92vw,420px)]",
-        "max-h-[70vh]",
+        "inset-x-3 bottom-20",
+        "w-auto sm:inset-x-auto sm:right-6 sm:bottom-24 sm:w-[min(92vw,420px)]",
+        "max-h-[min(75vh,640px)]",
         "flex flex-col overflow-hidden",
         "bg-white border border-gray-200 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
       ].join(" ")}
@@ -593,7 +593,7 @@ export default function ChatWidget() {
     return (
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"} gap-2 items-end`}>
             {m.role === "assistant" && (
-              <div className="w-7 h-7 aspect-square rounded-full bg-white grid place-items-center overflow-hidden shrink-0border border-gray-200 shadow-sm">
+              <div className="w-7 h-7 aspect-square rounded-full bg-white grid place-items-center overflow-hidden shrink-0 border border-gray-200 shadow-sm">
               <img
                 src={ASSISTANT_AVATAR}
                 alt=""
@@ -727,7 +727,7 @@ export default function ChatWidget() {
       {!atBottom && (
         <button
           onClick={() => messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })}
-          className="absolute left-1/2 -translate-x-1/2 bottom-20 z-[1004] bg-gray-900 text-white text-xs rounded-full px-3 py-1.5 shadow-lg hover:bg-black/90 flex items-center gap-1"
+          className="absolute left-1/2 bottom-[5.5rem] z-[1004] flex -translate-x-1/2 items-center gap-1 rounded-full bg-gray-900 px-3 py-1.5 text-xs text-white shadow-lg hover:bg-black/90 sm:bottom-20"
           aria-label="Scroll to newest messages"
         >
           <ChevronDown className="w-3.5 h-3.5" />
@@ -739,7 +739,7 @@ export default function ChatWidget() {
 
   // Single floating button with mini speed-dial (no horizontal shift, clean icon swap)
   const dial = (
-    <div className="fixed bottom-6 right-6 z-[1004]" ref={fabRef}>
+    <div className="fixed bottom-4 right-4 z-[1004] sm:bottom-6 sm:right-6" ref={fabRef}>
       {/* Box ensures the dial never shifts the FAB */}
       <div className="relative w-14 h-14">
         {/* Pulse halo behind the FAB (only while coachmark is visible) */}
@@ -762,11 +762,11 @@ export default function ChatWidget() {
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
               exit={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
-              className="absolute bottom-16 right-0 flex flex-col items-end gap-2"
+              className="absolute bottom-16 right-0 flex max-w-[calc(100vw-4rem)] flex-col items-end gap-2"
             >
               <button
                 onClick={openPanel}
-                className="group flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-xl px-3 py-2"
+                className="group flex items-center gap-2 rounded-full bg-indigo-600 px-3 py-2 text-white shadow-xl hover:bg-indigo-700"
               >
                 <span className="text-xs opacity-90">Ask AI</span>
                 <MessageCircle className="w-5 h-5" />
@@ -776,7 +776,7 @@ export default function ChatWidget() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-xl px-3 py-2"
+                className="group flex items-center gap-2 rounded-full bg-emerald-600 px-3 py-2 text-white shadow-xl hover:bg-emerald-700"
               >
                 <span className="text-xs opacity-90">WhatsApp</span>
                 <FaWhatsapp className="w-[18px] h-[18px]" />
@@ -784,7 +784,7 @@ export default function ChatWidget() {
 
               <a
                 href={EMAIL_LINK}
-                className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl px-3 py-2"
+                className="group flex items-center gap-2 rounded-full bg-blue-600 px-3 py-2 text-white shadow-xl hover:bg-blue-700"
               >
                 <span className="text-xs opacity-90">Email</span>
                 <Mail className="w-5 h-5" />
@@ -792,7 +792,7 @@ export default function ChatWidget() {
 
               <a
                 href={PHONE_LINK_IN}
-                className="group flex items-center gap-2 bg-gray-800 hover:bg-black text-white rounded-full shadow-xl px-3 py-2"
+                className="group flex items-center gap-2 rounded-full bg-gray-800 px-3 py-2 text-white shadow-xl hover:bg-black"
               >
                 <span className="text-xs opacity-90">Call</span>
                 <Phone className="w-5 h-5" />
