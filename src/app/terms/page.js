@@ -26,7 +26,7 @@ export default function TermsAndConditions() {
 
         <div className="mb-10">
         <p className="text-lg text-left t text-gray-600">
-        Welcome to <span className="font-semibold text-indigo-500">TINITIATE AI Technologies</span>.By using our website and services, you agree to the terms below.
+        Welcome to <span className="font-semibold text-indigo-500">Tinitiate AI Solutions</span>.By using our website and services, you agree to the terms below.
         </p>
         </div>
 
@@ -85,7 +85,7 @@ export default function TermsAndConditions() {
           <ul className="space-y-3 text-gray-700">
             <li className="flex items-start">
               <FaCopyright className="mt-1 mr-2 text-blue-500" />
-              <span>All content belongs to TINITIATE AI Technologies unless otherwise noted.</span>
+              <span>All content belongs to Tinitiate AI Solutions unless otherwise noted.</span>
             </li>
             <li className="flex items-start">
               <FaExclamationCircle className="mt-1 mr-2 text-red-500" />
@@ -115,11 +115,11 @@ export default function TermsAndConditions() {
           <ul className="space-y-2 text-gray-700">
             <li className="flex items-start">
               <FaEnvelope className="mt-1 mr-2 text-blue-500" />
-              Email: <a href="mailto:info@tinitiate.com" className="text-indigo-600 underline">info@tinitiate.com</a>
+              Email: <a href="mailto:contact@tinitiateai.com" className="text-indigo-600 underline">contact@tinitiateai.com</a>
             </li>
             <li className="flex items-start">
               <FaGlobe className="mt-1 mr-2 text-blue-500" />
-              Website: <a href="https://www.tinitiate.com" target="_blank" className="text-indigo-600 underline">www.tinitiate.com</a>
+              Website: <a href="https://www.tinitiateai.com" target="_blank" className="text-indigo-600 underline">www.tinitiateai.com</a>
             </li>
           </ul>
         </section>

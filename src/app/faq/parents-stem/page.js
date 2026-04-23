@@ -7,15 +7,15 @@ import FAQList from "../../components/FAQList";
 
 
 export const metadata = {
-  title: "Parent FAQ — TINITIATE AI STEM & IT Programs",
+  title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
   description:
-    "Answers for parents about TINITIATE AI STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
+    "Answers for parents about Tinitiate AI Solutions STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
   openGraph: {
-    title: "Parent FAQ — TINITIATE AI STEM & IT Programs",
+    title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
     description:
-      "Answers for parents about TINITIATE AI STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
-    url: "https://www.tinitiate.com/parents-faq",
-    siteName: "TINITIATE AI",
+      "Answers for parents about Tinitiate AI Solutions STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
+    url: "https://www.tinitiateai.com/parents-faq",
+    siteName: "Tinitiate AI Solutions",
     type: "article",
   },
 };
@@ -103,7 +103,7 @@ export default function ParentFAQPage() {
           </div>
 
           <h1 className="mt-2 text-2xl font-extrabold leading-tight md:text-4xl">
-            Parent FAQ — TINITIATE AI STEM & IT Career Programs
+            Parent FAQ — Tinitiate AI Solutions STEM & IT Career Programs
           </h1>
 
           <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">

@@ -1,6 +1,6 @@
 // app/api/chat/route.js
 import { NextResponse } from "next/server";
-import { openai, CHAT_MODEL } from "@/lib/openai.js";
+import { getOpenAI, CHAT_MODEL } from "@/lib/openai.js";
 import { searchTopK } from "@/lib/rag.js";
 
 export const runtime = "nodejs";
@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 // const CONTACT_CARD = `
 // Contact TINITIATE:
 // • WhatsApp: https://wa.me/919553495553
-// • Email: contact@tinitiate.com
+// • Email: contact@tinitiateai.com
 // • Phone (India): +91 95534 95553
 // • Phone (USA): +1 973 653 6870, +1 206 802 4102
 // `.trim();
@@ -68,7 +68,7 @@ export async function POST(req) {
     ].filter(Boolean).join("\n\n");
 
     // Stream response (unchanged infra)
-    const stream = await openai.responses.create({
+    const stream = await getOpenAI().responses.create({
       model: CHAT_MODEL,
       stream: true,
       instructions,                   // 👈 brand voice + fallback rules
@@ -138,7 +138,7 @@ export async function POST(req) {
 
 // Contact block (ALWAYS the same formatting when you give contact info):
 // • WhatsApp: +91 95534 95553
-// • Email: contact@tinitiate.com
+// • Email: contact@tinitiateai.com
 // • Phone (India): +91 95534 95553
 // • Phone (USA): +1 973 653 6870, +1 206 802 4102
 

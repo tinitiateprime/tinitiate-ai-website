@@ -3,11 +3,11 @@
   "faqs": [
     {
       "id": "q1",
-      "title": "What is TINITIATE AI STEM Training Program?",
+      "title": "What is Tinitiate AI Solutions STEM Training Program?",
       "blocks": [
         {
           "type": "p",
-          "text": "TINITIATE AI offers industry-aligned STEM & IT programs that prepare students for real-world tech careers. We combine Software Development, Cloud, Data Engineering, AI, and Automation with practical, project-based learning — taught remotely by working professionals. "
+          "text": "Tinitiate AI Solutions offers industry-aligned STEM & IT programs that prepare students for real-world tech careers. We combine Software Development, Cloud, Data Engineering, AI, and Automation with practical, project-based learning — taught remotely by working professionals. "
         },
         {
           "type": "video",
@@ -17,12 +17,12 @@
     },
     {
       "id": "q2",
-      "title": "Why choose TINITIATE AI for my child’s training?",
+      "title": "Why choose Tinitiate AI Solutions for my child’s training?",
       "blocks": [
         { "type": "p", "text": "Because we bridge the gap between college education and employability." },
         {
           "type": "table",
-          "headers": ["Colleges Usually Offer", "TINITIATE AI Adds"],
+          "headers": ["Colleges Usually Offer", "Tinitiate AI Solutions Adds"],
           "rows": [
             ["Theoretical learning", "Real-world projects and live datasets"],
             ["Semester marks", "Industry-relevant portfolio & GitHub presence"],
@@ -97,7 +97,7 @@
       "id": "q7",
       "title": "Will my child receive a certificate?",
       "blocks": [
-        { "type": "p", "text": "Yes, Every participant earns a TINITIATE AI Certified Completion Certificate, including:" },
+        { "type": "p", "text": "Yes, Every participant earns a Tinitiate AI Solutions Certified Completion Certificate, including:" },
         {
           "type": "table",
           "headers": ["What it includes"],
@@ -159,7 +159,7 @@
       "id": "q11",
       "title": "How is this different from typical online courses?",
       "blocks": [
-        { "type": "p", "text": "Unlike passive video platforms, TINITIATE AI focuses on active learning:" },
+        { "type": "p", "text": "Unlike passive video platforms, Tinitiate AI Solutions focuses on active learning:" },
         {
           "type": "ul",
           "items": [

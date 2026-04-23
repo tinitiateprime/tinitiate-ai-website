@@ -68,7 +68,7 @@ function ProfessionalPage() {
           <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <span className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-900/70 px-3 py-1 text-xs text-slate-200">
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Professional Training • TINITIATE AI
+              Professional Training • Tinitiate AI Solutions
             </span>
 
             <h1 className="mt-4 text-3xl font-extrabold text-white sm:text-5xl">
@@ -715,7 +715,7 @@ export default function HomePage() {
   </h1>
 
   <p className="max-w-xl mx-auto text-lg text-white mb-8">
-    TINITIATE AI provides job-ready IT training, hands-on coding, and real-world consulting services led by 15+ years of industry expertise.
+    Tinitiate AI Solutions provides job-ready IT training, hands-on coding, and real-world consulting services led by 15+ years of industry expertise.
   </p>
 </div>
     
@@ -907,8 +907,11 @@ export default function HomePage() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Visualization.map((course) => (
-          <div className="bg-white/80 backdrop-blur-sm border border-cyan-100 rounded-2xl shadow-sm hover:shadow-md transition p-5">
-            <CourseCard key={course.courseKey} course={course} />
+          <div
+            key={course.courseKey}
+            className="bg-white/80 backdrop-blur-sm border border-cyan-100 rounded-2xl shadow-sm hover:shadow-md transition p-5"
+          >
+            <CourseCard course={course} />
           </div>
         ))}
       </div>
@@ -1019,7 +1022,7 @@ export default function HomePage() {
 <section id="about" className="py-10 px-6 bg-gray-50">
   <div className="max-w-6xl mx-auto">
     <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
-      Why Choose TINITIATE AI?
+      Why Choose Tinitiate AI Solutions?
     </h2>
 
     <div className="grid md:grid-cols-2 gap-10">

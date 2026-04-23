@@ -18,10 +18,10 @@ export default function Footer() {
 </Link>
 
           <h4 className="text-base font-semibold text-gray-900 mb-3">
-            TECHNICAL TINITIATE Technologies Pvt Ltd
+            Tinitiate AI Solutions
           </h4>
           <p className="leading-relaxed">
-           TINITIATE AI is a leading IT consulting, development and training company, dedicated to empowering businesses with cutting-edge technology solutions and high-quality professional training. A highly experienced team with years of expertise in IT services, database management, and cloud computing, we deliver tailored solutions to meet the evolving demands of enterprises worldwide.
+           Tinitiate AI Solutions is a leading IT consulting, development and training company, dedicated to empowering businesses with cutting-edge technology solutions and high-quality professional training. A highly experienced team with years of expertise in IT services, database management, and cloud computing, we deliver tailored solutions to meet the evolving demands of enterprises worldwide.
           </p>
          {/* Social media */}
           <div className="mt-5">
@@ -163,10 +163,10 @@ export default function Footer() {
     <div>
       📧{" "}
       <a
-        href="mailto:contact@tinitiate.com"
+        href="mailto:contact@tinitiateai.com"
         className="hover:text-blue-600 transition"
       >
-        contact@tinitiate.com
+        contact@tinitiateai.com
       </a>
     </div>
 
@@ -213,7 +213,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-8 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} TINITIATE Technologies Pvt Ltd. All rights reserved.
+        © {new Date().getFullYear()} Tinitiate AI Solutions. All rights reserved.
       </div>
     </footer>
   )

@@ -37,7 +37,7 @@ export default function WorkExperienceProgramPageV2() {
     <div>
       <h2 className="text-3xl font-bold text-indigo-600 mb-4">About the Program</h2>
       <p className="text-gray-700 leading-relaxed mb-4">
-        The TINITIATE AI Work Experience Program is a structured 5-month training and project-based journey designed to equip aspiring tech professionals with industry-ready skills in:
+        The Tinitiate AI Solutions Work Experience Program is a structured 5-month training and project-based journey designed to equip aspiring tech professionals with industry-ready skills in:
       </p>
       <ul className="list-disc pl-6 text-gray-700 mb-4 space-y-2">
         <li>Database Management</li>

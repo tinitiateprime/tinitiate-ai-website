@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
         </h1>
 
         <p className="text-lg mb-10 text-center text-gray-600">
-          At <span className="font-semibold text-indigo-500">TINITIATE AI Technologies</span>, we prioritize your privacy and are committed to protecting your personal information. Here&apos;s how we handle your data:
+          At <span className="font-semibold text-indigo-500">Tinitiate AI Solutions</span>, we prioritize your privacy and are committed to protecting your personal information. Here&apos;s how we handle your data:
         </p>
 
         {/* Information We Collect */}
@@ -112,11 +112,11 @@ export default function PrivacyPolicy() {
           <ul className="space-y-2 text-gray-700">
             <li className="flex items-start">
               <FaEnvelope className="mt-1 mr-2 text-blue-500" />
-              Email: <a href="mailto:contact@tinitiate.com" className="text-indigo-600 underline">contact@tinitiate.com</a>
+              Email: <a href="mailto:contact@tinitiateai.com" className="text-indigo-600 underline">contact@tinitiateai.com</a>
             </li>
             <li className="flex items-start">
               <FaGlobe className="mt-1 mr-2 text-blue-500" />
-              Website: <a href="https://www.tinitiate.com" className="text-indigo-600 underline" target="_blank">www.tinitiate.com</a>
+              Website: <a href="https://www.tinitiateai.com" className="text-indigo-600 underline" target="_blank">www.tinitiateai.com</a>
             </li>
           </ul>
         </section>

@@ -5,15 +5,15 @@ import FAQList from "../../components/FAQList";
 import faqData from "../../../../public/data/faq/parentsFaqNonStem.json";
 
 export const metadata = {
-  title: "Parent FAQ — Why Tech Skills Matter for Non-STEM Students | TINITIATE AI",
+  title: "Parent FAQ — Why Tech Skills Matter for Non-STEM Students | Tinitiate AI Solutions",
   description:
-    "Clear answers for parents of non-IT/non-STEM students: why tech skills matter in every career, what TINITIATE AI teaches, and how beginners succeed with hands-on projects.",
+    "Clear answers for parents of non-IT/non-STEM students: why tech skills matter in every career, what Tinitiate AI Solutions teaches, and how beginners succeed with hands-on projects.",
   openGraph: {
     title: "Parent FAQ — Why Tech Skills Matter for Non-STEM Students",
     description:
       "Why tech matters beyond Computer Science, what we teach, career benefits, and how beginners succeed.",
-    url: "https://www.tinitiate.com/faq/why-tinitiate/parents-nonstem",
-    siteName: "TINITIATE AI",
+    url: "https://www.tinitiateai.com/faq/why-tinitiate/parents-nonstem",
+    siteName: "Tinitiate AI Solutions",
     type: "article",
   },
 };
@@ -69,7 +69,7 @@ export default function Page() {
   // Top explainer (shown + included in JSON-LD)
   const topTitle = "Why should Non-STEM students learn technology?";
   const topAnswerText =
-    "Because every career today runs on technology — from finance and marketing to design, HR, and operations. You don’t have to become a programmer: understanding digital tools and thinking logically makes you more effective in ANY field. TINITIATE AI focuses on beginner-friendly, hands-on learning: small projects that build confidence (Excel→Python automation, data analysis, simple apps, or IoT demos), then larger, resume-ready work. This approach improves problem-solving, creates a portfolio for internships, and prepares students to contribute on Day 1.";
+    "Because every career today runs on technology — from finance and marketing to design, HR, and operations. You don’t have to become a programmer: understanding digital tools and thinking logically makes you more effective in ANY field. Tinitiate AI Solutions focuses on beginner-friendly, hands-on learning: small projects that build confidence (Excel→Python automation, data analysis, simple apps, or IoT demos), then larger, resume-ready work. This approach improves problem-solving, creates a portfolio for internships, and prepares students to contribute on Day 1.";
 
   // JSON-LD
   const faqLd = {
@@ -106,7 +106,7 @@ export default function Page() {
           </h1>
 
           <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">
-            Why technology skills matter in every career, what we teach at TINITIATE AI,
+            Why technology skills matter in every career, what we teach at Tinitiate AI Solutions,
             and how beginners from any stream can build confidence through projects.
           </p>
 

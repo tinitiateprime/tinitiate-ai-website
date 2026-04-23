@@ -2,19 +2,16 @@
 import { createHash } from "node:crypto";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { crawlSite } from "./crawl";
-import { openai } from "./openai";
+import { getOpenAI } from "./openai";
 import { DOCS } from "./rag-data";
 import path from "node:path";
 
 // Config
 const ORIGIN = process.env.RAG_ORIGIN || "https://tinitiate.com";
-const DEFAULT_CACHE_DIR = process.env.NETLIFY ? "/tmp" : path.join(process.cwd(), ".cache");
+const DEFAULT_CACHE_DIR = process.env.NETLIFY ? "/tmp" : path.join(/*turbopackIgnore: true*/ process.cwd(), ".cache");
 const INDEX_PATH =
   process.env.RAG_INDEX_PATH ||
   path.join(DEFAULT_CACHE_DIR, "tinitiate-rag.json");
-// const INDEX_PATH =
-//   process.env.RAG_INDEX_PATH ||
-//   path.join(process.cwd(), ".cache", "tinitiate-rag.json"); // writable on server
 const EMBED_MODEL =
   process.env.OPENAI_EMBED_MODEL ||
   process.env.EMBED_MODEL ||
@@ -32,7 +29,7 @@ async function embedWithFallback(input) {
   let lastErr;
   for (const model of EMBED_CANDIDATES) {
     try {
-      const { data } = await openai.embeddings.create({ model, input });
+      const { data } = await getOpenAI().embeddings.create({ model, input });
       return { modelUsed: model, data };
     } catch (err) {
       // Only fall through on model-not-found; rethrow others (e.g., 401)

@@ -7,7 +7,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "At TINITIATE AI, we believe that learning should fit your life, not the other way around. Our remote training programs are designed for students and professionals who want flexibility without compromising quality."
+          "text": "At Tinitiate AI Solutions, we believe that learning should fit your life, not the other way around. Our remote training programs are designed for students and professionals who want flexibility without compromising quality."
         },
         {
           "type": "ul",
@@ -23,12 +23,12 @@
     },
     {
       "id": "why-tinitiate",
-      "title": "Why TINITIATE AI?",
+      "title": "Why Tinitiate AI Solutions?",
       "blocks": [
         {
           "p": true,
           "type": "p",
-          "text": "With 15+ years of IT industry experience, TINITIATE AI Technologies Pvt. Ltd. stands for “From Classroom to Codebase.”"
+          "text": "With 15+ years of IT industry experience, Tinitiate AI Solutions stands for “From Classroom to Codebase.”"
         },
         {
           "type": "ul",
@@ -90,7 +90,7 @@
       "blocks": [
         {
           "type": "table",
-          "headers": ["College Teaching", "TINITIATE AI Training"],
+          "headers": ["College Teaching", "Tinitiate AI Solutions Training"],
           "rows": [
             ["Textbook concepts", "Hands-on coding with projects"],
             ["Limited exposure", "Industry-style workflows and data models"],
@@ -125,7 +125,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Yes — every participant receives a TINITIATE AI Certified Course Completion Certificate, mentioning the skills, duration, and project modules completed."
+          "text": "Yes — every participant receives a Tinitiate AI Solutions Certified Course Completion Certificate, mentioning the skills, duration, and project modules completed."
         },
         {
           "type": "p",
@@ -146,7 +146,7 @@
           "items": [
             "The certificate is recognized by employers as proof of project-based training.",
             "You can showcase your project portfolio and GitHub repositories developed during the course.",
-            "Our career-guidance sessions help you present your TINITIATE AI projects in interviews confidently."
+            "Our career-guidance sessions help you present your Tinitiate AI Solutions projects in interviews confidently."
           ]
         }
       ]

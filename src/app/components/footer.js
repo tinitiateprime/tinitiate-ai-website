@@ -170,7 +170,7 @@ export default function Footer() {
     <div>
       📧{" "}
       <a
-        href="mailto:contact@tinitiate.com"
+        href="mailto:contact@tinitiateai.com"
         className="hover:text-blue-600 transition"
       >
         contact@tinitiateai.com
@@ -210,7 +210,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-8 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} TINITIATE Technologies Pvt Ltd. All rights reserved.
+        © {new Date().getFullYear()} Tinitiate AI Solutions. All rights reserved.
       </div>
     </footer>
   )

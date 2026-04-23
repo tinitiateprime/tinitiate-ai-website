@@ -5,15 +5,15 @@ import FAQList from "../../components/FAQList";
 import faqData from "../../../../public/data/faq/studentFaqStem.json"; // uses the student JSON you made
 
 export const metadata = {
-  title: "Student FAQ — Why Choose TINITIATE AI | TINITIATE AI",
+  title: "Student FAQ — Why Choose Tinitiate AI Solutions | Tinitiate AI Solutions",
   description:
     "Clear answers for students: what you’ll learn, what you’ll build, how projects and mentoring work, and how this training boosts your career.",
   openGraph: {
-    title: "Student FAQ — Why Choose TINITIATE AI",
+    title: "Student FAQ — Why Choose Tinitiate AI Solutions",
     description:
-      "Learn how TINITIATE AI helps you build real projects, pick the right track, and get interview-ready with mentor guidance.",
-    url: "https://www.tinitiate.com/faq/why-tinitiate/students",
-    siteName: "TINITIATE AI",
+      "Learn how Tinitiate AI Solutions helps you build real projects, pick the right track, and get interview-ready with mentor guidance.",
+    url: "https://www.tinitiateai.com/faq/why-tinitiate/students",
+    siteName: "Tinitiate AI Solutions",
     type: "article",
   },
 };
@@ -96,7 +96,7 @@ export default function Page() {
             </div>
 
             <h1 className="mt-2 text-2xl font-extrabold leading-tight md:text-4xl">
-              Student FAQ — Why Choose TINITIATE AI
+              Student FAQ — Why Choose Tinitiate AI Solutions
             </h1>
 
             <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">

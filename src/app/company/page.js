@@ -15,7 +15,7 @@ export default function CompanyPage() {
         Trusted IT Experts
       </span>
       <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight">
-        TINITIATE AI Technologies 
+        Tinitiate AI Solutions 
       </h1>
       <p className="text-base sm:text-lg text-white mb-6 max-w-xl">
          Empowering individuals and businesses through innovative IT training and development services.
@@ -41,7 +41,7 @@ export default function CompanyPage() {
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-6 text-gray-900">Who We Are</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            TINITIATE AI is a technology-driven organization committed to delivering high-quality IT training and development services. With over 15 years of industry experience, we bridge the gap between education and employment by equipping students and professionals with real-world skills.
+            Tinitiate AI Solutions is a technology-driven organization committed to delivering high-quality IT training and development services. With over 15 years of industry experience, we bridge the gap between education and employment by equipping students and professionals with real-world skills.
           </p>
           <p className="text-gray-700 leading-relaxed">
             Our team of experienced professionals, industry experts, and technologists ensure every engagement reflects our commitment to excellence, innovation, and learner success.
@@ -69,7 +69,7 @@ export default function CompanyPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Partner With Us?</h2>
           <p className="text-gray-700 leading-relaxed mb-6">
-            Whether you&apos;re an individual looking to upskill or an enterprise needing cutting-edge development services,TINITIATE AI is your trusted technology partner. Our commitment to personalized mentoring, project-oriented learning, and scalable engineering makes us stand out.
+            Whether you&apos;re an individual looking to upskill or an enterprise needing cutting-edge development services,Tinitiate AI Solutions is your trusted technology partner. Our commitment to personalized mentoring, project-oriented learning, and scalable engineering makes us stand out.
           </p>
           <div className="grid sm:grid-cols-2 gap-6 text-left">
             {[

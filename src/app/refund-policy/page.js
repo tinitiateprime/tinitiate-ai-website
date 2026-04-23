@@ -20,7 +20,7 @@ export default function CancellationRefundPolicy() {
 
       <div className="mb-10">
   <p className="text-2g text-center text-gray-600">
-    At <span className="font-semibold text-indigo-500">TINITIATE AI Technologies</span>, 
+    At <span className="font-semibold text-indigo-500">Tinitiate AI Solutions</span>, 
     we are committed to delivering high-quality IT training and services. We understand that plans
   </p>
 
@@ -35,7 +35,7 @@ export default function CancellationRefundPolicy() {
           <ul className="space-y-3 text-gray-700">
             <li className="flex items-start">
               <FaEnvelope className="mt-1 mr-2 text-blue-500" />
-              Contact us at <a href="mailto:info@tinitiate.com" className="text-indigo-500 underline">info@tinitiate.com</a> to initiate a cancellation.
+              Contact us at <a href="mailto:contact@tinitiateai.com" className="text-indigo-500 underline">contact@tinitiateai.com</a> to initiate a cancellation.
             </li>
             <li className="flex items-start">
               <FaTimesCircle className="mt-1 mr-2 text-red-500" />
@@ -54,7 +54,7 @@ export default function CancellationRefundPolicy() {
           <ul className="space-y-3 text-gray-700">
             <li className="flex items-start">
               <FaCheckCircle className="mt-1 mr-2 text-green-500" />
-              If a batch is canceled by TINITIATE AI, students may opt for a full refund or join a different batch.
+              If a batch is canceled by Tinitiate AI Solutions, students may opt for a full refund or join a different batch.
             </li>
             <li className="flex items-start">
               <FaCheckCircle className="mt-1 mr-2 text-green-500" />
