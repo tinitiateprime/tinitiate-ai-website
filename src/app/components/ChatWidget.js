@@ -66,21 +66,21 @@ function ContactHandoff() {
         href={WHATSAPP_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className="px-3 py-1.5 rounded-full text-sm border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition"
+        className="px-3 py-1.5 rounded-full text-sm border border-emerald-300 bg-emerald-50 text-emerald-800 transition hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-200 dark:hover:bg-emerald-900/70"
         title="WhatsApp"
       >
         WhatsApp us
       </a>
       <a
         href={EMAIL_LINK}
-        className="px-3 py-1.5 rounded-full text-sm border border-blue-300 bg-blue-50 text-blue-800 hover:bg-blue-100 transition"
+        className="px-3 py-1.5 rounded-full text-sm border border-blue-300 bg-blue-50 text-blue-800 transition hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/60 dark:text-blue-200 dark:hover:bg-blue-900/70"
         title="Email"
       >
         Email us
       </a>
       <a
         href={PHONE_LINK_IN}
-        className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-gray-50 text-gray-800 hover:bg-gray-100 transition"
+        className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-gray-50 text-gray-800 transition hover:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
         title="Call (India)"
       >
         {/* Call (India) */}
@@ -197,7 +197,7 @@ function LinkCTA({ href, label }) {
 
   const classes =
     "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border shadow-sm transition " +
-    "border-indigo-300 bg-indigo-50 text-indigo-800 hover:bg-indigo-100";
+    "border-indigo-300 bg-indigo-50 text-indigo-800 hover:bg-indigo-100 dark:border-indigo-800 dark:bg-indigo-950/60 dark:text-indigo-200 dark:hover:bg-indigo-900/70";
 
   const inner = (
     <>
@@ -506,11 +506,11 @@ export default function ChatWidget() {
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
                 animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
                 exit={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
-                className="absolute right-0 mt-2 w-44 rounded-xl border border-gray-200 bg-white text-gray-800 shadow-lg p-1 z-[1005]"
+                className="absolute right-0 z-[1005] mt-2 w-44 rounded-xl border border-gray-200 bg-white p-1 text-gray-800 shadow-lg dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]"
               >
                 <a
                   href={PHONE_LINK_IN}
-                  className="block text-sm px-3 py-2 rounded-lg hover:bg-gray-100"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
                   title="Call (India)"
                   onClick={() => setMoreOpen(false)}
                 >
@@ -519,7 +519,7 @@ export default function ChatWidget() {
                 </a>
                 <button
                   onClick={() => { setMoreOpen(false); clearConversation(); }}
-                  className="w-full text-left text-sm px-3 py-2 rounded-lg hover:bg-gray-100"
+                  className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
                 >
                   Clear conversation
                 </button>
@@ -554,7 +554,7 @@ export default function ChatWidget() {
         "w-auto sm:inset-x-auto sm:right-6 sm:bottom-24 sm:w-[min(92vw,420px)]",
         "max-h-[min(75vh,640px)]",
         "flex flex-col overflow-hidden",
-        "bg-white border border-gray-200 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
+        "rounded-2xl border border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.25)] dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_24px_70px_rgba(2,6,23,0.58)]"
       ].join(" ")}
       role="dialog"
       aria-label="TINITIATE chat"
@@ -562,7 +562,7 @@ export default function ChatWidget() {
       {/* Header with Close X on the right */}
       <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-sm">
         <div className="flex items-center gap-2">
-<div className="w-7 h-7 aspect-square rounded-full bg-white/50 grid place-items-center overflow-hidden shrink-0 self-center">
+<div className="grid h-7 w-7 aspect-square shrink-0 place-items-center self-center overflow-hidden rounded-full bg-white/50 dark:bg-white/20">
   <img src={ASSISTANT_AVATAR} alt="" className="w-5 h-5 object-contain" />
 </div>
           <div className="font-medium text-sm tracking-wide">TINITIATE Assistant</div>
@@ -583,7 +583,7 @@ export default function ChatWidget() {
       {/* Messages */}
       <div
         ref={messagesRef}
-        className="flex-1 overflow-y-auto bg-gray-50 px-3 py-3 md:px-4 md:py-4 space-y-3"
+        className="flex-1 space-y-3 overflow-y-auto bg-gray-50 px-3 py-3 dark:bg-slate-900 md:px-4 md:py-4"
         role="log"
         aria-live="polite"
         aria-relevant="additions text"
@@ -593,7 +593,7 @@ export default function ChatWidget() {
     return (
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"} gap-2 items-end`}>
             {m.role === "assistant" && (
-              <div className="w-7 h-7 aspect-square rounded-full bg-white grid place-items-center overflow-hidden shrink-0 border border-gray-200 shadow-sm">
+              <div className="grid h-7 w-7 aspect-square shrink-0 place-items-center overflow-hidden rounded-full border border-gray-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-950">
               <img
                 src={ASSISTANT_AVATAR}
                 alt=""
@@ -606,7 +606,7 @@ export default function ChatWidget() {
                 "max-w-[85%] md:max-w-[80%] px-3 py-2 rounded-2xl text-[0.95rem] leading-relaxed shadow-sm",
                 m.role === "user"
                   ? "bg-indigo-600 text-white rounded-br-none"
-                  : "bg-white text-gray-900 border border-gray-200 rounded-bl-none"
+                  : "rounded-bl-none border border-gray-200 bg-white text-gray-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               ].join(" ")}
             >
               {m.role === "assistant" ? (
@@ -628,7 +628,7 @@ export default function ChatWidget() {
 })}
 
         {busy && (
-          <div className="flex items-center gap-2 text-xs text-gray-500 pl-9">
+          <div className="flex items-center gap-2 pl-9 text-xs text-gray-500 dark:text-slate-400">
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
             TINITIATE is typing…
           </div>
@@ -639,21 +639,21 @@ export default function ChatWidget() {
 
       {/* Suggestions (random) or a small pill to reopen */}
       {!busy && (
-        <div className="border-t bg-white px-3 md:px-4 py-2">
+        <div className="border-t border-gray-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-950 md:px-4">
           {showPrompts ? (
             <div className="flex flex-wrap gap-2">
               {promptChoices.map((s) => (
                 <button
                   key={s}
                   onClick={() => setTimeout(() => sendMessage(s), 0)}
-                  className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-white text-gray-800 hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700 transition"
+                  className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-white text-gray-800 transition hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-indigo-500 dark:hover:bg-slate-800 dark:hover:text-indigo-200"
                 >
                   {s}
                 </button>
               ))}
               <button
                 onClick={() => setShowPrompts(false)}
-                className="px-3 py-1.5 rounded-full text-sm border border-gray-200 bg-gray-50 text-gray-700 hover:bg-gray-100 transition"
+                className="px-3 py-1.5 rounded-full text-sm border border-gray-200 bg-gray-50 text-gray-700 transition hover:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
                 title="Hide quick prompts"
               >
                 Hide
@@ -663,21 +663,21 @@ export default function ChatWidget() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-full text-sm border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition"
+                className="px-3 py-1.5 rounded-full text-sm border border-emerald-300 bg-emerald-50 text-emerald-800 transition hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-200 dark:hover:bg-emerald-900/70"
                 title="WhatsApp"
               >
                 WhatsApp us
               </a>
               <a
                 href={EMAIL_LINK}
-                className="px-3 py-1.5 rounded-full text-sm border border-blue-300 bg-blue-50 text-blue-800 hover:bg-blue-100 transition"
+                className="px-3 py-1.5 rounded-full text-sm border border-blue-300 bg-blue-50 text-blue-800 transition hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/60 dark:text-blue-200 dark:hover:bg-blue-900/70"
                 title="Email"
               >
                 Email us
               </a>
       <a
         href={PHONE_LINK_IN}
-        className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-gray-50 text-gray-800 hover:bg-gray-100 transition"
+        className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-gray-50 text-gray-800 transition hover:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
         title="Call (India)"
       >
         {/* Call (India) */}
@@ -687,7 +687,7 @@ export default function ChatWidget() {
           ) : hasChatted ? (
             <button
               onClick={() => setShowPrompts(true)}
-              className="text-xs text-gray-600 hover:text-gray-900 underline"
+              className="text-xs text-gray-600 underline hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
               title="Show quick prompts"
             >
               Show quick prompts
@@ -697,7 +697,7 @@ export default function ChatWidget() {
       )}
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="border-t bg-white px-3 md:px-4 py-2">
+      <form onSubmit={handleSubmit} className="border-t border-gray-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-950 md:px-4">
         <div className="flex items-end gap-2">
           <textarea
             ref={textRef}
@@ -706,14 +706,14 @@ export default function ChatWidget() {
             onKeyDown={handleKeyDown}
             rows={1}
             placeholder="Type your question… (Shift+Enter for a new line)"
-            className="flex-1 resize-none text-[0.95rem] rounded-xl border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 placeholder:text-gray-500 bg-white"
+            className="flex-1 resize-none rounded-xl border border-gray-300 bg-white px-3 py-2 text-[0.95rem] text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
           />
           <button
             type="submit"
             disabled={!input.trim() || busy}
             className={[
               "rounded-xl px-3 py-2 font-medium",
-              busy ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-indigo-600 text-white hover:bg-indigo-700"
+              busy ? "cursor-not-allowed bg-gray-200 text-gray-500 dark:bg-slate-800 dark:text-slate-400" : "bg-indigo-600 text-white hover:bg-indigo-700"
             ].join(" ")}
             aria-label="Send message"
             title="Send"

@@ -5,16 +5,31 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Menu, X, Sun, Moon } from "lucide-react";
 
+function getDocumentTheme() {
+  if (typeof document === "undefined") return "light";
+  const datasetTheme = document.documentElement.getAttribute("data-theme");
+  if (datasetTheme === "dark" || datasetTheme === "light") return datasetTheme;
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
+function applyDocumentTheme(nextTheme) {
+  if (typeof document === "undefined") return;
+  document.documentElement.classList.toggle("dark", nextTheme === "dark");
+  document.documentElement.style.colorScheme = nextTheme;
+  document.documentElement.setAttribute("data-theme", nextTheme);
+  document.documentElement.setAttribute("data-theme-ready", "true");
+}
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const [expanded, setExpanded] = useState({});
   const [innerOpen, setInnerOpen] = useState({});
   const [canHover, setCanHover] = useState(false);
-
   const closeTimerRef = useRef(null);
   const navRef = useRef(null);
   const [theme, setTheme] = useState("light");
+  const [isThemeReady, setIsThemeReady] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -72,25 +87,50 @@ export default function Header() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark" || saved === "light") {
-      setTheme(saved);
-      document.documentElement.classList.toggle("dark", saved === "dark");
-      return;
-    }
-    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setTheme(prefersDark ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", prefersDark);
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const resolveTheme = () => {
+      const saved = localStorage.getItem("theme");
+      if (saved === "dark" || saved === "light") return saved;
+      return mediaQuery.matches ? "dark" : "light";
+    };
+
+    const syncTheme = () => {
+      const nextTheme = resolveTheme();
+      applyDocumentTheme(nextTheme);
+      setTheme(nextTheme);
+      setIsThemeReady(true);
+    };
+    const handleStorage = (event) => {
+      if (event.key === "theme") syncTheme();
+    };
+    const handleSystemTheme = () => {
+      const saved = localStorage.getItem("theme");
+      if (saved !== "dark" && saved !== "light") syncTheme();
+    };
+
+    syncTheme();
+    window.addEventListener("storage", handleStorage);
+    if (mediaQuery.addEventListener) mediaQuery.addEventListener("change", handleSystemTheme);
+    else mediaQuery.addListener(handleSystemTheme);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      if (mediaQuery.removeEventListener) mediaQuery.removeEventListener("change", handleSystemTheme);
+      else mediaQuery.removeListener(handleSystemTheme);
+    };
   }, []);
 
   const toggleTheme = () => {
+    if (!isThemeReady) return;
     const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
     if (typeof window !== "undefined") {
       localStorage.setItem("theme", next);
-      document.documentElement.classList.toggle("dark", next === "dark");
     }
+    setTheme(next);
+    applyDocumentTheme(next);
   };
+
+  const isDark = theme === "dark";
 
   useEffect(() => () => clearCloseTimer(), []);
 
@@ -158,7 +198,7 @@ export default function Header() {
   ];
 
   return (
-    <div className="border-b border-gray-100 bg-white">
+    <div className="border-b border-gray-100 bg-white transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950">
       <nav
         ref={navRef}
         className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8"
@@ -176,14 +216,14 @@ export default function Header() {
 
         <button
           type="button"
-          className="touch-target rounded-md p-2 text-gray-800 transition hover:bg-gray-100 xl:hidden"
+          className="touch-target rounded-xl p-2 text-gray-800 transition hover:bg-gray-100 dark:text-slate-100 dark:hover:bg-slate-800 xl:hidden"
           onClick={() => setIsOpen((value) => !value)}
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        <ul className="hidden items-center gap-2 text-gray-800 xl:flex">
+        <ul className="hidden items-center gap-2 text-gray-800 dark:text-slate-100 xl:flex">
           {navItems.map((item) => {
             const hasDropdown = Array.isArray(item.dropdown) && item.dropdown.length > 0;
 
@@ -192,7 +232,7 @@ export default function Header() {
                 <li key={item.href} className="px-1 py-1">
                   <Link
                     href={item.href}
-                    className="inline-flex min-h-[44px] items-center rounded-full px-4 py-2 whitespace-nowrap transition hover:bg-[#f2f2f2]"
+                    className="inline-flex min-h-[44px] items-center rounded-full px-4 py-2 whitespace-nowrap transition hover:bg-[#f2f2f2] dark:hover:bg-slate-800"
                     onClick={() => setOpenMenu(null)}
                   >
                     {item.label}
@@ -220,7 +260,7 @@ export default function Header() {
               <li key={item.label} className="relative px-1 py-1" {...triggerHandlers}>
                 <button
                   type="button"
-                  className="touch-target flex items-center gap-1 rounded-full px-4 py-2 transition hover:bg-[#f2f2f2]"
+                  className="touch-target flex items-center gap-1 rounded-full px-4 py-2 transition hover:bg-[#f2f2f2] dark:hover:bg-slate-800"
                   aria-haspopup="true"
                   aria-expanded={open}
                   onFocus={() => openWithCancel(item.label)}
@@ -247,7 +287,7 @@ export default function Header() {
 
                 <div
                   className={[
-                    "absolute top-full z-[1000] mt-2 w-[22rem] max-w-[min(22rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-2 shadow-lg transition-opacity duration-150",
+                    "absolute top-full z-[1000] mt-2 w-[22rem] max-w-[min(22rem,calc(100vw-2rem))] rounded-2xl border border-gray-200 bg-white p-2 shadow-[0_18px_45px_rgba(15,23,42,0.12)] transition-opacity duration-150 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_24px_55px_rgba(2,6,23,0.56)]",
                     alignClass,
                     open
                       ? "visible pointer-events-auto opacity-100"
@@ -266,7 +306,7 @@ export default function Header() {
                           <li key={sub.href}>
                             <Link
                               href={sub.href}
-                              className="block rounded-md px-3 py-2 hover:bg-gray-100"
+                              className="block rounded-xl px-3 py-2 hover:bg-gray-100 dark:hover:bg-slate-800"
                               onClick={() => setOpenMenu(null)}
                             >
                               {sub.label}
@@ -279,10 +319,10 @@ export default function Header() {
                       const opened = !!innerOpen[innerKey];
 
                       return (
-                        <li key={sub.label} className="rounded-md">
+                        <li key={sub.label} className="rounded-xl">
                           <button
                             type="button"
-                            className="flex w-full items-center justify-between rounded-md px-3 py-2 hover:bg-gray-100"
+                            className="flex w-full items-center justify-between rounded-xl px-3 py-2 hover:bg-gray-100 dark:hover:bg-slate-800"
                             aria-expanded={opened}
                             onClick={() => toggleInner(innerKey)}
                             onPointerEnter={canHover ? () => toggleInner(innerKey, true) : undefined}
@@ -295,12 +335,12 @@ export default function Header() {
                           </button>
 
                           {opened ? (
-                            <ul className="mt-1 ml-2 border-l border-gray-200 pl-3">
+                            <ul className="mt-1 ml-2 border-l border-gray-200 pl-3 dark:border-slate-700">
                               {sub.dropdown.map((leaf) => (
                                 <li key={leaf.href}>
                                   <Link
                                     href={leaf.href}
-                                    className="block rounded-md px-3 py-2 hover:bg-gray-100"
+                                    className="block rounded-xl px-3 py-2 hover:bg-gray-100 dark:hover:bg-slate-800"
                                     onClick={() => setOpenMenu(null)}
                                   >
                                     {leaf.label}
@@ -326,21 +366,56 @@ export default function Header() {
               Contact Us
             </Link>
           </li>
+          <li className="pl-1">
+            {isThemeReady ? (
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+                aria-pressed={isDark}
+                className="group relative inline-flex h-11 w-[74px] items-center rounded-full border border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#eef4ff_100%)] p-1 shadow-[0_10px_24px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(15,23,42,0.14)] dark:border-slate-700 dark:bg-[linear-gradient(135deg,#0f172a_0%,#172554_100%)] dark:shadow-[0_12px_28px_rgba(2,6,23,0.45)]"
+              >
+                <span className="absolute inset-y-1 left-1 flex w-8 items-center justify-center text-amber-500 transition-opacity duration-300 dark:opacity-55">
+                  <Sun size={15} />
+                </span>
+                <span className="absolute inset-y-1 right-1 flex w-8 items-center justify-center text-slate-400 transition-opacity duration-300 dark:text-cyan-300 dark:opacity-100">
+                  <Moon size={15} />
+                </span>
+                <span
+                  aria-hidden
+                  className={`relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-700 shadow-[0_8px_18px_rgba(15,23,42,0.16)] transition-all duration-300 dark:bg-slate-950 dark:text-cyan-200 dark:shadow-[0_8px_18px_rgba(2,6,23,0.45)] ${
+                    isDark ? "translate-x-[30px]" : "translate-x-0"
+                  }`}
+                >
+                  {isDark ? <Moon size={15} /> : <Sun size={15} />}
+                </span>
+              </button>
+            ) : (
+              <span
+                aria-hidden
+                className="inline-flex h-11 w-[74px] items-center rounded-full border border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#eef4ff_100%)] p-1 shadow-[0_10px_24px_rgba(15,23,42,0.08)] opacity-70 dark:border-slate-700 dark:bg-[linear-gradient(135deg,#0f172a_0%,#172554_100%)] dark:shadow-[0_12px_28px_rgba(2,6,23,0.45)]"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-400 shadow-[0_8px_18px_rgba(15,23,42,0.16)] dark:bg-slate-950 dark:text-slate-500 dark:shadow-[0_8px_18px_rgba(2,6,23,0.45)]">
+                  <Sun size={15} />
+                </span>
+              </span>
+            )}
+          </li>
         </ul>
       </nav>
 
-      <div className={`${isOpen ? "block" : "hidden"} border-t border-gray-100 xl:hidden`}>
-        <ul className="max-h-[calc(100vh-5rem)] space-y-2 overflow-y-auto px-4 pb-4 pt-3 text-gray-800 sm:px-6">
+      <div className={`${isOpen ? "block" : "hidden"} border-t border-gray-100 dark:border-slate-800 xl:hidden`}>
+        <ul className="max-h-[calc(100vh-5rem)] space-y-2 overflow-y-auto bg-white px-4 pb-4 pt-3 text-gray-800 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100 sm:px-6">
           {navItems.map((item) => {
             const hasDropdown = Array.isArray(item.dropdown) && item.dropdown.length > 0;
 
             if (!hasDropdown) {
               return (
-                <li key={item.href} className="rounded-md transition hover:bg-[#f2f2f2]">
+                <li key={item.href} className="rounded-xl transition hover:bg-[#f2f2f2] dark:hover:bg-slate-800">
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block rounded-md px-3 py-3"
+                    className="block rounded-xl px-3 py-3"
                   >
                     {item.label}
                   </Link>
@@ -352,10 +427,10 @@ export default function Header() {
             const sectionOpen = !!expanded[key];
 
             return (
-              <li key={key} className="rounded-md">
+              <li key={key} className="rounded-xl">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between rounded-md px-3 py-3 hover:bg-gray-100"
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-3 hover:bg-gray-100 dark:hover:bg-slate-800"
                   onClick={() => toggleExpand(key)}
                   aria-expanded={sectionOpen}
                 >
@@ -367,7 +442,7 @@ export default function Header() {
                 </button>
 
                 {sectionOpen ? (
-                  <ul className="mt-1 ml-3 space-y-1 border-l border-gray-200 pl-3">
+                  <ul className="mt-1 ml-3 space-y-1 border-l border-gray-200 pl-3 dark:border-slate-700">
                     {item.dropdown.map((sub) => {
                       const hasInner = Array.isArray(sub.dropdown) && sub.dropdown.length > 0;
 
@@ -376,7 +451,7 @@ export default function Header() {
                           <li key={sub.href}>
                             <Link
                               href={sub.href}
-                              className="block rounded-md px-3 py-2.5 text-sm hover:bg-gray-100"
+                              className="block rounded-xl px-3 py-2.5 text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
                               onClick={() => setIsOpen(false)}
                             >
                               {sub.label}
@@ -389,10 +464,10 @@ export default function Header() {
                       const innerSectionOpen = !!expanded[subKey];
 
                       return (
-                        <li key={subKey} className="rounded-md">
+                        <li key={subKey} className="rounded-xl">
                           <button
                             type="button"
-                            className="flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm hover:bg-gray-100"
+                            className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
                             onClick={() => toggleExpand(subKey)}
                             aria-expanded={innerSectionOpen}
                           >
@@ -404,12 +479,12 @@ export default function Header() {
                           </button>
 
                           {innerSectionOpen ? (
-                            <ul className="mt-1 ml-3 space-y-1 border-l border-gray-200 pl-3">
+                            <ul className="mt-1 ml-3 space-y-1 border-l border-gray-200 pl-3 dark:border-slate-700">
                               {sub.dropdown.map((leaf) => (
                                 <li key={leaf.href}>
                                   <Link
                                     href={leaf.href}
-                                    className="block rounded-md px-3 py-2.5 text-sm hover:bg-gray-100"
+                                    className="block rounded-xl px-3 py-2.5 text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
                                     onClick={() => setIsOpen(false)}
                                   >
                                     {leaf.label}
@@ -428,13 +503,41 @@ export default function Header() {
           })}
 
           <li className="pt-2">
-            <Link
-              href="/request-callback"
-              className="block rounded-full bg-blue-600 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-blue-700"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact Us
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/request-callback"
+                className="flex-1 rounded-full bg-blue-600 px-5 py-3 text-center text-sm font-medium text-white transition hover:bg-blue-700"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact Us
+              </Link>
+              {isThemeReady ? (
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+                  aria-pressed={isDark}
+                  className="inline-flex h-12 w-16 items-center rounded-full border border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#eef4ff_100%)] p-1 shadow-sm transition-all duration-300 dark:border-slate-700 dark:bg-[linear-gradient(135deg,#0f172a_0%,#172554_100%)]"
+                >
+                  <span
+                    className={`flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition-transform duration-300 dark:bg-slate-950 dark:text-cyan-200 ${
+                      isDark ? "translate-x-4" : "translate-x-0"
+                    }`}
+                  >
+                    {isDark ? <Moon size={16} /> : <Sun size={16} />}
+                  </span>
+                </button>
+              ) : (
+                <span
+                  aria-hidden
+                  className="inline-flex h-12 w-16 items-center rounded-full border border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#eef4ff_100%)] p-1 shadow-sm opacity-70 dark:border-slate-700 dark:bg-[linear-gradient(135deg,#0f172a_0%,#172554_100%)]"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm dark:bg-slate-950 dark:text-slate-500">
+                    <Sun size={16} />
+                  </span>
+                </span>
+              )}
+            </div>
           </li>
         </ul>
       </div>

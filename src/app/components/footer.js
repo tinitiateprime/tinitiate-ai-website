@@ -51,50 +51,109 @@ const socialLinks = [
   {
     href: "https://www.linkedin.com/company/tinitiate/",
     label: "LinkedIn",
-    hoverClass: "hover:text-[#0A66C2]",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-        <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.88-2.37-3.88-2.38 0-2.74 1.86-2.74 3.76V24h-4V8z" />
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <image
+          href="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+          width="24"
+          height="24"
+          preserveAspectRatio="xMidYMid meet"
+        />
       </svg>
     ),
   },
   {
-    href: "https://www.youtube.com/@tinitiate",
+    href: "https://www.youtube.com/channel/UCXVm8lbVkHOxEJ4XzggTeJw",
     label: "YouTube",
-    hoverClass: "hover:text-red-500",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-        <path d="M23.5 6.2s-.2-1.7-.8-2.4c-.8-.8-1.6-.8-2-1C17.6 2.4 12 2.4 12 2.4h0s-5.6 0-8.6.4c-.4.1-1.3.1-2 1-.6.7-.8 2.4-.8 2.4S0 8.2 0 10.2v1.6c0 2 .2 4 .2 4s.2 1.7.8 2.4c.8.8 1.8.8 2.2.9 1.6.2 6.8.4 6.8.4s5.6 0 8.6-.4c.4-.1 1.3-.1 2.1-.9.6-.7.8-2.4.8-2.4s.2-2 .2-4V10.2c0-2-.2-4-.2-4zM9.6 14.8V7.9l6.4 3.5-6.4 3.4z" />
+      <svg
+        viewBox="0 0 24 24"
+        className="h-7 w-7"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="2"
+          y="6"
+          width="20"
+          height="12"
+          rx="4"
+          fill="#FF0000"
+        />
+        <path
+          d="M10 9L15 12L10 15V9Z"
+          fill="white"
+        />
       </svg>
     ),
   },
   {
-    href: "https://x.com/tinitiateprime/",
+    href: "https://x.com/TinitiateAI",
     label: "X",
-    hoverClass: "hover:text-white",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-        <path d="M18.244 2H21.5l-7.51 8.57L22.5 22h-5.97l-4.67-5.51L6.5 22H3.244l8.04-9.17L1.5 2h6.09l4.22 5.02L18.244 2Zm-2.1 18h2.07L7.93 4H5.79l10.354 12.02Z" />
+      <svg
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        xmlns="http://www.w3.org/2000/svg"
+  >
+      <path
+        d="M18.244 2H21.5l-7.51 8.57L22.5 22h-5.97l-4.67-5.51L6.5 22H3.244l8.04-9.17L1.5 2h6.09l4.22 5.02L18.244 2Zm-2.1 18h2.07L7.93 4H5.79l10.354 12.02Z"
+        fill="white"
+        />
       </svg>
     ),
   },
   {
-    href: "https://www.facebook.com/tinitiateprime",
+    href: "https://www.facebook.com/profile.php?id=61568820188151",
     label: "Facebook",
-    hoverClass: "hover:text-[#0866FF]",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-        <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.24 10.44 22v-7.03H7.9v-2.9h2.54V9.84c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22C18.34 21.24 22 17.1 22 12.07z" />
-      </svg>
-    ),
+  <svg
+    viewBox="0 0 24 24"
+    className="h-6 w-6"
+  >
+    <image
+      href="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+      width="24"
+      height="24"
+      preserveAspectRatio="xMidYMid meet"
+    />
+  </svg>
+),
   },
   {
-    href: "https://www.instagram.com/tinitiateprime/",
+    href: "https://www.instagram.com/tinitiate.ai/",
     label: "Instagram",
-    hoverClass: "hover:text-[#C13584]",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11.001 5.5 5.5 0 0 1 0-11zM18.5 6a1.5 1.5 0 1 1-3.001.001A1.5 1.5 0 0 1 18.5 6z" />
+      <svg
+        viewBox="0 0 24 24"
+        className="h-6 w-6"
+      >
+      <image
+        href="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+        width="24"
+        height="24"
+        preserveAspectRatio="xMidYMid meet"
+      />
+    </svg>
+),
+  },
+  {
+    href: "https://www.reddit.com/user/tinitiate_ai/",
+    label: "Reddit",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-6 w-6"
+      >
+      <image
+        href="https://upload.wikimedia.org/wikipedia/en/thumb/b/bd/Reddit_Logo_Icon.svg/250px-Reddit_Logo_Icon.svg.png"
+        width="24"
+        height="24"
+        preserveAspectRatio="xMidYMid meet"
+      />  
       </svg>
     ),
   },
@@ -102,21 +161,21 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-[#d8e0ec] bg-[linear-gradient(180deg,#f8fbff_0%,#edf4ff_34%,#102344_34%,#07172d_100%)]">
+    <footer className="mt-16 border-t border-[#d8e0ec] bg-[linear-gradient(180deg,#f8fbff_0%,#edf4ff_34%,#102344_34%,#07172d_100%)] transition-colors duration-300 dark:border-slate-800 dark:bg-[linear-gradient(180deg,#020617_0%,#0b1220_32%,#081228_32%,#020617_100%)]">
       <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-12 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white p-6 shadow-[0_28px_80px_rgba(8,22,44,0.14)] sm:p-8 lg:p-10">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white p-6 shadow-[0_28px_80px_rgba(8,22,44,0.14)] transition-colors duration-300 dark:border-slate-700/80 dark:bg-slate-900 dark:shadow-[0_28px_80px_rgba(2,6,23,0.42)] sm:p-8 lg:p-10">
           <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_top_right,rgba(201,162,39,0.18),transparent_58%)] lg:block" />
 
           <div className="relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#eef4ff] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1a3c6e]">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#eef4ff] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1a3c6e] transition-colors duration-300 dark:bg-slate-800 dark:text-sky-200">
                 <GraduationCap className="h-4 w-4" />
                 Built for Career Growth
               </div>
-              <h2 className="mt-5 max-w-2xl text-3xl font-black leading-tight text-[#0f2242] sm:text-4xl">
+              <h2 className="mt-5 max-w-2xl text-3xl font-black leading-tight text-[#0f2242] transition-colors duration-300 dark:text-slate-50 sm:text-4xl">
                 Learn practical tech skills with real guidance, real projects, and real outcomes.
               </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#5b667a] sm:text-base">
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#5b667a] transition-colors duration-300 dark:text-slate-300 sm:text-base">
                 TINITIATE AI helps learners move from fundamentals to job-ready confidence through structured training, mentorship, and hands-on industry exposure.
               </p>
             </div>
@@ -125,19 +184,19 @@ export default function Footer() {
               {footerHighlights.map(({ title, description, icon: Icon }) => (
                 <div
                   key={title}
-                  className="rounded-2xl border border-[#e8edf7] bg-[#f8faff] p-4 shadow-sm"
+                  className="rounded-2xl border border-[#e8edf7] bg-[#f8faff] p-4 shadow-sm transition-colors duration-300 dark:border-slate-700 dark:bg-slate-950/70"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0f2242] text-white">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0f2242] text-white transition-colors duration-300 dark:bg-slate-800">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-4 text-sm font-bold text-[#0f2242]">{title}</h3>
-                  <p className="mt-2 text-xs leading-6 text-[#607089]">{description}</p>
+                  <h3 className="mt-4 text-sm font-bold text-[#0f2242] transition-colors duration-300 dark:text-slate-50">{title}</h3>
+                  <p className="mt-2 text-xs leading-6 text-[#607089] transition-colors duration-300 dark:text-slate-300">{description}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="relative mt-8 flex flex-col gap-4 rounded-[1.75rem] bg-[#0f2242] p-5 text-white sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="relative mt-8 flex flex-col gap-4 rounded-[1.75rem] bg-[#0f2242] p-5 text-white transition-colors duration-300 dark:bg-slate-950 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#c9a227]">
                 Ready to Start
@@ -169,7 +228,7 @@ export default function Footer() {
         <div>
           <Link
             href="/"
-            className="inline-flex rounded-2xl border border-white/10 bg-white px-4 py-3 shadow-[0_14px_32px_rgba(0,0,0,0.16)]"
+            className="theme-logo-surface inline-flex rounded-2xl border border-white/10 px-4 py-3 shadow-[0_14px_32px_rgba(0,0,0,0.16)]"
           >
             <span className="block w-[160px] sm:w-[190px]">
               <Image
@@ -183,7 +242,7 @@ export default function Footer() {
           </Link>
 
           <h4 className="mt-5 text-base font-semibold text-white">
-            TECHNICAL INITIATE Technologies Pvt Ltd
+            TINITIATE AI Technologies Pvt Ltd
           </h4>
           <p className="mt-3 max-w-md leading-7 text-[#aab6c8]">
             A training, consulting, and technology partner focused on helping learners and businesses grow with practical, real-world skill development.
@@ -193,7 +252,7 @@ export default function Footer() {
             <h5 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7f93b0]">
               Follow Us
             </h5>
-            <div className="mt-3 flex flex-wrap items-center gap-3 text-[#c7d1df]">
+            <div className="mt-3 flex items-center gap-3 text-[#c7d1df]">
               {socialLinks.map((item) => (
                 <a
                   key={item.label}
@@ -201,7 +260,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`TINITIATE on ${item.label}`}
-                  className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:-translate-y-0.5 hover:border-white/20 ${item.hoverClass}`}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10 dark:bg-white/[0.07] dark:hover:bg-white/[0.12]"
                   title={item.label}
                 >
                   {item.icon}
@@ -249,7 +308,7 @@ export default function Footer() {
           <h4 className="text-base font-semibold text-white">Contact & Offices</h4>
 
           <div className="mt-4 space-y-5">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors duration-300 dark:bg-white/[0.07]">
               <div className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
                 <div>
@@ -266,7 +325,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors duration-300 dark:bg-white/[0.07]">
               <div className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
                 <div className="space-y-2">
@@ -277,10 +336,6 @@ export default function Footer() {
                     <span className="font-semibold text-white">USA:</span>{" "}
                     <a href="tel:+19736536870" className="transition hover:text-[#f3d472]">
                       +1 (973) 653-6870
-                    </a>
-                    {", "}
-                    <a href="tel:+12068024102" className="transition hover:text-[#f3d472]">
-                      +1 (206) 802-4102
                     </a>
                   </p>
                   <p className="leading-6 text-[#d9e1ec]">
@@ -293,18 +348,13 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors duration-300 dark:bg-white/[0.07]">
               <div className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
                 <div className="space-y-3 text-[#d9e1ec]">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7f93b0]">
                     Offices
                   </p>
-                  <address className="not-italic leading-6">
-                    <span className="font-semibold text-white">Head Office:</span>
-                    <br />
-                    Plot No. B 503, Ace Ajanta, Beside Indu Aranya, Nagole, Hayathnagar, R.R. - 500068, Telangana, India
-                  </address>
                   <address className="not-italic leading-6">
                     <span className="font-semibold text-white">Corporate Office:</span>
                     <br />

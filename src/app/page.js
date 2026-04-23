@@ -219,7 +219,7 @@ function CourseSlider() {
   const CourseIcon = course.icon
  
   return (
-    <section className="py-8 sm:py-10 md:py-12 px-3 sm:px-4 md:px-10 bg-white">
+    <section className="bg-white px-3 py-8 transition-colors duration-300 dark:bg-slate-950 sm:px-4 sm:py-10 md:px-10 md:py-12">
       <div className="max-w-[1400px] mx-auto">
  
         <AnimatePresence mode="wait">
@@ -229,12 +229,12 @@ function CourseSlider() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg sm:rounded-3xl sm:shadow-2xl lg:min-h-[620px]"
+            className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950 dark:shadow-[0_24px_70px_rgba(2,6,23,0.55)] sm:rounded-3xl sm:shadow-2xl lg:min-h-[620px]"
           >
             {/* Arrow — Left */}
             <button
               onClick={prev}
-              className="absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 hover:border-black hover:bg-black hover:text-white lg:flex"
+              className="absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500 lg:flex"
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
@@ -242,7 +242,7 @@ function CourseSlider() {
             {/* Arrow — Right */}
             <button
               onClick={next}
-              className="absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 hover:border-black hover:bg-black hover:text-white lg:flex"
+              className="absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500 lg:flex"
             >
               <ChevronRight className="h-6 w-6" />
             </button>
@@ -253,7 +253,7 @@ function CourseSlider() {
                 <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600 mb-3 sm:mb-4">
                   {course.label} Training
                 </span>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 sm:mb-8 leading-snug">
+                <h3 className="mb-6 text-2xl font-extrabold leading-snug text-gray-900 dark:text-slate-50 sm:mb-8 sm:text-3xl md:text-4xl">
                   {course.heading}
                 </h3>
                 <div className="lg:hidden mb-6 flex items-center justify-center">
@@ -264,31 +264,31 @@ function CourseSlider() {
                 </div>
                 <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-10">
                   {course.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2 sm:gap-3 text-gray-700 text-sm sm:text-base">
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-700 dark:text-slate-300 sm:gap-3 sm:text-base">
                       <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mt-0.5 shrink-0" />
                       <span>{b}</span>
                     </li>
                   ))}
                 </ul>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3 sm:mb-4">Career Outcomes</p>
+                  <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-slate-400 sm:mb-4">Career Outcomes</p>
                   <div className="flex flex-wrap gap-2">
                     {course.outcomes.map((o, i) => (
-                      <span key={i} className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-gray-100 text-gray-700 text-xs sm:text-sm font-medium border border-gray-200">{o}</span>
+                      <span key={i} className="rounded-full border border-gray-200 bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 sm:px-4 sm:py-1.5 sm:text-sm">{o}</span>
                     ))}
                   </div>
                 </div>
               </div>
  
               {/* Right — Logo Panel */}
-              <div className="hidden min-h-[620px] flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-10 lg:flex lg:p-16 lg:pr-20">
+              <div className="hidden min-h-[620px] flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-10 transition-colors duration-300 dark:from-slate-950 dark:to-slate-900 lg:flex lg:p-16 lg:pr-20">
                 <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center">
                   <CourseIcon
                     className="h-full w-full"
                     idSuffix={`desktop-${course.id}`}
                   />
                 </div>
-                <p className="mt-6 text-lg sm:text-xl font-bold text-gray-800 tracking-wide">{course.label}</p>
+                <p className="mt-6 text-lg font-bold tracking-wide text-gray-800 dark:text-slate-100 sm:text-xl">{course.label}</p>
  
                 {/* Dots */}
                 <div className="mt-8 flex gap-2 sm:mt-12 sm:gap-2.5">
@@ -299,17 +299,17 @@ function CourseSlider() {
                       className="flex h-5 w-5 items-center justify-center"
                     >
                       <span
-                        className={`block rounded-full transition-all duration-300 ${i === active ? "h-2.5 w-5 bg-black" : "h-2.5 w-2.5 bg-gray-300"}`}
+                        className={`block rounded-full transition-all duration-300 ${i === active ? "h-2.5 w-5 bg-black dark:bg-blue-400" : "h-2.5 w-2.5 bg-gray-300 dark:bg-slate-700"}`}
                       />
                     </button>
                   ))}
                 </div>
  
                 {/* Timer bar */}
-                <div className="w-full max-w-[180px] sm:max-w-[220px] mt-4 sm:mt-5 h-0.5 bg-gray-200 rounded-full overflow-hidden">
+                <div className="mt-4 h-0.5 w-full max-w-[180px] overflow-hidden rounded-full bg-gray-200 transition-colors duration-300 dark:bg-slate-800 sm:mt-5 sm:max-w-[220px]">
                   <motion.div
                     key={`bar-${active}`}
-                    className="h-full bg-black rounded-full"
+                    className="h-full rounded-full bg-black dark:bg-blue-400"
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
                     transition={{ duration: DURATION / 1000, ease: "linear" }}
@@ -319,11 +319,11 @@ function CourseSlider() {
             </div>
 
             {/* Mobile Controls */}
-            <div className="lg:hidden border-t border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-5">
-              <div className="mx-auto w-full max-w-[180px] h-0.5 bg-gray-200 rounded-full overflow-hidden">
+            <div className="border-t border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-5 transition-colors duration-300 dark:border-slate-800 dark:from-slate-950 dark:to-slate-900 lg:hidden">
+              <div className="mx-auto h-0.5 w-full max-w-[180px] overflow-hidden rounded-full bg-gray-200 transition-colors duration-300 dark:bg-slate-800">
                 <motion.div
                   key={`mobile-bar-${active}`}
-                  className="h-full bg-black rounded-full"
+                  className="h-full rounded-full bg-black dark:bg-blue-400"
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: DURATION / 1000, ease: "linear" }}
@@ -332,7 +332,7 @@ function CourseSlider() {
               <div className="mt-5 flex items-center justify-between gap-2">
                 <button
                   onClick={prev}
-                  className="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white"
+                  className="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
@@ -344,14 +344,14 @@ function CourseSlider() {
                       className="flex h-5 w-5 items-center justify-center"
                     >
                       <span
-                        className={`block rounded-full transition-all duration-300 ${i === active ? "h-2 w-5 bg-black" : "h-2 w-2 bg-gray-300"}`}
+                        className={`block rounded-full transition-all duration-300 ${i === active ? "h-2 w-5 bg-black dark:bg-blue-400" : "h-2 w-2 bg-gray-300 dark:bg-slate-700"}`}
                       />
                     </button>
                   ))}
                 </div>
                 <button
                   onClick={next}
-                  className="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white"
+                  className="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
@@ -690,7 +690,7 @@ export default function HomePage() {
   }
  
   return (
-    <main className="text-gray-800">
+    <main className="bg-white text-gray-800 transition-colors duration-300 dark:bg-slate-950">
  
       {/* ── Request Callback Modal ── */}
       <AnimatePresence>
@@ -707,7 +707,7 @@ export default function HomePage() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl"
+              className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl transition-colors duration-300 dark:bg-slate-950"
             >
               <div className="bg-gradient-to-r from-[#1a3c6e] to-[#0e2a50] px-6 py-5 sm:px-8 sm:py-6">
                 <button
@@ -718,52 +718,52 @@ export default function HomePage() {
                 <p className="text-blue-200 text-sm mt-1">Our expert will reach out within 24 hours</p>
               </div>
  
-              <div className="px-6 py-6 sm:px-8">
+              <div className="px-6 py-6 dark:bg-slate-950 sm:px-8">
                 {submitted ? (
                   <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-emerald-950/80">
                       <CheckCircle className="w-8 h-8 text-green-600" />
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Request Received!</h4>
-                    <p className="text-gray-500 text-sm">We'll be in touch shortly. Thank you for reaching out.</p>
+                    <h4 className="mb-2 text-xl font-bold text-gray-900 dark:text-slate-100">Request Received!</h4>
+                    <p className="text-sm text-gray-500 dark:text-slate-400">We'll be in touch shortly. Thank you for reaching out.</p>
                   </div>
                 ) : (
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Full Name</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Full Name</label>
                       <input
                         type="text" placeholder="John Doe"
                         value={formData.name}
                         onChange={e => setFormData(p => ({...p, name: e.target.value}))}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all"
+                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Email Address</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Email Address</label>
                       <input
                         type="email" placeholder="john@example.com"
                         value={formData.email}
                         onChange={e => setFormData(p => ({...p, email: e.target.value}))}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all"
+                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Phone Number</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Phone Number</label>
                       <input
                         type="tel" placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={e => setFormData(p => ({...p, phone: e.target.value}))}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all"
+                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Message (Optional)</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Message (Optional)</label>
                       <textarea
                         placeholder="Tell us what you're looking for..."
                         value={formData.message}
                         onChange={e => setFormData(p => ({...p, message: e.target.value}))}
                         rows={3}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all resize-none"
+                        className="w-full resize-none rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
                       />
                     </div>
                     <button
@@ -772,7 +772,7 @@ export default function HomePage() {
                     >
                       Request My Call Back →
                     </button>
-                    <p className="text-center text-xs text-gray-400">No spam, ever. We respect your privacy.</p>
+                    <p className="text-center text-xs text-gray-400 dark:text-slate-500">No spam, ever. We respect your privacy.</p>
                   </div>
                 )}
               </div>
@@ -783,32 +783,32 @@ export default function HomePage() {
  
       {/* ── Hero ── */}
       <ScrollReveal>
-        <section className="relative flex min-h-[72svh] items-center justify-center overflow-hidden bg-white px-4 py-16 text-black sm:min-h-[78svh] sm:px-6 sm:py-20 lg:min-h-[calc(100svh-84px)]">
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-white" />
-          <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 1440 900" fill="none">
-            <line x1="200" y1="200" x2="500" y2="350" stroke="#000" strokeWidth="0.5" />
-            <line x1="500" y1="350" x2="800" y2="200" stroke="#000" strokeWidth="0.5" />
-            <line x1="800" y1="200" x2="1100" y2="350" stroke="#000" strokeWidth="0.5" />
-            <line x1="200" y1="200" x2="500" y2="600" stroke="#000" strokeWidth="0.5" />
-            <line x1="500" y1="350" x2="800" y2="600" stroke="#000" strokeWidth="0.5" />
-            <line x1="800" y1="200" x2="1100" y2="600" stroke="#000" strokeWidth="0.5" />
+        <section className="relative flex min-h-[72svh] items-center justify-center overflow-hidden bg-white px-4 py-16 text-black transition-colors duration-300 dark:bg-slate-950 dark:text-white sm:min-h-[78svh] sm:px-6 sm:py-20 lg:min-h-[calc(100svh-84px)]">
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
+          <svg className="pointer-events-none absolute inset-0 h-full w-full text-black opacity-10 dark:text-slate-400" viewBox="0 0 1440 900" fill="none">
+            <line x1="200" y1="200" x2="500" y2="350" stroke="currentColor" strokeWidth="0.5" />
+            <line x1="500" y1="350" x2="800" y2="200" stroke="currentColor" strokeWidth="0.5" />
+            <line x1="800" y1="200" x2="1100" y2="350" stroke="currentColor" strokeWidth="0.5" />
+            <line x1="200" y1="200" x2="500" y2="600" stroke="currentColor" strokeWidth="0.5" />
+            <line x1="500" y1="350" x2="800" y2="600" stroke="currentColor" strokeWidth="0.5" />
+            <line x1="800" y1="200" x2="1100" y2="600" stroke="currentColor" strokeWidth="0.5" />
             {[[200,200],[500,350],[800,200],[1100,350],[500,600],[800,700],[1100,600],[300,500],[1000,500]].map(([cx,cy],i)=>(
-              <circle key={i} cx={cx} cy={cy} r="4" fill="#000" opacity="0.3"/>
+              <circle key={i} cx={cx} cy={cy} r="4" fill="currentColor" opacity="0.3"/>
             ))}
           </svg>
           <div className="relative z-10 mx-auto max-w-6xl text-center">
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-black sm:text-5xl lg:text-6xl">
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-black dark:text-white sm:text-5xl lg:text-6xl">
               Empowering Careers with AI + Real-Time Experience
             </h1>
-            <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-700 sm:mb-10 sm:text-lg">
+            <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-700 dark:text-slate-300 sm:mb-10 sm:text-lg">
               TINITIATE AI provides job-ready IT training, AI development, cloud solutions & real-world consulting.
             </p>
-            <button
-              onClick={() => setShowModal(true)}
-              className="touch-target inline-flex items-center justify-center rounded-full bg-black px-8 py-3 font-semibold text-white transition hover:bg-yellow-500 hover:text-black"
+            <Link
+              href="/request-callback"
+              className="touch-target inline-flex items-center justify-center rounded-full bg-black px-8 py-3 font-semibold text-white transition hover:bg-yellow-500 hover:text-black dark:bg-[#c9a227] dark:text-[#111827] dark:hover:bg-[#e0b93c]"
             >
               Get Started
-            </button>
+            </Link>
           </div>
         </section>
       </ScrollReveal>
@@ -855,7 +855,7 @@ export default function HomePage() {
                     "Free 1-on-1 Career Counseling",
                     "Course Roadmap Tailored for You",
                     "Job Market Insights & Salary Benchmarks",
-                    "Flexible Batch Schedules to Suit You",
+                    "Flexible Batch Schedules to Suit You", 
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-blue-100">
                       <div className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center shrink-0">
@@ -865,12 +865,12 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="touch-target w-full rounded-xl bg-gradient-to-r from-[#c9a227] to-[#e8bc30] py-4 text-base font-bold text-[#1a1a00] transition-all duration-200 hover:scale-[1.02] hover:shadow-xl sm:py-5 sm:text-lg"
+                <Link
+                  href="/request-callback"
+                  className="touch-target inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#c9a227] to-[#e8bc30] py-4 text-base font-bold text-[#1a1a00] transition-all duration-200 hover:scale-[1.02] hover:shadow-xl sm:py-5 sm:text-lg"
                 >
                   Get Started — Request a Call Back
-                </button>
+                </Link>
                 <p className="text-center text-blue-300 text-sm mt-4">Our team responds within 24 hours</p>
               </div>
             </div>
@@ -979,18 +979,18 @@ export default function HomePage() {
       {/* ── Motivational Ribbon ── */}
       <ScrollReveal>
         <section className="relative overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-white" />
-          <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="xMidYMid slice">
-            <line x1="100" y1="100" x2="400" y2="250" stroke="#000" strokeWidth="0.6" />
-            <line x1="400" y1="250" x2="700" y2="100" stroke="#000" strokeWidth="0.6" />
-            <line x1="700" y1="100" x2="1000" y2="250" stroke="#000" strokeWidth="0.6" />
-            <line x1="1000" y1="250" x2="1340" y2="100" stroke="#000" strokeWidth="0.6" />
-            <line x1="100" y1="100" x2="400" y2="500" stroke="#000" strokeWidth="0.6" />
-            <line x1="400" y1="250" x2="700" y2="500" stroke="#000" strokeWidth="0.6" />
-            <line x1="700" y1="100" x2="1000" y2="500" stroke="#000" strokeWidth="0.6" />
-            <line x1="1000" y1="250" x2="1340" y2="500" stroke="#000" strokeWidth="0.6" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
+          <svg className="pointer-events-none absolute inset-0 h-full w-full text-black opacity-10 dark:text-slate-400" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="xMidYMid slice">
+            <line x1="100" y1="100" x2="400" y2="250" stroke="currentColor" strokeWidth="0.6" />
+            <line x1="400" y1="250" x2="700" y2="100" stroke="currentColor" strokeWidth="0.6" />
+            <line x1="700" y1="100" x2="1000" y2="250" stroke="currentColor" strokeWidth="0.6" />
+            <line x1="1000" y1="250" x2="1340" y2="100" stroke="currentColor" strokeWidth="0.6" />
+            <line x1="100" y1="100" x2="400" y2="500" stroke="currentColor" strokeWidth="0.6" />
+            <line x1="400" y1="250" x2="700" y2="500" stroke="currentColor" strokeWidth="0.6" />
+            <line x1="700" y1="100" x2="1000" y2="500" stroke="currentColor" strokeWidth="0.6" />
+            <line x1="1000" y1="250" x2="1340" y2="500" stroke="currentColor" strokeWidth="0.6" />
             {[[100,100],[400,250],[700,100],[1000,250],[1340,100],[400,500],[700,400],[1000,500],[1340,400],[250,380],[850,300]].map(([cx,cy],i)=>(
-              <circle key={i} cx={cx} cy={cy} r="4" fill="#000" opacity="0.25"/>
+              <circle key={i} cx={cx} cy={cy} r="4" fill="currentColor" opacity="0.25"/>
             ))}
           </svg>
  
@@ -1023,7 +1023,7 @@ export default function HomePage() {
                 },
               ].map((card, i) => (
                 <div key={i} className="group relative h-full rounded-2xl border border-gray-200 bg-white/70 p-6 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400 hover:bg-white hover:shadow-xl sm:p-8 md:p-10">
-                  <div className="absolute top-4 right-6 select-none text-7xl font-black leading-none text-black/5 transition-all group-hover:text-yellow-400/20 sm:text-8xl">{card.num}</div>
+                  <div className="absolute top-4 right-6 select-none text-7xl font-black leading-none text-black/5 transition-all group-hover:text-yellow-400/20 dark:text-white/10 dark:group-hover:text-yellow-300/30 sm:text-8xl">{card.num}</div>
                   <div className="w-12 h-1 bg-yellow-400 mb-6 rounded-full" />
                   <h3 className="text-xl font-bold text-black mb-4 leading-snug">{card.heading}</h3>
                   <p className="text-gray-600 leading-relaxed">{card.subtext}</p>

@@ -768,7 +768,7 @@ export default function FAQList({
           <div
             id={f.id}
             key={f.id}
-            className="relative group rounded-2xl p-3 bg-gray-50 scroll-mt-28"
+            className="relative group rounded-2xl bg-gray-50 p-3 scroll-mt-28 transition-colors duration-300 dark:bg-slate-950/60 dark:ring-1 dark:ring-slate-800"
           >
             {/* left accent */}
             <span
@@ -777,7 +777,7 @@ export default function FAQList({
             />
 
             {/* header (highlighted) */}
-            <div className="flex items-start justify-between gap-2 rounded-lg bg-indigo-200 p-2">
+            <div className="flex items-start justify-between gap-2 rounded-lg bg-indigo-200 p-2 text-slate-950 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-50 dark:ring-1 dark:ring-sky-500/20">
               <h2 className="text-lg font-bold sm:text-base md:text-xl leading-snug">
                 {f.title}
               </h2>
@@ -915,7 +915,7 @@ function MobileCollapsible({ prepared, headerOffsetMobile, nextPeek }) {
             key={f.id}
             ref={(el) => (itemRefs.current[i] = el)}
             open={isOpen}
-            className="relative group rounded-2xl p-3 transition-colors open:bg-gray-50 scroll-mt-24"
+            className="relative group rounded-2xl p-3 transition-colors open:bg-gray-50 scroll-mt-24 dark:bg-slate-950/40 dark:open:bg-slate-950/70"
           >
             {/* left accent when open */}
             <span
@@ -928,7 +928,7 @@ function MobileCollapsible({ prepared, headerOffsetMobile, nextPeek }) {
             <summary
               ref={(el) => (summaryRefs.current[i] = el)}
               onClick={(e) => onSummaryClick(i, e)}
-              className="flex items-start justify-between gap-2 cursor-pointer list-none bg-indigo-200 rounded-lg p-2"
+              className="flex cursor-pointer list-none items-start justify-between gap-2 rounded-lg bg-indigo-200 p-2 text-slate-950 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-50 dark:ring-1 dark:ring-sky-500/20"
               aria-expanded={isOpen}
             >
               <div className="flex min-w-0 items-center gap-3">
@@ -937,7 +937,7 @@ function MobileCollapsible({ prepared, headerOffsetMobile, nextPeek }) {
 
               {/* chevron */}
               <svg
-                className={`mt-1 h-4 w-4 flex-none text-gray-500 transition-transform duration-200 ${
+                className={`mt-1 h-4 w-4 flex-none text-gray-500 transition-transform duration-200 dark:text-slate-400 ${
                   isOpen ? "rotate-180" : ""
                 }`}
                 viewBox="0 0 20 20"

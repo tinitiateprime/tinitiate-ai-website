@@ -93,7 +93,7 @@ const FAQ = [
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
             From Classroom to Codebase
           </h1>
-          <p className="mt-4 inline-block rounded-full px-4 py-1 text-sm font-medium bg-indigo-100 text-indigo-700">
+          <p className="mt-4 inline-block rounded-full bg-indigo-100 px-4 py-1 text-sm font-medium text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-100 dark:ring-1 dark:ring-indigo-400/20">
             Academia × Industry: Real Projects, Real Impact
           </p>
           <p className="mt-4 text-base md:text-lg text-white/90 max-w-3xl mx-auto">
