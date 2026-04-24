@@ -21,8 +21,8 @@ export default function PricingPolicy() {
           Pricing Policy
         </h1>
 
-        <p className="text-lg text-center text-gray-600 mb-10">
-          At <span className="font-semibold text-indigo-500">TINITIATE Technologies</span>, we believe in fair, clear, and competitive pricing for all our IT services and training programs. Below is our pricing policy.
+        <p className="text-lg text-gray-600 mb-10">
+          At <span className="font-semibold text-indigo-500">Tinitiate AI Solutions</span>, we believe in fair, clear, and competitive pricing for all our IT services and training programs. Below is our pricing policy.
         </p>
 
         {/* Pricing Structure */}
@@ -76,7 +76,7 @@ export default function PricingPolicy() {
             <li className="flex items-start">
               <FaInfoCircle className="mt-1 mr-2 text-red-500" />
               <span>
-                In case of pricing errors or discrepancies, TINITIATE reserves the right to cancel or modify affected orders with prior notice.
+                In case of pricing errors or discrepancies, Tinitiate AI Solutions reserves the right to cancel or modify affected orders with prior notice.
               </span>
             </li>
           </ul>
@@ -107,8 +107,8 @@ export default function PricingPolicy() {
           <p className="text-gray-700 flex items-start">
             <FaPhone className="mt-1 mr-2 text-blue-500" />
             For any pricing-related queries, please contact us at{' '}
-            <a href="mailto:contact@tinitiate.com" className="text-indigo-600 underline ml-1">
-              contact@tinitiate.com
+            <a href="mailto:contact@tinitiateai.com" className="text-indigo-600 underline ml-1">
+              contact@tinitiateai.com
             </a>
             .
           </p>

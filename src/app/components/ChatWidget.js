@@ -28,14 +28,14 @@ const USER_AVATAR_LETTER = "You";
 
 // Handoff links
 const WHATSAPP_LINK = "https://wa.me/919553495553";
-// const EMAIL_LINK = "mailto:contact@tinitiate.com?subject=TINITIATE%20Website%20Chat&body=Hi%20TINITIATE%2C%0A%0A";
-const EMAIL_LINK = "mailto:contact@tinitiate.com?subject=Tinitiate%20Enquiry%20from%20Website%3A%20%5BService%5D%20%E2%80%94%20%5BYour%20Name%2C%20Company%5D&body=Hi%20Tinitiate%20Team%2C%0A%0AI%20am%20interested%20in%20%5BService%5D.%0A%0AName%3A%20%5BYour%20Name%5D%0ACompany%3A%20%5BCompany%5D%0APhone%2FWhatsApp%3A%20%5B%2B91XXXXXXXXXX%5D%0APreferred%20contact%20time%20(IST)%3A%20%5BTime%5D%0ABrief%3A%20%5BOne-two%20lines%5D%0A%0AThanks%2C%0A%5BYour%20Name%5D";
+// const EMAIL_LINK = "mailto:contact@tinitiateai.com?subject=Tinitiate AI Solutions%20Website%20Chat&body=Hi%20Tinitiate%20AI%20Solutions%2C%0A%0A";
+const EMAIL_LINK = "mailto:contact@tinitiateai.com?subject=Tinitiate AI Solutions%20Enquiry%20from%20Website%3A%20%5BService%5D%20%E2%80%94%20%5BYour%20Name%2C%20Company%5D&body=Hi%20Tinitiate%20AI%20Solutions%20Team%2C%0A%0AI%20am%20interested%20in%20%5BService%5D.%0A%0AName%3A%20%5BYour%20Name%5D%0ACompany%3A%20%5BCompany%5D%0APhone%2FWhatsApp%3A%20%5B%2B91XXXXXXXXXX%5D%0APreferred%20contact%20time%20(IST)%3A%20%5BTime%5D%0ABrief%3A%20%5BOne-two%20lines%5D%0A%0AThanks%2C%0A%5BYour%20Name%5D";
 const PHONE_LINK_IN = "tel:+919553495553";
 const PHONE_LINK_US = "tel:+19736536870";
 
 // Larger suggestions pool
 const SUGGESTIONS_POOL = [
-  "What services does TINITIATE offer?",
+  "What services does Tinitiate AI Solutions offer?",
   "Tell me about the Work Experience Program.",
   "How do I enroll?",
   "Do you provide corporate training?",
@@ -296,7 +296,7 @@ export default function ChatWidget() {
         if (Array.isArray(saved) && saved.length) return saved;
       } catch {}
     }
-    return [{ role: "assistant", content: "👋 Hi! I’m the TINITIATE Assistant. Ask me about our courses, WEP, or services!" }];
+    return [{ role: "assistant", content: "👋 Hi! I’m the Tinitiate AI Solutions Assistant. Ask me about our courses, WEP, or services!" }];
   });
   useEffect(() => {
     if (typeof window !== "undefined") localStorage.setItem(LS_KEY, JSON.stringify(messages));
@@ -557,7 +557,7 @@ export default function ChatWidget() {
         "rounded-2xl border border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.25)] dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_24px_70px_rgba(2,6,23,0.58)]"
       ].join(" ")}
       role="dialog"
-      aria-label="TINITIATE chat"
+      aria-label="Tinitiate AI Solutions chat"
     >
       {/* Header with Close X on the right */}
       <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-sm">
@@ -565,7 +565,7 @@ export default function ChatWidget() {
 <div className="grid h-7 w-7 aspect-square shrink-0 place-items-center self-center overflow-hidden rounded-full bg-white/50 dark:bg-white/20">
   <img src={ASSISTANT_AVATAR} alt="" className="w-5 h-5 object-contain" />
 </div>
-          <div className="font-medium text-sm tracking-wide">TINITIATE Assistant</div>
+          <div className="font-medium text-sm tracking-wide">Tinitiate AI Solutions Assistant</div>
         </div>
         <div className="flex items-center gap-1.5 md:gap-2">
           {ContactIcons}
@@ -630,7 +630,7 @@ export default function ChatWidget() {
         {busy && (
           <div className="flex items-center gap-2 pl-9 text-xs text-gray-500 dark:text-slate-400">
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            TINITIATE is typing…
+            Tinitiate AI Solutions is typing…
           </div>
         )}
 

@@ -36,7 +36,7 @@
 //   const course = (data?.courses || []).find((c) => c.key === key);
 
 //   return {
-//     title: course ? `${course.title} | TINITIATE` : "Course | TINITIATE",
+//     title: course ? `${course.title} | Tinitiate AI Solutions` : "Course | Tinitiate AI Solutions",
 //     description: course?.subtitle || "Professional Training course details",
 //   };
 // }
@@ -413,7 +413,7 @@
 //   const course = (data?.courses || []).find((c) => c.key === slug);
 
 //   return {
-//     title: course ? `${course.title} | TINITIATE` : "Course | TINITIATE",
+//     title: course ? `${course.title} | Tinitiate AI Solutions` : "Course | Tinitiate AI Solutions",
 //     description: course?.subtitle || "Professional Training course details",
 //   };
 // }
@@ -1093,7 +1093,7 @@ export async function generateMetadata({ params }) {
   const course = (data?.courses || []).find((c) => c.key === slug);
 
   return {
-    title: course ? `${course.title} | TINITIATE` : "Course | TINITIATE",
+    title: course ? `${course.title} | Tinitiate AI Solutions` : "Course | Tinitiate AI Solutions",
     description: course?.subtitle || "Professional Training course details",
   };
 }
@@ -1175,7 +1175,7 @@ const STACK_TECH = {
   redshift: { name: "Amazon Redshift", Icon: SiAmazonredshift, color: "text-[#5828b0]", path: "/courses/professionalCourses/dataEngineering/aws-redshift" },
 
   // Extras
-  sql: { name: "SQL", Icon: FiDatabase, color: "text-blue-600", path: "/courses/" },
+  sql: { name: "SQL", Icon: FiDatabase, color: "text-blue-600", path: "/courses/sql-server-beginner-course" },
   rds: { name: "Amazon RDS", Icon: SiAmazonrds, color: "text-[#285ab0]", path: "/courses/professionalCourses/dataEngineering/aws-rds" },
   lambda: { name: "AWS Lambda", Icon: FiZap, color: "text-slate-800", path: "/courses/professionalCourses/dataEngineering/aws-lambda" },
   stepfunctions: { name: "Step Functions", Icon: FiGitBranch, color: "text-slate-800", path: "/courses/professionalCourses/dataEngineering/aws-step-functions" },

@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 export async function POST(req) {
   try {
     const body = await req.json().catch(() => ({}));
-    const origin = body?.origin || process.env.RAG_ORIGIN || "https://tinitiate.com";
+    const origin = body?.origin || process.env.RAG_ORIGIN || "https://tinitiateai.com";
     const maxPages = Number(body?.maxPages || 60);
 
     const stats = await reindex({ origin, maxPages });

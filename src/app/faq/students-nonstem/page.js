@@ -5,15 +5,15 @@ import FAQList from "../../components/FAQList";
 import faqData from "../../../../public/data/faq/studentFaqNonStem.json"; // uses the student JSON you made
 
 export const metadata = {
-  title: "Student FAQ — Non-STEM (No Coding Background Needed) | TINITIATE",
+  title: "Student FAQ — Non-STEM (No Coding Background Needed) | Tinitiate AI Solutions",
   description:
-    "For students from non-STEM backgrounds: why tech skills matter in every career, what you’ll learn at TINITIATE, and how projects + mentoring make you job-ready.",
+    "For students from non-STEM backgrounds: why tech skills matter in every career, what you’ll learn at Tinitiate AI Solutions, and how projects + mentoring make you job-ready.",
   openGraph: {
     title: "Student FAQ — Non-STEM (No Coding Background Needed)",
     description:
       "Learn-by-doing with beginner-friendly tracks. Build projects, get mentored, and become interview-ready — even without a technical degree.",
-    url: "https://www.tinitiate.com/faq/why-tinitiate/students-nonstem",
-    siteName: "TINITIATE",
+    url: "https://www.tinitiateai.com/faq/why-tinitiate/students-nonstem",
+    siteName: "Tinitiate AI Solutions",
     type: "article",
   },
 };
@@ -95,7 +95,7 @@ export default function Page() {
             </h1>
 
             <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">
-              Why tech skills matter in every career and how TINITIATE helps you learn
+              Why tech skills matter in every career and how Tinitiate AI Solutions helps you learn
               by doing — with beginner-friendly projects and mentorship.
             </p>
 

@@ -1,52 +1,55 @@
+import { Suspense } from 'react';
 import Header from './components/header';
 import Footer from './components/footer';
 import ChatWidget from './components/ChatWidget';
+import BrowserTabLoader from './components/BrowserTabLoader';
 import './globals.css';
 
 export const metadata = {
-  title: 'TINITIATE AI',
+  title: 'Tinitiate AI Solutions',
   description: 'Empowering IT Careers',
-  icons: {
-    icon: '/favicon.png',
-  },
 };
+
+const themeInitScript = `
+  (function() {
+    try {
+      var storedTheme = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var resolvedTheme =
+        storedTheme === "dark" || storedTheme === "light"
+          ? storedTheme
+          : (prefersDark ? "dark" : "light");
+
+      document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+      document.documentElement.style.colorScheme = resolvedTheme;
+      document.documentElement.setAttribute("data-theme", resolvedTheme);
+    } catch (error) {
+    } finally {
+      document.documentElement.setAttribute("data-theme-ready", "true");
+    }
+  })();
+`;
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className="scroll-smooth"
       data-theme-ready="pending"
       suppressHydrationWarning
     >
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link id="app-favicon" rel="icon" type="image/png" href="/favicon.png" />
+        <link id="app-shortcut-icon" rel="shortcut icon" type="image/png" href="/favicon.png" />
         <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var storedTheme = localStorage.getItem("theme");
-                  var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                  var resolvedTheme =
-                    storedTheme === "dark" || storedTheme === "light"
-                      ? storedTheme
-                      : (prefersDark ? "dark" : "light");
-
-                  document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
-                  document.documentElement.style.colorScheme = resolvedTheme;
-                  document.documentElement.setAttribute("data-theme", resolvedTheme);
-                } catch (error) {
-                } finally {
-                  document.documentElement.setAttribute("data-theme-ready", "true");
-                }
-              })();
-            `,
-          }}
+          id="theme-init"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
         />
       </head>
 
       <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-gray-100">
+        <Suspense fallback={null}>
+          <BrowserTabLoader />
+        </Suspense>
 
         {/* ✅ Theme Script (Correct Way) */}
 

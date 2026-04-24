@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { Book, Clock, Mail, MessageSquare, Phone, User } from 'lucide-react'
+import { useState } from 'react'
+import { Book, Briefcase, Clock, Mail, MessageSquare, Phone, User } from 'lucide-react'
 
 const INITIAL_FORM = {
   name: '',
@@ -13,24 +12,20 @@ const INITIAL_FORM = {
   message: '',
 }
 
-export default function RequestCallbackPage() {
-  const searchParams = useSearchParams()
-  const courseFromQuery = searchParams.get('course') || ''
+function buildInitialForm(selectedTopic) {
+  return {
+    ...INITIAL_FORM,
+    course: selectedTopic,
+    message: selectedTopic ? `I am interested in ${selectedTopic}.` : '',
+  }
+}
 
-  const [form, setForm] = useState(INITIAL_FORM)
+export default function RequestCallbackPage({ course = '', service = '' }) {
+  const selectedTopic = course || service
+  const selectedTopicType = course ? 'course' : service ? 'service' : null
+
+  const [form, setForm] = useState(() => buildInitialForm(selectedTopic))
   const [status, setStatus] = useState('idle')
-
-  useEffect(() => {
-    if (!courseFromQuery) return
-
-    setForm((prev) => ({
-      ...prev,
-      course: courseFromQuery,
-      message: prev.message?.trim()
-        ? prev.message
-        : `I am interested in the ${courseFromQuery}.`,
-    }))
-  }, [courseFromQuery])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -54,7 +49,7 @@ export default function RequestCallbackPage() {
       })
 
       setStatus('success')
-      setForm(INITIAL_FORM)
+      setForm(buildInitialForm(selectedTopic))
     } catch (error) {
       console.error(error)
       setStatus('error')
@@ -93,12 +88,16 @@ export default function RequestCallbackPage() {
               Let&apos;s Connect
             </span>
             <h1 className="mt-4 text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
-              {form.course ? 'Course' : 'Request a'}{' '}
-              <span className="text-blue-600">{form.course ? 'Registration' : 'Callback'}</span>
+              {form.course ? (selectedTopicType === 'service' ? 'Service' : 'Course') : 'Request a'}{' '}
+              <span className="text-blue-600">
+                {form.course ? (selectedTopicType === 'service' ? 'Consultation' : 'Registration') : 'Callback'}
+              </span>
             </h1>
             <p className="mt-4 max-w-xl text-base leading-7 text-gray-600 dark:text-slate-300 sm:text-lg">
               {form.course
-                ? 'Tell us a bit about yourself and our team will help you with the next steps for enrollment.'
+                ? selectedTopicType === 'service'
+                  ? 'Share a few details and our team will connect with you about the right delivery approach, scope, and next steps.'
+                  : 'Tell us a bit about yourself and our team will help you with the next steps for enrollment.'
                 : 'Fill in your details and our expert consultant will reach out to you with the right training guidance.'}
             </p>
           </div>
@@ -168,7 +167,7 @@ export default function RequestCallbackPage() {
             </FormField>
 
             {form.course ? (
-              <FormField icon={Book}>
+              <FormField icon={selectedTopicType === 'service' ? Briefcase : Book}>
                 <input
                   name="course"
                   type="text"
@@ -210,7 +209,9 @@ export default function RequestCallbackPage() {
             >
               {status === 'sending'
                 ? (form.course ? 'Submitting...' : 'Sending...')
-                : (form.course ? 'Register Now' : 'Request Callback')}
+                : (form.course
+                  ? (selectedTopicType === 'service' ? 'Request Consultation' : 'Register Now')
+                  : 'Request Callback')}
             </button>
 
             {status === 'error' ? (

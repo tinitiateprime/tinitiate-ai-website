@@ -1,4 +1,6 @@
 "use client"
+
+/* eslint-disable react/no-unescaped-entities */
  
 import Link from 'next/link'
 import { useState, useEffect, useRef } from "react"
@@ -14,22 +16,71 @@ import {
   FlaskConical,
   Users,
   LineChart,
-  ShoppingBag, BookOpen, Briefcase, Code2, FileText, UserCircle2, ClipboardCheck, CheckCircle, ChevronLeft, ChevronRight
+  ShoppingBag, BookOpen, Briefcase, Code2, FileText, UserCircle2, ClipboardCheck, CheckCircle, ChevronLeft, ChevronRight, ArrowRight
 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import { motion, useInView, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform, useReducedMotion, AnimatePresence } from "framer-motion"
  
 /* ─── Scroll Reveal ──────────────────────────────────────────────────────────── */
 function ScrollReveal({ children }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { margin: "0px 0px -60px 0px", amount: 0.08, once: true })
+  const themeTimerRef = useRef(null)
+  const prefersReducedMotion = useReducedMotion()
+  const [isThemeSwitching, setIsThemeSwitching] = useState(false)
+
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined
+
+    const root = document.documentElement
+    const handleThemeMutation = () => {
+      window.clearTimeout(themeTimerRef.current)
+      setIsThemeSwitching(true)
+      themeTimerRef.current = window.setTimeout(() => {
+        setIsThemeSwitching(false)
+      }, 260)
+    }
+
+    const observer = new MutationObserver((mutations) => {
+      if (mutations.some((mutation) => mutation.attributeName === "data-theme" || mutation.attributeName === "class")) {
+        handleThemeMutation()
+      }
+    })
+
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: ["data-theme", "class"],
+    })
+
+    return () => {
+      observer.disconnect()
+      window.clearTimeout(themeTimerRef.current)
+    }
+  }, [])
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.96", "start 0.7", "end 0.32", "end 0.04"],
+  })
+
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.18, 0.5, 0.82, 1], [0.92, 0.97, 1, 0.97, 0.92]),
+    { stiffness: 180, damping: 28, mass: 0.7 }
+  )
+
+  const y = useSpring(
+    useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [18, 6, 0, 6, 18]),
+    { stiffness: 170, damping: 26, mass: 0.75 }
+  )
+
   return (
     <motion.div
       ref={ref}
       initial={false}
-      animate={{ opacity: 1, y: isInView ? 0 : 16 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      style={{ willChange: isInView ? "auto" : "transform" }}
+      className="transform-gpu"
+      style={
+        prefersReducedMotion || isThemeSwitching
+          ? { opacity: 1, y: 0, willChange: "auto" }
+          : { opacity, y, willChange: "opacity, transform" }
+      }
     >
       {children}
     </motion.div>
@@ -465,7 +516,7 @@ const professionalSkills = [
     ),
   },
   {
-    name: "React Web Dev",
+    name: "React Web Development",
     href: "/courses/react-beginner-course",
     svgIcon: (
       <svg viewBox="0 0 128 128" className="w-12 h-12">
@@ -595,13 +646,20 @@ const professionalSkills = [
  
 /* ─── Skills Switcher ─────────────────────────────────────────────────────────── */
 function SkillsSwitcher() {
-  const [tab, setTab] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return sessionStorage.getItem('skillsTab') || 'beginner'
-    }
-    return 'beginner'
-  })
+  const [tab, setTab] = useState('beginner')
   const skills = tab === "beginner" ? beginnerSkills : professionalSkills
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const savedTab = sessionStorage.getItem('skillsTab')
+    if (savedTab !== 'beginner' && savedTab !== 'professional') return
+
+    const frame = window.requestAnimationFrame(() => {
+      setTab(savedTab)
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
  
   const handleTabChange = (t) => {
     setTab(t)
@@ -664,18 +722,156 @@ function SkillsSwitcher() {
 }
  
 /* ─── Career Support ─────────────────────────────────────────────────────────── */
+const trainingPrograms = [
+  {
+    title: "Corporate Training",
+    eyebrow: "For Teams & Enterprises",
+    description: "Upskill your workforce with practitioner-led programs shaped around your tech stack, delivery goals, and team schedules.",
+    href: "/training/corporate-training",
+    icon: Briefcase,
+    cardGlow: "bg-teal-400/18",
+    cardGradient: "from-teal-100/80 via-white to-cyan-50/70",
+    darkCardGlow: "dark:bg-teal-400/18",
+    darkCardGradient: "dark:from-[#081a1a] dark:via-[#0d2626] dark:to-[#0b1220]",
+    iconClass: "bg-teal-600 text-white",
+    eyebrowClass: "bg-teal-500/12 text-teal-700",
+    darkEyebrowClass: "dark:bg-teal-400/14 dark:text-teal-200",
+    linkClass: "text-teal-700",
+    darkLinkClass: "dark:text-teal-300",
+    highlights: ["Custom curriculum", "Team-based outcomes"],
+  },
+  {
+    title: "Campus Training",
+    eyebrow: "For Colleges & Students",
+    description: "Bridge classroom learning with job-ready execution through guided labs, project work, and structured mentoring on campus.",
+    href: "/training/campus-training",
+    icon: GraduationCap,
+    cardGlow: "bg-[#c9a227]/16",
+    cardGradient: "from-[#c9a227]/14 via-white to-amber-50/60",
+    darkCardGlow: "dark:bg-amber-400/12",
+    darkCardGradient: "dark:from-[#1c1710] dark:via-[#261f12] dark:to-[#0b1220]",
+    iconClass: "bg-[#c9a227] text-[#1a1a00]",
+    eyebrowClass: "bg-[#c9a227]/15 text-[#8a6712]",
+    darkEyebrowClass: "dark:bg-amber-400/12 dark:text-amber-200",
+    linkClass: "text-[#a67c12]",
+    darkLinkClass: "dark:text-amber-300",
+    highlights: ["Industry-aligned delivery", "Placement-focused practice"],
+  },
+  {
+    title: "OPT Training",
+    eyebrow: "For International Students",
+    description: "Follow a job-role-focused path with real projects, interview prep, and mentorship designed for F-1 OPT and STEM OPT learners.",
+    href: "/training/opt-training",
+    icon: ShieldCheck,
+    cardGlow: "bg-sky-200/40",
+    cardGradient: "from-sky-100 via-white to-[#c9a227]/8",
+    darkCardGlow: "dark:bg-sky-400/12",
+    darkCardGradient: "dark:from-[#081826] dark:via-[#0f2740] dark:to-[#0b1220]",
+    iconClass: "bg-sky-500 text-white",
+    eyebrowClass: "bg-sky-100 text-sky-700",
+    darkEyebrowClass: "dark:bg-sky-400/12 dark:text-sky-200",
+    linkClass: "text-sky-700",
+    darkLinkClass: "dark:text-sky-300",
+    highlights: ["Portfolio-driven training", "OPT-friendly schedules"],
+  },
+]
+
+function MoreTrainingPrograms() {
+  return (
+    <section className="bg-white px-4 pb-12 dark:bg-slate-950 sm:px-6 sm:pb-16 md:px-10">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="relative overflow-hidden rounded-[2rem] border border-gray-100 bg-white px-6 py-8 shadow-xl dark:border-slate-800 dark:bg-slate-950 dark:shadow-[0_32px_90px_-50px_rgba(0,0,0,0.75)] sm:px-8 sm:py-10 lg:px-10">
+          <div className="absolute left-1/3 top-0 h-44 w-44 -translate-x-1/2 rounded-full bg-[#f3d7a0]/25 blur-3xl dark:bg-amber-300/10" />
+          <div className="absolute right-8 top-20 h-52 w-52 rounded-full bg-sky-100/70 blur-3xl dark:bg-sky-400/10" />
+          <div className="absolute bottom-0 left-10 h-44 w-44 rounded-full bg-rose-100/60 blur-3xl dark:bg-fuchsia-400/10" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.14),transparent_42%)] opacity-0 dark:opacity-100" />
+
+          <div className="relative z-10">
+            <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
+              <span className="inline-flex rounded-full border border-gray-200 bg-white/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-gray-500 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300">
+                More Training Programs
+              </span>
+              <h2 className="mt-4 text-3xl font-bold text-gray-900 dark:text-slate-100 sm:text-4xl lg:text-5xl">
+                Explore More Training Programs
+              </h2>
+              <p className="mt-3 text-sm text-gray-500 dark:text-slate-400 sm:text-base">
+                Choose a specialized training path built for enterprise teams, campuses, and international learners.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-12">
+              {trainingPrograms.map((program, index) => {
+                const Icon = program.icon
+                const cardSpan =
+                  index === 2 ? "md:col-span-2 lg:col-span-8 lg:col-start-3" : "lg:col-span-6"
+
+                return (
+                  <Link
+                    key={program.title}
+                    href={program.href}
+                    className={`group relative overflow-hidden rounded-[1.75rem] border border-gray-200/80 bg-white/90 p-6 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.45)] backdrop-blur transition-all duration-300 hover:-translate-y-1.5 hover:border-gray-300 hover:shadow-[0_32px_70px_-35px_rgba(15,23,42,0.4)] dark:border-slate-700/80 dark:bg-slate-900/80 dark:shadow-[0_28px_70px_-40px_rgba(2,6,23,0.9)] dark:hover:border-slate-500 dark:hover:shadow-[0_32px_80px_-38px_rgba(15,23,42,0.95)] sm:p-8 ${cardSpan}`}
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${program.cardGradient} ${program.darkCardGradient} opacity-90 dark:opacity-100`} />
+                    <div className={`absolute -right-8 -top-8 h-28 w-28 rounded-full ${program.cardGlow} ${program.darkCardGlow} blur-3xl`} />
+                    <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:via-slate-400/30" />
+
+                    <div className="relative z-10 flex h-full flex-col gap-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <span className={`inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${program.eyebrowClass} ${program.darkEyebrowClass}`}>
+                            {program.eyebrow}
+                          </span>
+                          <h3 className="mt-4 text-2xl font-bold text-gray-900 dark:text-slate-100 sm:text-[1.75rem]">
+                            {program.title}
+                          </h3>
+                          <p className="mt-3 max-w-2xl text-sm leading-7 text-gray-600 dark:text-slate-300 sm:text-base">
+                            {program.description}
+                          </p>
+                        </div>
+
+                        <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-sm ${program.iconClass}`}>
+                          <Icon className="h-6 w-6" />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3">
+                        {program.highlights.map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-full border border-gray-200/80 bg-white/90 px-3 py-1.5 text-xs font-medium text-gray-600 dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-300"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className={`inline-flex items-center gap-2 text-sm font-semibold transition-transform duration-300 group-hover:translate-x-1 ${program.linkClass} ${program.darkLinkClass}`}>
+                        <span>Explore program</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const careerSupport = [
-  { icon: Briefcase, title: 'IT Career Guidance', description: 'Personalized guidance from industry experts to align your goals with real-world roles in IT.', href: '/it-career-guidance' },
-  { icon: BookOpen, title: 'Basics to Advanced Learning', description: 'Step-by-step learning paths from foundational concepts to advanced tech stacks and real use cases.', href: '/basics-to-advanced-learning' },
-  { icon: Code2, title: 'Hands-On Coding Exercises', description: 'Daily challenges and practice labs to build strong coding logic and practical development skills.', href: '/hands-on-coding-exercises' },
-  { icon: FileText, title: 'Live Projects', description: 'Build real-world applications with mentorship support to strengthen your portfolio and confidence.', href: '/live-projects' },
-  { icon: UserCircle2, title: 'Resume Preparation', description: 'Get help crafting a standout, recruiter-friendly resume tailored for your desired job roles.', href: '/resume-preparation' },
-  { icon: ClipboardCheck, title: 'Interview Preparation', description: 'Mock interviews, HR tips, and technical assessments to boost your readiness and confidence.', href: '/interview-preparation' },
+  { icon: Briefcase, title: 'IT Career Guidance', description: 'Personalized guidance from industry experts to align your goals with real-world roles in IT.', href: '/request-callback?service=IT%20Career%20Guidance' },
+  { icon: BookOpen, title: 'Basics to Advanced Learning', description: 'Step-by-step learning paths from foundational concepts to advanced tech stacks and real use cases.', href: '/training/beginner-training' },
+  { icon: Code2, title: 'Hands-On Coding Exercises', description: 'Daily challenges and practice labs to build strong coding logic and practical development skills.', href: '/work-experience-program' },
+  { icon: FileText, title: 'Live Projects', description: 'Build real-world applications with mentorship support to strengthen your portfolio and confidence.', href: '/work-experience-program' },
+  { icon: UserCircle2, title: 'Resume Preparation', description: 'Get help crafting a standout, recruiter-friendly resume tailored for your desired job roles.', href: '/request-callback?service=Resume%20Preparation' },
+  { icon: ClipboardCheck, title: 'Interview Preparation', description: 'Mock interviews, HR tips, and technical assessments to boost your readiness and confidence.', href: '/request-callback?service=Interview%20Preparation' },
 ]
  
 /* ─── Main Page ──────────────────────────────────────────────────────────────── */
 export default function HomePage() {
-  const router = useRouter()
   const [showModal, setShowModal] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
@@ -725,7 +921,7 @@ export default function HomePage() {
                       <CheckCircle className="w-8 h-8 text-green-600" />
                     </div>
                     <h4 className="mb-2 text-xl font-bold text-gray-900 dark:text-slate-100">Request Received!</h4>
-                    <p className="text-sm text-gray-500 dark:text-slate-400">We'll be in touch shortly. Thank you for reaching out.</p>
+                    <p className="text-sm text-gray-500 dark:text-slate-400">We&apos;ll be in touch shortly. Thank you for reaching out.</p>
                   </div>
                 ) : (
                   <div className="space-y-4">
@@ -801,7 +997,7 @@ export default function HomePage() {
               Empowering Careers with AI + Real-Time Experience
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-700 dark:text-slate-300 sm:mb-10 sm:text-lg">
-              TINITIATE AI provides job-ready IT training, AI development, cloud solutions & real-world consulting.
+              Tinitiate AI Solutions provides job-ready IT training, AI development, cloud solutions & real-world consulting.
             </p>
             <Link
               href="/request-callback"
@@ -813,33 +1009,34 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
  
-      {/* ── Welcome to Tinitiate + Callback Card ── */}
+      {/* ── Welcome to Tinitiate AI Solutions + Callback Card ── */}
       <ScrollReveal>
         <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10">
           <div className="max-w-[1400px] mx-auto">
-            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+            <div className="grid items-start gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16 xl:gap-20">
  
               {/* Left — Welcome Text */}
               <div>
                 <span className="inline-block text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">About Us</span>
                 <h2 className="mb-8 text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
-                  Welcome to <span className="text-[#1a3c6e]">Tinitiate AI Trainings</span>
+                  Welcome to <span className="text-[#1a3c6e]">Tinitiate AI Solutions Trainings</span>
                 </h2>
                 <div className="space-y-6 text-gray-600 text-[16px] leading-relaxed">
                   <p>
-                    <strong className="text-gray-900">TINITIATE AI</strong> is a leading IT consulting, development and training company, dedicated to empowering businesses with cutting-edge technology solutions and high-quality professional training. Our vision is to bridge the gap between industry demands and individual potential — helping learners and enterprises grow together.
+                    <strong className="text-gray-900">Tinitiate AI Solutions</strong> is a leading IT consulting, development and training company, dedicated to empowering businesses with cutting-edge technology solutions and high-quality professional training. Our vision is to bridge the gap between industry demands and individual potential — helping learners and enterprises grow together.
                   </p>
                   <p>
                     With a highly experienced team carrying years of deep expertise in IT services, database management, and cloud computing, we craft tailored solutions that meet the evolving demands of enterprises worldwide — from ambitious startups to established global corporations. Every engagement is backed by real-world experience and a passion for measurable outcomes.
                   </p>
                   <p>
-                    Our commitment goes beyond training. We partner with our learners through every step of their journey — delivering real-world skills, actionable insights, and the career momentum needed to thrive in today's rapidly changing digital landscape. With TINITIATE AI, your next career breakthrough starts here.
+                    Our commitment goes beyond training. We partner with our learners through every step of their journey — delivering real-world skills, actionable insights, and the career momentum needed to thrive in today's rapidly changing digital landscape. With Tinitiate AI Solutions, your next career breakthrough starts here.
                   </p>
                 </div>
               </div>
  
               {/* Right — Expert Card */}
-              <div className="rounded-3xl bg-gradient-to-br from-[#1a3c6e] to-[#0e2a50] p-6 text-white shadow-2xl sm:p-8 lg:p-10">
+              <div className="lg:mt-9 lg:self-stretch">
+                <div className="rounded-3xl bg-gradient-to-br from-[#1a3c6e] to-[#0e2a50] p-6 text-white shadow-2xl sm:p-8 lg:h-[calc(100%-9px)] lg:p-10">
                 <div className="mb-8">
                   <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-5">
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"/>
@@ -867,11 +1064,12 @@ export default function HomePage() {
                 </ul>
                 <Link
                   href="/request-callback"
-                  className="touch-target inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#c9a227] to-[#e8bc30] py-4 text-base font-bold text-[#1a1a00] transition-all duration-200 hover:scale-[1.02] hover:shadow-xl sm:py-5 sm:text-lg"
+                  className="touch-target mx-auto flex w-fit max-w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#c9a227] to-[#e8bc30] px-8 py-4 text-center text-base font-bold text-[#1a1a00] transition-all duration-200 hover:scale-[1.02] hover:shadow-xl sm:px-10 sm:py-5 sm:text-lg"
                 >
                   Get Started — Request a Call Back
                 </Link>
                 <p className="text-center text-blue-300 text-sm mt-4">Our team responds within 24 hours</p>
+                </div>
               </div>
             </div>
           </div>
@@ -883,7 +1081,7 @@ export default function HomePage() {
         <CourseSlider />
       </ScrollReveal>
 
-      {/* ── Why Choose TINITIATE ── */}
+      {/* ── Why Choose Tinitiate AI Solutions ── */}
       <ScrollReveal>
         <section className="overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10 lg:px-16">
           <div className="max-w-[1400px] mx-auto">
@@ -947,7 +1145,7 @@ export default function HomePage() {
                     Full-Spectrum Tech Solutions
                   </h3>
                   <p className="text-blue-200 text-sm leading-relaxed mb-10">
-                    From scalable backend systems to robust data pipelines and mobile apps, TINITIATE AI offers development services tailored to modern business needs.
+                    From scalable backend systems to robust data pipelines and mobile apps, Tinitiate AI Solutions offers development services tailored to modern business needs.
                   </p>
 
                   <div className="space-y-5">
@@ -1038,124 +1236,9 @@ export default function HomePage() {
       <ScrollReveal>
         <SkillsSwitcher />
       </ScrollReveal>
- 
-      {/* ── Industries ── */}
+
       <ScrollReveal>
-        <section className="bg-white py-16 sm:py-20 md:py-24">
-
-          <div className="mx-auto max-w-7xl px-4 sm:px-6">
-
-            {/* Heading */}
-            <div className="text-center mb-16">
-
-              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl">
-                Business Domains & Industries We Serve
-              </h2>
-
-              <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 sm:text-lg">
-                Delivering industry-focused solutions across multiple business sectors
-                with deep technical expertise and innovation.
-              </p>
-
-            </div>
-
-            {/* Grid */}
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 md:gap-8 lg:grid-cols-6">
-
-              {[
-                {name:"Retail",icon:ShoppingBag},
-                {name:"E-Commerce",icon:ShoppingCart},
-                {name:"Insurance",icon:ShieldCheck},
-                {name:"Logistics",icon:Truck},
-                {name:"Travel",icon:Plane},
-                {name:"Edu Tech",icon:GraduationCap},
-                {name:"Health Care",icon:Hospital},
-                {name:"Pharmaceutical",icon:FlaskConical},
-                {name:"CRM",icon:Users},
-                {name:"Manufacturing",icon:Factory},
-                {name:"Finance",icon:Banknote},
-                {name:"Wealth management",icon:LineChart},
-              ].map((item,index)=>{
-
-                const Icon=item.icon
-
-                return(
-
-                  <div
-                    key={index}
-                    className="
-                      group
-                      bg-gray-50
-                      border border-gray-200
-                      rounded-2xl
-                      px-4 sm:px-6
-                      py-4 sm:py-5
-                      min-h-[120px] sm:min-h-[130px]
-
-                      flex flex-col
-                      justify-center
-                      items-center
-                      text-center
-
-                      hover:shadow-lg
-                      sm:hover:min-h-[150px]
-
-                      transition-all
-                      duration-300
-                      hover:-translate-y-1
-                    "
-                  >
-
-                    {/* Icon Background */}
-                    <div
-                      className="
-                        w-14 h-14
-                        flex
-                        items-center
-                        justify-center
-                        rounded-xl
-                        transition
-                        duration-300
-                        group-hover:scale-110
-                      "
-                      style={{
-                        backgroundColor: "#17375E"
-                      }}
-                    >
-
-                      <Icon
-                        className="w-7 h-7 text-white group-hover:text-[#C9A227] transition"
-                      />
-
-                    </div>
-
-                    {/* Name */}
-                    <p
-                      className="
-                        mt-4
-                        text-sm
-                        font-semibold
-                        text-gray-800
-                        transition
-                      "
-                    >
-                      {item.name}
-                    </p>
-
-                    {/* Yellow Hover Bar */}
-                    <div className="w-0 h-1 mt-3 rounded-full transition-all duration-300 group-hover:w-10 bg-[#C9A227]" />
-
-                  </div>
-
-                )
-
-              })}
-
-            </div>
-
-          </div>
-
-        </section>
+        <MoreTrainingPrograms />
       </ScrollReveal>
  
       {/* ── Career Support ── */}
@@ -1165,15 +1248,17 @@ export default function HomePage() {
             <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 sm:text-4xl">Career Support</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {careerSupport.map(({icon:Icon,title,description,href})=>(
-                <div key={title} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col items-center text-center">
+                <Link
+                  key={title}
+                  href={href}
+                  className="group flex h-full flex-col items-center rounded-xl bg-white p-6 text-center shadow-md transition hover:-translate-y-1 hover:shadow-lg"
+                >
                   <div className="mb-4 bg-blue-100 p-3 rounded-full">
                     <Icon className="w-8 h-8 text-blue-700"/>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2 hover:text-blue-700">
-                    <button onClick={()=>router.push(href)}>{title}</button>
-                  </h3>
+                  <h3 className="mb-2 text-lg font-semibold text-gray-800 transition-colors group-hover:text-blue-700">{title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

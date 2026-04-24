@@ -36,7 +36,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="block mb-5">
-              <img src="/images/tinitiatelogo.png" alt="TINITIATE Logo" className="h-10 w-auto object-contain brightness-0 invert" />
+              <img src="/images/Tinitiatelogo_white.png" alt="Tinitiate AI Solutions Logo" className="h-10 w-auto object-contain" />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               A leading IT consulting, development &amp; training company — empowering businesses with cutting-edge technology and high-quality professional training since 2015.
@@ -51,7 +51,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2">
               {socialLinks.map(s => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={`TINITIATE on ${s.label}`}
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={`Tinitiate AI Solutions on ${s.label}`}
                   className={`w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 ${s.hoverColor} hover:bg-white/10 transition-all duration-200`}>
                   {s.icon}
                 </a>
@@ -107,11 +107,11 @@ export default function Footer() {
             <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-5">Contact Us</h4>
             <div className="space-y-5 text-sm">
 
-              <a href="mailto:contact@tinitiate.com" className="flex items-center gap-3 text-gray-400 hover:text-[#c9a227] transition-colors group">
+              <a href="mailto:contact@tinitiateai.com" className="flex items-center gap-3 text-gray-400 hover:text-[#c9a227] transition-colors group">
                 <span className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-[#c9a227]/10">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </span>
-                contact@tinitiate.com
+                contact@tinitiateai.com
               </a>
 
               <div className="flex items-start gap-3">
@@ -120,8 +120,7 @@ export default function Footer() {
                 </span>
                 <div>
                   <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">USA</p>
-                  <a href="tel:+19736536870" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+1 (973) 653-6870</a>
-                  <a href="tel:+12068024102" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+1 (206) 802-4102</a>
+                  <a href="tel:+19736536870" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+1 (973) 653-6870, +1 (206) 802-4102</a>
                   <p className="text-gray-500 text-xs uppercase tracking-wider mt-2 mb-1">India</p>
                   <a href="tel:+919553495553" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+91 95534 95553</a>
                 </div>

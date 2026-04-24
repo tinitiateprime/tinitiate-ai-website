@@ -123,7 +123,7 @@ export default function Header() {
           label: "FAQ",
           href: "/faq",
           dropdown: [
-            { label: "Why TINITIATE", href: "/faq/why-tinitiate" },
+            { label: "Why Tinitiate AI Solutions", href: "/faq/why-tinitiate" },
             { label: "STEM Students", href: "/faq/students-stem" },
             { label: "Non-STEM Students", href: "/faq/students-nonstem" },
             { label: "Parents — STEM", href: "/faq/parents-stem" },
@@ -139,10 +139,10 @@ export default function Header() {
       <nav ref={navRef} className="container mx-auto px-4 py-2 flex justify-between items-center">
         <Link href="/" className="block w-[140px] md:w-[170px] lg:w-[220px] xl:w-[220px]">
           <Image
-            src="/images/tinitiatelogo.png"
-            alt="TINITIATE Logo"
-            width={594}
-            height={82}
+            src="/images/Tinitiatelogo_black.png"
+            alt="Tinitiate AI Solutions Logo"
+            width={904}
+            height={108}
             className="h-auto w-full object-contain"
             priority
           />

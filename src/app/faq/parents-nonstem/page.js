@@ -3,13 +3,13 @@
 // // import Image from "next/image";
 
 // // export const metadata = {
-// //   title: "Parents (Non-STEM) — Why TINITIATE",
+// //   title: "Parents (Non-STEM) — Why Tinitiate AI Solutions",
 // //   description:
-// //     "A brochure-style guide for parents of non-STEM students: how TINITIATE makes IT careers possible with mentored, hands-on learning.",
+// //     "A brochure-style guide for parents of non-STEM students: how Tinitiate AI Solutions makes IT careers possible with mentored, hands-on learning.",
 // // };
 
 // // const Content = {
-// //   kicker: "TINITIATE • Parents’ Guide",
+// //   kicker: "Tinitiate AI Solutions • Parents’ Guide",
 // //   title: "For Parents — Non-STEM Background",
 // //   sub: "IT careers are possible without a CS degree. We make the journey structured, mentored, and practical.",
 // //   intro:
@@ -327,13 +327,13 @@
 // // import Image from "next/image";
 
 // // export const metadata = {
-// //   title: "Parents (Non-STEM) — Why TINITIATE",
+// //   title: "Parents (Non-STEM) — Why Tinitiate AI Solutions",
 // //   description:
-// //     "A brochure-style guide for parents of non-STEM students: how TINITIATE makes IT careers possible with mentored, hands-on learning.",
+// //     "A brochure-style guide for parents of non-STEM students: how Tinitiate AI Solutions makes IT careers possible with mentored, hands-on learning.",
 // // };
 
 // // const Content = {
-// //   kicker: "TINITIATE • Parents’ Guide",
+// //   kicker: "Tinitiate AI Solutions • Parents’ Guide",
 // //   title: "For Parents — Non-STEM Background",
 // //   sub: "IT careers are possible without a CS degree. We make the journey structured, mentored, and practical.",
 // //   intro:
@@ -630,13 +630,13 @@
 // // import Image from "next/image";
 
 // // export const metadata = {
-// //   title: "Parents (Non-STEM) — Why TINITIATE",
+// //   title: "Parents (Non-STEM) — Why Tinitiate AI Solutions",
 // //   description:
-// //     "A brochure-style guide for parents of non-STEM students: how TINITIATE makes IT careers possible with mentored, hands-on learning.",
+// //     "A brochure-style guide for parents of non-STEM students: how Tinitiate AI Solutions makes IT careers possible with mentored, hands-on learning.",
 // // };
 
 // // const Content = {
-// //   kicker: "TINITIATE • Parents’ Guide",
+// //   kicker: "Tinitiate AI Solutions • Parents’ Guide",
 // //   title: "For Parents — Non-STEM Background",
 // //   sub: "IT careers are possible without a CS degree. We make the journey structured, mentored, and practical.",
 // //   intro:
@@ -1176,7 +1176,7 @@
 // // import Image from "next/image";
 
 // // export const metadata = {
-// //   title: "TINITIATE Magazine — Breaking Barriers Edition",
+// //   title: "Tinitiate AI Solutions Magazine — Breaking Barriers Edition",
 // //   description:
 // //     "Magazine-style cover page + editorial spread: Non-STEM to IT Career, built as a print-like layout with top-level infographics.",
 // // };
@@ -1202,7 +1202,7 @@
 // //         {/* Top Magazine Masthead */}
 // //         <header className="absolute top-10 text-center w-full">
 // //           <h1 className="text-[3.5rem] sm:text-[5rem] md:text-[6rem] font-black tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-white to-indigo-400 drop-shadow-[0_4px_10px_rgba(14,165,233,0.3)]">
-// //             TINITIATE
+// //             Tinitiate AI Solutions
 // //           </h1>
 // //           <p className="uppercase tracking-[0.3em] text-sky-400 text-xs sm:text-sm font-semibold">
 // //             Breaking Barriers Edition • Issue 2025
@@ -1276,7 +1276,7 @@
 // //               requires comfort with digital tools, clear problem-solving, and the ability to read and reason with data.
 // //             </p>
 // //             <p className="mt-5 text-[1.06rem] leading-8 text-slate-200/90">
-// //               At TINITIATE, we translate theory into momentum: fewer buzzwords, more practice. Your child learns by doing —
+// //               At Tinitiate AI Solutions, we translate theory into momentum: fewer buzzwords, more practice. Your child learns by doing —
 // //               paced, mentored, and built for non-STEM backgrounds.
 // //             </p>
 
@@ -1411,7 +1411,7 @@
 // import Image from "next/image";
 
 // export const metadata = {
-//   title: "TINITIATE — Parents (Non-STEM) • Single-Page Brochure",
+//   title: "Tinitiate AI Solutions — Parents (Non-STEM) • Single-Page Brochure",
 //   description:
 //     "A single-page, magazine-style brochure for parents of non-STEM students: cover + editorial spread with strong typography & alternating illustrations.",
 // };
@@ -1437,7 +1437,7 @@
 //         {/* Masthead */}
 //         <header className="absolute top-10 w-full text-center">
 //           <h1 className="text-[3.2rem] sm:text-[4.8rem] md:text-[6rem] font-black tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-white to-indigo-400 drop-shadow-[0_4px_10px_rgba(14,165,233,0.3)]">
-//             TINITIATE
+//             Tinitiate AI Solutions
 //           </h1>
 //           <p className="uppercase tracking-[0.3em] text-sky-300/90 text-[11px] sm:text-xs font-semibold">
 //             Parents • Non-STEM • Brochure Edition
@@ -1510,7 +1510,7 @@
 //               comfort with digital tools, clear problem-solving, and the ability to read and reason with data.
 //             </p>
 //             <p className="mt-5 text-[1.06rem] leading-8 text-slate-200/90">
-//               At TINITIATE, we translate theory into momentum: fewer buzzwords, more practice. Your child learns by doing —
+//               At Tinitiate AI Solutions, we translate theory into momentum: fewer buzzwords, more practice. Your child learns by doing —
 //               paced, mentored, and built for non-STEM backgrounds.
 //             </p>
 //             <div className="mt-8 rounded-[14px] bg-gradient-to-r from-sky-500/15 to-indigo-500/15 px-5 py-4 ring-1 ring-white/10">
@@ -1635,7 +1635,7 @@
 //     <div className="md:col-span-6 relative">
 //       {/* angled kicker (rubric) */}
 //       <div className="mb-4 inline-block -rotate-1 rounded-sm bg-white/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-300 ring-1 ring-white/10">
-//         What exactly does TINITIATE teach?
+//         What exactly does Tinitiate AI Solutions teach?
 //       </div>
 
 //       {/* Layered headline */}
@@ -1680,7 +1680,7 @@
 //       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[18px] ring-1 ring-white/10 bg-white/5">
 //         <Image
 //           src="/images/Illustration/exactly.svg"
-//           alt="Illustration showing practical, project-based learning at TINITIATE"
+//           alt="Illustration showing practical, project-based learning at Tinitiate AI Solutions"
 //           fill
 //           className="object-contain p-4"
 //           sizes="(max-width: 1200px) 100vw, 680px"
@@ -2157,7 +2157,7 @@
 
 //       {/* Dek */}
 //       <p className="mt-6 text-[1.08rem] md:text-[1.18rem] leading-8 text-slate-200/95">
-//         They’ll receive a <span className="font-semibold text-amber-300/95">TINITIATE Certified STEM Completion Certificate</span> — 
+//         They’ll receive a <span className="font-semibold text-amber-300/95">Tinitiate AI Solutions Certified STEM Completion Certificate</span> — 
 //         detailing the <span className="font-semibold">topics</span>, <span className="font-semibold">duration</span>, and <span className="font-semibold">projects</span> completed.
 //       </p>
 
@@ -2242,7 +2242,7 @@
 //                 {/* header row */}
 //                 <div className="flex items-center justify-between">
 //                   <div className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-white to-indigo-300 text-xl md:text-2xl font-extrabold tracking-tight">
-//                     TINITIATE
+//                     Tinitiate AI Solutions
 //                   </div>
 //                   {/* seal */}
 //                   <div className="relative">
@@ -2501,15 +2501,15 @@ import FAQList from "../../components/FAQList";
 import faqData from "../../../../public/data/faq/parentsFaqNonStem.json";
 
 export const metadata = {
-  title: "Parent FAQ — Why Tech Skills Matter for Non-STEM Students | TINITIATE",
+  title: "Parent FAQ — Why Tech Skills Matter for Non-STEM Students | Tinitiate AI Solutions",
   description:
-    "Clear answers for parents of non-IT/non-STEM students: why tech skills matter in every career, what TINITIATE teaches, and how beginners succeed with hands-on projects.",
+    "Clear answers for parents of non-IT/non-STEM students: why tech skills matter in every career, what Tinitiate AI Solutions teaches, and how beginners succeed with hands-on projects.",
   openGraph: {
     title: "Parent FAQ — Why Tech Skills Matter for Non-STEM Students",
     description:
       "Why tech matters beyond Computer Science, what we teach, career benefits, and how beginners succeed.",
-    url: "https://www.tinitiate.com/faq/why-tinitiate/parents-nonstem",
-    siteName: "TINITIATE",
+    url: "https://www.tinitiateai.com/faq/why-tinitiate/parents-nonstem",
+    siteName: "Tinitiate AI Solutions",
     type: "article",
   },
 };
@@ -2565,7 +2565,7 @@ export default function Page() {
   // Top explainer (shown + included in JSON-LD)
   const topTitle = "Why should Non-STEM students learn technology?";
   const topAnswerText =
-    "Because every career today runs on technology — from finance and marketing to design, HR, and operations. You don’t have to become a programmer: understanding digital tools and thinking logically makes you more effective in ANY field. TINITIATE focuses on beginner-friendly, hands-on learning: small projects that build confidence (Excel→Python automation, data analysis, simple apps, or IoT demos), then larger, resume-ready work. This approach improves problem-solving, creates a portfolio for internships, and prepares students to contribute on Day 1.";
+    "Because every career today runs on technology — from finance and marketing to design, HR, and operations. You don’t have to become a programmer: understanding digital tools and thinking logically makes you more effective in ANY field. Tinitiate AI Solutions focuses on beginner-friendly, hands-on learning: small projects that build confidence (Excel→Python automation, data analysis, simple apps, or IoT demos), then larger, resume-ready work. This approach improves problem-solving, creates a portfolio for internships, and prepares students to contribute on Day 1.";
 
   // JSON-LD
   const faqLd = {
@@ -2602,7 +2602,7 @@ export default function Page() {
           </h1>
 
           <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">
-            Why technology skills matter in every career, what we teach at TINITIATE,
+            Why technology skills matter in every career, what we teach at Tinitiate AI Solutions,
             and how beginners from any stream can build confidence through projects.
           </p>
 

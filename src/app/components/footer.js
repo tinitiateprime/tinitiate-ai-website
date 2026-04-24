@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   BookOpen,
@@ -12,6 +11,7 @@ import {
   Phone,
   ShieldCheck,
 } from "lucide-react";
+import ThemeLogo from "./ThemeLogo";
 
 const companyLinks = [
   { href: "/company", label: "About Us" },
@@ -176,7 +176,7 @@ export default function Footer() {
                 Learn practical tech skills with real guidance, real projects, and real outcomes.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-[#5b667a] transition-colors duration-300 dark:text-slate-300 sm:text-base">
-                TINITIATE AI helps learners move from fundamentals to job-ready confidence through structured training, mentorship, and hands-on industry exposure.
+                Tinitiate AI Solutions helps learners move from fundamentals to job-ready confidence through structured training, mentorship, and hands-on industry exposure.
               </p>
             </div>
 
@@ -228,25 +228,29 @@ export default function Footer() {
         <div>
           <Link
             href="/"
-            className="theme-logo-surface inline-flex rounded-2xl border border-white/10 px-4 py-3 shadow-[0_14px_32px_rgba(0,0,0,0.16)]"
+            className="inline-flex"
           >
-            <span className="block w-[160px] sm:w-[190px]">
-              <Image
-                src="/images/tinitiatelogo.png"
-                alt="TINITIATE Logo"
-                width={594}
-                height={82}
-                className="h-auto w-full object-contain"
-              />
-            </span>
+            <ThemeLogo
+              mode="dark"
+              wrapperClassName="w-[148px] sm:w-[182px] lg:w-[224px]"
+              sizes="(max-width: 640px) 148px, (max-width: 1024px) 182px, 224px"
+            />
           </Link>
 
           <h4 className="mt-5 text-base font-semibold text-white">
-            TINITIATE AI Technologies Pvt Ltd
+            Tinitiate AI Solutions
           </h4>
-          <p className="mt-3 max-w-md leading-7 text-[#aab6c8]">
-            A training, consulting, and technology partner focused on helping learners and businesses grow with practical, real-world skill development.
-          </p>
+          <div
+            className="mt-3 max-w-md space-y-3 leading-7 text-[#aab6c8]"
+            style={{ textAlign: "justify", textJustify: "inter-word", hyphens: "auto" }}
+          >
+            <p>
+              Tinitiate AI Solutions empowers learners with industry-relevant skills through hands-on training and real-time project experience. Specializing in AI, Data Engineering, and Cloud technologies, we focus on transforming knowledge into practical expertise.
+            </p>
+            <p>
+              Our mission is to create job-ready professionals by providing real-world exposure, mentorship, and structured learning aligned with current industry demands.
+            </p>
+          </div>
 
           <div className="mt-6">
             <h5 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7f93b0]">
@@ -259,7 +263,7 @@ export default function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`TINITIATE on ${item.label}`}
+                  aria-label={`Tinitiate AI Solutions on ${item.label}`}
                   className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10 dark:bg-white/[0.07] dark:hover:bg-white/[0.12]"
                   title={item.label}
                 >
@@ -288,7 +292,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-base font-semibold text-white">Training</h4>
+          <h4 className="text-base font-semibold text-white">Trainings</h4>
           <ul className="mt-4 space-y-3">
             {trainingLinks.map((item) => (
               <li key={item.href}>
@@ -305,7 +309,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-base font-semibold text-white">Contact & Offices</h4>
+          <h4 className="text-base font-semibold text-white">Contact & Office</h4>
 
           <div className="mt-4 space-y-5">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-colors duration-300 dark:bg-white/[0.07]">
@@ -316,10 +320,10 @@ export default function Footer() {
                     Email
                   </p>
                   <a
-                    href="mailto:contact@tinitiate.com"
+                    href="mailto:contact@tinitiateai.com"
                     className="mt-2 block break-all text-white transition hover:text-[#f3d472]"
                   >
-                    contact@tinitiate.com
+                    contact@tinitiateai.com
                   </a>
                 </div>
               </div>
@@ -332,12 +336,17 @@ export default function Footer() {
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7f93b0]">
                     Call Us
                   </p>
-                  <p className="leading-6 text-[#d9e1ec]">
-                    <span className="font-semibold text-white">USA:</span>{" "}
-                    <a href="tel:+19736536870" className="transition hover:text-[#f3d472]">
-                      +1 (973) 653-6870
-                    </a>
-                  </p>
+                  <div className="flex items-start gap-2 leading-6 text-[#d9e1ec]">
+                    <span className="font-semibold text-white">USA:</span>
+                    <div className="flex flex-col">
+                      <a href="tel:+19736536870" className="transition hover:text-[#f3d472]">
+                        +1 (973) 653-6870
+                      </a>
+                      <a href="tel:+12068024102" className="transition hover:text-[#f3d472]">
+                        +1 (206) 802-4102
+                      </a>
+                    </div>
+                  </div>
                   <p className="leading-6 text-[#d9e1ec]">
                     <span className="font-semibold text-white">India:</span>{" "}
                     <a href="tel:+919553495553" className="transition hover:text-[#f3d472]">
@@ -353,7 +362,7 @@ export default function Footer() {
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" />
                 <div className="space-y-3 text-[#d9e1ec]">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7f93b0]">
-                    Offices
+                    Office
                   </p>
                   <address className="not-italic leading-6">
                     <span className="font-semibold text-white">Corporate Office:</span>
@@ -368,7 +377,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-[#93a3ba] sm:px-6 lg:px-8">
-        Copyright {new Date().getFullYear()} TINITIATE Technologies Pvt Ltd. All rights reserved.
+        Copyright {new Date().getFullYear()} Tinitiate AI Solutions. All rights reserved.
       </div>
     </footer>
   );

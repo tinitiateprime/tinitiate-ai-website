@@ -7,7 +7,7 @@ import { DOCS } from "./rag-data";
 import path from "node:path";
 
 // Config
-const ORIGIN = process.env.RAG_ORIGIN || "https://tinitiate.com";
+const ORIGIN = process.env.RAG_ORIGIN || "https://tinitiateai.com";
 const DEFAULT_CACHE_DIR = process.env.NETLIFY ? "/tmp" : ".cache";
 const INDEX_PATH = path.join(DEFAULT_CACHE_DIR, "tinitiate-rag.json");
 const EMBED_MODEL =

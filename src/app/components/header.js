@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ChevronDown, Menu, X, Sun, Moon } from "lucide-react";
+import ThemeLogo from "./ThemeLogo";
 
 function getDocumentTheme() {
   if (typeof document === "undefined") return "light";
@@ -186,7 +186,7 @@ export default function Header() {
           label: "FAQ",
           href: "/faq",
           dropdown: [
-            { label: "Why TINITIATE", href: "/faq/why-tinitiate" },
+            { label: "Why Tinitiate AI Solutions", href: "/faq/why-tinitiate" },
             { label: "STEM Students", href: "/faq/students-stem" },
             { label: "Non-STEM Students", href: "/faq/students-nonstem" },
             { label: "Parents - STEM", href: "/faq/parents-stem" },
@@ -201,18 +201,18 @@ export default function Header() {
     <div className="border-b border-gray-100 bg-white transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950">
       <nav
         ref={navRef}
-        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8"
+        className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8"
       >
-        <Link href="/" className="block w-[138px] sm:w-[170px] lg:w-[210px]">
-          <Image
-            src="/images/tinitiatelogo.png"
-            alt="TINITIATE Logo"
-            width={594}
-            height={82}
-            className="h-auto w-full object-contain"
-            priority
-          />
-        </Link>
+        <div className="site-brand-shell flex items-center gap-3">
+          <Link href="/" className="block w-[148px] sm:w-[182px] lg:w-[224px]">
+            <ThemeLogo
+              priority
+              mode="auto"
+              sizes="(max-width: 640px) 148px, (max-width: 1024px) 182px, 224px"
+              wrapperClassName="transition-opacity duration-200"
+            />
+          </Link>
+        </div>
 
         <button
           type="button"
@@ -402,6 +402,7 @@ export default function Header() {
             )}
           </li>
         </ul>
+
       </nav>
 
       <div className={`${isOpen ? "block" : "hidden"} border-t border-gray-100 dark:border-slate-800 xl:hidden`}>

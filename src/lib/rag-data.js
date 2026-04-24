@@ -5,7 +5,7 @@ export const DOCS = [
     title: "IT Development Services",
     url: "/it-development",
     content:
-      "TINITIATE provides end-to-end software development — web, backend, data engineering, DevOps, and AI/ML solutions. We also offer architecture, maintenance, and support."
+      "Tinitiate AI Solutions provides end-to-end software development — web, backend, data engineering, DevOps, and AI/ML solutions. We also offer architecture, maintenance, and support."
   },
   {
     id: "services-training",

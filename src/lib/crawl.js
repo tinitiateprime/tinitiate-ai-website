@@ -5,7 +5,7 @@ const DEFAULT_MAX_PAGES = 60;
 const BLOCKED_EXT = /\.(png|jpe?g|gif|svg|webp|ico|pdf|zip|rar|7z|mp4|mp3|avi|mov|webm|woff2?|ttf|eot)(\?|$)/i;
 
 export async function crawlSite({
-  origin = "https://tinitiate.com",
+  origin = "https://tinitiateai.com",
   startPaths = ["/"],
   maxPages = DEFAULT_MAX_PAGES,
 } = {}) {
@@ -22,7 +22,7 @@ export async function crawlSite({
       if (u.origin !== origin) continue; // stay in-domain only
 
       visited.add(url);
-      const res = await fetch(url, { headers: { "user-agent": "TINITIATE-RAG/1.0" } });
+      const res = await fetch(url, { headers: { "user-agent": "Tinitiate-AI-Solutions-RAG/1.0" } });
       if (!res.ok || !res.headers.get("content-type")?.includes("text/html")) continue;
 
       const html = await res.text();

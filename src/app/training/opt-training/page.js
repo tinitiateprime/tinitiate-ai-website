@@ -365,7 +365,7 @@ export default function Page() {
       {/* WHY OPT */}
       <section className="px-6 py-16 bg-gray-50">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-3xl font-bold mb-6">Why OPT students choose TINITIATE</h2>
+          <h2 className="text-3xl font-bold mb-6">Why OPT students choose Tinitiate AI Solutions</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {WHY_OPT.map((item) => (
               <div key={item} className="flex gap-3 bg-white border p-4 rounded-xl">

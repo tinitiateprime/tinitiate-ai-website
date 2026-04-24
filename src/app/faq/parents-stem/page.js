@@ -6,15 +6,15 @@
 // import faqData from "../../../../../public/data/faq/parentsFaqStem.json";
 
 // export const metadata = {
-//   title: "Parent FAQ — TINITIATE STEM & IT Programs",
+//   title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
 //   description:
-//     "Answers for parents about TINITIATE's STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
+//     "Answers for parents about Tinitiate AI Solutions' STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
 //   openGraph: {
-//     title: "Parent FAQ — TINITIATE STEM & IT Programs",
+//     title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
 //     description:
-//       "Answers for parents about TINITIATE's STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
-//     url: "https://www.tinitiate.com/parents-faq",
-//     siteName: "TINITIATE",
+//       "Answers for parents about Tinitiate AI Solutions' STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
+//     url: "https://www.tinitiateai.com/parents-faq",
+//     siteName: "Tinitiate AI Solutions",
 //     type: "article",
 //   },
 // };
@@ -127,7 +127,7 @@
 //             Parents whose kids are taking STEM Course
 //           </p>
 //           <h1 className="text-2xl font-extrabold leading-tight md:text-4xl">
-//             Parent FAQ — TINITIATE STEM & IT Career Programs
+//             Parent FAQ — Tinitiate AI Solutions STEM & IT Career Programs
 //           </h1>
 //           <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">
 //             Straight answers about our online programs, structure, technologies, and
@@ -253,15 +253,15 @@
 // import FAQList from "./FAQList";
 
 // export const metadata = {
-//   title: "Parent FAQ — TINITIATE STEM & IT Programs",
+//   title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
 //   description:
-//     "Answers for parents about TINITIATE's STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
+//     "Answers for parents about Tinitiate AI Solutions' STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
 //   openGraph: {
-//     title: "Parent FAQ — TINITIATE STEM & IT Programs",
+//     title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
 //     description:
-//       "Answers for parents about TINITIATE's STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
-//     url: "https://www.tinitiate.com/parents-faq",
-//     siteName: "TINITIATE",
+//       "Answers for parents about Tinitiate AI Solutions' STEM & IT career programs: structure, duration, delivery, technologies, and why it helps bridge college-to-career.",
+//     url: "https://www.tinitiateai.com/parents-faq",
+//     siteName: "Tinitiate AI Solutions",
 //     type: "article",
 //   },
 // };
@@ -314,7 +314,7 @@
 //             Parents whose kids are taking STEM Course
 //           </p>
 //           <h1 className="text-2xl font-extrabold leading-tight md:text-4xl">
-//             Parent FAQ — TINITIATE STEM & IT Career Programs
+//             Parent FAQ — Tinitiate AI Solutions STEM & IT Career Programs
 //           </h1>
 //           <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">
 //             Straight answers about our online programs, structure, technologies, and
@@ -386,15 +386,15 @@ import FAQList from "../../components/FAQList";
 
 
 export const metadata = {
-  title: "Parent FAQ — TINITIATE STEM & IT Programs",
+  title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
   description:
-    "Answers for parents about TINITIATE's STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
+    "Answers for parents about Tinitiate AI Solutions' STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
   openGraph: {
-    title: "Parent FAQ — TINITIATE STEM & IT Programs",
+    title: "Parent FAQ — Tinitiate AI Solutions STEM & IT Programs",
     description:
-      "Answers for parents about TINITIATE's STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
-    url: "https://www.tinitiate.com/parents-faq",
-    siteName: "TINITIATE",
+      "Answers for parents about Tinitiate AI Solutions' STEM & IT career programs: what STEM means in India, structure, duration, delivery, technologies, and how we bridge college-to-career.",
+    url: "https://www.tinitiateai.com/parents-faq",
+    siteName: "Tinitiate AI Solutions",
     type: "article",
   },
 };
@@ -482,7 +482,7 @@ export default function ParentFAQPage() {
           </div>
 
           <h1 className="mt-2 text-2xl font-extrabold leading-tight md:text-4xl">
-            Parent FAQ — TINITIATE STEM & IT Career Programs
+            Parent FAQ — Tinitiate AI Solutions STEM & IT Career Programs
           </h1>
 
           <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">

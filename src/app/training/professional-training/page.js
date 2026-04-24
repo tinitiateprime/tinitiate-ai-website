@@ -68,7 +68,7 @@
 //   title: "Professional Training",
 //   subtitle:
 //     "Deep-dive programs for working professionals and serious learners in Databases, Cloud, DevOps, Web, Data Engineering, Analytics, and AI.",
-//   badge: "Professional Training • TINITIATE",
+//   badge: "Professional Training • Tinitiate AI Solutions",
 // };
 
 // // =====================================================================================
@@ -614,7 +614,7 @@
 //   title: "Professional Training",
 //   subtitle:
 //     "Deep-dive programs for working professionals and serious learners in Databases, Cloud, DevOps, Web, Data Engineering, Analytics, and AI.",
-//   badge: "Professional Training • TINITIATE",
+//   badge: "Professional Training • Tinitiate AI Solutions",
 // }
 
 // // -------------------- Safe href helper --------------------
@@ -910,7 +910,7 @@
 //   title: "Professional Training",
 //   subtitle:
 //     "Deep-dive programs for working professionals and serious learners in Databases, Cloud, DevOps, Web, Data Engineering, Analytics, and AI.",
-//   badge: "Professional Training • TINITIATE",
+//   badge: "Professional Training • Tinitiate AI Solutions",
 // };
   
 
@@ -1372,7 +1372,7 @@ const HERO = {
   title: "Professional Training",
   subtitle:
     "Deep-dive programs for working professionals and serious learners in Databases, Cloud, DevOps, Web, Data Engineering, Analytics, and AI.",
-  badge: "Professional Training • TINITIATE",
+  badge: "Professional Training • Tinitiate AI Solutions",
 };
 
 // -------------------- Safe href helper --------------------

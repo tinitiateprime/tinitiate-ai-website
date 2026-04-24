@@ -847,7 +847,13 @@ function MobileCollapsible({ prepared, headerOffsetMobile, nextPeek }) {
     const id = window.location.hash?.slice(1);
     if (!id) return;
     const idx = prepared.findIndex((f) => f.id === id);
-    if (idx >= 0) setOpenIndex(idx);
+    if (idx < 0) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      setOpenIndex(idx);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [prepared]);
 
   // respond to hash changes

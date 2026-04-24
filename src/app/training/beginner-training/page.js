@@ -268,7 +268,7 @@
 //                 <span className="rounded-full bg-slate-900/80 px-3 py-1">
 //                   Beginner Roadmap
 //                 </span>
-//                 <span>Guided by TINITIATE</span>
+//                 <span>Guided by Tinitiate AI Solutions</span>
 //               </div>
 //               <div className="mt-4 space-y-2 text-xs text-slate-100">
 //                 {[

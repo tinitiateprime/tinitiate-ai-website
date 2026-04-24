@@ -5,15 +5,15 @@ import faqData from "../../../../public/data/faq/whyTinitiate.json";
 import FAQList from "../../components/FAQList";
 
 export const metadata = {
-  title: "Why TINITIATE — Remote Training that Fits Your Life",
+  title: "Why Tinitiate AI Solutions — Remote Training that Fits Your Life",
   description:
-    "Why remote training, what makes TINITIATE different, course duration, best technologies in India, flexibility, certificates, and job-readiness.",
+    "Why remote training, what makes Tinitiate AI Solutions different, course duration, best technologies in India, flexibility, certificates, and job-readiness.",
   openGraph: {
-    title: "Why TINITIATE — Remote Training that Fits Your Life",
+    title: "Why Tinitiate AI Solutions — Remote Training that Fits Your Life",
     description:
       "Remote-friendly, mentor-led, project-based training for career-ready skills.",
-    url: "https://www.tinitiate.com/faq/why-tinitiate",
-    siteName: "TINITIATE",
+    url: "https://www.tinitiateai.com/faq/why-tinitiate",
+    siteName: "Tinitiate AI Solutions",
     type: "article",
   },
 };
@@ -81,13 +81,13 @@ export default function WhyTinitiatePage() {
         <div className="rounded-3xl border border-gray-200 bg-gradient-to-br from-sky-50 to-white p-7 md:p-10">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-700">
-              Why TINITIATE
+              Why Tinitiate AI Solutions
             </p>
             {/* <p className="text-xs text-gray-500">Updated: {updatedAtLabel} (IST)</p> */}
           </div>
 
           <h1 className="mt-2 text-2xl font-extrabold leading-tight md:text-4xl">
-            Why TINITIATE — Remote Training that Fits Your Life
+            Why Tinitiate AI Solutions — Remote Training that Fits Your Life
           </h1>
 
           <p className="mt-3 max-w-2xl text-sm text-gray-600 md:text-base">

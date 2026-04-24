@@ -90,7 +90,7 @@ const FAQ = [
   { q: 'What is Personalized Training?', a: 'A tailored program with flexible scheduling and mentor guidance based on your goals and background.' },
   { q: 'Do you provide recordings & materials?', a: 'Yes. Session recordings (where applicable), labs, and notes are shared through our portal.' },
   { q: 'Can I switch tracks?', a: 'Yes. We can realign your plan during periodic reviews within your enrolled tenure.' },
-  { q: 'Is there a certificate?', a: 'Yes. You receive a TINITIATE completion certificate after evaluations.' },
+  { q: 'Is there a certificate?', a: 'Yes. You receive a Tinitiate AI Solutions completion certificate after evaluations.' },
 ]
 
 // -------------------- Category Icons --------------------

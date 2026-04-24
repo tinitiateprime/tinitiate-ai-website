@@ -2,9 +2,10 @@
 
 "use client"
 
-import { useEffect, useState, useRef, } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useRouter, useSearchParams } from 'next/navigation'  // ✅ required for tab parsing
 
 // ... (beginnerCourses, advancedCourses, optServices, optReasons remain unchanged)
@@ -149,28 +150,20 @@ function CourseGrid({ courses }) {
 
 export default function ITTrainingPage() {
   const router = useRouter()
+  const pathname = usePathname()
   const searchParams = useSearchParams()
-  const [activeTab, setActiveTab] = useState(null)
   const sectionRef = useRef(null)
-
-  // Set tab from URL query
-  useEffect(() => {
-    const tabFromQuery = searchParams.get('tab')
-    if (tabFromQuery === 'Beginner' || tabFromQuery === 'Advanced' || tabFromQuery === 'OPT') {
-      setActiveTab(tabFromQuery)
-    } else {
-      setActiveTab('Beginner')
-    }
-  }, [searchParams])
+  const tabFromQuery = searchParams.get('tab')
+  const activeTab =
+    tabFromQuery === 'Beginner' || tabFromQuery === 'Advanced' || tabFromQuery === 'OPT'
+      ? tabFromQuery
+      : 'Beginner'
 
   // Scroll to top or section on tab switch
   const handleTabClick = (tab) => {
-    setActiveTab(tab)
-    router.push(`/it-training?tab=${tab}`, { scroll: false, shallow: true })
+    router.push(`${pathname}?tab=${tab}`, { scroll: false })
     sectionRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
-
-  if (!activeTab) return null // prevent flicker
 
   return (
     <main className="text-gray-800">
@@ -184,7 +177,7 @@ export default function ITTrainingPage() {
               IT Training Programs
             </h1>
             <p className="text-base sm:text-lg text-white mb-6 max-w-xl">
-              Kickstart and propel your IT career with team TINITIATE. Explore our beginner and advanced IT courses to boost your tech career.
+              Kickstart and propel your IT career with team Tinitiate AI Solutions. Explore our beginner and advanced IT courses to boost your tech career.
             </p>
           </div>
 

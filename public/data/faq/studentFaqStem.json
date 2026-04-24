@@ -6,7 +6,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "College teaches theory. We teach how to build. At TINITIATE, you’ll work on real industry projects in coding, data, and cloud — the exact tools and workflows companies use."
+          "text": "College teaches theory. We teach how to build. At Tinitiate AI Solutions, you’ll work on real industry projects in coding, data, and cloud — the exact tools and workflows companies use."
         },
         {
           "type": "ul",
@@ -124,7 +124,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "You’ll receive a TINITIATE STEM Course Certificate with:"
+          "text": "You’ll receive a Tinitiate AI Solutions STEM Course Certificate with:"
         },
         {
           "type": "ul",
@@ -157,7 +157,7 @@
     },
     {
       "id": "why-students-love",
-      "title": "9) Why Students Love TINITIATE",
+      "title": "9) Why Students Love Tinitiate AI Solutions",
       "blocks": [
         {
           "type": "ul",
@@ -196,7 +196,7 @@
         },
         {
           "type": "p",
-          "text": "Learn. Build. Deploy. Get Hired. That’s the TINITIATE way."
+          "text": "Learn. Build. Deploy. Get Hired. That’s the Tinitiate AI Solutions way."
         }
       ]
     },
@@ -207,7 +207,7 @@
         {
           "type": "ul",
           "items": [
-            "Visit www.tinitiate.com",
+            "Visit www.tinitiateai.com",
             "Enroll in the next STEM/IT track",
             "Begin your journey from Student → Industry Professional"
           ]

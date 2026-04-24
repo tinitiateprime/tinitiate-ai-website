@@ -363,7 +363,7 @@
 //         </h1>
 //         <p className="max-w-2xl mx-auto text-lg text-gray-700">
 //           Explore our beginner and advanced IT courses to boost your tech career.
-//           Kickstart and propel your IT career with team TINITIATE
+//           Kickstart and propel your IT career with team Tinitiate AI Solutions
 //         </p>
 //       </section> */}
 
@@ -392,7 +392,7 @@
 //           IT Training Programs
 //             </h1>
 //             <p className="text-base sm:text-lg text-white mb-6">
-//              Kickstart and propel your IT career with team TINITIATE. Explore our beginner and advanced IT courses to boost your tech career.
+//              Kickstart and propel your IT career with team Tinitiate AI Solutions. Explore our beginner and advanced IT courses to boost your tech career.
              
 //             </p>
 //           </div>
@@ -410,7 +410,7 @@
 //      IT Training Programs
 //       </h1>
 //       <p className="text-base sm:text-lg text-white mb-6 max-w-xl">
-//         Kickstart and propel your IT career with team TINITIATE. Explore our beginner and advanced IT courses to boost your tech career.
+//         Kickstart and propel your IT career with team Tinitiate AI Solutions. Explore our beginner and advanced IT courses to boost your tech career.
 //       </p>
 //     </div>
 

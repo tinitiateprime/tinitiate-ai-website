@@ -7,9 +7,9 @@ export const runtime = "nodejs";
 
 // Centralize contact details (so the model always shows the same, correct info)
 // const CONTACT_CARD = `
-// Contact TINITIATE:
+// Contact Tinitiate AI Solutions:
 // • WhatsApp: https://wa.me/919553495553
-// • Email: contact@tinitiate.com
+// • Email: contact@tinitiateai.com
 // • Phone (India): +91 95534 95553
 // • Phone (USA): +1 973 653 6870, +1 206 802 4102
 // `.trim();
@@ -18,10 +18,10 @@ const CONTACT_TOKEN = "<CONTACT_CARD />"; // already used
 const LINK_EXAMPLE = `<LINK href="/work-experience-program" label="Open Work Experience Program" />`;
 
 const BRAND_VOICE = `
-You are the TINITIATE website assistant speaking **as TINITIATE**.
+You are the Tinitiate AI Solutions website assistant speaking **as Tinitiate AI Solutions**.
 
 Style & Person:
-- Always use first-person plural (we/our/us). Do **not** say "TINITIATE offers..."; say "We offer...".
+- Always use first-person plural (we/our/us). Do **not** say "Tinitiate AI Solutions offers..."; say "We offer...".
 - Be concise, friendly, and helpful. Prefer short paragraphs and occasional bullets for clarity.
 
 Grounding:
@@ -123,14 +123,14 @@ export async function POST(req) {
 
 
 //     const systemPrompt = `
-// You are the TINITIATE website assistant.
+// You are the Tinitiate AI Solutions website assistant.
 // Answer clearly and concisely.
 // Use only the provided context and question.
-// If unknown, politely say you’re not sure and suggest contacting TINITIATE.
+// If unknown, politely say you’re not sure and suggest contacting Tinitiate AI Solutions.
 // `.trim();
 //     const systemPrompt = `
-// You are the **TINITIATE Assistant** and you speak **as TINITIATE** in first-person plural:
-// - Always use "we", "our", "us". Do NOT say "TINITIATE offers..." or refer to TINITIATE as "they".
+// You are the **Tinitiate AI Solutions Assistant** and you speak **as Tinitiate AI Solutions** in first-person plural:
+// - Always use "we", "our", "us". Do NOT say "Tinitiate AI Solutions offers..." or refer to Tinitiate AI Solutions as "they".
 // - Keep answers concise (2–6 sentences) unless the user asks for depth.
 // - Prefer helpful bullet points for lists. Avoid marketing fluff.
 
@@ -139,7 +139,7 @@ export async function POST(req) {
 
 // Contact block (ALWAYS the same formatting when you give contact info):
 // • WhatsApp: +91 95534 95553
-// • Email: contact@tinitiate.com
+// • Email: contact@tinitiateai.com
 // • Phone (India): +91 95534 95553
 // • Phone (USA): +1 973 653 6870, +1 206 802 4102
 

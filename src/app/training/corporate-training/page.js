@@ -76,7 +76,7 @@ export default function CorporateTrainingPage() {
         </div>
         <div className="mx-auto max-w-7xl space-y-5 text-gray-700 mt-10">
           <p>
-            At <span className="font-semibold text-gray-900">Tinitiate</span>, corporate training is a core offering.
+            At <span className="font-semibold text-gray-900">Tinitiate AI Solutions</span>, corporate training is a core offering.
             Our senior instructors are hands-on engineers who specialize in modern platforms and practices. We design
             each program around your current environment—tools, workflows, and business goals—so teams learn by doing
             and can apply outcomes immediately.
@@ -90,7 +90,7 @@ export default function CorporateTrainingPage() {
           </p>
 
           <p>
-            Backed by <span className="font-semibold text-gray-900">3+ years</span> of focused delivery at Tinitiate,
+            Backed by <span className="font-semibold text-gray-900">3+ years</span> of focused delivery at Tinitiate AI Solutions,
             we’ve partnered with organizations of varying sizes and maturity levels—helping teams upskill, standardize
             best practices, and accelerate delivery. Our corporate engagements inform how we teach, letting us align
             content with real-world industry needs and your roadmap.
@@ -108,10 +108,10 @@ export default function CorporateTrainingPage() {
       <section className="px-6 pb-10 md:pb-12">
         <div className="mx-auto max-w-7xl space-y-5 text-gray-700">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-            Empower Your Team with Tinitiate
+            Empower Your Team with Tinitiate AI Solutions
           </h2>
           <p>
-            At <span className="font-semibold text-gray-900">Tinitiate</span>, we bring together experienced trainers
+            At <span className="font-semibold text-gray-900">Tinitiate AI Solutions</span>, we bring together experienced trainers
             and industry experts to deliver impactful training that unlocks your team’s potential. Our programs are
             built to strengthen both technical expertise and problem-solving skills, ensuring your workforce is ready
             to excel in real-world scenarios.
@@ -135,7 +135,7 @@ export default function CorporateTrainingPage() {
       <section className="px-6 pb-12 md:pb-14">
         <div className="mx-auto max-w-7xl space-y-5 text-gray-700">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-            Discover the Tinitiate Advantage
+            Discover the Tinitiate AI Solutions Advantage
           </h2>
           <p>
             What sets our training apart is a focus on hands-on learning, collaboration, and peer-to-peer engagement.
@@ -245,7 +245,7 @@ export default function CorporateTrainingPage() {
 <section className="px-6 py-10 bg-white">
   <div className="mx-auto max-w-7xl space-y-6 text-gray-700">
     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center">
-      Discover the Transformative Potential of Tinitiate Training
+      Discover the Transformative Potential of Tinitiate AI Solutions Training
     </h2>
     <p className="text-base md:text-lg leading-relaxed text-center max-w-6xl mx-auto">
       Our corporate training stands apart through a strong emphasis on practical, hands-on learning and meaningful
@@ -265,7 +265,7 @@ export default function CorporateTrainingPage() {
     <p className="text-base md:text-lg leading-relaxed text-center max-w-6xl mx-auto">
       Recruiting new employees with niche skills is often expensive and time-consuming. Training your existing team,
       however, is a cost-effective way to boost capabilities, strengthen loyalty, and increase productivity. At
-      <span className="font-semibold text-gray-900"> Tinitiate</span>, we provide a structured and supportive
+      <span className="font-semibold text-gray-900"> Tinitiate AI Solutions</span>, we provide a structured and supportive
       environment that empowers employees to achieve their full potential.
     </p>
     <p className="text-base md:text-lg leading-relaxed text-center max-w-6xl mx-auto">
