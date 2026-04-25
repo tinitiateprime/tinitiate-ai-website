@@ -1,134 +1,256 @@
-'use client'
-
-import Link from 'next/link'
 import {
-  FaUserShield,
-  FaDatabase,
   FaCheckCircle,
+  FaDatabase,
+  FaEdit,
   FaEnvelope,
+  FaExclamationTriangle,
   FaGlobe,
   FaLock,
-  FaTrash,
-  FaEdit,
   FaSync,
-  FaArrowLeft,
-  FaExclamationTriangle,
+  FaTrash,
+  FaUserShield,
 } from 'react-icons/fa'
+import PolicyPageShell, {
+  policyInlineLinkClassName,
+} from '../components/PolicyPageShell'
+
+export const metadata = {
+  title: 'Privacy Policy | Tinitiate AI Solutions',
+  description:
+    'Read how Tinitiate AI Solutions collects, uses, secures, and updates personal information through its privacy policy.',
+}
+
+const sections = [
+  {
+    id: 'information-we-collect',
+    title: 'Information We Collect',
+    icon: FaDatabase,
+    items: [
+      {
+        icon: FaUserShield,
+        iconClassName:
+          'bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-200',
+        content: (
+          <>
+            <strong>Personal Information:</strong> name, email, phone number,
+            company details, etc.
+          </>
+        ),
+      },
+      {
+        icon: FaDatabase,
+        iconClassName:
+          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
+        content: (
+          <>
+            <strong>Usage Data:</strong> IP address, browser type, device info,
+            and pages visited &mdash; used for analytics and improvement.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    id: 'how-we-use-information',
+    title: 'How We Use Your Information',
+    icon: FaCheckCircle,
+    items: [
+      {
+        icon: FaCheckCircle,
+        iconClassName:
+          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
+        content: 'Manage your transactions and accounts.',
+      },
+      {
+        icon: FaCheckCircle,
+        iconClassName:
+          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
+        content: 'Improve website performance and services.',
+      },
+      {
+        icon: FaCheckCircle,
+        iconClassName:
+          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
+        content: 'Send updates and offers (only if you opt in).',
+      },
+      {
+        icon: FaCheckCircle,
+        iconClassName:
+          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
+        content: 'Respond to support or inquiry requests.',
+      },
+    ],
+  },
+  {
+    id: 'sharing-your-information',
+    title: 'Sharing Your Information',
+    icon: FaLock,
+    items: [
+      {
+        icon: FaLock,
+        iconClassName:
+          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
+        content: 'We do not sell, trade, or share your data without your consent.',
+      },
+      {
+        icon: FaUserShield,
+        iconClassName:
+          'bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-200',
+        content:
+          'We only share data with trusted providers under strict confidentiality agreements for operations like payments or technical support.',
+      },
+    ],
+  },
+  {
+    id: 'data-security',
+    title: 'Data Security and Protection',
+    icon: FaLock,
+    items: [
+      {
+        icon: FaLock,
+        iconClassName:
+          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
+        content:
+          'We implement industry-standard security measures to protect your information.',
+      },
+      {
+        icon: FaExclamationTriangle,
+        iconClassName:
+          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
+        content:
+          'While we strive to safeguard your data, no system can guarantee 100% protection. Please avoid sharing highly sensitive information unnecessarily.',
+      },
+    ],
+  },
+  {
+    id: 'your-rights',
+    title: 'Your Rights and Choices',
+    icon: FaEdit,
+    items: [
+      {
+        icon: FaDatabase,
+        iconClassName:
+          'bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-200',
+        content:
+          'Request access to the personal data we hold about you.',
+      },
+      {
+        icon: FaEdit,
+        iconClassName:
+          'bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-200',
+        content:
+          'Request corrections if your information is inaccurate or incomplete.',
+      },
+      {
+        icon: FaTrash,
+        iconClassName:
+          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
+        content:
+          'Request deletion of your data (subject to legal obligations).',
+      },
+    ],
+  },
+  {
+    id: 'policy-updates',
+    title: 'Updates to This Privacy Policy',
+    icon: FaSync,
+    items: [
+      {
+        icon: FaSync,
+        iconClassName:
+          'bg-violet-50 text-violet-700 dark:bg-violet-500/10 dark:text-violet-200',
+        content:
+          'We may update this policy to reflect changes in our operations, technology, or legal requirements. Any updates will be posted on this page.',
+      },
+    ],
+  },
+  {
+    id: 'contact-us',
+    title: 'Contact Us',
+    icon: FaEnvelope,
+    items: [
+      {
+        icon: FaEnvelope,
+        iconClassName:
+          'bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-200',
+        content: (
+          <>
+            Email:{' '}
+            <a
+              href="mailto:contact@tinitiateai.com"
+              className={policyInlineLinkClassName}
+            >
+              contact@tinitiateai.com
+            </a>
+          </>
+        ),
+      },
+      {
+        icon: FaGlobe,
+        iconClassName:
+          'bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-200',
+        content: (
+          <>
+            Website:{' '}
+            <a
+              href="https://www.tinitiateai.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={policyInlineLinkClassName}
+            >
+              www.tinitiateai.com
+            </a>
+          </>
+        ),
+      },
+    ],
+  },
+]
 
 export default function PrivacyPolicy() {
   return (
-    <main className="bg-white text-gray-800 min-h-screen py-12 px-6 sm:px-10 lg:px-24">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-center text-gray-900">
-          Privacy Policy
-        </h1>
-
-        <p className="text-lg mb-10 text-gray-600">
-          At <span className="font-semibold text-indigo-500">Tinitiate AI Solutions</span>, we prioritize your privacy and are committed to protecting your personal information. Here&apos;s how we handle your data:
-        </p>
-
-        {/* Information We Collect */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold text-indigo-500 mb-4">Information We Collect</h2>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <FaUserShield className="mt-1 mr-2 text-blue-500" />
-              <span>
-                <strong>Personal Information:</strong> name, email, phone number, company details, etc.
-              </span>
-            </li>
-            <li className="flex items-start">
-              <FaDatabase className="mt-1 mr-2 text-green-500" />
-              <span>
-                <strong>Usage Data:</strong> IP address, browser type, device info, and pages visited &mdash; used for analytics and improvement.
-              </span>
-            </li>
-          </ul>
-        </section>
-
-        {/* How We Use Your Information */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold text-indigo-500 mb-4">How We Use Your Information</h2>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start"><FaCheckCircle className="mt-1 mr-2 text-green-500" /> Manage your transactions and accounts.</li>
-            <li className="flex items-start"><FaCheckCircle className="mt-1 mr-2 text-green-500" /> Improve website performance and services.</li>
-            <li className="flex items-start"><FaCheckCircle className="mt-1 mr-2 text-green-500" /> Send updates and offers (only if you opt in).</li>
-            <li className="flex items-start"><FaCheckCircle className="mt-1 mr-2 text-green-500" /> Respond to support or inquiry requests.</li>
-          </ul>
-        </section>
-
-        {/* Sharing Your Information */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold text-indigo-500 mb-4">Sharing Your Information</h2>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <FaLock className="mt-1 mr-2 text-red-500" />
-              <span>We do not sell, trade, or share your data without your consent.</span>
-            </li>
-            <li className="flex items-start">
-              <FaUserShield className="mt-1 mr-2 text-yellow-500" />
-              <span>We only share data with trusted providers under strict confidentiality agreements for operations like payments or technical support.</span>
-            </li>
-          </ul>
-        </section>
-
-        {/* Data Security */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold text-indigo-500 mb-4">Data Security and Protection</h2>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start">
-              <FaLock className="mt-1 mr-2 text-green-500" />
-              <span>We implement industry-standard security measures to protect your information.</span>
-            </li>
-            <li className="flex items-start">
-              <FaExclamationTriangle className="mt-1 mr-2 text-red-500" />
-              <span>While we strive to safeguard your data, no system can guarantee 100% protection. Please avoid sharing highly sensitive information unnecessarily.</span>
-            </li>
-          </ul>
-        </section>
-
-        {/* Your Rights */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold text-indigo-500 mb-4">Your Rights and Choices</h2>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-start"><FaDatabase className="mt-1 mr-2 text-blue-500" /> Request access to the personal data we hold about you.</li>
-            <li className="flex items-start"><FaEdit className="mt-1 mr-2 text-yellow-500" /> Request corrections if your information is inaccurate or incomplete.</li>
-            <li className="flex items-start"><FaTrash className="mt-1 mr-2 text-red-500" /> Request deletion of your data (subject to legal obligations).</li>
-          </ul>
-        </section>
-
-        {/* Updates to Policy */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold text-indigo-500 mb-4">Updates to This Privacy Policy</h2>
-          <p className="text-gray-700 flex items-start">
-            <FaSync className="mt-1 mr-2 text-purple-500" />
-            We may update this policy to reflect changes in our operations, technology, or legal requirements. Any updates will be posted on this page.
-          </p>
-        </section>
-
-        {/* Contact Info */}
-        <section className="mb-10">
-          <h2 className="text-2xl font-semibold text-indigo-500 mb-4">Contact Us</h2>
-          <ul className="space-y-2 text-gray-700">
-            <li className="flex items-start">
-              <FaEnvelope className="mt-1 mr-2 text-blue-500" />
-              Email: <a href="mailto:contact@tinitiateai.com" className="text-indigo-600 underline">contact@tinitiateai.com</a>
-            </li>
-            <li className="flex items-start">
-              <FaGlobe className="mt-1 mr-2 text-blue-500" />
-              Website: <a href="https://www.tinitiateai.com" className="text-indigo-600 underline" target="_blank">www.tinitiateai.com</a>
-            </li>
-          </ul>
-        </section>
-
-        {/* Back to Home */}
-        {/* <div className="mt-12 text-center">
-          <Link href="/" className="inline-flex items-center text-indigo-700 hover:underline font-medium">
-            <FaArrowLeft className="mr-2" />
-            Back to Home
-          </Link>
-        </div> */}
-      </div>
-    </main>
+    <PolicyPageShell
+      currentHref="/privacy-policy"
+      eyebrow="Privacy & Data Handling"
+      title="Privacy Policy"
+      intro={
+        <>
+          At{' '}
+          <span className="font-semibold text-[#1a3c6e] dark:text-sky-200">
+            Tinitiate AI Solutions
+          </span>
+          , we prioritize your privacy and are committed to protecting your
+          personal information. Here&apos;s how we handle your data:
+        </>
+      }
+      highlights={[
+        {
+          title: 'Clear data categories',
+          detail: 'We explain the personal information and usage data that may be collected.',
+        },
+        {
+          title: 'No sale of data',
+          detail: 'Your information is not sold, traded, or shared without consent.',
+        },
+        {
+          title: 'User rights supported',
+          detail: 'Access, correction, and deletion requests are recognized within applicable limits.',
+        },
+      ]}
+      sections={sections}
+      theme="emerald"
+      supportTitle="Privacy Requests"
+      supportDescription={
+        <>
+          Questions about privacy, data access, or corrections can be sent to{' '}
+          <a href="mailto:contact@tinitiateai.com" className="font-semibold text-white underline decoration-white/30 underline-offset-4">
+            contact@tinitiateai.com
+          </a>
+          .
+        </>
+      }
+      contactEmail="contact@tinitiateai.com"
+      website="https://www.tinitiateai.com"
+    />
   )
 }

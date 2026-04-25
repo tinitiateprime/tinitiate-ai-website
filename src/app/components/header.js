@@ -163,6 +163,7 @@ export default function Header() {
 
   const navItems = [
     { label: "Home", href: "/" },
+    { label: "Placement", href: "/placement" },
     { label: "Work Experience Program", href: "/work-experience-program" },
     {
       label: "Training",

@@ -31,6 +31,8 @@ const themeInitScript = `
 `;
 
 export default function RootLayout({ children }) {
+  const aiEnabled = Boolean(process.env.OPENAI_API_KEY?.trim());
+
   return (
     <html
       lang="en"
@@ -64,7 +66,7 @@ export default function RootLayout({ children }) {
         </main>
 
         {/* Widgets */}
-        <ChatWidget />
+        <ChatWidget aiEnabled={aiEnabled} />
         <Footer />
 
       </body>

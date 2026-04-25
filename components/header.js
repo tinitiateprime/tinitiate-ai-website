@@ -96,7 +96,7 @@ export default function Header() {
   // ---------- Nav data ----------
   const navItems = [
     { label: "Home", href: "/" },
-
+    { label: "Placement", href: "/" },
     { label: "Work Experience Program", href: "/work-experience-program" },
    
     {

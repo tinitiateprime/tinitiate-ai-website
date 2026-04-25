@@ -3,17 +3,20 @@ import OpenAI from "openai";
 
 let openaiClient;
 
-export function getOpenAIClient() {
-  const apiKey = process.env.OPENAI_API_KEY?.trim();
+export const OPENAI_MISSING_MESSAGE =
+  "Missing OPENAI_API_KEY. Set the environment variable before using OpenAI-backed routes.";
 
-  if (!apiKey) {
-    throw new Error(
-      "Missing OPENAI_API_KEY. Set the environment variable before using OpenAI-backed routes."
-    );
+export function isOpenAIConfigured() {
+  return Boolean(process.env.OPENAI_API_KEY?.trim());
+}
+
+export function getOpenAIClient() {
+  if (!isOpenAIConfigured()) {
+    throw new Error(OPENAI_MISSING_MESSAGE);
   }
 
   if (!openaiClient) {
-    openaiClient = new OpenAI({ apiKey });
+    openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY.trim() });
   }
 
   return openaiClient;

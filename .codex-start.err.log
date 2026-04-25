@@ -1,0 +1,4 @@
+⨯ The requested resource isn't a valid image for /images/banners/startup.png received null
+Error: Missing OPENAI_API_KEY. Set the environment variable before using OpenAI-backed routes.
+    at <unknown> (C:\Users\HP\Desktop\tinitiate-ai-website\.next\server\chunks\[root-of-the-server]__0jgf-4h._.js:18:62751)
+    at C (C:\Users\HP\Desktop\tinitiate-ai-website\.next\server\chunks\[root-of-the-server]__0okbajo._.js:31:61)

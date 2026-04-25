@@ -26,8 +26,8 @@ html[data-theme="dark"],
   --surface-strong: #1f2a3d;
   --border-soft: rgba(148, 163, 184, 0.24);
   --text-strong: #f8fafc;
-  --text-body: #dbe4f2;
-  --muted: #9ca3af;
+  --text-body: #e6eefb;
+  --muted: #c5d0e0;
 }
 
 html {
@@ -145,13 +145,19 @@ html:is(.dark, [data-theme="dark"]) [class*="text-[#1a3c6e]"] {
 html:is(.dark, [data-theme="dark"]) [class~="text-gray-700"],
 html:is(.dark, [data-theme="dark"]) [class~="text-gray-600"],
 html:is(.dark, [data-theme="dark"]) [class~="text-slate-700"],
-html:is(.dark, [data-theme="dark"]) [class~="text-slate-600"] {
+html:is(.dark, [data-theme="dark"]) [class~="text-slate-600"],
+html:is(.dark, [data-theme="dark"]) [class*="text-[#5b667a]"],
+html:is(.dark, [data-theme="dark"]) [class*="text-[#607089]"] {
   color: var(--text-body) !important;
 }
 
 html:is(.dark, [data-theme="dark"]) [class~="text-gray-500"],
 html:is(.dark, [data-theme="dark"]) [class~="text-gray-400"],
-html:is(.dark, [data-theme="dark"]) [class~="text-slate-500"] {
+html:is(.dark, [data-theme="dark"]) [class~="text-slate-400"],
+html:is(.dark, [data-theme="dark"]) [class~="text-slate-500"],
+html:is(.dark, [data-theme="dark"]) [class*="text-[#7f93b0]"],
+html:is(.dark, [data-theme="dark"]) [class*="text-[#93a3ba]"],
+html:is(.dark, [data-theme="dark"]) [class*="text-[#aab6c8]"] {
   color: var(--muted) !important;
 }
 
@@ -303,6 +309,23 @@ a {
 .touch-target {
   min-width: 44px;
   min-height: 44px;
+}
+
+@keyframes hero-slider-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-slider-progress {
+  transform-origin: left center;
+  animation-name: hero-slider-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
 @keyframes route-loader-spin {

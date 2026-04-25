@@ -3,6 +3,7 @@
 /* eslint-disable react/no-unescaped-entities */
  
 import Link from 'next/link'
+import HomeHeroSlider from './components/HomeHeroSlider'
 import { useState, useEffect, useRef } from "react"
 import {
   ShoppingCart,
@@ -16,9 +17,9 @@ import {
   FlaskConical,
   Users,
   LineChart,
-  ShoppingBag, BookOpen, Briefcase, Code2, FileText, UserCircle2, ClipboardCheck, CheckCircle, ChevronLeft, ChevronRight, ArrowRight
+  ShoppingBag, BookOpen, Briefcase, Code2, FileText, UserCircle2, ClipboardCheck, CheckCircle, ChevronLeft, ChevronRight, ArrowRight, Sparkles, Star
 } from 'lucide-react'
-import { motion, useScroll, useSpring, useTransform, useReducedMotion, AnimatePresence } from "framer-motion"
+import { motion, useInView, useReducedMotion, AnimatePresence } from "framer-motion"
  
 /* ─── Scroll Reveal ──────────────────────────────────────────────────────────── */
 function ScrollReveal({ children }) {
@@ -26,6 +27,11 @@ function ScrollReveal({ children }) {
   const themeTimerRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
   const [isThemeSwitching, setIsThemeSwitching] = useState(false)
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.16,
+    margin: "0px 0px -12% 0px",
+  })
 
   useEffect(() => {
     if (typeof document === "undefined") return undefined
@@ -56,31 +62,22 @@ function ScrollReveal({ children }) {
     }
   }, [])
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.96", "start 0.7", "end 0.32", "end 0.04"],
-  })
-
-  const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.18, 0.5, 0.82, 1], [0.92, 0.97, 1, 0.97, 0.92]),
-    { stiffness: 180, damping: 28, mass: 0.7 }
-  )
-
-  const y = useSpring(
-    useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [18, 6, 0, 6, 18]),
-    { stiffness: 170, damping: 26, mass: 0.75 }
-  )
-
   return (
     <motion.div
       ref={ref}
-      initial={false}
+      initial={prefersReducedMotion ? false : { opacity: 0.96, y: 18 }}
       className="transform-gpu"
-      style={
-        prefersReducedMotion || isThemeSwitching
-          ? { opacity: 1, y: 0, willChange: "auto" }
-          : { opacity, y, willChange: "opacity, transform" }
+      animate={
+        prefersReducedMotion || isThemeSwitching || isInView
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0.96, y: 18 }
       }
+      transition={
+        prefersReducedMotion || isThemeSwitching
+          ? { duration: 0 }
+          : { duration: 0.55, ease: [0.22, 1, 0.36, 1] }
+      }
+      style={{ willChange: prefersReducedMotion || isThemeSwitching ? "auto" : "opacity, transform" }}
     >
       {children}
     </motion.div>
@@ -322,7 +319,7 @@ function CourseSlider() {
                   ))}
                 </ul>
                 <div>
-                  <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-slate-400 sm:mb-4">Career Outcomes</p>
+                  <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-slate-300 sm:mb-4">Career Outcomes</p>
                   <div className="flex flex-wrap gap-2">
                     {course.outcomes.map((o, i) => (
                       <span key={i} className="rounded-full border border-gray-200 bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 sm:px-4 sm:py-1.5 sm:text-sm">{o}</span>
@@ -648,6 +645,19 @@ const professionalSkills = [
 function SkillsSwitcher() {
   const [tab, setTab] = useState('beginner')
   const skills = tab === "beginner" ? beginnerSkills : professionalSkills
+  const showProfessionalBadges = tab === "professional"
+  const gridClassName = showProfessionalBadges
+    ? "grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
+    : "grid grid-cols-2 gap-3 min-[420px]:gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-6"
+  const cardClassName = showProfessionalBadges
+    ? "min-h-[184px] justify-start p-4 sm:min-h-[208px] sm:p-6 xl:min-h-[212px] xl:px-5 xl:py-5"
+    : "min-h-[142px] justify-center p-4 sm:min-h-[168px] sm:p-5"
+  const titleWrapClassName = showProfessionalBadges
+    ? "flex min-h-[2.75rem] items-center justify-center text-center sm:min-h-[3.25rem]"
+    : "mt-auto flex min-h-[2.5rem] items-center justify-center sm:min-h-[3rem]"
+  const titleClassName = showProfessionalBadges
+    ? "text-balance text-[0.95rem] font-semibold leading-tight text-gray-800 group-hover:text-black sm:text-base xl:text-[1.02rem]"
+    : "text-balance text-[0.95rem] font-semibold leading-tight text-gray-800 group-hover:text-black sm:text-[1rem]"
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -670,19 +680,19 @@ function SkillsSwitcher() {
  
   return (
     <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="overflow-hidden rounded-3xl border border-gray-100 bg-white p-6 shadow-xl sm:p-8 md:p-12">
-          <h2 className="mb-3 text-center text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">Explore Our Courses</h2>
-          <p className="mb-6 text-center text-sm text-gray-500 sm:text-base">Choose your level and start learning today</p>
+      <div className="mx-auto max-w-[1400px]">
+        <div className="overflow-hidden rounded-[2rem] border border-gray-100 bg-white p-5 shadow-xl transition-colors duration-300 sm:p-8 md:p-12">
+          <h2 className="mx-auto mb-3 max-w-3xl text-balance text-center text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">Explore Our Courses</h2>
+          <p className="mx-auto mb-6 max-w-xl text-pretty text-center text-sm leading-relaxed text-gray-500 dark:text-slate-300 sm:text-base">Choose your level and start learning today</p>
  
           {/* Switcher */}
           <div className="mb-8 flex justify-center">
-            <div className="inline-flex flex-wrap justify-center gap-2 rounded-[1.5rem] bg-gray-100 p-2">
+            <div className="grid w-full max-w-sm grid-cols-2 gap-2 rounded-[1.5rem] bg-gray-100 p-2">
               {["beginner","professional"].map(t => (
                 <button
                   key={t}
                   onClick={() => handleTabChange(t)}
-                  className={`touch-target rounded-full px-6 py-3 text-sm font-semibold capitalize transition-all duration-300 sm:px-8 sm:text-base ${tab === t ? "bg-black text-white shadow-md" : "text-gray-600 hover:text-black"}`}
+                  className={`touch-target rounded-full px-4 py-3 text-sm font-semibold capitalize transition-all duration-300 sm:px-8 sm:text-base ${tab === t ? "bg-black text-white shadow-md" : "text-gray-600 dark:text-slate-300 hover:text-black dark:hover:text-white"}`}
                 >
                   {t}
                 </button>
@@ -697,20 +707,40 @@ function SkillsSwitcher() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-6"
+              className={gridClassName}
             >
               {skills.map((skill) => (
                 <Link
                   key={skill.name}
                   href={skill.href}
-                  className="group flex min-h-[132px] flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-gray-400 hover:shadow-xl sm:min-h-[148px] sm:p-6"
+                  className={`group flex flex-col rounded-[1.75rem] border border-gray-200/90 bg-white text-center shadow-[0_20px_45px_-35px_rgba(15,23,42,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-gray-400 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900/80 dark:shadow-[0_24px_50px_-36px_rgba(2,6,23,0.85)] ${cardClassName}`}
                 >
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center transition-transform duration-300 group-hover:scale-110 [&>svg]:h-14 [&>svg]:w-14 [&>img]:h-14 [&>img]:w-14 [&>img]:object-contain sm:h-16 sm:w-16 sm:[&>svg]:h-16 sm:[&>svg]:w-16 sm:[&>img]:h-16 sm:[&>img]:w-16">
-                    {skill.svgIcon}
+                  {showProfessionalBadges ? (
+                    <div className="mb-4 flex w-full items-center justify-center gap-1.5 sm:mb-5 sm:gap-2">
+                      <span className="inline-flex w-fit min-w-0 items-center justify-center gap-1 rounded-full border border-indigo-200/85 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(238,242,255,0.94))] px-2 py-1 text-[0.6rem] font-semibold leading-none tracking-[0.01em] text-indigo-700 shadow-[0_8px_20px_-18px_rgba(79,70,229,0.48)] backdrop-blur dark:border-indigo-400/35 dark:bg-[linear-gradient(180deg,rgba(49,46,129,0.95),rgba(30,27,75,0.92))] dark:text-indigo-100 dark:shadow-[0_10px_24px_-18px_rgba(99,102,241,0.65)] sm:px-2 sm:py-1 sm:text-[9.5px] lg:gap-1 lg:px-2 lg:py-1 lg:text-[9.5px]">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-400/15 dark:text-indigo-200 sm:h-4 sm:w-4 lg:h-3.5 lg:w-3.5">
+                          <Sparkles className="h-2.5 w-2.5 sm:h-[10px] sm:w-[10px] lg:h-2.5 lg:w-2.5" />
+                        </span>
+                        <span className="whitespace-nowrap">AI Included</span>
+                      </span>
+                      <span className="inline-flex w-fit min-w-0 items-center justify-center gap-1 rounded-full border border-amber-200/85 bg-[linear-gradient(180deg,rgba(255,251,235,0.98),rgba(254,243,199,0.9))] px-2 py-1 text-[0.6rem] font-semibold leading-none tracking-[0.01em] text-amber-700 shadow-[0_8px_20px_-18px_rgba(217,119,6,0.42)] dark:border-amber-400/35 dark:bg-[linear-gradient(180deg,rgba(120,53,15,0.88),rgba(69,26,3,0.84))] dark:text-amber-200 dark:shadow-[0_10px_24px_-18px_rgba(251,191,36,0.48)] sm:px-2 sm:py-1 sm:text-[9.5px] lg:gap-1 lg:px-2 lg:py-1 lg:text-[9.5px]">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-400/15 dark:text-amber-200 sm:h-4 sm:w-4 lg:h-3.5 lg:w-3.5">
+                          <Star className="h-2.5 w-2.5 sm:h-[10px] sm:w-[10px] lg:h-2.5 lg:w-2.5" />
+                        </span>
+                        <span className="whitespace-nowrap">Premium</span>
+                      </span>
+                    </div>
+                  ) : null}
+                  <div className="flex flex-1 flex-col items-center justify-center">
+                    <div className={`flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${showProfessionalBadges ? "mb-3.5 h-14 w-14 sm:mb-4 sm:h-16 sm:w-16 xl:h-[4.25rem] xl:w-[4.25rem]" : "mb-3 h-12 w-12 sm:mb-4 sm:h-14 sm:w-14"} [&>svg]:h-full [&>svg]:w-full [&>img]:h-full [&>img]:w-full [&>img]:object-contain`}>
+                      {skill.svgIcon}
+                    </div>
+                    <div className={titleWrapClassName}>
+                      <span className={titleClassName}>
+                        {skill.name}
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-sm font-semibold text-gray-800 text-center leading-tight group-hover:text-black">
-                    {skill.name}
-                  </span>
                 </Link>
               ))}
             </motion.div>
@@ -794,16 +824,16 @@ function MoreTrainingPrograms() {
               <h2 className="mt-4 text-3xl font-bold text-gray-900 dark:text-slate-100 sm:text-4xl lg:text-5xl">
                 Explore More Training Programs
               </h2>
-              <p className="mt-3 text-sm text-gray-500 dark:text-slate-400 sm:text-base">
+              <p className="mt-3 text-sm text-gray-500 dark:text-slate-300 sm:text-base">
                 Choose a specialized training path built for enterprise teams, campuses, and international learners.
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-12">
+            <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-12">
               {trainingPrograms.map((program, index) => {
                 const Icon = program.icon
                 const cardSpan =
-                  index === 2 ? "md:col-span-2 lg:col-span-8 lg:col-start-3" : "lg:col-span-6"
+                  index === 2 ? "xl:col-span-8 xl:col-start-3" : "xl:col-span-6"
 
                 return (
                   <Link
@@ -815,21 +845,21 @@ function MoreTrainingPrograms() {
                     <div className={`absolute -right-8 -top-8 h-28 w-28 rounded-full ${program.cardGlow} ${program.darkCardGlow} blur-3xl`} />
                     <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:via-slate-400/30" />
 
-                    <div className="relative z-10 flex h-full flex-col gap-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
+                    <div className="relative z-10 flex h-full flex-col gap-6 sm:gap-7">
+                      <div className="flex items-start justify-between gap-4 sm:gap-5">
+                        <div className="min-w-0 flex-1">
                           <span className={`inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${program.eyebrowClass} ${program.darkEyebrowClass}`}>
                             {program.eyebrow}
                           </span>
-                          <h3 className="mt-4 text-2xl font-bold text-gray-900 dark:text-slate-100 sm:text-[1.75rem]">
+                          <h3 className="mt-4 max-w-[18ch] text-balance text-[1.85rem] font-bold leading-[1.08] tracking-[-0.02em] text-gray-900 dark:text-slate-100 sm:text-[1.75rem] lg:max-w-[19ch]">
                             {program.title}
                           </h3>
-                          <p className="mt-3 max-w-2xl text-sm leading-7 text-gray-600 dark:text-slate-300 sm:text-base">
+                          <p className="mt-3 max-w-[42ch] text-pretty text-sm leading-7 text-[#5b667a] dark:text-slate-300 sm:text-base">
                             {program.description}
                           </p>
                         </div>
 
-                        <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-sm ${program.iconClass}`}>
+                        <div className={`flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-2xl shadow-sm ${program.iconClass}`}>
                           <Icon className="h-6 w-6" />
                         </div>
                       </div>
@@ -921,12 +951,12 @@ export default function HomePage() {
                       <CheckCircle className="w-8 h-8 text-green-600" />
                     </div>
                     <h4 className="mb-2 text-xl font-bold text-gray-900 dark:text-slate-100">Request Received!</h4>
-                    <p className="text-sm text-gray-500 dark:text-slate-400">We&apos;ll be in touch shortly. Thank you for reaching out.</p>
+                    <p className="text-sm text-gray-500 dark:text-slate-300">We&apos;ll be in touch shortly. Thank you for reaching out.</p>
                   </div>
                 ) : (
                   <div className="space-y-4">
                     <div>
-                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Full Name</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-300">Full Name</label>
                       <input
                         type="text" placeholder="John Doe"
                         value={formData.name}
@@ -935,7 +965,7 @@ export default function HomePage() {
                       />
                     </div>
                     <div>
-                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Email Address</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-300">Email Address</label>
                       <input
                         type="email" placeholder="john@example.com"
                         value={formData.email}
@@ -944,7 +974,7 @@ export default function HomePage() {
                       />
                     </div>
                     <div>
-                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Phone Number</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-300">Phone Number</label>
                       <input
                         type="tel" placeholder="+91 98765 43210"
                         value={formData.phone}
@@ -953,7 +983,7 @@ export default function HomePage() {
                       />
                     </div>
                     <div>
-                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-400">Message (Optional)</label>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-300">Message (Optional)</label>
                       <textarea
                         placeholder="Tell us what you're looking for..."
                         value={formData.message}
@@ -979,34 +1009,7 @@ export default function HomePage() {
  
       {/* ── Hero ── */}
       <ScrollReveal>
-        <section className="relative flex min-h-[72svh] items-center justify-center overflow-hidden bg-white px-4 py-16 text-black transition-colors duration-300 dark:bg-slate-950 dark:text-white sm:min-h-[78svh] sm:px-6 sm:py-20 lg:min-h-[calc(100svh-84px)]">
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
-          <svg className="pointer-events-none absolute inset-0 h-full w-full text-black opacity-10 dark:text-slate-400" viewBox="0 0 1440 900" fill="none">
-            <line x1="200" y1="200" x2="500" y2="350" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="500" y1="350" x2="800" y2="200" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="800" y1="200" x2="1100" y2="350" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="200" y1="200" x2="500" y2="600" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="500" y1="350" x2="800" y2="600" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="800" y1="200" x2="1100" y2="600" stroke="currentColor" strokeWidth="0.5" />
-            {[[200,200],[500,350],[800,200],[1100,350],[500,600],[800,700],[1100,600],[300,500],[1000,500]].map(([cx,cy],i)=>(
-              <circle key={i} cx={cx} cy={cy} r="4" fill="currentColor" opacity="0.3"/>
-            ))}
-          </svg>
-          <div className="relative z-10 mx-auto max-w-6xl text-center">
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-black dark:text-white sm:text-5xl lg:text-6xl">
-              Empowering Careers with AI + Real-Time Experience
-            </h1>
-            <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-gray-700 dark:text-slate-300 sm:mb-10 sm:text-lg">
-              Tinitiate AI Solutions provides job-ready IT training, AI development, cloud solutions & real-world consulting.
-            </p>
-            <Link
-              href="/request-callback"
-              className="touch-target inline-flex items-center justify-center rounded-full bg-black px-8 py-3 font-semibold text-white transition hover:bg-yellow-500 hover:text-black dark:bg-[#c9a227] dark:text-[#111827] dark:hover:bg-[#e0b93c]"
-            >
-              Get Started
-            </Link>
-          </div>
-        </section>
+        <HomeHeroSlider />
       </ScrollReveal>
  
       {/* ── Welcome to Tinitiate AI Solutions + Callback Card ── */}
@@ -1016,19 +1019,19 @@ export default function HomePage() {
             <div className="grid items-start gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16 xl:gap-20">
  
               {/* Left — Welcome Text */}
-              <div>
+              <div className="max-w-3xl">
                 <span className="inline-block text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">About Us</span>
-                <h2 className="mb-8 text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
-                  Welcome to <span className="text-[#1a3c6e]">Tinitiate AI Solutions Trainings</span>
+                <h2 className="mb-8 max-w-3xl text-balance text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
+                  Welcome to <span className="text-[#1a3c6e]">Tinitiate AI Training</span>
                 </h2>
-                <div className="space-y-6 text-gray-600 text-[16px] leading-relaxed">
-                  <p>
+                <div className="max-w-[44rem] space-y-7 text-[15px] leading-8 text-[#5b667a] dark:text-slate-300 sm:space-y-8 sm:text-base">
+                  <p className="text-pretty">
                     <strong className="text-gray-900">Tinitiate AI Solutions</strong> is a leading IT consulting, development and training company, dedicated to empowering businesses with cutting-edge technology solutions and high-quality professional training. Our vision is to bridge the gap between industry demands and individual potential — helping learners and enterprises grow together.
                   </p>
-                  <p>
+                  <p className="text-pretty">
                     With a highly experienced team carrying years of deep expertise in IT services, database management, and cloud computing, we craft tailored solutions that meet the evolving demands of enterprises worldwide — from ambitious startups to established global corporations. Every engagement is backed by real-world experience and a passion for measurable outcomes.
                   </p>
-                  <p>
+                  <p className="text-pretty">
                     Our commitment goes beyond training. We partner with our learners through every step of their journey — delivering real-world skills, actionable insights, and the career momentum needed to thrive in today's rapidly changing digital landscape. With Tinitiate AI Solutions, your next career breakthrough starts here.
                   </p>
                 </div>
@@ -1043,7 +1046,7 @@ export default function HomePage() {
                     Available Now
                   </div>
                   <h3 className="mb-3 text-2xl font-bold sm:text-3xl">Talk to an Expert</h3>
-                  <p className="text-blue-200 leading-relaxed">
+                  <p className="max-w-[32rem] text-pretty leading-7 text-blue-100/90">
                     Get personalized guidance on the right course for your career goals. No pressure — just honest, expert advice.
                   </p>
                 </div>
@@ -1054,7 +1057,7 @@ export default function HomePage() {
                     "Job Market Insights & Salary Benchmarks",
                     "Flexible Batch Schedules to Suit You", 
                   ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-blue-100">
+                    <li key={i} className="flex items-center gap-3 text-sm leading-7 text-blue-100/95 sm:text-base">
                       <div className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center shrink-0">
                         <CheckCircle className="w-4 h-4 text-green-300"/>
                       </div>
@@ -1087,13 +1090,13 @@ export default function HomePage() {
           <div className="max-w-[1400px] mx-auto">
 
             {/* Top label */}
-            <div className="mb-10">
+            <div className="mb-10 text-center lg:text-left">
               <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#c9a227] mb-4">Why Choose Us</span>
               <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <h2 className="max-w-2xl text-3xl font-black leading-[1.05] text-[#0e2a50] sm:text-4xl md:text-5xl lg:text-6xl">
+                <h2 className="mx-auto max-w-[13ch] text-balance text-[2.4rem] font-black leading-[0.98] tracking-[-0.03em] text-[#0e2a50] sm:text-[3rem] lg:mx-0 lg:max-w-[14ch] lg:text-[4.4rem]">
                   Where Real Expertise<br />Meets Your Ambition
                 </h2>
-                <p className="max-w-sm text-base leading-relaxed text-gray-500 sm:text-lg lg:text-right">
+                <p className="mx-auto max-w-md text-pretty text-[15px] leading-7 text-gray-500 dark:text-slate-300 sm:text-base lg:mx-0 lg:ml-auto lg:max-w-sm lg:text-right">
                   Not just a training institute — a launchpad engineered for career breakthroughs.
                 </p>
               </div>
@@ -1104,10 +1107,10 @@ export default function HomePage() {
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
 
               {/* Left — bold callout */}
-              <div>
+              <div className="max-w-3xl">
                 <div className="relative">
                   <div className="absolute left-0 top-0 h-full w-1.5 rounded-full bg-[#c9a227]" />
-                  <p className="pl-4 text-xl font-bold leading-snug text-gray-900 sm:text-2xl">
+                  <p className="max-w-[34rem] pl-5 pr-1 text-balance text-[1.45rem] font-black leading-[1.16] tracking-[-0.025em] text-gray-900 sm:pl-6 sm:text-[1.8rem] lg:text-[2rem]">
                     With <span className="text-[#0e2a50]">15+ years of hands-on IT experience</span>, our training isn't just theory — it's real-time knowledge paired with live projects, bonus technologies, and business domain immersion.
                   </p>
                 </div>
@@ -1125,9 +1128,9 @@ export default function HomePage() {
                           <svg className="w-4 h-4 text-[#0e2a50] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7"/></svg>
                         </div>
                       </div>
-                      <div>
-                        <p className="font-bold text-gray-900 text-base">{item.label}</p>
-                        <p className="text-gray-500 text-sm mt-1 leading-relaxed">{item.detail}</p>
+                      <div className="max-w-[34rem]">
+                        <p className="text-base font-bold text-gray-900">{item.label}</p>
+                        <p className="mt-1 text-pretty text-sm leading-7 text-[#5b667a] dark:text-slate-300">{item.detail}</p>
                       </div>
                     </div>
                   ))}
@@ -1141,10 +1144,10 @@ export default function HomePage() {
 
                 <div className="relative z-10">
                   <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#c9a227] mb-4">Development Services</span>
-                  <h3 className="text-3xl font-black leading-snug mb-4">
+                  <h3 className="mb-4 max-w-[16ch] text-balance text-[2rem] font-black leading-[1.05] sm:text-[2.4rem]">
                     Full-Spectrum Tech Solutions
                   </h3>
-                  <p className="text-blue-200 text-sm leading-relaxed mb-10">
+                  <p className="mb-10 max-w-[34rem] text-pretty text-sm leading-7 text-blue-100/85 sm:text-[15px]">
                     From scalable backend systems to robust data pipelines and mobile apps, Tinitiate AI Solutions offers development services tailored to modern business needs.
                   </p>
 
@@ -1160,7 +1163,7 @@ export default function HomePage() {
                         <div className="shrink-0 w-5 h-5 rounded-full border border-[#c9a227]/50 flex items-center justify-center mt-0.5">
                           <div className="w-2 h-2 rounded-full bg-[#c9a227]" />
                         </div>
-                        <span className="text-blue-100 text-sm leading-relaxed">{item}</span>
+                        <span className="max-w-[30ch] text-pretty text-sm leading-7 text-blue-100/92 sm:max-w-none sm:text-[15px]">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -1193,11 +1196,11 @@ export default function HomePage() {
           </svg>
  
           <div className="max-w-[1400px] mx-auto relative z-10">
-            <div className="text-center mb-10">
-              <span className="inline-block text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
+            <div className="mx-auto mb-10 max-w-3xl text-center">
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-slate-300 mb-3">
                 What Sets Us Apart
               </span>
-              <h2 className="text-3xl font-extrabold leading-tight text-black sm:text-4xl md:text-5xl">
+              <h2 className="text-balance text-3xl font-extrabold leading-tight text-black sm:text-4xl md:text-5xl">
                 Engineered for Career Transformation
               </h2>
               <div className="w-20 h-1 bg-yellow-400 mx-auto mt-5 rounded-full" />
@@ -1222,9 +1225,15 @@ export default function HomePage() {
               ].map((card, i) => (
                 <div key={i} className="group relative h-full rounded-2xl border border-gray-200 bg-white/70 p-6 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400 hover:bg-white hover:shadow-xl sm:p-8 md:p-10">
                   <div className="absolute top-4 right-6 select-none text-7xl font-black leading-none text-black/5 transition-all group-hover:text-yellow-400/20 dark:text-white/10 dark:group-hover:text-yellow-300/30 sm:text-8xl">{card.num}</div>
-                  <div className="w-12 h-1 bg-yellow-400 mb-6 rounded-full" />
-                  <h3 className="text-xl font-bold text-black mb-4 leading-snug">{card.heading}</h3>
-                  <p className="text-gray-600 leading-relaxed">{card.subtext}</p>
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className="mb-6 h-1 w-12 rounded-full bg-yellow-400" />
+                    <h3 className="mb-4 max-w-[14ch] text-balance text-[1.45rem] font-bold leading-[1.1] tracking-[-0.025em] text-black sm:max-w-[16ch] sm:text-[1.7rem] lg:text-[1.95rem]">
+                      {card.heading}
+                    </h3>
+                    <p className="max-w-[34ch] text-pretty text-sm leading-7 text-[#5b667a] dark:text-slate-300 sm:text-[15px] sm:leading-8">
+                      {card.subtext}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -1245,7 +1254,7 @@ export default function HomePage() {
       <ScrollReveal>
         <section className="bg-gray-50 px-4 py-12 sm:px-6">
           <div className="max-w-7xl mx-auto">
-            <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 sm:text-4xl">Career Support</h2>
+            <h2 className="mx-auto mb-8 max-w-3xl text-balance text-center text-3xl font-bold text-gray-900 sm:text-4xl">Career Support</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {careerSupport.map(({icon:Icon,title,description,href})=>(
                 <Link
@@ -1256,8 +1265,8 @@ export default function HomePage() {
                   <div className="mb-4 bg-blue-100 p-3 rounded-full">
                     <Icon className="w-8 h-8 text-blue-700"/>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold text-gray-800 transition-colors group-hover:text-blue-700">{title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+                  <h3 className="mb-2 max-w-[18ch] text-balance text-lg font-semibold text-gray-800 transition-colors group-hover:text-blue-700">{title}</h3>
+                  <p className="max-w-[28ch] text-pretty text-sm leading-7 text-gray-600 dark:text-slate-300">{description}</p>
                 </Link>
               ))}
             </div>

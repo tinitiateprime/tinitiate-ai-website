@@ -18,6 +18,7 @@ import {
 import { FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 // --- Config ---
 const LS_KEY = "tinitiate_chat_v1";
@@ -51,6 +52,11 @@ const SUGGESTIONS_POOL = [
 
 // The model will output this token when it wants UI contact cards to show
 const CONTACT_TOKEN = "<CONTACT_CARD />";
+const AI_DISABLED_MESSAGE = [
+  "Hi! Our AI assistant is not enabled on this environment yet, but our team can still help you directly.",
+  CONTACT_TOKEN,
+  '<LINK href="/request-callback" label="Request a Callback" />'
+].join("\n");
 
 // --- Helpers ---
 function hasContactToken(text = "") {
@@ -252,7 +258,7 @@ function AssistantMessage({ content, isStreaming }) {
   );
 }
 
-export default function ChatWidget() {
+export default function ChatWidget({ aiEnabled = true }) {
   // Panel and dial
   const [panelOpen, setPanelOpen] = useState(false);
   const [dialOpen, setDialOpen] = useState(false);
@@ -293,10 +299,17 @@ export default function ChatWidget() {
     if (typeof window !== "undefined") {
       try {
         const saved = JSON.parse(localStorage.getItem(LS_KEY) || "null");
-        if (Array.isArray(saved) && saved.length) return saved;
+        if (aiEnabled && Array.isArray(saved) && saved.length) return saved;
       } catch {}
     }
-    return [{ role: "assistant", content: "👋 Hi! I’m the Tinitiate AI Solutions Assistant. Ask me about our courses, WEP, or services!" }];
+    return [
+      {
+        role: "assistant",
+        content: aiEnabled
+          ? "Hi! I am the Tinitiate AI Solutions Assistant. Ask me about our courses, WEP, or services!"
+          : AI_DISABLED_MESSAGE
+      }
+    ];
   });
   useEffect(() => {
     if (typeof window !== "undefined") localStorage.setItem(LS_KEY, JSON.stringify(messages));
@@ -304,12 +317,18 @@ export default function ChatWidget() {
 
   // Suggestions visibility + randomization
   const hasChatted = useMemo(() => messages.some(m => m.role === "user"), [messages]);
-  const [showPrompts, setShowPrompts] = useState(!hasChatted);
+  const [showPrompts, setShowPrompts] = useState(aiEnabled && !hasChatted);
   const [promptChoices, setPromptChoices] = useState(() => pickRandom(SUGGESTIONS_POOL, 4));
   useEffect(() => {
     // Whenever prompts are (re)shown, refresh with random options
     if (showPrompts) setPromptChoices(pickRandom(SUGGESTIONS_POOL, 4));
   }, [showPrompts]);
+
+  useEffect(() => {
+    if (aiEnabled) return;
+    setShowPrompts(false);
+    setMessages([{ role: "assistant", content: AI_DISABLED_MESSAGE }]);
+  }, [aiEnabled]);
 
   // Scrolling and references
   const [atBottom, setAtBottom] = useState(true);
@@ -363,7 +382,9 @@ export default function ChatWidget() {
     hideCoach();
     setPanelOpen(true);
     setDialOpen(false);
-    setTimeout(() => textRef.current?.focus(), 60);
+    if (aiEnabled) {
+      setTimeout(() => textRef.current?.focus(), 60);
+    }
   }
 
   useEffect(() => {
@@ -383,9 +404,35 @@ export default function ChatWidget() {
     }
   }
 
+  function replaceLastAssistantMessage(nextContent) {
+    setMessages(prev => {
+      const copy = [...prev];
+      const last = copy[copy.length - 1];
+
+      if (last?.role === "assistant") {
+        last.content = nextContent;
+        return copy;
+      }
+
+      return [...copy, { role: "assistant", content: nextContent }];
+    });
+  }
+
+  async function readErrorMessage(response) {
+    const contentType = response.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      const payload = await response.json().catch(() => null);
+      return payload?.error || payload?.message || payload?.details || null;
+    }
+
+    const text = await response.text().catch(() => "");
+    return text.trim() || null;
+  }
+
   async function sendMessage(text) {
     const userText = text.trim();
-    if (!userText || busy) return;
+    if (!aiEnabled || !userText || busy) return;
 
     const historyToSend = messages.slice(-6);
     if (abortRef.current) abortRef.current.abort();
@@ -409,7 +456,15 @@ export default function ChatWidget() {
           pageUrl: window.location.href
         })
       });
-      if (!res.ok || !res.body) throw new Error("Network/stream error");
+      if (!res.ok) {
+        const errorMessage =
+          (await readErrorMessage(res)) ||
+          "Sorry, something went wrong. Please try again.";
+        throw new Error(errorMessage);
+      }
+      if (!res.body) {
+        throw new Error("The assistant returned an empty response. Please try again.");
+      }
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
@@ -421,27 +476,16 @@ export default function ChatWidget() {
         const chunk = decoder.decode(value, { stream: true });
 
         partial = appendDeltaSafely(partial, chunk);
-        setMessages(prev => {
-          const copy = [...prev];
-          const last = copy[copy.length - 1];
-          if (last?.role === "assistant") last.content = partial;
-          return copy;
-        });
+        replaceLastAssistantMessage(partial);
       }
 
-      setMessages(prev => {
-        const copy = [...prev];
-        const last = copy[copy.length - 1];
-        if (last?.role === "assistant") last.content = cleanupStutter(last.content);
-        return copy;
-      });
+      replaceLastAssistantMessage(cleanupStutter(partial));
     } catch (err) {
       if (err?.name !== "AbortError") {
         console.error("Chat error:", err);
-        setMessages(prev => [
-          ...prev,
-          { role: "assistant", content: "⚠️ Sorry, something went wrong. Please try again." }
-        ]);
+        replaceLastAssistantMessage(
+          err?.message || "Sorry, something went wrong. Please try again."
+        );
       }
     } finally {
       setBusy(false);
@@ -454,14 +498,20 @@ export default function ChatWidget() {
   }
 
   function clearConversation() {
-    setMessages([{ role: "assistant", content: "👋 Cleared. How can I help you next?" }]);
+    setMessages([
+      {
+        role: "assistant",
+        content: aiEnabled
+          ? "Cleared. How can I help you next?"
+          : AI_DISABLED_MESSAGE
+      }
+    ]);
     if (typeof window !== "undefined") localStorage.removeItem(LS_KEY);
-    setShowPrompts(true); // show randomized prompts again
+    setShowPrompts(aiEnabled); // show randomized prompts again
   }
 
   // Contact icons (header) + More
-  const ContactIcons = useMemo(
-    () => (
+  const ContactIcons = (
       <>
         <a
           href={WHATSAPP_LINK}
@@ -536,10 +586,12 @@ export default function ChatWidget() {
           </AnimatePresence>
         </div>
       </>
-    ),
-    [moreOpen, prefersReducedMotion]
   );
   
+  const panelTitle = aiEnabled
+    ? "Tinitiate AI Solutions Assistant"
+    : "Contact Tinitiate AI Solutions";
+
   // Chat panel — floating card on ALL screens
   const chatPanel = (
     <motion.div
@@ -563,9 +615,15 @@ export default function ChatWidget() {
       <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-sm">
         <div className="flex items-center gap-2">
 <div className="grid h-7 w-7 aspect-square shrink-0 place-items-center self-center overflow-hidden rounded-full bg-white/50 dark:bg-white/20">
-  <img src={ASSISTANT_AVATAR} alt="" className="w-5 h-5 object-contain" />
+  <Image
+    src={ASSISTANT_AVATAR}
+    alt=""
+    width={20}
+    height={20}
+    className="h-5 w-5 object-contain"
+  />
 </div>
-          <div className="font-medium text-sm tracking-wide">Tinitiate AI Solutions Assistant</div>
+          <div className="font-medium text-sm tracking-wide">{panelTitle}</div>
         </div>
         <div className="flex items-center gap-1.5 md:gap-2">
           {ContactIcons}
@@ -594,10 +652,12 @@ export default function ChatWidget() {
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"} gap-2 items-end`}>
             {m.role === "assistant" && (
               <div className="grid h-7 w-7 aspect-square shrink-0 place-items-center overflow-hidden rounded-full border border-gray-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-950">
-              <img
+              <Image
                 src={ASSISTANT_AVATAR}
                 alt=""
-                className="w-5 h-5 object-contain"
+                width={20}
+                height={20}
+                className="h-5 w-5 object-contain"
               />
               </div>
             )}
@@ -638,7 +698,7 @@ export default function ChatWidget() {
       </div>
 
       {/* Suggestions (random) or a small pill to reopen */}
-      {!busy && (
+      {aiEnabled && !busy && (
         <div className="border-t border-gray-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-950 md:px-4">
           {showPrompts ? (
             <div className="flex flex-wrap gap-2">
@@ -705,15 +765,22 @@ export default function ChatWidget() {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             rows={1}
-            placeholder="Type your question… (Shift+Enter for a new line)"
-            className="flex-1 resize-none rounded-xl border border-gray-300 bg-white px-3 py-2 text-[0.95rem] text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500"
+            disabled={!aiEnabled || busy}
+            placeholder={
+              aiEnabled
+                ? "Type your question... (Shift+Enter for a new line)"
+                : "AI chat is unavailable here. Use WhatsApp, email, or call instead."
+            }
+            className="flex-1 resize-none rounded-xl border border-gray-300 bg-white px-3 py-2 text-[0.95rem] text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:cursor-not-allowed disabled:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:disabled:bg-slate-800"
           />
           <button
             type="submit"
-            disabled={!input.trim() || busy}
+            disabled={!aiEnabled || !input.trim() || busy}
             className={[
               "rounded-xl px-3 py-2 font-medium",
-              busy ? "cursor-not-allowed bg-gray-200 text-gray-500 dark:bg-slate-800 dark:text-slate-400" : "bg-indigo-600 text-white hover:bg-indigo-700"
+              !aiEnabled || busy
+                ? "cursor-not-allowed bg-gray-200 text-gray-500 dark:bg-slate-800 dark:text-slate-400"
+                : "bg-indigo-600 text-white hover:bg-indigo-700"
             ].join(" ")}
             aria-label="Send message"
             title="Send"
@@ -768,7 +835,7 @@ export default function ChatWidget() {
                 onClick={openPanel}
                 className="group flex items-center gap-2 rounded-full bg-indigo-600 px-3 py-2 text-white shadow-xl hover:bg-indigo-700"
               >
-                <span className="text-xs opacity-90">Ask AI</span>
+                <span className="text-xs opacity-90">{aiEnabled ? "Ask AI" : "Contact us"}</span>
                 <MessageCircle className="w-5 h-5" />
               </button>
 

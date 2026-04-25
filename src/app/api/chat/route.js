@@ -1,6 +1,10 @@
 // app/api/chat/route.js
 import { NextResponse } from "next/server";
-import { getOpenAIClient, CHAT_MODEL } from "@/lib/openai.js";
+import {
+  getOpenAIClient,
+  CHAT_MODEL,
+  isOpenAIConfigured
+} from "@/lib/openai.js";
 import { searchTopK } from "@/lib/rag.js";
 
 export const runtime = "nodejs";
@@ -16,6 +20,11 @@ export const runtime = "nodejs";
 
 const CONTACT_TOKEN = "<CONTACT_CARD />"; // already used
 const LINK_EXAMPLE = `<LINK href="/work-experience-program" label="Open Work Experience Program" />`;
+const CHAT_UNAVAILABLE_MESSAGE = [
+  "Our AI assistant is not enabled in this environment yet, but our team can still help you directly.",
+  CONTACT_TOKEN,
+  '<LINK href="/request-callback" label="Request a Callback" />'
+].join("\n");
 
 const BRAND_VOICE = `
 You are the Tinitiate AI Solutions website assistant speaking **as Tinitiate AI Solutions**.
@@ -51,6 +60,15 @@ Formatting:
 
 export async function POST(req) {
   try {
+    if (!isOpenAIConfigured()) {
+      return new NextResponse(CHAT_UNAVAILABLE_MESSAGE, {
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "no-store"
+        }
+      });
+    }
+
     const openai = getOpenAIClient();
     const { message, history, pageTitle, pageUrl } = await req.json();
 

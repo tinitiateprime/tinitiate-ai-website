@@ -1,0 +1,16 @@
+⚠ Turbopack's filesystem cache has been deleted because we previously detected an internal error in Turbopack. Builds or page loads may be slower as a result.
+Error: insufficient memory
+    at ignore-listed frames {
+  errno: -4,
+  code: 'Z_MEM_ERROR'
+}
+⨯ uncaughtException: Error: insufficient memory
+    at ignore-listed frames {
+  errno: -4,
+  code: 'Z_MEM_ERROR'
+}
+⨯ uncaughtException:  Error: insufficient memory
+    at ignore-listed frames {
+  errno: -4,
+  code: 'Z_MEM_ERROR'
+}

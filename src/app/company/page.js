@@ -233,33 +233,6 @@ export default function CompanyPage() {
           </div>
         </div>
       </section>
-
-      <section className="px-4 py-12 sm:px-6 sm:py-16">
-        <div className="mx-auto max-w-5xl rounded-[2rem] border border-blue-100 bg-white p-6 shadow-xl dark:border-slate-800 dark:bg-slate-950 sm:p-8 lg:p-10">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-slate-50">Why Partner With Us?</h2>
-            <p className="mx-auto mt-5 max-w-3xl leading-8 text-gray-700 dark:text-slate-300">
-              Whether you&apos;re an individual looking to upskill or an enterprise
-              needing cutting-edge development services, Tinitiate AI Solutions is your trusted
-              technology partner. Our commitment to personalized mentoring,
-              project-oriented learning, and scalable engineering makes us stand
-              out.
-            </p>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {partnerPoints.map((point) => (
-              <div
-                key={point}
-                className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50 px-4 py-4 dark:border-slate-800 dark:bg-slate-900"
-              >
-                <span className="mt-0.5 text-lg font-bold text-blue-600 dark:text-sky-300">+</span>
-                <span className="text-gray-700 dark:text-slate-300">{point}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </main>
   )
 }

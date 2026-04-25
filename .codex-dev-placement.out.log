@@ -1,0 +1,28 @@
+
+> tinitiate@0.1.0 dev
+> next dev --hostname 127.0.0.1 --port 3000
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+✓ Ready in 502ms
+Creating turbopack project { dir: 'C:\\Users\\HP\\Desktop\\tinitiate-ai-website', testMode: true }
+
+○ Compiling /placement ...
+ GET /placement 200 in 4.5s (next.js: 3.7s, application-code: 785ms)
+ GET /placement 200 in 325ms (next.js: 10ms, application-code: 315ms)
+ GET / 200 in 945ms (next.js: 906ms, application-code: 39ms)
+ GET /placement 200 in 134ms (next.js: 6ms, application-code: 127ms)
+ GET /placement 200 in 478ms (next.js: 11ms, application-code: 467ms)
+ GET /placement 200 in 243ms (next.js: 99ms, application-code: 143ms)
+ GET /placement 200 in 105ms (next.js: 5ms, application-code: 100ms)
+ GET /placement 200 in 851ms (next.js: 7ms, application-code: 843ms)
+ GET /placement 200 in 500ms (next.js: 117ms, application-code: 383ms)
+ GET /placement 200 in 196ms (next.js: 7ms, application-code: 189ms)
+ GET /placement 200 in 802ms (next.js: 6ms, application-code: 796ms)
+ GET /placement 200 in 357ms (next.js: 11ms, application-code: 345ms)
+ GET / 200 in 203ms (next.js: 25ms, application-code: 177ms)
+ GET /placement 200 in 160ms (next.js: 5ms, application-code: 155ms)
+ GET /request-callback?service=Resume+Preparation 200 in 808ms (next.js: 771ms, application-code: 38ms)
+ GET /placement 200 in 526ms (next.js: 5ms, application-code: 520ms)
+[?25h
