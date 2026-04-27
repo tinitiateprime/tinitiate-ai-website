@@ -9,26 +9,24 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
-  Code2,
-  FileText,
   GraduationCap,
   LineChart,
-  ShieldCheck,
-  Sparkles,
   Users,
 } from "lucide-react"
 
-const HERO_SLIDE_DURATION = 9500
+const HERO_SLIDE_DURATION = 8200
 
 const heroSlides = [
   {
     id: "launchpad",
     eyebrow: "Career Launchpad",
     navLabel: "Career Launch",
-    navDescription: "Mentor-led roadmap with measured progress",
-    title: "Empowering Careers with AI + Real-Time Experience",
+    navDescription: "Mentor-led roadmap and role-ready confidence",
+    title: "AI training built for real career momentum",
+    titleLines: ["AI training built for", "real career momentum"],
+    titleMobileLines: ["AI training", "built for real", "career momentum"],
     description:
-      "Job-ready learning pathways designed around real delivery habits, guided mentoring, and the kind of confidence employers notice in interviews.",
+      "Structured mentoring and practical builds that turn learning into confident progress.",
     primaryCta: {
       href: "/request-callback",
       label: "Get Started",
@@ -37,85 +35,49 @@ const heroSlides = [
       href: "/training/professional-training",
       label: "Explore Programs",
     },
-    highlights: [
-      {
-        icon: GraduationCap,
-        title: "Structured learning",
-        text: "Clear progression from fundamentals to advanced project execution.",
-      },
-      {
-        icon: Users,
-        title: "Mentor-led reviews",
-        text: "Frequent feedback loops keep every learner moving with direction.",
-      },
-      {
-        icon: Briefcase,
-        title: "Role-focused outcomes",
-        text: "Training stays aligned with the roles companies actively hire for.",
-      },
-    ],
     metrics: [
-      { value: "20+", label: "career-focused tracks" },
-      { value: "Weekly", label: "mentor checkpoints" },
-      { value: "Live", label: "portfolio delivery" },
+      { icon: GraduationCap, value: "20+", label: "career tracks" },
+      { icon: LineChart, value: "Weekly", label: "mentor reviews" },
+      { icon: Briefcase, value: "Live", label: "portfolio delivery" },
     ],
-    panel: {
-      label: "Launch Blueprint",
-      heading: "A professional path, not just a playlist",
-      summary:
-        "Each phase blends concept clarity, guided implementation, and accountability so the learning journey feels deliberate from day one.",
-      stats: [
-        { value: "4", label: "core phases" },
-        { value: "1:1", label: "guidance moments" },
-        { value: "Role", label: "aligned outcomes" },
-      ],
-      steps: [
-        {
-          title: "Foundation sprint",
-          detail: "Core concepts, tooling, and workflow discipline.",
-        },
-        {
-          title: "Guided build cycles",
-          detail: "Hands-on labs reinforced with mentor checkpoints.",
-        },
-        {
-          title: "Project delivery",
-          detail: "Portfolio work shaped around practical standards.",
-        },
-        {
-          title: "Interview readiness",
-          detail: "Review loops that sharpen confidence and clarity.",
-        },
-      ],
-      chips: ["Python", "Java", "React", "SQL", "Cloud", "AI workflows"],
-      note: {
-        label: "Momentum",
-        value: "From learning to launch",
-        caption: "Built to reduce confusion and keep progress visible.",
+    storyline: [
+      {
+        number: "01",
+        title: "Roadmap",
+        detail: "Clear stages from fundamentals to confident delivery.",
       },
-    },
+      {
+        number: "02",
+        title: "Feedback",
+        detail: "Frequent checkpoints that keep progress visible.",
+      },
+      {
+        number: "03",
+        title: "Launch",
+        detail: "Portfolio-ready work shaped for real hiring conversations.",
+      },
+    ],
+    image: "/images/hero/hero-learning-v1.png",
+    imagePosition: "center right",
+    mobileImagePosition: "76% center",
     theme: {
-      shell:
-        "from-sky-50 via-white to-amber-50 dark:from-slate-950 dark:via-slate-900 dark:to-sky-950/80",
-      badge:
-        "border-sky-200/80 bg-sky-500/10 text-sky-700 dark:border-sky-400/20 dark:bg-sky-400/10 dark:text-sky-100",
-      dot: "bg-sky-500 dark:bg-sky-300",
-      primaryGlow: "bg-sky-500/16 dark:bg-sky-400/18",
-      secondaryGlow: "bg-amber-400/14 dark:bg-amber-300/12",
-      accentBar:
-        "from-sky-500 via-blue-500 to-amber-400 dark:from-sky-300 dark:via-blue-400 dark:to-amber-300",
-      outline: "border-sky-200/70 dark:border-sky-400/20",
-      soft: "bg-sky-500/10 text-sky-700 dark:bg-sky-400/10 dark:text-sky-100",
+      overlay: "from-[#05111f]/95 via-[#071423]/64 to-[#071423]/24",
+      mobileOverlay: "from-[#05111f]/92 via-[#071423]/46 to-[#071423]/14",
+      accent: "from-sky-300 via-cyan-300 to-amber-200",
+      dot: "bg-sky-300",
+      badge: "border-white/16 bg-white/8 text-white/92",
     },
   },
   {
     id: "projects",
     eyebrow: "Project-First Experience",
     navLabel: "Real Projects",
-    navDescription: "Delivery-style practice with tangible outputs",
-    title: "Learn through work that feels much closer to the real job",
+    navDescription: "Hands-on delivery practice that feels like the job",
+    title: "Learn through real project delivery",
+    titleLines: ["Learn through real", "project delivery"],
+    titleMobileLines: ["Learn through", "real project", "delivery"],
     description:
-      "Instead of isolated exercises, learners move through scoped builds, implementation checkpoints, documentation, and review cycles that mirror team delivery.",
+      "Scoped builds, review cycles, and showcase-ready work with a rhythm closer to real teams.",
     primaryCta: {
       href: "/work-experience-program",
       label: "See Work Experience",
@@ -124,82 +86,139 @@ const heroSlides = [
       href: "/request-callback",
       label: "Talk to an Expert",
     },
-    highlights: [
-      {
-        icon: Code2,
-        title: "Build with purpose",
-        text: "Assignments are framed like deliverables instead of one-off demos.",
-      },
-      {
-        icon: ClipboardCheck,
-        title: "Review-driven quality",
-        text: "Feedback is part of the workflow, not something added at the end.",
-      },
-      {
-        icon: FileText,
-        title: "Communication habits",
-        text: "Documentation, reporting, and handoff thinking are trained early.",
-      },
-    ],
     metrics: [
-      { value: "Sprint", label: "based delivery rhythm" },
-      { value: "Versioned", label: "iteration mindset" },
-      { value: "Ready", label: "to showcase work" },
+      { icon: ClipboardCheck, value: "Sprint", label: "delivery rhythm" },
+      { icon: Users, value: "Team-like", label: "workflow" },
+      { icon: Briefcase, value: "Ready", label: "to showcase work" },
     ],
-    panel: {
-      label: "Execution Studio",
-      heading: "Every project teaches delivery, not just syntax",
-      summary:
-        "We bring structure into the build process so learners practice the habits that help them contribute faster on actual teams.",
-      stats: [
-        { value: "Scoped", label: "deliverables" },
-        { value: "Review", label: "feedback loops" },
-        { value: "Team-like", label: "work rhythm" },
-      ],
-      steps: [
-        {
-          title: "Sprint brief",
-          detail: "Start with objectives, constraints, and expected outcomes.",
-        },
-        {
-          title: "Implementation window",
-          detail: "Build in focused cycles instead of passive note-taking.",
-        },
-        {
-          title: "QA and refinement",
-          detail: "Strengthen reliability through testing and iteration.",
-        },
-        {
-          title: "Showcase and handoff",
-          detail: "Present the result with clarity and professional context.",
-        },
-      ],
-      chips: [
-        "Git workflow",
-        "Debugging",
-        "Documentation",
-        "Code review",
-        "Testing mindset",
-        "Demo readiness",
-      ],
-      note: {
-        label: "What changes",
-        value: "Less tutorial mode",
-        caption: "More ownership, iteration, and real decision-making.",
+    storyline: [
+      {
+        number: "01",
+        title: "Brief",
+        detail: "Start with scope, constraints, and expected outcomes.",
       },
-    },
+      {
+        number: "02",
+        title: "Build",
+        detail: "Practice implementation cycles instead of passive tutorials.",
+      },
+      {
+        number: "03",
+        title: "Review",
+        detail: "Improve quality through iteration, QA, and presentation.",
+      },
+    ],
+    image: "/images/hero/hero-projects-v2.png",
+    imagePosition: "center right",
+    mobileImagePosition: "92% center",
     theme: {
-      shell:
-        "from-emerald-50 via-white to-amber-50 dark:from-slate-950 dark:via-slate-900 dark:to-emerald-950/75",
-      badge:
-        "border-emerald-200/80 bg-emerald-500/10 text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-100",
-      dot: "bg-emerald-500 dark:bg-emerald-300",
-      primaryGlow: "bg-emerald-500/16 dark:bg-emerald-400/18",
-      secondaryGlow: "bg-amber-400/14 dark:bg-amber-300/12",
-      accentBar:
-        "from-emerald-500 via-teal-500 to-amber-400 dark:from-emerald-300 dark:via-teal-300 dark:to-amber-300",
-      outline: "border-emerald-200/70 dark:border-emerald-400/20",
-      soft: "bg-emerald-500/10 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-100",
+      overlay: "from-[#07110e]/95 via-[#0a1716]/64 to-[#0a1716]/24",
+      mobileOverlay: "from-[#07110e]/88 via-[#0a1716]/36 to-[#0a1716]/08",
+      accent: "from-emerald-300 via-teal-300 to-amber-200",
+      dot: "bg-emerald-300",
+      badge: "border-white/16 bg-white/8 text-white/92",
+    },
+  },
+  {
+    id: "batches",
+    eyebrow: "Live Batch Learning",
+    navLabel: "Online Batches",
+    navDescription: "Mentor-led classes with weekly structure and practice",
+    title: "Live batches built for steady skill growth",
+    titleLines: ["Live batches built for", "steady skill growth"],
+    titleMobileLines: ["Live batches", "built for steady", "skill growth"],
+    description:
+      "Follow a consistent learning rhythm with live classes, guided practice, and support that works for freshers and working professionals.",
+    primaryCta: {
+      href: "/training/online-training",
+      label: "View Online Training",
+    },
+    secondaryCta: {
+      href: "/training/new-batches",
+      label: "See New Batches",
+    },
+    metrics: [
+      { icon: GraduationCap, value: "Live", label: "mentor classes" },
+      { icon: LineChart, value: "Weekly", label: "learning rhythm" },
+      { icon: Users, value: "Flexible", label: "batch timings" },
+    ],
+    storyline: [
+      {
+        number: "01",
+        title: "Schedule",
+        detail: "Choose a batch structure that fits freshers and working learners.",
+      },
+      {
+        number: "02",
+        title: "Learn",
+        detail: "Join live sessions that keep explanations, examples, and Q&A connected.",
+      },
+      {
+        number: "03",
+        title: "Practice",
+        detail: "Carry momentum between classes with guided assignments and feedback.",
+      },
+    ],
+    image: "/images/hero/hero-batches-v1.png",
+    imagePosition: "center right",
+    mobileImagePosition: "78% center",
+    theme: {
+      overlay: "from-[#05111f]/94 via-[#081729]/60 to-[#081729]/22",
+      mobileOverlay: "from-[#05111f]/90 via-[#081729]/42 to-[#081729]/12",
+      accent: "from-cyan-300 via-sky-300 to-amber-200",
+      dot: "bg-cyan-300",
+      badge: "border-white/16 bg-white/8 text-white/92",
+    },
+  },
+  {
+    id: "pathways",
+    eyebrow: "Role-Focused Programs",
+    navLabel: "Training Paths",
+    navDescription: "Beginner-to-advanced tracks across in-demand stacks",
+    title: "Progress from basics to specialized tech tracks",
+    titleLines: ["Progress from basics to", "specialized tech tracks"],
+    titleMobileLines: ["Progress from", "basics to", "specialized tracks"],
+    description:
+      "Progress through structured paths in web, data, cloud, reporting, and AI without jumping between disconnected topics.",
+    primaryCta: {
+      href: "/training/beginner-training",
+      label: "Start with Basics",
+    },
+    secondaryCta: {
+      href: "/training/professional-training",
+      label: "View Pro Tracks",
+    },
+    metrics: [
+      { icon: GraduationCap, value: "Beginner", label: "friendly start" },
+      { icon: LineChart, value: "Advanced", label: "specializations" },
+      { icon: Briefcase, value: "Role-based", label: "outcomes" },
+    ],
+    storyline: [
+      {
+        number: "01",
+        title: "Foundation",
+        detail: "Build the core concepts before moving into deeper project work.",
+      },
+      {
+        number: "02",
+        title: "Specialize",
+        detail: "Choose focused tracks in the stacks and tools companies actually use.",
+      },
+      {
+        number: "03",
+        title: "Deliver",
+        detail: "Finish with stronger execution, clarity, and portfolio-ready direction.",
+      },
+    ],
+    image: "/images/hero/hero-pathways-v1.png",
+    imagePosition: "center right",
+    mobileImagePosition: "84% center",
+    theme: {
+      overlay: "from-[#06111d]/94 via-[#091626]/58 to-[#091626]/18",
+      mobileOverlay: "from-[#06111d]/89 via-[#091626]/36 to-[#091626]/08",
+      accent: "from-sky-300 via-blue-300 to-amber-200",
+      dot: "bg-sky-300",
+      badge: "border-white/16 bg-white/8 text-white/92",
     },
   },
 ]
@@ -207,8 +226,8 @@ const heroSlides = [
 const slideMotionVariants = {
   enter: (direction) => ({
     opacity: 0,
-    x: direction > 0 ? 42 : -42,
-    y: 14,
+    x: direction > 0 ? 46 : -46,
+    y: 10,
   }),
   center: {
     opacity: 1,
@@ -217,8 +236,8 @@ const slideMotionVariants = {
   },
   exit: (direction) => ({
     opacity: 0,
-    x: direction > 0 ? -42 : 42,
-    y: -14,
+    x: direction > 0 ? -46 : 46,
+    y: -10,
   }),
 }
 
@@ -231,234 +250,261 @@ function ArrowButton({ direction, onClick, className = "" }) {
       type="button"
       onClick={onClick}
       aria-label={label}
-      className={`touch-target inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white/85 text-gray-900 shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur transition hover:-translate-y-[1px] hover:bg-white dark:border-white/10 dark:bg-slate-950/75 dark:text-slate-100 dark:shadow-[0_18px_45px_rgba(2,6,23,0.42)] dark:hover:bg-slate-900 ${className}`}
+      className={`touch-target inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/14 bg-black/30 text-white shadow-[0_18px_45px_rgba(2,6,23,0.3)] backdrop-blur-md transition hover:bg-black/40 ${className}`}
     >
       <Icon className="h-5 w-5" />
     </button>
   )
 }
 
-function Highlights({ slide, direction, prefersReducedMotion }) {
+function SlideMetrics({ slide }) {
+  return (
+    <>
+      <div className="mt-7 grid grid-cols-3 gap-2 sm:hidden">
+        {slide.metrics.map(({ icon: Icon, value, label }) => (
+          <div
+            key={label}
+            className="rounded-[18px] border border-white/12 bg-black/22 px-3 py-3 text-center backdrop-blur-md"
+          >
+            <span className="mx-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/12 bg-white/8">
+              <Icon className="h-4 w-4" />
+            </span>
+            <p className="mt-3 text-[1rem] font-black tracking-[-0.03em] text-white">{value}</p>
+            <p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.18em] text-white/56">
+              {label}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 hidden border-t border-white/12 pt-4 sm:block">
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+        {slide.metrics.map(({ icon: Icon, value, label }) => (
+            <div key={label} className="min-w-0 inline-flex items-center gap-3 text-white">
+            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/8">
+              <Icon className="h-4 w-4" />
+            </span>
+            <div className="min-w-0 leading-none">
+                <p className="text-lg font-black tracking-[-0.03em]">{value}</p>
+                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/56">
+                {label}
+              </p>
+            </div>
+          </div>
+        ))}
+        </div>
+      </div>
+    </>
+  )
+}
+
+function SlideTitle({ slide }) {
+  return (
+    <h1 className="mt-6 max-w-none text-balance text-[2.45rem] font-extrabold leading-[0.94] tracking-[-0.055em] text-white sm:max-w-[13ch] sm:text-[3.65rem] lg:max-w-[20ch] lg:text-[4.55rem] xl:max-w-[20ch] xl:text-[4.85rem]">
+      <span className="lg:hidden">
+        {slide.titleMobileLines ? (
+          slide.titleMobileLines.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))
+        ) : (
+          slide.title
+        )}
+      </span>
+      <span className="hidden lg:block">
+        {slide.titleLines ? (
+          slide.titleLines.map((line) => (
+            <span key={line} className="block whitespace-nowrap">
+              {line}
+            </span>
+          ))
+        ) : (
+          slide.title
+        )}
+      </span>
+    </h1>
+  )
+}
+
+function SlideNarrative({ slide, direction, prefersReducedMotion }) {
   return (
     <AnimatePresence mode="wait" initial={false} custom={direction}>
       <motion.div
-        key={`${slide.id}-highlights`}
+        key={`${slide.id}-narrative`}
         custom={direction}
         variants={prefersReducedMotion ? undefined : slideMotionVariants}
         initial={prefersReducedMotion ? false : "enter"}
         animate="center"
         exit={prefersReducedMotion ? undefined : "exit"}
         transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="hidden gap-4 border-t border-black/10 pt-6 dark:border-white/10 md:grid md:grid-cols-3"
+        className="relative hidden self-center lg:block xl:-ml-6"
       >
-        {slide.highlights.map(({ icon: Icon, title, text }) => (
-          <div key={title} className="flex items-start gap-3">
-            <div className={`mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${slide.theme.soft}`}>
-              <Icon className="h-4 w-4" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-gray-950 dark:text-white">{title}</p>
-              <p className="mt-1 text-[13px] leading-6 text-gray-600 dark:text-slate-300">{text}</p>
+        <div className="pointer-events-none absolute -right-4 -top-8 text-[7rem] font-black leading-none tracking-[-0.08em] text-white/[0.06]">
+          {String(heroSlides.findIndex((item) => item.id === slide.id) + 1).padStart(2, "0")}
+        </div>
+
+        <div className="relative max-w-[430px] rounded-[30px] border border-white/12 bg-[linear-gradient(180deg,rgba(6,14,24,0.78),rgba(6,14,24,0.58))] p-8 shadow-[0_28px_70px_rgba(2,6,23,0.28)] backdrop-blur-md">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/62">
+            Execution pattern
+          </p>
+
+          <div className="relative mt-7 pl-9">
+            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-white/16 via-white/22 to-white/10" />
+
+            <div className="space-y-7">
+              {slide.storyline.map((item) => (
+                <div key={item.number} className="relative">
+                  <span className={`absolute -left-9 top-1.5 h-4 w-4 rounded-full border border-white/20 ${slide.theme.dot} shadow-[0_0_18px_rgba(255,255,255,0.12)]`} />
+
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-sm font-black leading-none tracking-[-0.04em] text-white/42">
+                      {item.number}
+                    </span>
+                    <p className="text-[15px] font-semibold uppercase tracking-[0.16em] text-white/92">
+                      {item.title}
+                    </p>
+                  </div>
+
+                  <p className="mt-2 text-[15px] leading-7 text-white/74">{item.detail}</p>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
+        </div>
       </motion.div>
     </AnimatePresence>
   )
 }
 
-function SlideRail({ slide, activeIndex, goTo, isPaused, prefersReducedMotion }) {
+function SlideTabs({ activeIndex, goTo, prefersReducedMotion }) {
   return (
-    <div className="border-t border-black/10 pt-6 dark:border-white/10">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-400 dark:text-slate-500">
-          Browse Slides
-        </p>
-        <span className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-400 dark:text-slate-500">
-          {String(activeIndex + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
-        </span>
-      </div>
+    <>
+      <div className="rounded-[22px] border border-white/12 bg-black/20 p-3 backdrop-blur-md lg:hidden">
+        <div className="mb-3 flex items-center justify-between">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/48">
+            Browse slides
+          </p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/48">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
+          </p>
+        </div>
 
-      <div className="flex flex-wrap gap-2 sm:hidden">
-        {heroSlides.map((item, index) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => goTo(index)}
-            className={`rounded-full border px-3 py-2 text-left text-xs font-semibold uppercase tracking-[0.16em] transition ${
-              index === activeIndex
-                ? `${slide.theme.outline} ${slide.theme.soft}`
-                : "border-black/10 bg-white/70 text-gray-600 dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300"
-            }`}
-            aria-label={`Show ${item.navLabel} slide`}
-            aria-pressed={index === activeIndex}
-          >
-            {String(index + 1).padStart(2, "0")} {item.navLabel}
-          </button>
-        ))}
-      </div>
+        <div className="grid grid-cols-2 gap-3">
+          {heroSlides.map((item, index) => {
+            const isActive = index === activeIndex
 
-      <div className="hidden space-y-3 sm:block">
-        {heroSlides.map((item, index) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => goTo(index)}
-            className="group block w-full text-left"
-            aria-label={`Show ${item.navLabel} slide`}
-            aria-pressed={index === activeIndex}
-          >
-            <div className="flex items-start gap-3">
-              <span
-                className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                  index === activeIndex
-                    ? slide.theme.soft
-                    : "bg-black/5 text-gray-500 dark:bg-white/10 dark:text-slate-400"
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => goTo(index)}
+                aria-label={`Show ${item.navLabel} slide`}
+                aria-pressed={isActive}
+                className={`rounded-[18px] border p-3 text-left transition ${
+                  isActive
+                    ? "border-white/18 bg-white/10 text-white"
+                    : "border-white/8 bg-black/10 text-white/58"
                 }`}
               >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <div className="min-w-0 flex-1 border-b border-black/10 pb-3 dark:border-white/10">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="text-sm font-semibold text-gray-950 transition group-hover:text-black dark:text-white dark:group-hover:text-white">
-                    {item.navLabel}
-                  </p>
-                  {index === activeIndex ? (
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400 dark:text-slate-500">
-                      Active
-                    </span>
-                  ) : null}
+                <div className="flex items-center gap-2">
+                  <span className={`h-2.5 w-2.5 rounded-full ${item.theme.dot}`} />
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
-
-                <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-slate-400">
-                  {item.navDescription}
-                </p>
-
-                <div className="mt-2 h-1 overflow-hidden rounded-full bg-black/8 dark:bg-white/10">
-                  {index === activeIndex ? (
+                <p className="mt-3 text-lg font-semibold tracking-[-0.02em]">{item.navLabel}</p>
+                <div className="mt-3 h-[2px] overflow-hidden rounded-full bg-white/10">
+                  {isActive ? (
                     <span
-                      key={`${item.id}-${activeIndex}`}
-                      className={`hero-slider-progress block h-full rounded-full bg-gradient-to-r ${slide.theme.accentBar}`}
+                      key={`${item.id}-mobile-${activeIndex}`}
+                      className={`hero-slider-progress block h-full rounded-full bg-gradient-to-r ${item.theme.accent}`}
                       style={{
                         animationDuration: `${HERO_SLIDE_DURATION}ms`,
-                        animationPlayState: prefersReducedMotion || isPaused ? "paused" : "running",
+                        animationPlayState: prefersReducedMotion ? "paused" : "running",
                       }}
                     />
                   ) : (
                     <span className="block h-full w-full rounded-full bg-transparent" />
                   )}
                 </div>
-              </div>
-            </div>
-          </button>
-        ))}
+              </button>
+            )
+          })}
+        </div>
       </div>
-    </div>
-  )
-}
 
-function SlidePanel({ slide, direction, prefersReducedMotion, activeIndex, goTo, isPaused }) {
-  return (
-    <div className="flex h-full min-w-0 flex-col justify-between gap-8 lg:pl-8 lg:border-l lg:border-black/10 dark:lg:border-white/10">
-      <AnimatePresence mode="wait" initial={false} custom={direction}>
-        <motion.div
-          key={`${slide.id}-panel`}
-          custom={direction}
-          variants={prefersReducedMotion ? undefined : slideMotionVariants}
-          initial={prefersReducedMotion ? false : "enter"}
-          animate="center"
-          exit={prefersReducedMotion ? undefined : "exit"}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-6"
-        >
-          <div>
-            <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] ${slide.theme.badge}`}>
-              <span className={`h-2 w-2 rounded-full ${slide.theme.dot}`} />
-              {slide.panel.label}
-            </span>
+      <div className="hidden border-t border-white/12 pt-5 lg:block">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-end">
+        <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 xl:gap-6">
+          {heroSlides.map((item, index) => {
+            const isActive = index === activeIndex
 
-            <h2 className="mt-4 max-w-[16ch] text-balance text-[1.9rem] font-black leading-[1.02] tracking-[-0.04em] text-gray-950 dark:text-white sm:text-[2.2rem]">
-              {slide.panel.heading}
-            </h2>
-            <p className="mt-3 max-w-xl text-pretty text-sm leading-7 text-gray-600 dark:text-slate-300 sm:text-[15px]">
-              {slide.panel.summary}
-            </p>
-          </div>
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => goTo(index)}
+                aria-label={`Show ${item.navLabel} slide`}
+                aria-pressed={isActive}
+                className={`group pb-1 text-left transition ${isActive ? "text-white" : "text-white/48 hover:text-white/74"}`}
+              >
+                <div className="flex items-center gap-2">
+                  <span className={`h-2.5 w-2.5 rounded-full ${item.theme.dot}`} />
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-current/70">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
 
-          <div className="grid grid-cols-3 gap-3">
-            {slide.panel.stats.map((stat) => (
-              <div key={stat.label} className="border-t border-black/10 pt-3 dark:border-white/10">
-                <p className="text-xl font-black leading-none text-gray-950 dark:text-white sm:text-2xl">{stat.value}</p>
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-slate-400">
-                  {stat.label}
+                <p className="mt-3 text-base font-semibold tracking-[-0.02em] sm:text-lg">{item.navLabel}</p>
+                <p className={`mt-1 hidden text-sm leading-6 lg:block ${isActive ? "text-white/72" : "text-white/44"}`}>
+                  {item.navDescription}
                 </p>
-              </div>
-            ))}
-          </div>
 
-          <div className="border-t border-black/10 pt-5 dark:border-white/10">
-            <span className={`inline-flex items-center rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${slide.theme.soft}`}>
-              {slide.panel.note.label}
-            </span>
-            <p className="mt-3 text-lg font-black text-gray-950 dark:text-white sm:text-xl">{slide.panel.note.value}</p>
-            <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-slate-300">{slide.panel.note.caption}</p>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+                <div className="mt-4 h-[2px] overflow-hidden rounded-full bg-white/10">
+                  {isActive ? (
+                    <span
+                      key={`${item.id}-${activeIndex}`}
+                      className={`hero-slider-progress block h-full rounded-full bg-gradient-to-r ${item.theme.accent}`}
+                      style={{
+                        animationDuration: `${HERO_SLIDE_DURATION}ms`,
+                        animationPlayState: prefersReducedMotion ? "paused" : "running",
+                      }}
+                    />
+                  ) : (
+                    <span className="block h-full w-full rounded-full bg-transparent" />
+                  )}
+                </div>
+              </button>
+            )
+          })}
+        </div>
 
-      <SlideRail
-        slide={slide}
-        activeIndex={activeIndex}
-        goTo={goTo}
-        isPaused={isPaused}
-        prefersReducedMotion={prefersReducedMotion}
-      />
-    </div>
-  )
-}
-
-function SlideTitle({ slide }) {
-  const desktopTitleClassName =
-    slide.titleDesktopClassName ?? "lg:text-[3.85rem] xl:max-w-[12ch] xl:text-[4.2rem]"
-
-  if (!slide.titleLines) {
-    return (
-      <h1
-        className={`mt-4 max-w-4xl text-balance text-[2.65rem] font-black leading-[0.95] tracking-[-0.05em] text-gray-950 dark:text-white sm:text-[3.4rem] ${desktopTitleClassName}`}
-      >
-        {slide.title}
-      </h1>
-    )
-  }
-
-  return (
-    <h1
-      className={`mt-4 max-w-4xl text-balance text-[2.65rem] font-black leading-[0.95] tracking-[-0.05em] text-gray-950 dark:text-white sm:text-[3.4rem] ${desktopTitleClassName}`}
-    >
-      <span className="lg:hidden">{slide.title}</span>
-      <span className="hidden lg:block">
-        {slide.titleLines.map((line) => (
-          <span key={line} className="block">
-            {line}
-          </span>
-        ))}
-      </span>
-    </h1>
+        <div className="hidden text-left xl:block xl:text-right">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/42">
+            Featured slide
+          </p>
+          <p className="mt-2 text-2xl font-black tracking-[-0.05em] text-white">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
+          </p>
+        </div>
+      </div>
+      </div>
+    </>
   )
 }
 
 export default function HomeHeroSlider() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(1)
-  const [isPaused, setIsPaused] = useState(false)
+  const [isMobileLayout, setIsMobileLayout] = useState(false)
   const prefersReducedMotion = useReducedMotion()
   const touchStartX = useRef(null)
 
   const activeSlide = heroSlides[activeIndex]
 
   useEffect(() => {
-    if (prefersReducedMotion || isPaused) return undefined
+    if (prefersReducedMotion) return undefined
 
     const timeoutId = window.setTimeout(() => {
       setDirection(1)
@@ -466,7 +512,24 @@ export default function HomeHeroSlider() {
     }, HERO_SLIDE_DURATION)
 
     return () => window.clearTimeout(timeoutId)
-  }, [activeIndex, isPaused, prefersReducedMotion])
+  }, [activeIndex, prefersReducedMotion])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined
+
+    const mediaQuery = window.matchMedia("(max-width: 1023px)")
+    const syncLayout = () => setIsMobileLayout(mediaQuery.matches)
+
+    syncLayout()
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", syncLayout)
+      return () => mediaQuery.removeEventListener("change", syncLayout)
+    }
+
+    mediaQuery.addListener(syncLayout)
+    return () => mediaQuery.removeListener(syncLayout)
+  }, [])
 
   const goTo = (index) => {
     const nextIndex = (index + heroSlides.length) % heroSlides.length
@@ -509,21 +572,11 @@ export default function HomeHeroSlider() {
     touchStartX.current = null
   }
 
-  const handleBlurCapture = (event) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setIsPaused(false)
-    }
-  }
-
   return (
     <section
-      className="relative overflow-hidden bg-white transition-colors duration-500 dark:bg-slate-950"
-      aria-label="Featured hero slider"
+      className="relative isolate overflow-hidden bg-[#050d18] text-white"
+      aria-label="Homepage hero slider"
       aria-roledescription="carousel"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={handleBlurCapture}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onKeyDown={(event) => {
@@ -539,131 +592,114 @@ export default function HomeHeroSlider() {
       }}
       tabIndex={0}
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${activeSlide.theme.shell} transition-all duration-700`} />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.045)_1px,transparent_1px)] bg-[size:110px_110px] opacity-70 dark:bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)]" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/70 to-transparent dark:from-slate-950/60" />
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={activeSlide.id}
+          className="absolute inset-0 bg-cover"
+          style={{
+            backgroundImage: `url(${activeSlide.image})`,
+            backgroundPosition: isMobileLayout
+              ? activeSlide.mobileImagePosition ?? activeSlide.imagePosition
+              : activeSlide.imagePosition,
+          }}
+          initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.04 }}
+          animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
+          exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 1.02 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </AnimatePresence>
 
-      <motion.div
-        aria-hidden="true"
-        className={`absolute left-[-8%] top-[-14%] h-72 w-72 rounded-full blur-3xl ${activeSlide.theme.primaryGlow}`}
-        animate={prefersReducedMotion ? undefined : { y: [0, 16, 0], x: [0, 10, 0] }}
-        transition={
-          prefersReducedMotion
-            ? undefined
-            : { duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }
-        }
+      <div
+        className={`absolute inset-0 bg-gradient-to-r ${
+          isMobileLayout && activeSlide.theme.mobileOverlay
+            ? activeSlide.theme.mobileOverlay
+            : activeSlide.theme.overlay
+        } transition-all duration-700`}
       />
-      <motion.div
-        aria-hidden="true"
-        className={`absolute bottom-[-18%] right-[-6%] h-80 w-80 rounded-full blur-3xl ${activeSlide.theme.secondaryGlow}`}
-        animate={prefersReducedMotion ? undefined : { y: [0, -14, 0], x: [0, -8, 0] }}
-        transition={
-          prefersReducedMotion
-            ? undefined
-            : { duration: 11.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }
-        }
-      />
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(4,10,20,0.14),rgba(4,10,20,0.66))]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_38%,rgba(40,176,255,0.12),transparent_18%),radial-gradient(circle_at_76%_52%,rgba(255,194,120,0.1),transparent_20%),radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_28%)]" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[34%] bg-gradient-to-l from-[#050d18]/66 via-[#050d18]/26 to-transparent lg:block" />
+      <div className="pointer-events-none absolute inset-y-0 left-[42%] hidden w-px bg-gradient-to-b from-transparent via-white/10 to-transparent lg:block" />
 
-      <div className="relative mx-auto max-w-[1400px] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-14 xl:py-16">
-        <div className="pointer-events-none absolute left-0 right-0 top-1/2 hidden -translate-y-1/2 justify-between lg:flex">
-          <ArrowButton direction="prev" onClick={prev} className="pointer-events-auto -translate-x-1/2" />
-          <ArrowButton direction="next" onClick={next} className="pointer-events-auto translate-x-1/2" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 hidden items-center justify-between px-3 sm:px-4 lg:flex lg:px-5">
+        <ArrowButton direction="prev" onClick={prev} className="pointer-events-auto" />
+        <ArrowButton direction="next" onClick={next} className="pointer-events-auto" />
+      </div>
+
+      <div className="relative z-10 w-full px-5 py-14 pb-28 sm:px-8 sm:py-20 sm:pb-24 lg:min-h-[600px] lg:px-16 lg:py-14 xl:px-20">
+        <div className="grid items-center gap-8 lg:min-h-[450px] lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,460px)] lg:gap-10 xl:gap-12">
+          <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <motion.div
+              key={`${activeSlide.id}-content`}
+              custom={direction}
+              variants={prefersReducedMotion ? undefined : slideMotionVariants}
+              initial={prefersReducedMotion ? false : "enter"}
+              animate="center"
+              exit={prefersReducedMotion ? undefined : "exit"}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              aria-live="polite"
+              className="max-w-[860px]"
+            >
+              <div className="flex flex-wrap items-center gap-3">
+                <span
+                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] ${activeSlide.theme.badge}`}
+                >
+                  <span className={`h-2 w-2 rounded-full ${activeSlide.theme.dot}`} />
+                  {activeSlide.eyebrow}
+                </span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/42">
+                  {String(activeIndex + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              <SlideTitle slide={activeSlide} />
+
+              <p className="mt-5 max-w-[38rem] text-pretty text-base leading-8 text-white/74 sm:text-lg">
+                {activeSlide.description}
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Link
+                  href={activeSlide.primaryCta.href}
+                  className="touch-target inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+                >
+                  {activeSlide.primaryCta.label}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  href={activeSlide.secondaryCta.href}
+                  className="touch-target inline-flex w-full items-center justify-center rounded-full border border-white/16 bg-white/8 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/14 sm:w-auto"
+                >
+                  {activeSlide.secondaryCta.label}
+                </Link>
+              </div>
+
+              <div className="mt-6 flex items-center justify-between rounded-full border border-white/12 bg-black/16 px-3 py-2 backdrop-blur-md lg:hidden">
+                <ArrowButton direction="prev" onClick={prev} className="h-10 w-10" />
+                <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/52">
+                  {String(activeIndex + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
+                </span>
+                <ArrowButton direction="next" onClick={next} className="h-10 w-10" />
+              </div>
+
+              <SlideMetrics slide={activeSlide} />
+            </motion.div>
+          </AnimatePresence>
+
+          <SlideNarrative
+            slide={activeSlide}
+            direction={direction}
+            prefersReducedMotion={prefersReducedMotion}
+          />
         </div>
 
-        <div className="grid gap-10 lg:min-h-[600px] lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.85fr)] lg:items-start xl:gap-14">
-          <div className="min-w-0 lg:pr-8">
-            <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] ${activeSlide.theme.badge}`}>
-                <span className={`h-2 w-2 rounded-full ${activeSlide.theme.dot}`} />
-                {activeSlide.eyebrow}
-              </span>
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-400 dark:text-slate-500">
-                {String(activeIndex + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
-              </span>
-            </div>
-
-            <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.div
-                key={activeSlide.id}
-                custom={direction}
-                variants={prefersReducedMotion ? undefined : slideMotionVariants}
-                initial={prefersReducedMotion ? false : "enter"}
-                animate="center"
-                exit={prefersReducedMotion ? undefined : "exit"}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                aria-live="polite"
-                className="lg:min-h-[420px]"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-400 dark:text-slate-500">
-                  {activeSlide.navDescription}
-                </p>
-
-                <SlideTitle slide={activeSlide} />
-
-                <p className="mt-4 max-w-2xl text-pretty text-base leading-8 text-gray-600 dark:text-slate-300 sm:text-lg">
-                  {activeSlide.description}
-                </p>
-
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <Link
-                    href={activeSlide.primaryCta.href}
-                    className="touch-target inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition hover:translate-y-[-1px] hover:bg-gray-900 dark:bg-[#c9a227] dark:text-[#111827] dark:hover:bg-[#e0b93c]"
-                  >
-                    {activeSlide.primaryCta.label}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-
-                  <Link
-                    href={activeSlide.secondaryCta.href}
-                    className="touch-target inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-semibold text-gray-800 transition hover:border-black/20 hover:bg-white dark:border-white/10 dark:bg-slate-900/75 dark:text-slate-100 dark:hover:border-white/20 dark:hover:bg-slate-900"
-                  >
-                    {activeSlide.secondaryCta.label}
-                  </Link>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-sm">
-                  {activeSlide.metrics.map((metric) => (
-                    <div key={metric.label} className="inline-flex items-center gap-2 text-gray-600 dark:text-slate-300">
-                      <span className={`h-2.5 w-2.5 rounded-full ${activeSlide.theme.dot}`} />
-                      <span className="text-lg font-black text-gray-950 dark:text-white">{metric.value}</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-slate-400">
-                        {metric.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="mt-8 flex items-center justify-between gap-4 lg:hidden">
-              <div className="flex items-center gap-2">
-                <ArrowButton direction="prev" onClick={prev} />
-                <ArrowButton direction="next" onClick={next} />
-              </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-400 dark:text-slate-500">
-                Swipe to browse
-              </p>
-            </div>
-
-            <div className="mt-6">
-              <Highlights
-                slide={activeSlide}
-                direction={direction}
-                prefersReducedMotion={prefersReducedMotion}
-              />
-            </div>
-          </div>
-
-          <div className="min-w-0">
-            <SlidePanel
-              slide={activeSlide}
-              direction={direction}
-              prefersReducedMotion={prefersReducedMotion}
-              activeIndex={activeIndex}
-              goTo={goTo}
-              isPaused={isPaused}
-            />
-          </div>
+        <div className="mt-6 lg:mt-4">
+          <SlideTabs
+            activeIndex={activeIndex}
+            goTo={goTo}
+            prefersReducedMotion={prefersReducedMotion}
+          />
         </div>
       </div>
     </section>
