@@ -1,4 +1,212 @@
 [
+{
+  "slug": "machine-learning-professional-course",
+  "title": "Machine Learning Course",
+  "icon": "ML",
+  "duration": "2 Months",
+  "level": "Advance",
+  "image": "/images/courses/ml.png",
+  "description": "Learn Machine Learning from scratch to build intelligent systems. Gain hands-on experience in machine learning, deep learning, and neural networks.",
+  "prerequisites": "Professional training in Machine Learning",
+  "courseStructure": [
+    {
+      "title": "Introduction to Big Data and Spark",
+      "topics": [
+        "What is Big Data?",
+        "Limitations of Traditional Systems",
+        "Apache Hadoop vs Apache Spark",
+        "Spark Ecosystem Overview (SQL, Streaming, MLlib, GraphX)"
+      ]
+    },
+    {
+      "title": "Getting Started with Spark",
+      "topics": [
+        "Spark Architecture (Driver, Executors, Cluster Manager)",
+        "Installing and Running Spark (Standalone & Cluster Modes)",
+        "Spark Shell, PySpark & spark-submit",
+        "SparkContext and SparkSession"
+      ]
+    },
+    {
+      "title": "RDD (Resilient Distributed Dataset)",
+      "topics": [
+        "Creating RDDs (parallelize, textFile)",
+        "RDD Transformations (map, filter, flatMap, union, join)",
+        "RDD Actions (collect, count, reduce)",
+        "Lazy Evaluation & Lineage",
+        "Pair RDDs & Key/Value Operations (reduceByKey, groupByKey)"
+      ]
+    },
+    {
+      "title": "DataFrames and Spark SQL",
+      "topics": [
+        "Creating DataFrames from CSV/JSON/Parquet",
+        "DataFrame Operations (select, filter, withColumn, groupBy, agg)",
+        "Spark SQL Queries & Temporary Views",
+        "UDFs (intro) and Data Types"
+      ]
+    },
+    {
+      "title": "Datasets (Scala/Java)",
+      "topics": [
+        "Typed vs Untyped APIs",
+        "Creating and Using Datasets",
+        "Encoders and Case Classes",
+        "Interoperability with DataFrames"
+      ]
+    },
+    {
+      "title": "Structured Streaming (Intro)",
+      "topics": [
+        "Micro-batch Model & Triggers",
+        "Sources & Sinks (files, Kafka console demo)",
+        "Watermarking & Windowed Aggregations (intro)",
+        "Fault Tolerance & Checkpointing (intro)"
+      ]
+    },
+    {
+      "title": "Spark with Machine Learning (MLlib Intro)",
+      "topics": [
+        "MLlib Overview & Pipelines",
+        "Feature Transformers (VectorAssembler, StringIndexer)",
+        "Classification/Regression (Logistic/Linear Regression intro)",
+        "Train/Validation Split & Evaluators"
+      ]
+    },
+    {
+      "title": "Optimizations and Performance",
+      "topics": [
+        "Catalyst Optimizer & Tungsten (overview)",
+        "Joins & Shuffle Basics",
+        "Caching/Persisting & Storage Levels",
+        "Partitioning & Repartition/Coalesce",
+        "Reading Execution Plans (explain)"
+      ]
+    },
+    {
+      "title": "Spark on Cloud & Cluster Managers",
+      "topics": [
+        "Spark on YARN (overview)",
+        "Spark on Kubernetes (driver/executor pods basics)",
+        "Managed Platforms: AWS EMR / Azure HDInsight / Databricks",
+        "Connecting Spark to Databases (JDBC) & Data Lakes"
+      ]
+    },
+    {
+      "title": "Project and Practice",
+      "topics": [
+        "Mini Project: Log Analysis with RDDs & DataFrames",
+        "Data Cleaning & Transformations (nulls, schema, UDFs)",
+        "SQL Analytics on a Large Dataset",
+        "Streaming Analytics: File/Kafka Source → Aggregations → Sink"
+      ]
+    }
+  ]
+},
+  {
+  "slug": "artificial-intelligence-beginner-course",
+  "title": "Artificial Intelligence Course",
+  "icon": "AI",
+  "duration": "2 Months",
+  "level": "Beginner-to-Mid-Level",
+  "image": "/images/courses/ai.png",
+  "description": "Learn Artificial Intelligence from scratch to build intelligent systems. Gain hands-on experience in machine learning, deep learning, and neural networks.",
+  "prerequisites": "Basic knowledge of Artificial Intelligence",
+  "courseStructure": [
+    {
+      "title": "Introduction to Big Data and Spark",
+      "topics": [
+        "What is Big Data?",
+        "Limitations of Traditional Systems",
+        "Apache Hadoop vs Apache Spark",
+        "Spark Ecosystem Overview (SQL, Streaming, MLlib, GraphX)"
+      ]
+    },
+    {
+      "title": "Getting Started with Spark",
+      "topics": [
+        "Spark Architecture (Driver, Executors, Cluster Manager)",
+        "Installing and Running Spark (Standalone & Cluster Modes)",
+        "Spark Shell, PySpark & spark-submit",
+        "SparkContext and SparkSession"
+      ]
+    },
+    {
+      "title": "RDD (Resilient Distributed Dataset)",
+      "topics": [
+        "Creating RDDs (parallelize, textFile)",
+        "RDD Transformations (map, filter, flatMap, union, join)",
+        "RDD Actions (collect, count, reduce)",
+        "Lazy Evaluation & Lineage",
+        "Pair RDDs & Key/Value Operations (reduceByKey, groupByKey)"
+      ]
+    },
+    {
+      "title": "DataFrames and Spark SQL",
+      "topics": [
+        "Creating DataFrames from CSV/JSON/Parquet",
+        "DataFrame Operations (select, filter, withColumn, groupBy, agg)",
+        "Spark SQL Queries & Temporary Views",
+        "UDFs (intro) and Data Types"
+      ]
+    },
+    {
+      "title": "Datasets (Scala/Java)",
+      "topics": [
+        "Typed vs Untyped APIs",
+        "Creating and Using Datasets",
+        "Encoders and Case Classes",
+        "Interoperability with DataFrames"
+      ]
+    },
+    {
+      "title": "Structured Streaming (Intro)",
+      "topics": [
+        "Micro-batch Model & Triggers",
+        "Sources & Sinks (files, Kafka console demo)",
+        "Watermarking & Windowed Aggregations (intro)",
+        "Fault Tolerance & Checkpointing (intro)"
+      ]
+    },
+    {
+      "title": "Spark with Machine Learning (MLlib Intro)",
+      "topics": [
+        "MLlib Overview & Pipelines",
+        "Feature Transformers (VectorAssembler, StringIndexer)",
+        "Classification/Regression (Logistic/Linear Regression intro)",
+        "Train/Validation Split & Evaluators"
+      ]
+    },
+    {
+      "title": "Optimizations and Performance",
+      "topics": [
+        "Catalyst Optimizer & Tungsten (overview)",
+        "Joins & Shuffle Basics",
+        "Caching/Persisting & Storage Levels",
+        "Partitioning & Repartition/Coalesce",
+        "Reading Execution Plans (explain)"
+      ]
+    },
+    {
+      "title": "Spark on Cloud & Cluster Managers",
+      "topics": [
+        "Spark on YARN (overview)",
+        "Spark on Kubernetes (driver/executor pods basics)",
+        "Managed Platforms: AWS EMR / Azure HDInsight / Databricks",
+        "Connecting Spark to Databases (JDBC) & Data Lakes"
+      ]
+    },
+    {
+      "title": "Project and Practice",
+      "topics": [
+        "Mini Project: Log Analysis with RDDs & DataFrames",
+        "Data Cleaning & Transformations (nulls, schema, UDFs)",
+        "SQL Analytics on a Large Dataset",
+        "Streaming Analytics: File/Kafka Source → Aggregations → Sink"
+      ]
+    }
+  ]
+},
   {
   "slug": "aws-beginner-course",
   "title": "AWS Course",
@@ -162,7 +370,7 @@
   "title": "Microsoft Azure Course",
   "icon": "null",
   "duration": "2 Month",
-  "level": "Beginner",
+  "level": "Advance",
   "image": "/images/courses/microsoftAzure.png",
   "description": "Learn Microsoft Azure from scratch — covering cloud fundamentals, core Azure services, security, networking, DevOps tools, and hands-on deployments.",
   "prerequisites": "Basic knowledge of IT concepts, networking, and operating systems",
@@ -282,7 +490,7 @@
   "title": "Google Cloud Platform (GCP)",
   "icon": "none",
   "duration": "3 Months",
-  "level": "Beginner to Advanced",
+  "level": "Advanced",
   "image": "/images/courses/google-cloud.png",
   "description": "Comprehensive GCP training covering cloud fundamentals, networking, compute, storage, databases, security, DevOps, AI/ML services, and hands-on labs aligned with industry use cases and certification paths.",
   "prerequisites": "Basic knowledge of networking and IT concepts",
@@ -444,7 +652,7 @@
   "title": "Docker Beginner Course",
   "icon": "SiDocker",
   "duration": "1.5 Month",
-  "level": "Beginner",
+  "level": "Advanced",
   "image": "/images/courses/docker.png",
   "description": "Learn Docker from scratch to containerize applications, manage images, and deploy lightweight, portable, and scalable solutions.",
   "prerequisites": "Basic knowledge of Linux and command line",
@@ -553,7 +761,7 @@
   "title": "Kubernetes Course",
   "icon": "SiKubernetes",
   "duration": "1.5 Month",
-  "level": "Beginner",
+  "level": "Advanced",
   "image": "/images/courses/kubernetes.png",
   "description": "Learn Kubernetes to orchestrate, scale, and manage containerized applications efficiently in production environments.",
   "prerequisites": "Basic knowledge of Docker and Linux",
@@ -908,7 +1116,7 @@
   "title": "React Course",
   "icon": "SiReact",
   "duration": "2 Month",
-  "level": "Beginner",
+  "level": "Advance",
   "image": "/images/courses/react.png",
   "description": "Learn the fundamentals of React.js to build interactive, component-based web applications with modern JavaScript.",
   "prerequisites": "Basic knowledge of HTML, CSS, and JavaScript",
@@ -1009,7 +1217,7 @@
   "title": "Angular Course",
   "icon": "SiAngular",
   "duration": "2 Month",
-  "level": "Beginner",
+  "level": "Advance",
   "image": "/images/courses/angular.png",
   "description": "Learn Angular step by step to build dynamic, component-driven, single-page applications with TypeScript.",
   "prerequisites": "Basic knowledge of HTML, CSS, and JavaScript",
@@ -1117,7 +1325,7 @@
   "title": "Next.js Course",
   "icon": "SiNextdotjs",
   "duration": "2 Month",
-  "level": "Beginner",
+  "level": "Advance",
   "image": "/images/courses/nextjs.png",
   "description": "Learn Next.js from scratch to build modern, server-rendered, and optimized full-stack web applications with React.",
   "prerequisites": "Basic knowledge of React.js, HTML, CSS, and JavaScript",
@@ -2106,7 +2314,7 @@
   "title": "Java Language Course",
   "icon": "SiJava",
   "duration": "2 Month",
-  "level": "Beginner",
+  "level": "Beginner-intermediate",
   "image": "/images/courses/java.png",
   "description": "Master Java programming from core concepts to advanced application building, including OOP, JDBC, and multithreading.",
   "prerequisites": "Basic programming knowledge is helpful but not required",
@@ -2509,7 +2717,7 @@
   "title": "MySQL Course",
   "icon": "SiMysql",
   "duration": "2 Months",
-  "level": "Beginner",
+  "level": "Beginner-intermediate",
   "image": "/images/courses/mysql.png",
   "description": "Learn SQL using MySQL — one of the most popular open-source relational database systems. Covers SQL fundamentals, MySQL tools, and practical hands-on projects.",
   "prerequisites": "Basic computer knowledge; no prior SQL experience required",
@@ -3001,7 +3209,7 @@
   "title": "Python Language Course",
   "icon": "SiPython",
   "duration": "2 Months",
-  "level": "Beginner",
+  "level": "Beginner-intermediate",
   "image": "/images/courses/python.png",
   "description": "Overview-first syllabus based strictly on the provided Tinitiate AI Solutions outline. All library items are fully listed; other sections are summarized to essentials.",
   "prerequisites": "None",
@@ -3443,7 +3651,7 @@
   "title": "Power BI Course",
   "icon": "SiPowerbi",
   "duration": "1.5 Months",
-  "level": "Beginner",
+  "level": "Advance",
   "image": "/images/courses/powerbi.png",
   "description": "Learn Microsoft Power BI to analyze data, build interactive dashboards, and create business reports. Covers Power BI Desktop, Power BI Service, and Power BI fundamentals.",
   "prerequisites": "Basic knowledge of Excel and data concepts is recommended",
@@ -4405,7 +4613,7 @@
   "title": "AWS Cloud Foundation to Professional Data Engineering",
   "icon": "SiAmazonaws",
   "duration": "6–8 Months",
-  "level": "Beginner → Professional",
+  "level": "Beginner → Advanced",
   "image": "/images/courses/aws-devops.png",
   "description": "This program takes you from AWS cloud fundamentals to professional-level data engineering and production architecture. It covers core AWS services, security, networking, compute, storage, and then deep-dives into modern data lake, analytics, governance, DevOps, and enterprise-scale patterns used in real-world data platforms.",
   "prerequisites": "Basic IT knowledge is helpful but not required. Familiarity with databases, SQL, or programming will be an advantage.",
@@ -4942,7 +5150,7 @@
   "title": "Azure DevOps for CI/CD Automation",
   "icon": "VscAzureDevops",
   "duration": "1 Month",
-  "level": "Intermediate",
+  "level": "Intermediate-Advanced",
   "image": "/images/courses/azure-devops.png",
   "description": "This course covers Azure DevOps services for version control, build pipelines, release management, and deployment. Learn to automate CI/CD with Azure Pipelines and integrate with other Microsoft Azure services.",
   "prerequisites": "Familiarity with version control and basic DevOps practices.",
@@ -5880,6 +6088,172 @@
   "duration": "1.5–2 Months",
   "level": "Intermediate → Advanced",
   "image": "/images/courses/airflow.png",
+  "description": "This course provides hands-on training on Apache Airflow for designing, scheduling, and monitoring data pipelines and workflows. You will learn how to build reliable, scalable, and production-grade orchestration systems for batch, streaming, ML, and analytics workloads using Airflow in real-world environments.",
+  "prerequisites": "Python fundamentals, basic SQL, and understanding of data pipelines or cloud platforms is recommended.",
+  "courseStructure": [
+    {
+      "title": "Introduction to Workflow Orchestration & Airflow",
+      "topics": [
+        "What is Workflow Orchestration",
+        "Why Airflow (and When Not to Use It)",
+        "Airflow Architecture Overview",
+        "Airflow vs Luigi vs Prefect vs Dagster",
+        "Core Concepts: DAGs, Tasks, Operators, Schedulers",
+        "Real-World Use Cases"
+      ]
+    },
+    {
+      "title": "Airflow Setup & Environment",
+      "topics": [
+        "Installing Airflow (Local & Docker)",
+        "Airflow Components: Webserver, Scheduler, Metadata DB",
+        "Airflow Configurations",
+        "Creating Your First DAG",
+        "Airflow CLI Basics",
+        "Folder Structure Best Practices"
+      ]
+    },
+    {
+      "title": "DAGs & Operators Deep Dive",
+      "topics": [
+        "DAG Definition and Best Practices",
+        "PythonOperator, BashOperator",
+        "Branching and Conditional Workflows",
+        "Task Dependencies and Ordering",
+        "Trigger Rules",
+        "SubDAGs vs Task Groups"
+      ]
+    },
+    {
+      "title": "Scheduling, Triggers & Backfills",
+      "topics": [
+        "Schedule Intervals and Cron Expressions",
+        "Catchup and Backfill Strategies",
+        "Manual Triggers and Re-runs",
+        "Dynamic DAG Generation",
+        "Time Zones and SLA Handling",
+        "Handling Late and Missing Data"
+      ]
+    },
+    {
+      "title": "Airflow XComs, Variables & Connections",
+      "topics": [
+        "Passing Data with XComs",
+        "Airflow Variables and Secrets",
+        "Connections for Databases and APIs",
+        "Using Secrets Backends",
+        "Parameterizing DAGs",
+        "Configuration Management Best Practices"
+      ]
+    },
+    {
+      "title": "Error Handling, Retries & SLAs",
+      "topics": [
+        "Retry Logic and Exponential Backoff",
+        "Timeouts and Failures",
+        "SLA Monitoring",
+        "Alerting with Email, Slack, PagerDuty",
+        "Handling Partial Failures",
+        "Designing Resilient Pipelines"
+      ]
+    },
+    {
+      "title": "Airflow for Data Engineering",
+      "topics": [
+        "Orchestrating ETL/ELT Pipelines",
+        "Airflow + Spark + EMR",
+        "Airflow + Snowflake + BigQuery",
+        "Airflow + dbt Integration",
+        "Event-Driven Pipelines",
+        "Incremental Pipeline Patterns"
+      ]
+    },
+    {
+      "title": "Airflow Sensors & External Triggers",
+      "topics": [
+        "File Sensors, Time Sensors",
+        "ExternalTaskSensor",
+        "Deferrable Operators",
+        "Triggering DAGs via API",
+        "Event-Based Execution Patterns",
+        "Efficient Sensor Design"
+      ]
+    },
+    {
+      "title": "Airflow Deployment & Production Setup",
+      "topics": [
+        "Celery Executor vs Kubernetes Executor",
+        "Scaling Airflow",
+        "High Availability Setup",
+        "Metadata Database Tuning",
+        "Airflow on Kubernetes",
+        "Airflow on AWS MWAA"
+      ]
+    },
+    {
+      "title": "Monitoring, Logging & Observability",
+      "topics": [
+        "Task Logs and Centralized Logging",
+        "Metrics with Prometheus and Grafana",
+        "DAG Performance Monitoring",
+        "Identifying Bottlenecks",
+        "Audit Logging",
+        "Operational Dashboards"
+      ]
+    },
+    {
+      "title": "Security & Governance",
+      "topics": [
+        "RBAC in Airflow",
+        "Securing Connections and Secrets",
+        "Network Security and Isolation",
+        "Access Control and Permissions",
+        "Auditing and Compliance",
+        "Multi-Tenant Airflow Patterns"
+      ]
+    },
+    {
+      "title": "Advanced Airflow Patterns",
+      "topics": [
+        "Dynamic Task Mapping",
+        "TaskFlow API",
+        "Data-Aware Scheduling (Datasets)",
+        "Cross-DAG Dependencies",
+        "Reusable DAG Factories",
+        "Pipeline Versioning"
+      ]
+    },
+    {
+      "title": "CI/CD & Testing for Airflow",
+      "topics": [
+        "Unit Testing DAGs",
+        "Local DAG Validation",
+        "CI/CD Pipelines for Airflow",
+        "Deploying DAGs Safely",
+        "Rollback Strategies",
+        "Promotion Across Environments"
+      ]
+    },
+    {
+      "title": "Capstone Project (Portfolio Ready)",
+      "topics": [
+        "Build a Production-Grade Airflow Data Pipeline",
+        "Orchestrate Batch and Incremental Jobs",
+        "Integrate Snowflake / S3 / Kafka / dbt",
+        "Implement Alerts, SLAs, and Monitoring",
+        "Deploy on Docker or MWAA",
+        "Final Deliverables: GitHub Repo, Architecture Diagram, Demo Walkthrough"
+      ]
+    }
+  ]
+},
+{
+  "slug": "agentic-ai-professional-course",
+  "title": "Agentic AI for Professional Developers",
+  "icon": "SiAgenticAI",
+  "duration": "1.5–2 Months",
+  "level": "Intermediate → Advanced",
+  "image": "/images/courses/agentic-ai.png",
   "description": "This course provides hands-on training on Apache Airflow for designing, scheduling, and monitoring data pipelines and workflows. You will learn how to build reliable, scalable, and production-grade orchestration systems for batch, streaming, ML, and analytics workloads using Airflow in real-world environments.",
   "prerequisites": "Python fundamentals, basic SQL, and understanding of data pipelines or cloud platforms is recommended.",
   "courseStructure": [

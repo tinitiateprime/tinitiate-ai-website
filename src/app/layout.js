@@ -16,9 +16,7 @@ const themeInitScript = `
       var storedTheme = localStorage.getItem("theme");
       var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       var resolvedTheme =
-        storedTheme === "dark" || storedTheme === "light"
-          ? storedTheme
-          : (prefersDark ? "dark" : "light");
+        storedTheme === "dark" || storedTheme === "light" ? storedTheme  : (prefersDark ? "dark" : "light");
 
       document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
       document.documentElement.style.colorScheme = resolvedTheme;

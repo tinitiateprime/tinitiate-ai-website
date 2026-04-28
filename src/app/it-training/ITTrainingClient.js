@@ -10,6 +10,13 @@ import { useRouter, useSearchParams } from 'next/navigation'  // ✅ required fo
 
 // ... (beginnerCourses, advancedCourses, optServices, optReasons remain unchanged)
 const beginnerCourses = [
+    {
+    title: '',
+    duration: '1 Month',
+    image: '/images/courses/python.png',
+    description: 'Master the basics of Python for scripting, automation, and foundational backend development.',
+    href: '/courses/python-language-course',
+  },
   {
     title: 'Python Language Course',
     duration: '1 Month',
