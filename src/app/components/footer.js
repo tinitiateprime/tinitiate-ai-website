@@ -347,8 +347,8 @@ export default function Footer() {
                   </div>
                   <p className="leading-6 text-[#d9e1ec]">
                     <span className="font-semibold text-white">India:</span>{" "}
-                    <a href="tel:+919553495553" className="transition hover:text-[#f3d472]">
-                      +91 95534 95553
+                    <a href="tel:+919848092083" className="transition hover:text-[#f3d472]">
+                      +91 9848092083
                     </a>
                   </p>
                 </div>

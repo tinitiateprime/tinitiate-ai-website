@@ -670,33 +670,42 @@ function CourseSlider() {
                   transition={{ duration: DURATION / 1000, ease: "linear" }}
                 />
               </div>
-              <div className="mt-5 flex items-center justify-between gap-2">
-                <button
-                  onClick={prev}
-                  className="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                <div className="flex flex-1 justify-center gap-1.5">
-                  {courses.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => go(i)}
-                      className="flex h-5 w-5 items-center justify-center"
-                    >
-                      <span
-                        className={`block rounded-full transition-all duration-300 ${i === active ? "h-2 w-5 bg-black dark:bg-blue-400" : "h-2 w-2 bg-gray-300 dark:bg-slate-700"}`}
-                      />
-                    </button>
-                  ))}
-                </div>
-                <button
-                  onClick={next}
-                  className="touch-target flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
+              <div className="mt-5 grid grid-cols-[auto_1fr_auto] items-center gap-2 px-2">
+  {/* Left Arrow */}
+  <button
+    onClick={prev}
+    className="touch-target flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
+  >
+    <ChevronLeft className="h-4 w-4" />
+  </button>
+
+  {/* Dots */}
+  <div className="flex justify-center gap-1.5">
+    {courses.map((_, i) => (
+      <button
+        key={i}
+        onClick={() => go(i)}
+        className="flex h-5 w-5 items-center justify-center"
+      >
+        <span
+          className={`block rounded-full transition-all duration-300 ${
+            i === active
+              ? "h-2 w-5 bg-black dark:bg-blue-400"
+              : "h-2 w-2 bg-gray-300 dark:bg-slate-700"
+          }`}
+        />
+      </button>
+    ))}
+  </div>
+
+  {/* Right Arrow */}
+  <button
+    onClick={next}
+    className="touch-target flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
+  >
+    <ChevronRight className="h-4 w-4" />
+  </button>
+</div>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -1689,21 +1698,21 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="lg:mt-9 lg:self-stretch">
-                <div className="rounded-3xl bg-gradient-to-br from-[#1a3c6e] to-[#0e2a50] p-6 text-white shadow-2xl sm:p-8 lg:h-[calc(100%-9px)] lg:p-10">
-                  <div className="mb-8">
-                    <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase mb-5">
+                <div className="flex flex-col justify-center rounded-3xl bg-gradient-to-br from-[#1a3c6e] to-[#0e2a50] p-6 text-white shadow-2xl sm:p-8 lg:h-[calc(100%-9px)] lg:p-10">
+                  <div className="mb-8 text-center">
+                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest">
                       <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                       Available Now
                     </div>
                     <h3 className="mb-3 text-2xl font-bold sm:text-3xl">
                       Talk to an Expert
                     </h3>
-                    <p className="max-w-[32rem] text-pretty leading-7 text-blue-100/90">
+                    <p className="mx-auto max-w-[32rem] text-pretty leading-7 text-blue-100/90">
                       Get personalized guidance on the right course for your
                       career goals. No pressure — just honest, expert advice.
                     </p>
                   </div>
-                  <ul className="space-y-4 mb-10">
+                  <ul className="mx-auto mb-10 w-full max-w-[30rem] space-y-4 text-left">
                     {[
                       "Free 1-on-1 Career Counseling",
                       "Course Roadmap Tailored for You",

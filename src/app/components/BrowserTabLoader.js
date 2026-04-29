@@ -78,6 +78,16 @@ function toRouteKey(urlLike) {
   }
 }
 
+function syncRouteAttributes(pathnameLike) {
+  if (typeof document === "undefined") return;
+
+  const routePath = pathnameLike || (typeof window !== "undefined" ? window.location.pathname : "/") || "/";
+  const routeKind = routePath === "/" ? "home" : "content";
+
+  document.documentElement.setAttribute("data-route-path", routePath);
+  document.documentElement.setAttribute("data-route-kind", routeKind);
+}
+
 export default function BrowserTabLoader() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -194,6 +204,10 @@ export default function BrowserTabLoader() {
     pendingRouteRef.current = nextRouteKey;
     startLoading();
   }, [startLoading]);
+
+  useEffect(() => {
+    syncRouteAttributes(pathname || "/");
+  }, [pathname]);
 
   useEffect(() => {
     if (!routeKey) return;

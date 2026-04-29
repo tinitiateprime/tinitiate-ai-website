@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -139,9 +140,9 @@ const supportTracks = [
   {
     title: "Beginner Training",
     description:
-      "Start with fundamentals, small projects, and enough structure to build confidence from the ground up.",
+      "Start with fundamentals and guided practice that build confidence step by step.",
     href: "/training/beginner-training",
-    cta: "Explore Beginner Training",
+    cta: "Explore Beginner",
     points: [
       "Foundational skills",
       "Mini-project practice",
@@ -151,9 +152,9 @@ const supportTracks = [
   {
     title: "Professional Training",
     description:
-      "Go deeper into role-focused learning paths built around full-stack, data, cloud, DevOps, and reporting skills.",
+      "Move into role-focused tracks across full-stack, data, cloud, DevOps, and reporting.",
     href: "/training/professional-training",
-    cta: "View Professional Paths",
+    cta: "View Pro Paths",
     points: [
       "Job-role aligned learning",
       "Hands-on assignments",
@@ -163,9 +164,9 @@ const supportTracks = [
   {
     title: "Work Experience Program",
     description:
-      "Add live project credibility, documentation discipline, and stronger storylines for resumes and interviews.",
+      "Add live-project credibility and stronger stories for resumes and interviews.",
     href: "/work-experience-program",
-    cta: "See Work Experience Program",
+    cta: "See Work Experience",
     points: [
       "Real project exposure",
       "Portfolio-strengthening outcomes",
@@ -212,131 +213,97 @@ export default function PlacementPage() {
         <div className="absolute inset-x-0 top-0 h-[40rem] bg-[linear-gradient(180deg,rgba(15,34,66,0.06),transparent_58%)] dark:bg-[linear-gradient(180deg,rgba(8,47,73,0.22),transparent_54%)]" />
       </div>
 
-      <section className="relative border-b border-slate-200 bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_36%,#eef4ff_100%)] dark:border-slate-800 dark:bg-[linear-gradient(135deg,#020617_0%,#0b1220_54%,#10213f_100%)]">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/90 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#1a3c6e] shadow-sm backdrop-blur dark:border-sky-500/20 dark:bg-sky-500/10 dark:text-sky-200">
-                <Sparkles className="h-4 w-4" />
-                Placement Support
-              </span>
+      <section className="relative isolate -mt-[72px] overflow-hidden border-b border-slate-200 bg-[#07111e] pt-[72px] text-white dark:border-slate-800 sm:-mt-[84px] sm:pt-[84px]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(56,189,248,0.18),transparent_24%),radial-gradient(circle_at_78%_18%,rgba(201,162,39,0.14),transparent_18%),linear-gradient(135deg,#030914_0%,#071525_48%,#030913_100%)]" />
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.04)_0,rgba(255,255,255,0.04)_1px,transparent_1px,transparent_160px)] opacity-15" />
+        <div className="absolute inset-y-0 right-0 hidden w-[46%] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_32%),linear-gradient(90deg,rgba(3,9,18,0)_0%,rgba(3,9,18,0.22)_58%,rgba(3,9,18,0.78)_100%)] lg:block" />
 
-              <h1 className="mt-6 max-w-4xl text-balance text-4xl font-black leading-tight text-[#0f2242] dark:text-slate-50 sm:text-5xl lg:text-6xl">
-                Placement support that turns training into interview momentum.
-              </h1>
+        <div className="relative min-h-[calc(100svh-72px)] sm:min-h-[calc(100svh-84px)] lg:min-h-[44rem]">
+          <div className="grid lg:min-h-[44rem] lg:grid-cols-[minmax(0,0.96fr)_minmax(24rem,46vw)]">
+            <div className="relative z-10 flex px-4 pb-6 pt-5 sm:px-5 sm:pb-7 sm:pt-7 lg:px-8 lg:py-8 xl:px-10 xl:py-10">
+              <div className="max-w-[46rem] self-center">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-100 shadow-sm backdrop-blur">
+                  <Sparkles className="h-4 w-4" />
+                  Placement Support
+                </span>
 
-              <p className="mt-5 max-w-3xl text-pretty text-base leading-8 text-[#54657d] dark:text-slate-300 sm:text-lg">
-                Build a sharper resume, stronger LinkedIn, better project storytelling,
-                and more confident interview performance with support designed around
-                real career outcomes, not generic advice.
-              </p>
+                <h1 className="mt-5 max-w-4xl text-balance text-4xl font-black leading-[1.02] text-white sm:text-5xl lg:text-[4rem]">
+                  Placement support that makes your profile interview-ready.
+                </h1>
 
-              <div className="mt-7 flex flex-wrap gap-2.5">
-                {[
-                  "Resume-ready portfolio",
-                  "Mock interview loops",
-                  "Role-mapped guidance",
-                  "LinkedIn profile clarity",
-                  "Project walkthrough practice",
-                ].map((chip) => (
-                  <span
-                    key={chip}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
+                <p className="mt-5 max-w-3xl text-pretty text-base leading-7 text-slate-200/88 sm:text-lg">
+                  Build a sharper resume, stronger LinkedIn, clearer project storytelling,
+                  and more confident interview performance with support built around
+                  real career outcomes.
+                </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/request-callback?service=Placement%20Support"
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#0f2242] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#09152a] dark:bg-sky-400 dark:text-slate-950 dark:hover:bg-sky-300"
-                >
-                  Request Placement Guidance
-                </Link>
-                <Link
-                  href="/work-experience-program"
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/80 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-900 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100 dark:hover:border-sky-300"
-                >
-                  Explore Work Experience Program
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-
-            </div>
-
-            <div className="relative">
-              <div className="absolute -left-4 top-8 h-28 w-28 rounded-full bg-[#c9a227]/20 blur-3xl dark:bg-amber-400/15" />
-              <div className="absolute -right-4 bottom-16 h-36 w-36 rounded-full bg-blue-500/15 blur-3xl dark:bg-sky-400/15" />
-
-              <div className="relative overflow-hidden rounded-[2rem] border border-[#17325f] bg-[linear-gradient(160deg,#12284a_0%,#0d1e39_45%,#081227_100%)] p-6 text-white shadow-[0_32px_90px_-40px_rgba(2,6,23,0.85)] sm:p-8">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-200">
-                      Placement Launchpad
-                    </p>
-                      <h2 className="mt-3 max-w-[16ch] text-3xl font-black leading-tight sm:text-[2.1rem]">
-                      Career support built around what matters most.
-                    </h2>
-                  </div>
-                  <div className="hidden h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-sky-100 sm:flex">
-                    <GraduationCap className="h-7 w-7" />
-                  </div>
-                </div>
-
-                <div className="mt-7 grid items-stretch gap-3 sm:grid-cols-2">
-                  {supportHighlights.slice(0, 4).map(({ title, description, icon: Icon }) => (
-                    <div
-                      key={title}
-                      className="flex h-full flex-col rounded-[1.5rem] border border-white/10 bg-white/8 p-4 backdrop-blur"
+                <div className="mt-7 flex flex-wrap gap-2.5">
+                  {[
+                    "Resume-ready portfolio",
+                    "Mock interview loops",
+                    "Role-mapped guidance",
+                    "LinkedIn profile clarity",
+                  ].map((chip) => (
+                    <span
+                      key={chip}
+                      className="rounded-full border border-white/12 bg-white/10 px-3 py-2 text-xs font-medium text-white/88 shadow-sm"
                     >
-                      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/12 text-sky-100">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <h3 className="mt-4 text-base font-bold text-white">{title}</h3>
-                      <p className="mt-2 text-sm leading-7 text-slate-300">{description}</p>
-                    </div>
+                      {chip}
+                    </span>
                   ))}
                 </div>
 
-                <div className="mt-6 rounded-[1.7rem] border border-white/10 bg-white/6 p-5">
-                  <div className="flex items-center gap-2 text-sky-200">
-                    <Briefcase className="h-4 w-4" />
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em]">
-                      Best-Fit Roles
-                    </p>
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {roleChips.map((role) => (
-                      <span
-                        key={role}
-                        className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-xs font-medium text-white/92"
-                      >
-                        {role}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/request-callback?service=Placement%20Support"
+                    className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+                  >
+                    Request Guidance
+                  </Link>
+                  <Link
+                    href="/work-experience-program"
+                    className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-white/16 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/14"
+                  >
+                    See Work Program
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
 
-                <div className="mt-6 rounded-[1.6rem] bg-white px-5 py-4 text-slate-900 shadow-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0f2242] text-white">
-                      <CheckCircle2 className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-slate-500">Readiness flow</p>
-                      <p className="text-base font-bold text-[#0f2242]">
-                        Profile clarity to interview confidence
-                      </p>
-                    </div>
+                <div className="mt-6 overflow-hidden rounded-[1.7rem] border border-white/10 shadow-[0_24px_65px_-40px_rgba(2,6,23,0.82)] lg:hidden">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-[1.7rem]">
+                    <Image
+                      src="/images/hero/placement-hero-interview.jpg"
+                      alt="Interview-style placement discussion"
+                      fill
+                      priority
+                      className="object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,9,18,0.04),rgba(3,9,18,0.10)_38%,rgba(3,9,18,0.24)_100%)]" />
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative hidden lg:block">
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+              <div className="absolute inset-y-0 left-0 right-0 xl:right-0">
+                <div className="relative h-full overflow-hidden rounded-l-[2.8rem] border border-r-0 border-white/10 shadow-[0_36px_90px_-42px_rgba(2,6,23,0.84)]">
+                  <Image
+                    src="/images/hero/placement-hero-interview.jpg"
+                    alt="Interview-style placement discussion"
+                    fill
+                    priority
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,9,18,0.12)_0%,rgba(3,9,18,0.04)_34%,rgba(3,9,18,0.10)_66%,rgba(3,9,18,0.34)_100%)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(3,9,18,0.06)_30%,rgba(3,9,18,0.20)_100%)]" />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-10 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="relative z-10 px-4 pb-7 sm:px-5 sm:pb-8 lg:px-8 lg:pb-10 xl:px-10 xl:pb-12">
+            <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {heroStats.map((stat) => (
               <div
                 key={stat.label}
@@ -353,6 +320,7 @@ export default function PlacementPage() {
                 </p>
               </div>
             ))}
+            </div>
           </div>
         </div>
       </section>

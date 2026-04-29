@@ -13,14 +13,23 @@ export const metadata = {
 const themeInitScript = `
   (function() {
     try {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+
       var storedTheme = localStorage.getItem("theme");
       var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var routePath = window.location.pathname || "/";
+      var routeKind = routePath === "/" ? "home" : "content";
       var resolvedTheme =
         storedTheme === "dark" || storedTheme === "light" ? storedTheme  : (prefersDark ? "dark" : "light");
 
       document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
       document.documentElement.style.colorScheme = resolvedTheme;
       document.documentElement.setAttribute("data-theme", resolvedTheme);
+      document.documentElement.setAttribute("data-route-path", routePath);
+      document.documentElement.setAttribute("data-route-kind", routeKind);
     } catch (error) {
     } finally {
       document.documentElement.setAttribute("data-theme-ready", "true");

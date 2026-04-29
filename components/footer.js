@@ -122,7 +122,7 @@ export default function Footer() {
                   <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">USA</p>
                   <a href="tel:+19736536870" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+1 (973) 653-6870</a>
                   <p className="text-gray-500 text-xs uppercase tracking-wider mt-2 mb-1">India</p>
-                  <a href="tel:+919553495553" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+91 95534 95553</a>
+                  <a href="tel:+919848092083" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+91 9848092083</a>
                 </div>
               </div>
 
