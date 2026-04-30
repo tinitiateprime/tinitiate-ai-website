@@ -13,10 +13,44 @@ export const metadata = {
 const themeInitScript = `
   (function() {
     try {
+      var navigationEntry =
+        typeof window.performance !== "undefined" &&
+        typeof window.performance.getEntriesByType === "function"
+          ? window.performance.getEntriesByType("navigation")[0]
+          : null;
+      var legacyNavigation =
+        typeof window.performance !== "undefined" ? window.performance.navigation : null;
+      var navigationType = navigationEntry && navigationEntry.type
+        ? navigationEntry.type
+        : legacyNavigation && legacyNavigation.type === 1
+          ? "reload"
+          : legacyNavigation && legacyNavigation.type === 2
+            ? "back_forward"
+            : "navigate";
+      var shouldRestorePreviousScroll = navigationType === "back_forward";
+      var shouldStartFromTop = !shouldRestorePreviousScroll;
+
       if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual";
+        window.history.scrollRestoration = shouldStartFromTop ? "manual" : "auto";
       }
-      window.scrollTo(0, 0);
+
+      if (shouldStartFromTop) {
+        var resetScroll = function() {
+          window.scrollTo(0, 0);
+        };
+
+        resetScroll();
+        window.addEventListener(
+          "load",
+          function handleReloadScrollReset() {
+            resetScroll();
+            if ("scrollRestoration" in window.history) {
+              window.history.scrollRestoration = "auto";
+            }
+          },
+          { once: true }
+        );
+      }
 
       var storedTheme = localStorage.getItem("theme");
       var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;

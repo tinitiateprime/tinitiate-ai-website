@@ -6390,164 +6390,153 @@
         "slug":  "agentic-ai-professional-course",
         "title":  "Agentic AI for Professional Developers",
         "icon":  "SiAgenticAI",
-        "duration":  "1.5â€“2 Months",
-        "level":  "Intermediate â†’ Advanced",
+        "duration":  "1.5-2 Months",
+        "level":  "Intermediate to Advanced",
         "image":  "/images/courses/agentic-ai.png",
-        "description":  "This course provides hands-on training on Apache Airflow for designing, scheduling, and monitoring data pipelines and workflows. You will learn how to build reliable, scalable, and production-grade orchestration systems for batch, streaming, ML, and analytics workloads using Airflow in real-world environments.",
-        "prerequisites":  "Python fundamentals, basic SQL, and understanding of data pipelines or cloud platforms is recommended.",
+        "description":  "This course provides hands-on training on building agentic AI systems that can reason, call tools, retrieve knowledge, and automate real-world workflows. You will learn how to design production-ready AI agents for developer productivity, business automation, research, and customer-facing applications using modern LLM patterns.",
+        "prerequisites":  "Python or JavaScript fundamentals, basic API/JSON knowledge, and familiarity with prompts or LLM basics is recommended.",
         "courseStructure":  [
                                 {
-                                    "title":  "Introduction to Workflow Orchestration \u0026 Airflow",
+                                    "title":  "Introduction to Agentic AI",
                                     "topics":  [
-                                                   "What is Workflow Orchestration",
-                                                   "Why Airflow (and When Not to Use It)",
-                                                   "Airflow Architecture Overview",
-                                                   "Airflow vs Luigi vs Prefect vs Dagster",
-                                                   "Core Concepts: DAGs, Tasks, Operators, Schedulers",
-                                                   "Real-World Use Cases"
+                                                   "What is Agentic AI",
+                                                   "AI Agents vs Chatbots vs Workflows",
+                                                   "Core Agent Components: Model, Memory, Tools, Planning",
+                                                   "Single-Agent vs Multi-Agent Systems",
+                                                   "Where Agentic AI Fits in Modern Software Products",
+                                                   "Real-World Use Cases and Limitations"
                                                ]
                                 },
                                 {
-                                    "title":  "Airflow Setup \u0026 Environment",
+                                    "title":  "LLM Foundations for Agent Builders",
                                     "topics":  [
-                                                   "Installing Airflow (Local \u0026 Docker)",
-                                                   "Airflow Components: Webserver, Scheduler, Metadata DB",
-                                                   "Airflow Configurations",
-                                                   "Creating Your First DAG",
-                                                   "Airflow CLI Basics",
-                                                   "Folder Structure Best Practices"
+                                                   "How LLMs Work at a Practical Level",
+                                                   "Tokens, Context Windows, Temperature, and Sampling",
+                                                   "System Prompts and Role Design",
+                                                   "Structured Outputs and JSON Responses",
+                                                   "Prompt Patterns for Reliable Agent Behavior",
+                                                   "Model Selection Tradeoffs: Quality, Cost, Latency"
                                                ]
                                 },
                                 {
-                                    "title":  "DAGs \u0026 Operators Deep Dive",
+                                    "title":  "Environment Setup and SDK Basics",
                                     "topics":  [
-                                                   "DAG Definition and Best Practices",
-                                                   "PythonOperator, BashOperator",
-                                                   "Branching and Conditional Workflows",
-                                                   "Task Dependencies and Ordering",
-                                                   "Trigger Rules",
-                                                   "SubDAGs vs Task Groups"
+                                                   "Project Setup with Python or JavaScript",
+                                                   "Working with LLM APIs and API Keys",
+                                                   "Basic SDK Patterns for Chat, Responses, and Streaming",
+                                                   "Managing Config, Secrets, and Environment Variables",
+                                                   "Designing a Clean Agent Project Structure",
+                                                   "Developer Tooling for Fast Iteration"
                                                ]
                                 },
                                 {
-                                    "title":  "Scheduling, Triggers \u0026 Backfills",
+                                    "title":  "Tool Use and Function Calling",
                                     "topics":  [
-                                                   "Schedule Intervals and Cron Expressions",
-                                                   "Catchup and Backfill Strategies",
-                                                   "Manual Triggers and Re-runs",
-                                                   "Dynamic DAG Generation",
-                                                   "Time Zones and SLA Handling",
-                                                   "Handling Late and Missing Data"
+                                                   "Why Agents Need Tools",
+                                                   "Function Calling and Tool Schemas",
+                                                   "Calling REST APIs, Databases, and Internal Services",
+                                                   "Input Validation and Result Parsing",
+                                                   "Retry Handling and Tool Failure Recovery",
+                                                   "Building Reusable Tool Abstractions"
                                                ]
                                 },
                                 {
-                                    "title":  "Airflow XComs, Variables \u0026 Connections",
+                                    "title":  "Memory, State, and Context Management",
                                     "topics":  [
-                                                   "Passing Data with XComs",
-                                                   "Airflow Variables and Secrets",
-                                                   "Connections for Databases and APIs",
-                                                   "Using Secrets Backends",
-                                                   "Parameterizing DAGs",
-                                                   "Configuration Management Best Practices"
+                                                   "Short-Term vs Long-Term Memory",
+                                                   "Conversation State and Session Design",
+                                                   "Summarization and Context Compression",
+                                                   "User Preferences and Task Continuity",
+                                                   "Persistence with Files, Databases, or Key-Value Stores",
+                                                   "Preventing Context Drift"
                                                ]
                                 },
                                 {
-                                    "title":  "Error Handling, Retries \u0026 SLAs",
+                                    "title":  "Retrieval-Augmented Generation for Agents",
                                     "topics":  [
-                                                   "Retry Logic and Exponential Backoff",
-                                                   "Timeouts and Failures",
-                                                   "SLA Monitoring",
-                                                   "Alerting with Email, Slack, PagerDuty",
-                                                   "Handling Partial Failures",
-                                                   "Designing Resilient Pipelines"
+                                                   "When to Use RAG in Agent Systems",
+                                                   "Embeddings and Vector Databases",
+                                                   "Chunking, Metadata, and Retrieval Strategies",
+                                                   "Grounding Agent Answers with Retrieved Knowledge",
+                                                   "Combining RAG with Tool Use",
+                                                   "Evaluating Retrieval Quality"
                                                ]
                                 },
                                 {
-                                    "title":  "Airflow for Data Engineering",
+                                    "title":  "Planning, Reasoning, and Workflow Design",
                                     "topics":  [
-                                                   "Orchestrating ETL/ELT Pipelines",
-                                                   "Airflow + Spark + EMR",
-                                                   "Airflow + Snowflake + BigQuery",
-                                                   "Airflow + dbt Integration",
-                                                   "Event-Driven Pipelines",
-                                                   "Incremental Pipeline Patterns"
+                                                   "Task Decomposition and Goal-Oriented Execution",
+                                                   "Planner-Executor Patterns",
+                                                   "Routing, Branching, and Conditional Logic",
+                                                   "ReAct-Style Reasoning Loops",
+                                                   "State Machines and Graph-Based Workflows",
+                                                   "Human-in-the-Loop Approval Steps"
                                                ]
                                 },
                                 {
-                                    "title":  "Airflow Sensors \u0026 External Triggers",
+                                    "title":  "Building Multi-Agent Systems",
                                     "topics":  [
-                                                   "File Sensors, Time Sensors",
-                                                   "ExternalTaskSensor",
-                                                   "Deferrable Operators",
-                                                   "Triggering DAGs via API",
-                                                   "Event-Based Execution Patterns",
-                                                   "Efficient Sensor Design"
+                                                   "Coordinator, Specialist, and Reviewer Agents",
+                                                   "Agent-to-Agent Communication Patterns",
+                                                   "Delegation and Role Design",
+                                                   "Shared Memory and Task Handoffs",
+                                                   "Avoiding Loops, Conflicts, and Redundant Work",
+                                                   "When Multi-Agent Systems Are Worth It"
                                                ]
                                 },
                                 {
-                                    "title":  "Airflow Deployment \u0026 Production Setup",
+                                    "title":  "Agent Safety, Guardrails, and Governance",
                                     "topics":  [
-                                                   "Celery Executor vs Kubernetes Executor",
-                                                   "Scaling Airflow",
-                                                   "High Availability Setup",
-                                                   "Metadata Database Tuning",
-                                                   "Airflow on Kubernetes",
-                                                   "Airflow on AWS MWAA"
+                                                   "Prompt Injection and Tool Abuse Risks",
+                                                   "Permission Boundaries and Safe Tool Execution",
+                                                   "Input/Output Guardrails",
+                                                   "PII Handling and Data Privacy Basics",
+                                                   "Fallback Strategies and Safe Failure Modes",
+                                                   "Auditability and Decision Logging"
                                                ]
                                 },
                                 {
-                                    "title":  "Monitoring, Logging \u0026 Observability",
+                                    "title":  "Testing, Evaluation, and Observability",
                                     "topics":  [
-                                                   "Task Logs and Centralized Logging",
-                                                   "Metrics with Prometheus and Grafana",
-                                                   "DAG Performance Monitoring",
-                                                   "Identifying Bottlenecks",
-                                                   "Audit Logging",
-                                                   "Operational Dashboards"
+                                                   "Unit Testing Agent Components",
+                                                   "Evaluating Outputs for Quality and Consistency",
+                                                   "Golden Test Cases and Regression Suites",
+                                                   "Tracing Agent Steps and Tool Calls",
+                                                   "Latency, Cost, and Failure Metrics",
+                                                   "Debugging Unreliable Agent Behavior"
                                                ]
                                 },
                                 {
-                                    "title":  "Security \u0026 Governance",
+                                    "title":  "Integrating Agents into Real Applications",
                                     "topics":  [
-                                                   "RBAC in Airflow",
-                                                   "Securing Connections and Secrets",
-                                                   "Network Security and Isolation",
-                                                   "Access Control and Permissions",
-                                                   "Auditing and Compliance",
-                                                   "Multi-Tenant Airflow Patterns"
+                                                   "Backend Integration with FastAPI, Node.js, or Serverless APIs",
+                                                   "Frontend Patterns for Agent UX",
+                                                   "Streaming Responses and Progress Updates",
+                                                   "Background Jobs and Asynchronous Execution",
+                                                   "Connecting Agents to Business Workflows",
+                                                   "Designing Human Review and Escalation Paths"
                                                ]
                                 },
                                 {
-                                    "title":  "Advanced Airflow Patterns",
+                                    "title":  "Deployment, Scaling, and Cost Optimization",
                                     "topics":  [
-                                                   "Dynamic Task Mapping",
-                                                   "TaskFlow API",
-                                                   "Data-Aware Scheduling (Datasets)",
-                                                   "Cross-DAG Dependencies",
-                                                   "Reusable DAG Factories",
-                                                   "Pipeline Versioning"
-                                               ]
-                                },
-                                {
-                                    "title":  "CI/CD \u0026 Testing for Airflow",
-                                    "topics":  [
-                                                   "Unit Testing DAGs",
-                                                   "Local DAG Validation",
-                                                   "CI/CD Pipelines for Airflow",
-                                                   "Deploying DAGs Safely",
-                                                   "Rollback Strategies",
-                                                   "Promotion Across Environments"
+                                                   "Deployment Architectures for Agent Apps",
+                                                   "Caching and Token Optimization",
+                                                   "Concurrency, Queues, and Rate Limits",
+                                                   "Managing Observability in Production",
+                                                   "Versioning Prompts, Tools, and Agent Logic",
+                                                   "Rollout Strategies and Production Readiness"
                                                ]
                                 },
                                 {
                                     "title":  "Capstone Project (Portfolio Ready)",
                                     "topics":  [
-                                                   "Build a Production-Grade Airflow Data Pipeline",
-                                                   "Orchestrate Batch and Incremental Jobs",
-                                                   "Integrate Snowflake / S3 / Kafka / dbt",
-                                                   "Implement Alerts, SLAs, and Monitoring",
-                                                   "Deploy on Docker or MWAA",
-                                                   "Final Deliverables: GitHub Repo, Architecture Diagram, Demo Walkthrough"
+                                                   "Build a Production-Ready Agentic AI Application",
+                                                   "Combine Prompting, Tools, Memory, and RAG",
+                                                   "Add Evaluation, Tracing, and Guardrails",
+                                                   "Deploy a Web or API-Based Agent Experience",
+                                                   "Document Architecture and Design Decisions",
+                                                   "Final Deliverables: GitHub Repo, Demo Walkthrough, Resume-Ready Project"
                                                ]
                                 }
                             ]
