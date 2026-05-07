@@ -537,6 +537,7 @@ const courses = [
 function CourseSlider() {
   const [active, setActive] = useState(0);
   const timerRef = useRef(null);
+  const touchStartX = useRef(null);
   const DURATION = 5000;
 
   const startTimer = () => {
@@ -557,12 +558,23 @@ function CourseSlider() {
   };
   const prev = () => go((active - 1 + courses.length) % courses.length);
   const next = () => go((active + 1) % courses.length);
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = (e.changedTouches[0]?.clientX ?? touchStartX.current) - touchStartX.current;
+    if (Math.abs(delta) > 56) {
+      delta > 0 ? prev() : next();
+    }
+    touchStartX.current = null;
+  };
 
   const course = courses[active];
   const CourseIcon = course.icon;
 
   return (
-    <section className="bg-white px-3 py-8 transition-colors duration-300 dark:bg-slate-950 sm:px-4 sm:py-10 md:px-10 md:py-12">
+    <section className="bg-white px-3 py-6 transition-colors duration-300 dark:bg-slate-950 sm:px-4 sm:py-10 md:px-10 md:py-12">
       <div className="max-w-[1400px] mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
@@ -571,6 +583,9 @@ function CourseSlider() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            style={{ touchAction: "pan-y" }}
             className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950 dark:shadow-[0_24px_70px_rgba(2,6,23,0.55)] sm:rounded-3xl sm:shadow-2xl lg:min-h-[620px]"
           >
             <button
@@ -586,20 +601,20 @@ function CourseSlider() {
               <ChevronRight className="h-6 w-6" />
             </button>
             <div className="grid gap-0 lg:min-h-[620px] lg:grid-cols-2">
-              <div className="flex flex-col justify-center p-6 sm:p-10 md:p-14 lg:min-h-[620px] lg:pl-20">
+              <div className="flex flex-col justify-center p-5 sm:p-10 md:p-14 lg:min-h-[620px] lg:pl-20">
                 <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600 mb-3 sm:mb-4">
                   {course.label} Training
                 </span>
-                <h3 className="mb-6 text-xl font-bold leading-snug text-gray-900 dark:text-slate-50 sm:mb-8 sm:text-2xl md:text-3xl">
+                <h3 className="mb-5 text-xl font-bold leading-snug text-gray-900 dark:text-slate-50 sm:mb-8 sm:text-2xl md:text-3xl">
                   {course.heading}
                 </h3>
-                <div className="lg:hidden mb-6 flex items-center justify-center">
+                <div className="mb-5 flex items-center justify-center lg:hidden">
                   <CourseIcon
-                    className="h-24 w-24"
+                    className="h-20 w-20"
                     idSuffix={`mobile-${course.id}`}
                   />
                 </div>
-                <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-10">
+                <ul className="mb-5 space-y-2 sm:mb-10 sm:space-y-3">
                   {course.bullets.map((b, i) => (
                     <li
                       key={i}
@@ -660,7 +675,7 @@ function CourseSlider() {
                 </div>
               </div>
             </div>
-            <div className="border-t border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-5 transition-colors duration-300 dark:border-slate-800 dark:from-slate-950 dark:to-slate-900 lg:hidden">
+            <div className="border-t border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100 px-5 py-4 transition-colors duration-300 dark:border-slate-800 dark:from-slate-950 dark:to-slate-900 lg:hidden">
               <div className="mx-auto h-0.5 w-full max-w-[180px] overflow-hidden rounded-full bg-gray-200 transition-colors duration-300 dark:bg-slate-800">
                 <motion.div
                   key={`mobile-bar-${active}`}
@@ -670,42 +685,24 @@ function CourseSlider() {
                   transition={{ duration: DURATION / 1000, ease: "linear" }}
                 />
               </div>
-              <div className="mt-5 grid grid-cols-[auto_1fr_auto] items-center gap-2 px-2">
-  {/* Left Arrow */}
-  <button
-    onClick={prev}
-    className="touch-target flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
-  >
-    <ChevronLeft className="h-4 w-4" />
-  </button>
-
-  {/* Dots */}
-  <div className="flex justify-center gap-1.5">
-    {courses.map((_, i) => (
-      <button
-        key={i}
-        onClick={() => go(i)}
-        className="flex h-5 w-5 items-center justify-center"
-      >
-        <span
-          className={`block rounded-full transition-all duration-300 ${
-            i === active
-              ? "h-2 w-5 bg-black dark:bg-blue-400"
-              : "h-2 w-2 bg-gray-300 dark:bg-slate-700"
-          }`}
-        />
-      </button>
-    ))}
-  </div>
-
-  {/* Right Arrow */}
-  <button
-    onClick={next}
-    className="touch-target flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-black hover:bg-black hover:text-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-400 dark:hover:bg-blue-500"
-  >
-    <ChevronRight className="h-4 w-4" />
-  </button>
-</div>
+              <div className="mt-4 flex justify-center gap-1.5">
+                {courses.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => go(i)}
+                    className="flex h-5 w-5 items-center justify-center"
+                    aria-label={`Show course ${i + 1}`}
+                  >
+                    <span
+                      className={`block rounded-full transition-all duration-300 ${
+                        i === active
+                          ? "h-2 w-5 bg-black dark:bg-blue-400"
+                          : "h-2 w-2 bg-gray-300 dark:bg-slate-700"
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>

@@ -33,8 +33,10 @@ const heroSlides = [
     navDescription: "Mentor-led roadmap and role-ready confidence",
     title: "AI training built for real career momentum",
     titleLines: ["AI training built for", "real career momentum"],
-    titleMobileLines: ["AI training", "built for real", "career momentum"],
+    titleMobileLines: ["AI training built for", "career momentum"],
     description:
+      "Structured mentoring and practical builds that turn learning into confident progress.",
+    mobileDescription:
       "Structured mentoring and practical builds that turn learning into confident progress.",
     primaryCta: { href: "/request-callback", label: "Get Started" },
     secondaryCta: { href: "/training/professional-training", label: "Explore Programs" },
@@ -71,9 +73,11 @@ const heroSlides = [
     navDescription: "Hands-on delivery practice that feels like the job",
     title: "Learn through real project delivery",
     titleLines: ["Learn through real", "project delivery"],
-    titleMobileLines: ["Learn through", "real project", "delivery"],
+    titleMobileLines: ["Learn through", "real project delivery"],
     description:
       "Scoped builds, review cycles, and showcase-ready work with a rhythm closer to real teams.",
+    mobileDescription:
+      "Practice with scoped builds, review cycles, and showcase-ready work shaped like real delivery.",
     primaryCta: { href: "/work-experience-program", label: "See Work Experience" },
     secondaryCta: { href: "/request-callback", label: "Talk to an Expert" },
     metrics: [
@@ -109,9 +113,11 @@ const heroSlides = [
     navDescription: "Mentor-led classes with weekly structure and practice",
     title: "Live batches built for steady skill growth",
     titleLines: ["Live batches built for", "steady skill growth"],
-    titleMobileLines: ["Live batches", "built for steady", "skill growth"],
+    titleMobileLines: ["Live batches for", "steady skill growth"],
     description:
       "Follow a consistent learning rhythm with live classes, guided practice, and support that works for freshers and working professionals.",
+    mobileDescription:
+      "Follow a steady rhythm with live classes, guided practice, and support that fits freshers and working professionals.",
     primaryCta: { href: "/training/online-training", label: "View Online Training" },
     secondaryCta: { href: "/training/new-batches", label: "See New Batches" },
     metrics: [
@@ -147,9 +153,11 @@ const heroSlides = [
     navDescription: "Beginner-to-advanced tracks across in-demand stacks",
     title: "Progress from basics to specialized tech tracks",
     titleLines: ["Progress from basics to", "specialized tech tracks"],
-    titleMobileLines: ["Progress from", "basics to", "specialized tracks"],
+    titleMobileLines: ["Progress from basics", "to specialized tracks"],
     description:
       "Progress through structured paths in web, data, cloud, reporting, and AI without jumping between disconnected topics.",
+    mobileDescription:
+      "Move from fundamentals into focused tracks across web, data, cloud, reporting, and AI.",
     primaryCta: { href: "/training/beginner-training", label: "Start with Basics" },
     secondaryCta: { href: "/training/professional-training", label: "View Pro Tracks" },
     metrics: [
@@ -367,11 +375,11 @@ function SlideTitle({ slide, isMobile }) {
       style={{
         fontFamily: "'Roboto', sans-serif",
         fontWeight: 800,
-        fontSize: "clamp(1.875rem, 4vw, 3rem)",
-        lineHeight: 1.2,
+        fontSize: isMobile ? "clamp(1.95rem, 7.5vw, 2.45rem)" : "clamp(1.875rem, 4vw, 3rem)",
+        lineHeight: isMobile ? 1.05 : 1.2,
         letterSpacing: "-0.01em",
         color: "#ffffff",
-        marginTop: "1.1rem",
+        marginTop: isMobile ? "0.85rem" : "1.1rem",
         marginBottom: 0,
         padding: 0,
         textShadow: "0 1px 16px rgba(0,0,0,0.20)",
@@ -548,38 +556,40 @@ function SlideTabs({ activeIndex, goTo, prefersReducedMotion }) {
   )
 }
 
-function MobileHero({ activeIndex, goTo, next, prev, prefersReducedMotion }) {
+function MobileHero({
+  activeIndex,
+  goTo,
+  onTouchStart,
+  onTouchEnd,
+}) {
   const slide = heroSlides[activeIndex]
+  const mobileDescription = slide.mobileDescription ?? slide.description
 
   return (
-    <div className="relative overflow-hidden bg-[#050d18] px-4 pb-6 pt-6 sm:px-5 lg:hidden">
+    <section
+      className="relative overflow-hidden bg-[#050d18] px-4 py-4 lg:hidden"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      style={{ touchAction: "pan-y" }}
+      aria-label="Homepage hero slider"
+      aria-roledescription="carousel"
+    >
       <div className="absolute inset-0" style={getHeroAtmosphereStyle(slide)} />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_24%),linear-gradient(180deg,rgba(2,6,23,0.08),rgba(2,6,23,0.44)_50%,rgba(2,6,23,0.14)_100%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.04)_0,rgba(255,255,255,0.04)_1px,transparent_1px,transparent_128px)] opacity-20" />
 
-      <div className="relative z-10 mx-auto flex min-h-[748px] max-w-[31rem] flex-col sm:min-h-[796px]">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-2rem)] max-w-[31rem] flex-col justify-center">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={slide.id}
-            className="flex flex-1 flex-col"
+            className="flex flex-1 flex-col justify-center"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
           >
-            <div className="relative h-[248px] overflow-hidden rounded-[30px] border border-white/12 shadow-[0_28px_70px_rgba(2,6,23,0.3)] sm:h-[290px]">
-              <Image
-                src={slide.image}
-                alt={`${slide.navLabel} hero visual`}
-                fill
-                sizes="100vw"
-                className="object-cover"
-                style={{ objectPosition: slide.mobileImagePosition ?? "center center" }}
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.10),rgba(2,6,23,0.16)_34%,rgba(2,6,23,0.78)_76%,rgba(2,6,23,0.94)_100%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_32%),radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.08),transparent_22%)]" />
-
-              <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
+            <div className="overflow-hidden rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(7,18,30,0.92),rgba(4,10,18,0.84))] p-4 shadow-[0_24px_65px_rgba(2,6,23,0.26)] backdrop-blur-md sm:p-5">
+              <div className="flex items-center justify-between gap-3">
                 <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] ${slide.theme.badge}`}>
                   <span className={`h-1.5 w-1.5 rounded-full ${slide.theme.dot}`} />
                   {slide.eyebrow}
@@ -589,110 +599,90 @@ function MobileHero({ activeIndex, goTo, next, prev, prefersReducedMotion }) {
                 </span>
               </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <div className={`h-1 w-14 rounded-full bg-gradient-to-r ${slide.theme.accent}`} />
-                <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/72">
-                  {slide.bridgePanel.label}
-                </p>
-                <p className="mt-1 max-w-[16ch] text-[1.12rem] font-bold leading-[1.18] tracking-[-0.02em] text-white">
-                  {slide.bridgePanel.title}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4 flex min-h-[452px] flex-1 flex-col rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(7,18,30,0.9),rgba(4,10,18,0.8))] p-5 shadow-[0_24px_65px_rgba(2,6,23,0.26)] backdrop-blur-md sm:min-h-[474px] sm:p-6">
-              <div className="flex items-center gap-2">
-                <span className={`h-1.5 w-1.5 rounded-full ${slide.theme.dot}`} />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/62">
-                  {slide.navLabel}
-                </span>
-              </div>
-
               <SlideTitle slide={slide} isMobile />
 
-              <p className="mt-3 text-[0.88rem] leading-6 text-white/72 sm:text-[0.95rem]">
-                {slide.description}
+              <p className="mt-2.5 text-[0.84rem] leading-5 text-white/72 sm:text-[0.9rem]">
+                {mobileDescription}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {slide.bridgePanel.items.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium leading-none text-white/78"
+                    className="rounded-full border border-white/12 bg-white/[0.04] px-2.5 py-1.5 text-[10px] font-medium leading-none text-white/78"
                   >
                     {item}
                   </span>
                 ))}
               </div>
 
-              <div className="mt-5 grid grid-cols-3 gap-2.5">
+              <div className="relative mt-4 h-[172px] overflow-hidden rounded-[24px] border border-white/12 shadow-[0_18px_40px_rgba(2,6,23,0.24)]">
+                <Image
+                  src={slide.image}
+                  alt={`${slide.navLabel} hero visual`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  style={{ objectPosition: slide.mobileImagePosition ?? "center center" }}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.10),rgba(2,6,23,0.10)_30%,rgba(2,6,23,0.58)_72%,rgba(2,6,23,0.82)_100%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_32%),radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.08),transparent_22%)]" />
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <div className={`h-1 w-14 rounded-full bg-gradient-to-r ${slide.theme.accent}`} />
+                  <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/76">
+                    {slide.bridgePanel.label}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-3 gap-2">
                 {slide.metrics.map(({ icon: Icon, value, label }) => (
                   <div
                     key={label}
-                    className="rounded-[18px] border border-white/10 bg-white/[0.03] px-3 py-3 text-center"
+                    className="rounded-[18px] border border-white/10 bg-white/[0.03] px-2.5 py-2.5 text-center"
                   >
-                    <span className="mx-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/12 bg-white/[0.06]">
+                    <span className="mx-auto inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/12 bg-white/[0.06]">
                       <Icon className="h-3.5 w-3.5 text-white" />
                     </span>
-                    <p className="mt-2 text-[0.82rem] font-bold tracking-[-0.02em] text-white">{value}</p>
-                    <p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.16em] text-white/54">{label}</p>
+                    <p className="mt-2 text-[0.8rem] font-bold tracking-[-0.02em] text-white">{value}</p>
+                    <p className="mt-1 text-[7px] font-semibold uppercase tracking-[0.15em] text-white/54">{label}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-auto pt-5">
-                <div className="grid gap-2.5 sm:grid-cols-2">
+              <div className="mt-4">
+                <div className="grid grid-cols-2 gap-2">
                   <Link
                     href={slide.primaryCta.href}
-                    className="flex items-center justify-center gap-1.5 rounded-full bg-white px-4 py-3 text-[0.84rem] font-semibold text-slate-950 transition active:scale-95"
+                    className="flex min-h-[46px] items-center justify-center gap-1.5 rounded-full bg-white px-3 py-3 text-center text-[0.8rem] font-semibold leading-tight text-slate-950 transition active:scale-95"
                   >
                     {slide.primaryCta.label}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                   <Link
                     href={slide.secondaryCta.href}
-                    className="flex items-center justify-center rounded-full border border-white/18 bg-white/[0.06] px-4 py-3 text-[0.84rem] font-semibold text-white transition active:scale-95"
+                    className="flex min-h-[46px] items-center justify-center rounded-full border border-white/18 bg-white/[0.06] px-3 py-3 text-center text-[0.8rem] font-semibold leading-tight text-white transition active:scale-95"
                   >
                     {slide.secondaryCta.label}
                   </Link>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between">
-                  <button
-                    type="button"
-                    onClick={prev}
-                    aria-label="Show previous slide"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-
-                  <div className="flex items-center gap-1.5">
-                    {heroSlides.map((_, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => goTo(i)}
-                        aria-label={`Show slide ${i + 1}`}
-                        className="flex h-4 w-4 items-center justify-center"
-                      >
-                        <span className={`block rounded-full transition-all duration-300 ${
-                          i === activeIndex
-                            ? `h-2 w-5 bg-gradient-to-r ${heroSlides[activeIndex].theme.accent}`
-                            : "h-2 w-2 bg-white/25"
-                        }`} />
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={next}
-                    aria-label="Show next slide"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
+                <div className="mt-4 flex items-center justify-center gap-1.5">
+                  {heroSlides.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => goTo(i)}
+                      aria-label={`Show slide ${i + 1}`}
+                      className="flex h-4 w-4 items-center justify-center"
+                    >
+                      <span className={`block rounded-full transition-all duration-300 ${
+                        i === activeIndex
+                          ? `h-2 w-5 bg-gradient-to-r ${heroSlides[activeIndex].theme.accent}`
+                          : "h-2 w-2 bg-white/25"
+                      }`} />
+                    </button>
+                  ))}
                 </div>
 
                 <div className="mt-3 h-[2px] w-full overflow-hidden rounded-full bg-white/10">
@@ -709,14 +699,13 @@ function MobileHero({ activeIndex, goTo, next, prev, prefersReducedMotion }) {
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
+    </section>
   )
 }
 
 export default function HomeHeroSlider() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState(1)
-  const [isMobileLayout, setIsMobileLayout] = useState(false)
   const prefersReducedMotion = useReducedMotion()
   const touchStartX = useRef(null)
 
@@ -730,19 +719,6 @@ export default function HomeHeroSlider() {
     }, HERO_SLIDE_DURATION)
     return () => window.clearTimeout(timeoutId)
   }, [activeIndex, prefersReducedMotion])
-
-  useEffect(() => {
-    if (typeof window === "undefined") return undefined
-    const mediaQuery = window.matchMedia("(max-width: 1023px)")
-    const syncLayout = () => setIsMobileLayout(mediaQuery.matches)
-    syncLayout()
-    if (typeof mediaQuery.addEventListener === "function") {
-      mediaQuery.addEventListener("change", syncLayout)
-      return () => mediaQuery.removeEventListener("change", syncLayout)
-    }
-    mediaQuery.addListener(syncLayout)
-    return () => mediaQuery.removeListener(syncLayout)
-  }, [])
 
   const goTo = (index) => {
     const nextIndex = (index + heroSlides.length) % heroSlides.length
@@ -769,9 +745,8 @@ return (
       <MobileHero
         activeIndex={activeIndex}
         goTo={goTo}
-        next={next}
-        prev={prev}
-        prefersReducedMotion={prefersReducedMotion}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       />
       <section
         className="relative isolate hidden overflow-hidden bg-[#050d18] text-white lg:block lg:min-h-[700px] 2xl:min-h-[720px]"

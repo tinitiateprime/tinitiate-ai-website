@@ -1425,43 +1425,205 @@ const FEATURE_ICON_MAP = FEATURE_ICON_REGISTRY.reduce((acc, item) => {
   return acc;
 }, {});
 
-// -------------------- AI TOOL REGISTRY (data-driven feature definitions) --------------------
+// -------------------- COURSE FEATURE REGISTRY (data-driven feature definitions) --------------------
 const AI_TOOL_REGISTRY = [
   {
-    key: "prompt-engineering",
-    label: "Prompt Engineering",
+    key: "core-java",
+    label: "Core Java",
     iconKey: "zap",
-    iconClass: "text-indigo-600",
+    iconClass: "text-red-600",
   },
   {
-    key: "generative-ai",
-    label: "Generative AI",
+    key: "spring-boot",
+    label: "Spring Boot",
     iconKey: "cpu",
-    iconClass: "text-violet-600",
+    iconClass: "text-green-600",
   },
   {
-    key: "agentic-ai",
-    label: "Agentic AI",
+    key: "react-ui",
+    label: "React UI",
     iconKey: "robot",
-    iconClass: "text-sky-600",
+    iconClass: "text-cyan-600",
   },
   {
-    key: "hands-on-projects",
-    label: "Hands-on Projects",
+    key: "db-cicd",
+    label: "DB + CI/CD",
     iconKey: "check",
     iconClass: "text-emerald-600",
   },
   {
-    key: "machine-learning",
-    label: "Machine Learning",
+    key: "react-components",
+    label: "React Components",
+    iconKey: "cpu",
+    iconClass: "text-cyan-600",
+  },
+  {
+    key: "typescript",
+    label: "TypeScript",
+    iconKey: "zap",
+    iconClass: "text-sky-600",
+  },
+  {
+    key: "api-integration",
+    label: "API Integration",
+    iconKey: "tool",
+    iconClass: "text-indigo-600",
+  },
+  {
+    key: "hosting",
+    label: "Hosting",
+    iconKey: "check",
+    iconClass: "text-emerald-600",
+  },
+  {
+    key: "nextjs-routing",
+    label: "Next.js Routing",
+    iconKey: "cpu",
+    iconClass: "text-slate-700",
+  },
+  {
+    key: "ssr-apis",
+    label: "SSR & APIs",
+    iconKey: "tool",
+    iconClass: "text-indigo-600",
+  },
+  {
+    key: "deployment",
+    label: "Deployment",
+    iconKey: "check",
+    iconClass: "text-emerald-600",
+  },
+  {
+    key: "angular-components",
+    label: "Angular Components",
+    iconKey: "cpu",
+    iconClass: "text-red-600",
+  },
+  {
+    key: "rxjs-services",
+    label: "RxJS & Services",
+    iconKey: "tool",
+    iconClass: "text-indigo-600",
+  },
+  {
+    key: "s3-data-lake",
+    label: "S3 Data Lake",
+    iconKey: "cpu",
+    iconClass: "text-amber-600",
+  },
+  {
+    key: "glue-etl",
+    label: "Glue ETL",
+    iconKey: "tool",
+    iconClass: "text-slate-700",
+  },
+  {
+    key: "athena-redshift",
+    label: "Athena & Redshift",
     iconKey: "barChart",
     iconClass: "text-rose-600",
   },
   {
-    key: "llm-evaluation",
-    label: "LLM Evaluation",
+    key: "kinesis-airflow",
+    label: "Kinesis & Airflow",
+    iconKey: "check",
+    iconClass: "text-emerald-600",
+  },
+  {
+    key: "snowflake-sql",
+    label: "Snowflake SQL",
+    iconKey: "cpu",
+    iconClass: "text-sky-600",
+  },
+  {
+    key: "snowpipe",
+    label: "Snowpipe",
+    iconKey: "tool",
+    iconClass: "text-blue-600",
+  },
+  {
+    key: "snowpark",
+    label: "Snowpark",
+    iconKey: "robot",
+    iconClass: "text-indigo-600",
+  },
+  {
+    key: "streams-tasks",
+    label: "Streams & Tasks",
     iconKey: "check",
     iconClass: "text-amber-600",
+  },
+  {
+    key: "adls-gen2",
+    label: "ADLS Gen2",
+    iconKey: "cpu",
+    iconClass: "text-blue-700",
+  },
+  {
+    key: "azure-data-factory",
+    label: "Azure Data Factory",
+    iconKey: "tool",
+    iconClass: "text-sky-700",
+  },
+  {
+    key: "databricks-delta",
+    label: "Databricks Delta",
+    iconKey: "robot",
+    iconClass: "text-red-600",
+  },
+  {
+    key: "synapse",
+    label: "Synapse",
+    iconKey: "barChart",
+    iconClass: "text-indigo-600",
+  },
+  {
+    key: "gcs",
+    label: "GCS",
+    iconKey: "cpu",
+    iconClass: "text-orange-600",
+  },
+  {
+    key: "dataflow",
+    label: "Dataflow",
+    iconKey: "tool",
+    iconClass: "text-blue-600",
+  },
+  {
+    key: "bigquery",
+    label: "BigQuery",
+    iconKey: "barChart",
+    iconClass: "text-sky-600",
+  },
+  {
+    key: "pubsub",
+    label: "Pub/Sub",
+    iconKey: "check",
+    iconClass: "text-emerald-600",
+  },
+  {
+    key: "power-bi",
+    label: "Power BI",
+    iconKey: "barChart",
+    iconClass: "text-amber-600",
+  },
+  {
+    key: "quicksight",
+    label: "QuickSight",
+    iconKey: "cpu",
+    iconClass: "text-green-600",
+  },
+  {
+    key: "data-modeling",
+    label: "Data Modeling",
+    iconKey: "tool",
+    iconClass: "text-indigo-600",
+  },
+  {
+    key: "business-insights",
+    label: "Business Insights",
+    iconKey: "check",
+    iconClass: "text-emerald-600",
   },
 ];
 
@@ -1507,12 +1669,7 @@ const STACK_COURSES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: [
-      "prompt-engineering",
-      "generative-ai",
-      "agentic-ai",
-      "hands-on-projects",
-    ],
+    aiToolKeys: ["core-java", "spring-boot", "react-ui", "db-cicd"],
   },
   {
     courseKey: "react-web-development",
@@ -1523,7 +1680,7 @@ const STACK_COURSES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: ["prompt-engineering", "generative-ai", "agentic-ai","hands-on-projects"],
+    aiToolKeys: ["react-components", "typescript", "api-integration", "hosting"],
   },
   {
     courseKey: "nextjs-web-development",
@@ -1534,12 +1691,7 @@ const STACK_COURSES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: [
-      "prompt-engineering",
-      "generative-ai",
-      "agentic-ai",
-      "hands-on-projects",
-    ],
+    aiToolKeys: ["nextjs-routing", "ssr-apis", "typescript", "deployment"],
   },
   {
     courseKey: "angular-web-development",
@@ -1550,7 +1702,7 @@ const STACK_COURSES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: ["prompt-engineering", "generative-ai", "agentic-ai","hands-on-projects"],
+    aiToolKeys: ["angular-components", "typescript", "rxjs-services", "deployment"],
   },
 ];
 
@@ -1565,13 +1717,7 @@ const DATA_ENGINEERING_PACKAGES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: [
-      "prompt-engineering",
-      "generative-ai",
-      "agentic-ai",
-      "machine-learning", // extra for data engineering
-      "hands-on-projects",
-    ],
+    aiToolKeys: ["s3-data-lake", "glue-etl", "athena-redshift", "kinesis-airflow"],
   },
   {
     key: "snowflake-data-engineering",
@@ -1582,12 +1728,7 @@ const DATA_ENGINEERING_PACKAGES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: [
-      "prompt-engineering",
-      "generative-ai",
-      "machine-learning", // extra for data engineering
-      "hands-on-projects",
-    ],
+    aiToolKeys: ["snowflake-sql", "snowpipe", "snowpark", "streams-tasks"],
   },
   {
     key: "azure-data-engineering",
@@ -1598,13 +1739,7 @@ const DATA_ENGINEERING_PACKAGES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: [
-      "prompt-engineering",
-      "generative-ai",
-      "agentic-ai",
-      "machine-learning", // extra for data engineering
-      "hands-on-projects",
-    ],
+    aiToolKeys: ["adls-gen2", "azure-data-factory", "databricks-delta", "synapse"],
   },
   {
     key: "gcp-data-engineering",
@@ -1615,12 +1750,7 @@ const DATA_ENGINEERING_PACKAGES = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: [
-      "prompt-engineering",
-      "generative-ai",
-      "machine-learning", // extra for data engineering
-      "hands-on-projects",
-    ],
+    aiToolKeys: ["gcs", "dataflow", "bigquery", "pubsub"],
   },
 ];
 
@@ -1634,9 +1764,30 @@ const Visualization = [
 
     premium: true,
     aiIncluded: true,
-    aiToolKeys: ["prompt-engineering", "generative-ai", "hands-on-projects"],
+    aiToolKeys: ["power-bi", "quicksight", "data-modeling", "business-insights"],
   },
 ];
+
+const COURSE_CARD_DESCRIPTIONS = {
+  "java-full-stack-development":
+    "Build end-to-end applications with Java, Spring Boot, and React. Learn APIs, databases, authentication, and deployment through real project workflows.",
+  "react-web-development":
+    "Master React with reusable components, TypeScript, and modern UI patterns. Build responsive applications that connect smoothly with APIs and hosting platforms.",
+  "nextjs-web-development":
+    "Create fast, SEO-friendly web apps with Next.js, React, and TypeScript. Learn routing, server rendering, API integration, and production deployment.",
+  "angular-web-development":
+    "Build scalable frontend applications with Angular, TypeScript, services, and RxJS. Learn component architecture, API integration, and deployment workflows.",
+  "aws-data-engineering":
+    "Design AWS data pipelines with S3, Glue, Athena, Kinesis, and Redshift. Learn batch and streaming workflows for scalable analytics platforms.",
+  "snowflake-data-engineering":
+    "Build modern Snowflake workflows with Snowpipe, Snowpark, and automated warehouse operations. Learn ingestion, transformation, optimization, and analytics-ready modeling.",
+  "azure-data-engineering":
+    "Create enterprise data solutions with ADLS, Data Factory, Databricks, and Synapse. Learn ingestion, transformation, orchestration, and reporting-ready workflows.",
+  "gcp-data-engineering":
+    "Build scalable data pipelines with GCS, Dataflow, BigQuery, and Pub/Sub. Learn processing, warehousing, and real-time analytics delivery on Google Cloud.",
+  "visualization-course":
+    "Turn raw data into business-ready dashboards with Power BI and QuickSight. Learn modeling, report design, and insight-driven storytelling for better decisions.",
+};
 
 // -------------------- UI HELPERS --------------------
 function Container({ children }) {
@@ -1689,7 +1840,7 @@ function CourseCard({
       {aiIncluded ? (
         <div className="inline-flex min-w-0 items-center gap-1 rounded-full border border-indigo-200 bg-white/90 px-3 py-1 text-[11px] font-semibold text-indigo-700 shadow-sm backdrop-blur">
           <FiSparkles className="h-3.5 w-3.5 shrink-0" />
-          <span className="truncate">AI Included</span>
+          <span className="truncate">Skills Covered</span>
         </div>
       ) : (
         <div />
@@ -1711,9 +1862,9 @@ function CourseCard({
 
   {/* Content */}
   <div className="flex grow flex-col p-6">
-    <div className="min-h-[76px]">
-      <h3 className="text-2xl font-bold tracking-tight text-gray-900">{title}</h3>
-      <p className="mt-2 text-sm leading-5 text-gray-600">{description}</p>
+    <div className="min-h-[9rem] lg:min-h-[9.5rem]">
+      <h3 className="text-2xl font-bold leading-tight tracking-tight text-gray-900">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-gray-600">{description}</p>
     </div>
 
     {/* Included section */}
@@ -1834,7 +1985,7 @@ export default function Page() {
               <CourseCard
                 key={course.courseKey}
                 title={course.title}
-                description={course.description}
+                description={COURSE_CARD_DESCRIPTIONS[course.courseKey] || course.description}
                 heroTech={course.heroTech}
                 href={`/training/professional-training/${course.courseKey}`}
                 tag={course.tag}
@@ -1861,7 +2012,7 @@ export default function Page() {
               <CourseCard
                 key={pkg.key}
                 title={pkg.title}
-                description={pkg.description}
+                description={COURSE_CARD_DESCRIPTIONS[pkg.key] || pkg.description}
                 heroTech={pkg.heroTech}
                 href={`/training/professional-training/${pkg.key}`}
                 tag={pkg.tag}
@@ -1888,7 +2039,7 @@ export default function Page() {
               <CourseCard
                 key={pkg.key}
                 title={pkg.title}
-                description={pkg.description}
+                description={COURSE_CARD_DESCRIPTIONS[pkg.key] || pkg.description}
                 heroTech={pkg.heroTech}
                 href={`/training/professional-training/${pkg.key}`}
                 tag={pkg.tag}
