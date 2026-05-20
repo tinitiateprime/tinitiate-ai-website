@@ -460,7 +460,7 @@
     {
       "key": "angular-web-development",
       "category": "Web Development",
-      "title": "Full Stack Angular + .NET Developer Program",
+      "title": "Full Stack Angular + .NET",
       "subtitle": "Angular 17 + .NET 8 + C# 12 + ASP.NET Core Web API + SQL Server",
       "level": "Beginner to Intermediate",
       "mode": "Online (Mentor-led)",
@@ -1709,4 +1709,3 @@
 }
   ]
 }
-

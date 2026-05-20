@@ -330,6 +330,9 @@ function LocalSkillIcon({
   return <img src={src} alt={alt} className={`${className} object-contain p-[6%] `} />;
 }
 
+const ANGULAR_DOTNET_LOGO = "/images/courses/angular-dotnet.png";
+const SNOWFLAKE_LOGO = "/images/courses/snowflake.png";
+
 const courses = [
   {
     id: "AI",
@@ -1032,76 +1035,36 @@ const professionalSkills = [
     ),
   },
   {
-    name: "Full Stack Angular + .NET Developer Program",
+    name: "Full Stack Angular + .NET",
     href: "/training/professional-training/angular-web-development",
     svgIcon: (
-      <svg
-        viewBox="0 0 250 250"
-        className="w-full h-full"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill="#DD0031"
-          d="M125 30L31.9 63.2l14.2 123.1L125 230l78.9-43.7 14.2-123.1z"
-        />
-        <path
-          fill="#C3002F"
-          d="M125 30v22.2-.1V230l78.9-43.7 14.2-123.1L125 30z"
-        />
-        <path
-          fill="#fff"
-          d="M125 52.1L66.8 182.6h21.7l11.7-29.2h49.4l11.7 29.2H183L125 52.1zm17 83.3h-34l17-40.9 17 40.9z"
-        />
-      </svg>
+      <LocalSkillIcon
+        src={ANGULAR_DOTNET_LOGO}
+        alt="Angular and .NET logo"
+        className="h-full w-full scale-[1.35] !p-0"
+      />
     ),
   },
   {
     name: "AWS Data Engineering",
     href: "/training/professional-training/aws-data-engineering",
     svgIcon: (
-      <LocalSkillIcon src="/images/courses/aws-devops.png" alt="AWS logo" />
+      <LocalSkillIcon
+        src="/images/courses/aws-devops.png"
+        alt="AWS logo"
+        className="h-full w-full scale-[1.55] !p-0"
+      />
     ),
   },
   {
     name: "Snowflake Data Engineering",
     href: "/training/professional-training/snowflake-data-engineering",
     svgIcon: (
-      <svg
-        viewBox="0 0 128 128"
-        className="w-full h-full"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="128" height="128" rx="10" fill="#29B5E8" />
-        <rect x="60" y="8" width="8" height="112" rx="4" fill="white" />
-        <rect x="8" y="60" width="112" height="8" rx="4" fill="white" />
-        <rect
-          x="60"
-          y="60"
-          width="8"
-          height="56"
-          rx="4"
-          fill="white"
-          transform="rotate(45 64 64)"
-        />
-        <rect
-          x="60"
-          y="60"
-          width="8"
-          height="56"
-          rx="4"
-          fill="white"
-          transform="rotate(-45 64 64)"
-        />
-        <rect x="46" y="26" width="16" height="7" rx="3" fill="white" />
-        <rect x="66" y="26" width="16" height="7" rx="3" fill="white" />
-        <rect x="46" y="95" width="16" height="7" rx="3" fill="white" />
-        <rect x="66" y="95" width="16" height="7" rx="3" fill="white" />
-        <rect x="26" y="46" width="7" height="16" rx="3" fill="white" />
-        <rect x="26" y="66" width="7" height="16" rx="3" fill="white" />
-        <rect x="95" y="46" width="7" height="16" rx="3" fill="white" />
-        <rect x="95" y="66" width="7" height="16" rx="3" fill="white" />
-        <circle cx="64" cy="64" r="9" fill="white" />
-      </svg>
+      <LocalSkillIcon
+        src={SNOWFLAKE_LOGO}
+        alt="Snowflake logo"
+        className="h-full w-full scale-[1.6] !p-0"
+      />
     ),
   },
   {
@@ -1268,7 +1231,11 @@ function SkillsSwitcher() {
   }`}
 >
   {/* Outer fixed size (BIG ICON SIZE) */}
-  <div className="flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20">
+  <div
+    className={`flex items-center justify-center ${
+      skill.wideIcon ? "h-20 w-40 sm:h-24 sm:w-56" : "h-16 w-16 sm:h-20 sm:w-20"
+    }`}
+  >
 
     {/* Full-size normalization box */}
     <div

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AiDevelopBanner from "../../components/AiDevelopBanner";
-import { SiReact, SiNextdotjs, SiAngular, SiSnowflake } from "react-icons/si";
+import { SiReact, SiNextdotjs } from "react-icons/si";
 import { FaAws, FaJava } from "react-icons/fa6";
 import {
   FiArrowRight,
@@ -17,6 +17,10 @@ import {
 } from "react-icons/fi";
 import { HiSparkles as FiSparkles } from "react-icons/hi";
 import { RiRobot2Line } from "react-icons/ri"
+
+const ANGULAR_DOTNET_LOGO = "/images/courses/angular-dotnet.png";
+const SNOWFLAKE_LOGO = "/images/courses/snowflake.png";
+
 // -------------------- HERO --------------------
 const HERO = {
   title: "Professional Training",
@@ -47,10 +51,25 @@ const HERO_TECH_REGISTRY = [
   { key: "Java", name: "Java", Icon: FaJava, color: "text-red-500" },
   { key: "react", name: "React", Icon: SiReact, color: "text-cyan-500" },
   { key: "next", name: "Next.js", Icon: SiNextdotjs, color: "text-slate-900" },
-  { key: "angular", name: "Angular", Icon: SiAngular, color: "text-red-500" },
+  {
+    key: "angularDotnet",
+    name: "Angular + .NET",
+    Icon: null,
+    img: ANGULAR_DOTNET_LOGO,
+    aspectRatio: 1,
+    markSize: 74,
+    scale: "scale-[1.25]",
+  },
 
   { key: "aws", name: "AWS", Icon: FaAws, color: "text-amber-400" },
-  { key: "snowflake", name: "Snowflake", Icon: SiSnowflake, color: "text-sky-500" },
+  {
+    key: "snowflake",
+    name: "Snowflake",
+    Icon: null,
+    img: SNOWFLAKE_LOGO,
+    aspectRatio: 300 / 168,
+    markSize: 62,
+  },
 
   { key: "azure", name: "Azure", Icon: null, img: "/images/courses/microsoftAzure.png" },
   { key: "gcp", name: "Google Cloud", Icon: null, img: "/images/courses/google-cloud.png" },
@@ -306,7 +325,17 @@ function HeroMark({ techKey, size = 64 }) {
   }
 
   if (t.img) {
-    return <Image src={t.img} alt={t.name} width={size} height={size} className="object-contain" />;
+    const imageWidth = Math.round(size * (t.aspectRatio || 1));
+    return (
+      <Image
+        src={t.img}
+        alt={t.name}
+        width={imageWidth}
+        height={size}
+        className={`object-contain ${t.scale || ""}`}
+        style={{ width: imageWidth, height: "auto" }}
+      />
+    );
   }
 
   return (
@@ -357,9 +386,9 @@ const STACK_COURSES = [
   },
   {
     courseKey: "angular-web-development",
-    title: "Full Stack Angular + .NET Developer Program",
+    title: "Full Stack Angular + .NET",
     description: "Angular + .NET 8 + C# + Web API + SQL Server",
-    heroTech: "angular",
+    heroTech: "angularDotnet",
     tag: "Full Stack",
 
     premium: true,
@@ -485,6 +514,8 @@ function CourseCard({
 }) {
   const finalHref = safeHref(href);
   const includedItems = resolveAiTools(aiToolKeys);
+  const heroTechItem = HERO_TECH_MAP[heroTech];
+  const heroMarkSize = heroTechItem?.markSize || (heroTechItem?.wide ? 96 : 74);
 
   return (
 <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-indigo-200 bg-white shadow-sm ring-1 ring-indigo-100 transition duration-200 hover:-translate-y-1 hover:shadow-xl">
@@ -517,8 +548,12 @@ function CourseCard({
     </div>
 
     {/* center icon */}
-    <div className="relative mt-4 flex h-28 w-28 items-center justify-center rounded-3xl border border-indigo-200 bg-white shadow-sm ring-1 ring-white">
-      <HeroMark techKey={heroTech} size={74} />
+    <div
+      className={`relative mt-4 flex ${
+        heroTechItem?.wide ? "h-32 w-60" : "h-28 w-28"
+      } items-center justify-center rounded-3xl border border-indigo-200 bg-white shadow-sm ring-1 ring-white`}
+    >
+      <HeroMark techKey={heroTech} size={heroMarkSize} />
     </div>
   </div>
 
