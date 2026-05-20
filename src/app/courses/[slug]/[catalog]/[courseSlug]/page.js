@@ -149,8 +149,21 @@ function getIconData(name) {
   return { Component, color }
 }
 
+const PROFESSIONAL_COURSE_REDIRECTS = {
+  "/courses/professionalCourses/backend/core-java":
+    "/training/professional-training/java-full-stack-development",
+  "/courses/professionalCourses/dataEngineering/aws-s3":
+    "/training/professional-training/aws-data-engineering",
+  "/courses/professionalCourses/dataEngineering/snowflake-data-platform-course":
+    "/training/professional-training/snowflake-data-engineering",
+  "/courses/professionalCourses/dataEngineering/azure-adls-gen2":
+    "/training/professional-training/azure-data-engineering",
+  "/courses/professionalCourses/dataEngineering/gcp-gcs":
+    "/training/professional-training/gcp-data-engineering",
+}
+
 export default function CourseDetailPage() {
-  const { catalog, courseSlug  } = useParams()
+  const { slug, catalog, courseSlug  } = useParams()
   const router = useRouter()
   const [course, setCourse] = useState(null)
 
@@ -159,6 +172,13 @@ export default function CourseDetailPage() {
 
     ;(async () => {
       try {
+        const legacyHref = `/courses/${slug}/${catalog}/${courseSlug}`
+        const redirectedHref = PROFESSIONAL_COURSE_REDIRECTS[legacyHref]
+        if (redirectedHref) {
+          router.replace(redirectedHref)
+          return
+        }
+
         // ✅ your JSON path: public/courses/professionalCourses/<catalog>.json
         const res = await fetch(`/courses/professionalCourses/${catalog}.json`, {
           cache: "no-store",
@@ -182,7 +202,7 @@ export default function CourseDetailPage() {
     return () => {
       cancelled = true
     }
-  }, [catalog, courseSlug , router])
+  }, [slug, catalog, courseSlug , router])
 
   const { Component: CourseIcon, color: iconColor } = useMemo(
     () => getIconData(course?.icon),

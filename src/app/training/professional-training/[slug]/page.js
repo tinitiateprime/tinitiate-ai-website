@@ -1007,6 +1007,7 @@ import {
   SiCss3,
   SiJavascript,
   SiTypescript,
+  SiDotnet,
   SiMysql,
   SiPostgresql,
   SiMongodb,
@@ -1039,7 +1040,6 @@ import { BiSolidFileJson } from "react-icons/bi";
 import { BsFiletypeXml } from "react-icons/bs";
 import {
   FiArrowRight,
-  FiPhone,
   FiCpu,
   FiDatabase,
   FiLayers,
@@ -1054,8 +1054,6 @@ import {
 
 import { SiDatabricks } from "react-icons/si";
 import { DiMsqlServer } from "react-icons/di";
-
-const BASE = "/training/professional-training";
 
 export const dynamic = "force-static";
 export const revalidate = 86400; // 24h
@@ -1114,6 +1112,8 @@ const STACK_TECH = {
 
   // Backend (Web)
   node: { name: "Node.js", Icon: SiNodedotjs, color: "text-green-700", path: "/courses/professionalCourses/backend/nodejs-course" },
+  csharp: { name: "C#", Icon: SiDotnet, color: "text-violet-700", path: "/courses/dotnet-beginner-course" },
+  dotnet: { name: ".NET", Icon: SiDotnet, color: "text-violet-700" },
 
   // Backend (Java Full Stack)
   java: { name: "Java", Icon: FaJava, color: "text-red-600", path: "/courses/professionalCourses/backend/core-java" },
@@ -1272,14 +1272,15 @@ function TechChip({ techKey }) {
   const t = STACK_TECH[key];
 
   const content = (
-    <div className="flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-3 py-2 shadow-sm">
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-gray-50">
+    <div className="group/tech flex h-full min-h-16 items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-3 shadow-sm transition hover:border-indigo-200 hover:bg-indigo-50/40 hover:shadow-md">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 transition group-hover/tech:border-indigo-100 group-hover/tech:bg-white">
         <StackMark techKey={techKey} size={26} />
       </div>
       <div className="min-w-0">
-        <div className="truncate text-[12px] font-semibold text-gray-900">
+        <div className="truncate text-sm font-semibold text-gray-900">
           {t?.name || String(techKey)}
         </div>
+        <div className="mt-0.5 text-[11px] font-medium text-slate-500">Covered skill</div>
       </div>
     </div>
   );
@@ -1295,16 +1296,26 @@ function TechStackCard({ stack }) {
 
   return (
     <Card id="tech-stack" title="Tech Stack" subtitle="Tools & technologies covered">
-      <div className="space-y-4">
+      <div className="grid gap-4 md:grid-cols-2">
         {entries.map(([sectionTitle, items]) => (
-          <div key={sectionTitle} className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-            <div className="mb-3 text-[12px] font-semibold text-gray-800">{sectionTitle}</div>
-            <div className="grid gap-2 [grid-template-columns:repeat(auto-fill,minmax(180px,1fr))]">
+          <section key={sectionTitle} className="rounded-3xl border border-slate-200 bg-slate-50/80 p-4">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-indigo-700 shadow-sm ring-1 ring-slate-200">
+                  <FiCpu className="h-4 w-4" />
+                </span>
+                <div>
+                  <div className="text-sm font-extrabold text-slate-900">{sectionTitle}</div>
+                  <div className="text-xs text-slate-500">{Array.isArray(items) ? items.length : 0} tools</div>
+                </div>
+              </div>
+            </div>
+            <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(190px,1fr))]">
               {(Array.isArray(items) ? items : []).map((tech, idx) => (
                 <TechChip key={`${sectionTitle}-${String(tech)}-${idx}`} techKey={tech} />
               ))}
             </div>
-          </div>
+          </section>
         ))}
       </div>
     </Card>
@@ -1387,87 +1398,84 @@ export default async function Page({ params }) {
       </section>
 
       {/* ✅ Engaging tabs below hero */}
-      <nav className="sticky top-0 z-40 border-b border-gray-200 bg-white/ backdrop-blur-md">
+      <nav className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur-md">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex gap-2 overflow-x-auto py-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <SectionTab href="#overview" Icon={FiFileText}>Overview</SectionTab>
+            <SectionTab href="#syllabus" Icon={FiLayers}>Syllabus</SectionTab>
             {hasStack ? <SectionTab href="#tech-stack" Icon={FiCpu}>Tech Stack</SectionTab> : null}
-            {/* <SectionTab href="#syllabus" Icon={FiLayers}>Syllabus</SectionTab>
-            {hasProjects ? <SectionTab href="#projects" Icon={FiCheckCircle}>Projects</SectionTab> : null} */}
+            {hasProjects ? <SectionTab href="#projects" Icon={FiCheckCircle}>Projects</SectionTab> : null}
           </div>
         </div>
       </nav>
 
       {/* BODY */}
-      <section className="bg-gray-50">
+      <section className="bg-slate-50">
         <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_.8fr]">
+          <div className="space-y-8">
             {/* LEFT */}
             <div className="space-y-8">
+              <div className="grid gap-3 md:grid-cols-3">
+                <CourseSignal Icon={FiActivity} label="Duration" value={course.duration || "Flexible"} />
+                <CourseSignal Icon={FiLayers} label="Level" value={course.level || "Professional"} />
+                <CourseSignal Icon={FiCpu} label="Mode" value={course.mode || "Mentor-led"} />
+              </div>
+
               <Card id="overview" title="Overview" subtitle="About this program">
-                <p className="text-sm leading-relaxed text-gray-700 sm:text-base">
-                  {course.overview || "Syllabus will be updated soon."}
-                </p>
-
-                {course.prerequisites?.length ? (
-                  <div className="mt-6">
-                    <h3 className="text-sm font-extrabold text-gray-900">Prerequisites</h3>
-                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                      {course.prerequisites.map((p) => (
-                        <ListChip key={p}>{p}</ListChip>
-                      ))}
+                <div className="grid gap-5">
+                  <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-sky-50 p-5">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-indigo-700 shadow-sm ring-1 ring-indigo-100">
+                      <FiFileText className="h-4 w-4" />
+                      Program snapshot
                     </div>
+                    <p className="mt-4 text-base leading-8 text-slate-700">
+                      {course.overview || "Syllabus will be updated soon."}
+                    </p>
                   </div>
-                ) : null}
 
-                {course.outcomes?.length ? (
-                  <div className="mt-6">
-                    <h3 className="text-sm font-extrabold text-gray-900">
-                      What you’ll be able to do
-                    </h3>
-                    <ul className="mt-3 space-y-2">
-                      {course.outcomes.map((o) => (
-                        <li key={o} className="flex gap-2 text-sm text-gray-700">
-                          <FiCheckCircle className="mt-0.5 h-4 w-4 text-emerald-600" />
-                          <span>{o}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="grid gap-4 lg:grid-cols-2">
+                    {course.prerequisites?.length ? (
+                      <OverviewList title="Prerequisites" items={course.prerequisites} tone="indigo" />
+                    ) : null}
+
+                    {course.outcomes?.length ? (
+                      <OverviewList title="What you will be able to do" items={course.outcomes} tone="emerald" />
+                    ) : null}
                   </div>
-                ) : null}
+                </div>
               </Card>
 
               {/* ✅ Syllabus section so tab works */}
-              {/* <Card id="syllabus" title="Syllabus" subtitle="Module-by-module breakdown">
+              <Card id="syllabus" title="Syllabus" subtitle="Module-by-module breakdown">
                 {hasModules ? (
-                  <div className="space-y-3">
+                  <div className="grid gap-4">
                     {course.modules.map((m) => (
                       <details
                         key={`${m.module}-${m.title}`}
-                        className="group rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5"
+                        className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition open:border-indigo-200 open:shadow-md"
                       >
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
+                        <summary className="grid cursor-pointer list-none items-center gap-4 p-5 sm:grid-cols-[1fr_auto]">
                           <div className="min-w-0">
-                            <div className="flex items-center gap-2">
-                              <span className="inline-flex rounded-full bg-indigo-50 px-3 py-1 text-xs font-extrabold text-indigo-700">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="inline-flex rounded-full bg-indigo-50 px-3 py-1 text-xs font-extrabold text-indigo-700 ring-1 ring-indigo-100">
                                 {m.module}
                               </span>
-                              <span className="truncate text-sm font-extrabold text-gray-900">
+                              <span className="text-sm font-extrabold text-gray-900">
                                 {m.title}
                               </span>
                             </div>
                             <div className="mt-1 text-xs text-gray-500">
                               {m.topics?.length || 0} topics
-                              {m.labs?.length ? ` • ${m.labs.length} labs` : ""}
+                              {m.labs?.length ? ` - ${m.labs.length} labs` : ""}
                             </div>
                           </div>
 
-                          <span className="shrink-0 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 group-open:bg-gray-200">
-                            View
+                          <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:bg-indigo-50 group-open:text-indigo-700">
+                            Open module
                           </span>
                         </summary>
 
-                        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                        <div className="grid gap-4 border-t border-slate-100 bg-slate-50/60 p-5 sm:grid-cols-2">
                           <SoftBox title="Topics">
                             <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-gray-700">
                               {(m.topics || []).map((t) => (
@@ -1492,28 +1500,33 @@ export default async function Page({ params }) {
                 ) : (
                   <p className="text-sm text-gray-700">Syllabus coming soon.</p>
                 )}
-              </Card> */}
+              </Card>
 
               {/* ✅ Tech Stack */}
               {hasStack ? <TechStackCard stack={course.stack} /> : null}
 
               {/* ✅ Projects */}
-              {/* {hasProjects ? (
+              {hasProjects ? (
                 <Card id="projects" title="Projects" subtitle="Portfolio-ready work">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {course.projects.map((p) => (
+                  <div className="grid gap-4 lg:grid-cols-2">
+                    {course.projects.map((p, index) => (
                       <div
                         key={p.title}
-                        className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5"
+                        className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-indigo-200 hover:shadow-md"
                       >
-                        <div className="text-sm font-extrabold text-gray-900">{p.title}</div>
+                        <div className="mb-4 flex items-start gap-3">
+                          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-sm font-extrabold text-indigo-700 ring-1 ring-indigo-100">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <div className="text-sm font-extrabold leading-6 text-gray-900">{p.title}</div>
+                        </div>
                         {p.description ? (
                           <p className="mt-2 text-sm text-gray-700">{p.description}</p>
                         ) : null}
 
                         {p.deliverables?.length ? (
                           <>
-                            <div className="mt-4 text-xs font-extrabold text-gray-700">
+                            <div className="mt-5 text-xs font-extrabold uppercase tracking-[0.14em] text-gray-500">
                               Deliverables
                             </div>
                             <ul className="mt-2 space-y-2">
@@ -1530,39 +1543,29 @@ export default async function Page({ params }) {
                     ))}
                   </div>
 
+                  {course.capstone ? (
+                    <div className="mt-5 rounded-3xl border border-indigo-100 bg-slate-950 p-5 text-white shadow-sm">
+                      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                        <div>
+                          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-200">
+                            Capstone
+                          </div>
+                          <h3 className="mt-2 text-lg font-extrabold">{course.capstone.title}</h3>
+                          {course.capstone.description ? (
+                            <p className="mt-2 max-w-4xl text-sm leading-7 text-slate-300">
+                              {course.capstone.description}
+                            </p>
+                          ) : null}
+                        </div>
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
+                          <FiCheckCircle className="h-5 w-5 text-emerald-300" />
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
                 </Card>
-              ) : null} */}
+              ) : null}
             </div>
-
-            {/* RIGHT */}
-            <aside className="lg:sticky lg:top-20 lg:self-start">
-              <div className="rounded-3xl bg-white p-6 shadow-lg ring-1 ring-black/5">
-                <div className="text-xs font-semibold text-gray-500">Next step</div>
-                <div className="mt-2 text-lg font-extrabold text-gray-900">
-                  Want a personalized study plan?
-                </div>
-                <p className="mt-2 text-sm text-gray-700">
-                  Tell us your goal—career switch, upskilling, or interview prep—and we’ll map the best track.
-                </p>
-
-                <div className="mt-5 grid gap-3">
-                  <Link
-                    href="/request-callback"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
-                  >
-                    Request a Callback
-                    <FiArrowRight className="h-4 w-4" />
-                  </Link>
-
-                  <Link
-                    href={BASE}
-                    className="inline-flex items-center justify-center rounded-full bg-gray-100 px-5 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-200"
-                  >
-                    Explore other courses
-                  </Link>
-                </div>
-              </div>
-            </aside>
           </div>
         </div>
       </section>
@@ -1572,15 +1575,44 @@ export default async function Page({ params }) {
 
 /* -------------------- UI Bits -------------------- */
 
-function Pill({ children, tone = "muted" }) {
-  const cls =
-    tone === "primary"
-      ? "bg-indigo-500/15 text-indigo-200 ring-1 ring-indigo-400/25"
-      : "bg-white/10 text-white/80 ring-1 ring-white/10";
+function CourseSignal({ Icon, label, value }) {
+  const I = Icon;
   return (
-    <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${cls}`}>
-      {children}
-    </span>
+    <div className="flex min-h-24 items-center gap-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100">
+        <I className="h-5 w-5" />
+      </div>
+      <div className="min-w-0">
+        <div className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</div>
+        <div className="mt-1 text-sm font-extrabold leading-6 text-slate-950">{value}</div>
+      </div>
+    </div>
+  );
+}
+
+function OverviewList({ title, items, tone = "indigo" }) {
+  const toneClass =
+    tone === "emerald"
+      ? "bg-emerald-50 text-emerald-700 ring-emerald-100"
+      : "bg-indigo-50 text-indigo-700 ring-indigo-100";
+
+  return (
+    <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div className="flex items-center gap-2">
+        <span className={`flex h-9 w-9 items-center justify-center rounded-xl ring-1 ${toneClass}`}>
+          <FiCheckCircle className="h-4 w-4" />
+        </span>
+        <h3 className="text-sm font-extrabold text-slate-950">{title}</h3>
+      </div>
+      <ul className="mt-4 grid gap-2">
+        {items.map((item) => (
+          <li key={item} className="flex gap-2 rounded-2xl bg-slate-50 p-3 text-sm leading-6 text-slate-700 ring-1 ring-slate-100">
+            <FiCheckCircle className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -1621,32 +1653,14 @@ function Card({ id, title, subtitle, children }) {
   );
 }
 
-function ListChip({ children }) {
-  return (
-    <div className="flex items-start gap-2 rounded-2xl bg-gray-50 p-3 ring-1 ring-black/5">
-      <FiCheckCircle className="mt-0.5 h-4 w-4 text-indigo-600" />
-      <span className="text-sm text-gray-700">{children}</span>
-    </div>
-  );
-}
-
 function SoftBox({ title, children }) {
   return (
-    <div className="rounded-2xl bg-gray-50 p-4 ring-1 ring-black/5">
-      <div className="text-xs font-extrabold text-gray-700">{title}</div>
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">
+        <FiFileText className="h-4 w-4 text-indigo-600" />
+        {title}
+      </div>
       {children}
     </div>
-  );
-}
-
-/* (kept) */
-function HeroAnchor({ href, children }) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white/90 hover:bg-white/15 ring-1 ring-white/10"
-    >
-      {children}
-    </a>
   );
 }

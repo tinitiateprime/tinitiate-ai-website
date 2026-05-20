@@ -44,8 +44,8 @@
 //             <h1 className="text-4xl font-extrabold text-blue-600 mb-4">{course.title}</h1>
 //             <p className="text-lg text-gray-700 mb-4">{course.description}</p>
 //             <ul className="space-y-2 text-sm text-gray-600">
-//               <li><strong>📆 Duration:</strong> {course.duration}</li>
-//               <li><strong>📊 Level:</strong> {course.level}</li>
+//               <li><strong>Duration:</strong> {course.duration}</li>
+//               <li><strong>Level:</strong> {course.level}</li>
 //             </ul>
 //             <button className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
 //               Enroll Now
@@ -195,8 +195,8 @@
 //             <h1 className="text-4xl font-extrabold text-blue-600 mb-4">{course.title}</h1>
 //             <p className="text-lg text-gray-700 mb-4">{course.description}</p>
 //             <ul className="space-y-2 text-sm text-gray-600 mb-4">
-//               <li><strong>📆 Duration:</strong> {course.duration}</li>
-//               <li><strong>📊 Level:</strong> {course.level}</li>
+//               <li><strong>Duration:</strong> {course.duration}</li>
+//               <li><strong>Level:</strong> {course.level}</li>
 //             </ul>
 //             {/* <button className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
 //               Enroll Now
@@ -327,7 +327,7 @@ const brandColors = {
   SiNextdotjs: "#000000",
   SiExpress: "#000000",
   SiAmazonaws: "#FF9900",
-  SiMicrosoft: "#0078D4",        // ✅ fixed Azure (no SiMicrosoftazure)
+  SiMicrosoft: "#0078D4",        // fixed Azure (no SiMicrosoftazure)
   SiDocker: "#2496ED",
   SiKubernetes: "#326CE5",
   SiLinux: "#FCC624",
@@ -350,9 +350,9 @@ const brandColors = {
   SiApachekafka: "#231F20",
   SiPowerbi: "#F2C811",
   SiTableau: "#E97627",
-  SiFlask: "#000000",            // ✅ added Flask
-  SiGooglecloud: "#4285F4",      // ✅ added GCP
-  SiFastapi: "#009688",          // ✅ added FastAPI
+  SiFlask: "#000000",            // added Flask
+  SiGooglecloud: "#4285F4",      // added GCP
+  SiFastapi: "#009688",          // added FastAPI
   SiLangchain: "#1C3C3C",   // dark green from LangChain brand
 SiHuggingface: "#FFCC4D", // hugging face yellow
 SiOpenai: "#412991",      // OpenAI purple
@@ -367,7 +367,7 @@ const ICON_ALIASES = {
   "aws": "SiAmazonaws",
   "amazon": "SiAmazonaws",
   "amazon-aws": "SiAmazonaws",
-  "azure": "SiMicrosoft",        // ✅ No SiMicrosoftazure, use SiMicrosoft
+  "azure": "SiMicrosoft",        // No SiMicrosoftazure, use SiMicrosoft
   "microsoft-azure": "SiMicrosoft",
   "gcp": "SiGooglecloud",
   "google-cloud": "SiGooglecloud",
@@ -437,6 +437,78 @@ function getIconData(name) {
   return { Component, color }
 }
 
+const COURSE_FEATURE_SECTIONS = {
+  "artificial-intelligence-beginner-course": {
+    eyebrow: "Program highlights",
+    title: "Build Your AI Stack Layer by Layer",
+    description:
+      "A Voxr-inspired feature grid that turns this beginner course into a clear six-part roadmap, from core AI thinking to portfolio-ready implementation.",
+    cards: [
+      {
+        badge: "Module 01",
+        title: "AI Fundamentals",
+        description:
+          "Start with what AI is, how it evolved, and where intelligent systems create real value across products, automation, and decision-making.",
+        icon: "FiCpu",
+        tint: "#7dd3fc",
+        note: "Concepts + use cases",
+      },
+      {
+        badge: "Module 02",
+        title: "Python + Math Core",
+        description:
+          "Use Python, NumPy, probability, and linear algebra as the practical base for model building instead of learning theory in isolation.",
+        icon: "FiCode",
+        tint: "#fbbf24",
+        note: "Code-first foundation",
+      },
+      {
+        badge: "Module 03",
+        title: "Search and Reasoning",
+        description:
+          "Learn classical AI thinking with search trees, heuristics, constraint solving, and rule-based reasoning that still matter today.",
+        icon: "FiGitBranch",
+        tint: "#38bdf8",
+        note: "Logic + problem solving",
+      },
+      {
+        badge: "Module 04",
+        title: "ML and Neural Networks",
+        description:
+          "Train your first models, understand evaluation, and move into neural network basics with guided deep learning exercises.",
+        icon: "FiActivity",
+        tint: "#60a5fa",
+        note: "Hands-on model work",
+      },
+      {
+        badge: "Module 05",
+        title: "NLP, Vision, and Agents",
+        description:
+          "Explore language models, computer vision, generative AI, and agent-style systems so the course feels current and job-relevant.",
+        icon: "FiMessageSquare",
+        tint: "#34d399",
+        note: "Modern AI workflows",
+      },
+      {
+        badge: "Module 06",
+        title: "Responsible AI Capstone",
+        description:
+          "Wrap with ethics, explainability, deployment basics, and a capstone project that gives you something credible to showcase.",
+        icon: "FiShield",
+        tint: "#f472b6",
+        note: "Portfolio-ready finish",
+      },
+    ],
+  },
+}
+
+const PROFESSIONAL_COURSE_REDIRECTS = {
+  "react-beginner-course": "/training/professional-training/react-web-development",
+  "nextjs-course": "/training/professional-training/nextjs-web-development",
+  "angular-beginner-course": "/training/professional-training/angular-web-development",
+  "powerbi-beginner-course": "/training/professional-training/visualization-course",
+}
+
 export default function CourseDetailPage() {
   const { slug } = useParams()
   const router = useRouter()
@@ -446,6 +518,12 @@ export default function CourseDetailPage() {
     let cancelled = false
     ;(async () => {
       try {
+        const redirectedHref = PROFESSIONAL_COURSE_REDIRECTS[slug]
+        if (redirectedHref) {
+          router.replace(redirectedHref)
+          return
+        }
+
         const res = await fetch("/courses/courses.json", { cache: "no-store" })
         if (!res.ok) throw new Error("Failed to load courses.json")
         const data = await res.json()
@@ -464,6 +542,7 @@ export default function CourseDetailPage() {
     () => getIconData(course?.icon),
     [course?.icon]
   )
+  const featureSection = COURSE_FEATURE_SECTIONS[course?.slug] || null
 
   if (!course) {
     return (
@@ -503,8 +582,8 @@ export default function CourseDetailPage() {
             <h1 className="text-4xl font-extrabold text-blue-600 mb-4">{course.title}</h1>
             <p className="text-lg text-gray-700 mb-4">{course.description}</p>
             <ul className="space-y-2 text-sm text-gray-600 mb-4">
-              <li><strong>📆 Duration:</strong> {course.duration}</li>
-              <li><strong>📊 Level:</strong> {course.level}</li>
+              <li><strong>Duration:</strong> {course.duration}</li>
+              <li><strong>Level:</strong> {course.level}</li>
             </ul>
 
             <Link
@@ -516,6 +595,67 @@ export default function CourseDetailPage() {
           </div>
         </div>
       </section>
+
+      {featureSection && (
+        <section className="bg-[#08050f] px-6 py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(244,114,182,0.16),transparent_28%),linear-gradient(180deg,#090611_0%,#0d0817_48%,#090611_100%)] p-8 shadow-[0_32px_90px_rgba(8,5,15,0.45)] sm:p-10 lg:p-12">
+            <div className="max-w-3xl">
+              <span className="inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-sky-100/80 backdrop-blur">
+                {featureSection.eyebrow}
+              </span>
+              <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                {featureSection.title}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">
+                {featureSection.description}
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {featureSection.cards.map((card) => {
+                const { Component: CardIcon, color: fallbackColor } = getIconData(card.icon)
+                const cardIconColor = card.tint || fallbackColor
+
+                return (
+                  <article
+                    key={card.title}
+                    className="group rounded-[1.75rem] bg-[linear-gradient(145deg,rgba(255,255,255,0.44)_0%,rgba(255,255,255,0.08)_38%,rgba(125,211,252,0.18)_72%,rgba(244,114,182,0.28)_100%)] p-px transition duration-300 hover:-translate-y-1"
+                  >
+                    <div className="relative h-full overflow-hidden rounded-[calc(1.75rem-1px)] border border-white/8 bg-[linear-gradient(180deg,rgba(12,10,20,0.96)_0%,rgba(18,16,28,0.9)_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl">
+                      <div className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_70%)] opacity-50" />
+
+                      <div className="relative flex items-start justify-between gap-4">
+                        <span className="inline-flex rounded-full border border-white/12 bg-white/6 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-200/80">
+                          {card.badge}
+                        </span>
+                        {CardIcon && (
+                          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-white/6 shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+                            <CardIcon
+                              className="h-5 w-5"
+                              style={{ color: cardIconColor }}
+                              aria-hidden
+                            />
+                          </div>
+                        )}
+                      </div>
+
+                      <h3 className="relative mt-8 text-xl font-semibold text-white">
+                        {card.title}
+                      </h3>
+                      <p className="relative mt-3 text-sm leading-7 text-slate-300">
+                        {card.description}
+                      </p>
+                      <p className="relative mt-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-sky-100/70">
+                        {card.note}
+                      </p>
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Course Structure */}
       {course.courseStructure && (

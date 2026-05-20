@@ -928,7 +928,7 @@ const professionalSkills = [
   },
   {
     name: "Java Full Stack",
-    href: "/courses/professionalCourses/backend/core-java",
+    href: "/training/professional-training/java-full-stack-development",
     svgIcon: (
       <svg viewBox="0 0 128 128" className="w-full h-full">
         <path
@@ -952,7 +952,7 @@ const professionalSkills = [
   },
   {
     name: "React Web Development",
-    href: "/courses/react-beginner-course",
+    href: "/training/professional-training/react-web-development",
     svgIcon: (
       <svg viewBox="0 0 128 128" className="w-full h-full">
         <circle cx="64" cy="64" r="11.4" fill="#61DAFB" />
@@ -978,7 +978,7 @@ const professionalSkills = [
   },
   {
     name: "Next.js",
-    href: "/courses/nextjs-course",
+    href: "/training/professional-training/nextjs-web-development",
     svgIcon: (
       <svg
         viewBox="0 0 180 180"
@@ -1032,8 +1032,8 @@ const professionalSkills = [
     ),
   },
   {
-    name: "Angular",
-    href: "/courses/angular-beginner-course",
+    name: "Full Stack Angular + .NET Developer Program",
+    href: "/training/professional-training/angular-web-development",
     svgIcon: (
       <svg
         viewBox="0 0 250 250"
@@ -1057,14 +1057,14 @@ const professionalSkills = [
   },
   {
     name: "AWS Data Engineering",
-    href: "/courses/professionalCourses/dataEngineering/aws-s3",
+    href: "/training/professional-training/aws-data-engineering",
     svgIcon: (
       <LocalSkillIcon src="/images/courses/aws-devops.png" alt="AWS logo" />
     ),
   },
   {
     name: "Snowflake Data Engineering",
-    href: "/courses/professionalCourses/dataEngineering/snowflake-data-platform-course",
+    href: "/training/professional-training/snowflake-data-engineering",
     svgIcon: (
       <svg
         viewBox="0 0 128 128"
@@ -1106,7 +1106,7 @@ const professionalSkills = [
   },
   {
     name: "Azure Data Engineering",
-    href: "/courses/professionalCourses/dataEngineering/azure-adls-gen2",
+    href: "/training/professional-training/azure-data-engineering",
     svgIcon: (
       <svg
         viewBox="0 0 96 96"
@@ -1156,7 +1156,7 @@ const professionalSkills = [
   },
   {
     name: "GCP Data Engineering",
-    href: "/courses/professionalCourses/dataEngineering/gcp-gcs",
+    href: "/training/professional-training/gcp-data-engineering",
     svgIcon: (
       <LocalSkillIcon
         src="/images/courses/google-cloud.png"
@@ -1166,7 +1166,7 @@ const professionalSkills = [
   },
   {
     name: "Power BI",
-    href: "/courses/powerbi-beginner-course",
+    href: "/training/professional-training/visualization-course",
     svgIcon: (
       <LocalSkillIcon src="/images/courses/powerbi.png" alt="Power BI logo" />
     ),

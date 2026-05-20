@@ -83,6 +83,14 @@ html:is(.dark, [data-theme="dark"]) [class*="bg-gray-50/"] {
   background-color: rgba(7, 17, 38, 0.92) !important;
 }
 
+html:is(.dark, [data-theme="dark"]) [class~="bg-slate-50"] {
+  background-color: var(--surface) !important;
+}
+
+html:is(.dark, [data-theme="dark"]) [class*="bg-slate-50/"] {
+  background-color: rgba(7, 17, 38, 0.9) !important;
+}
+
 html:is(.dark, [data-theme="dark"]) [class~="bg-gray-100"] {
   background-color: var(--surface-muted) !important;
 }
@@ -91,7 +99,19 @@ html:is(.dark, [data-theme="dark"]) [class*="bg-gray-100/"] {
   background-color: rgba(22, 32, 51, 0.95) !important;
 }
 
+html:is(.dark, [data-theme="dark"]) [class~="bg-slate-100"] {
+  background-color: var(--surface-muted) !important;
+}
+
+html:is(.dark, [data-theme="dark"]) [class*="bg-slate-100/"] {
+  background-color: rgba(22, 32, 51, 0.94) !important;
+}
+
 html:is(.dark, [data-theme="dark"]) [class~="bg-gray-200"] {
+  background-color: var(--surface-strong) !important;
+}
+
+html:is(.dark, [data-theme="dark"]) [class~="bg-slate-200"] {
   background-color: var(--surface-strong) !important;
 }
 
@@ -214,6 +234,9 @@ html:is(.dark, [data-theme="dark"]) [class~="text-amber-700"] {
 html:is(.dark, [data-theme="dark"]) [class~="border-gray-100"],
 html:is(.dark, [data-theme="dark"]) [class~="border-gray-200"],
 html:is(.dark, [data-theme="dark"]) [class~="border-gray-300"],
+html:is(.dark, [data-theme="dark"]) [class~="border-slate-100"],
+html:is(.dark, [data-theme="dark"]) [class~="border-slate-200"],
+html:is(.dark, [data-theme="dark"]) [class~="border-slate-300"],
 html:is(.dark, [data-theme="dark"]) [class*="border-blue-100"],
 html:is(.dark, [data-theme="dark"]) [class*="border-blue-200"],
 html:is(.dark, [data-theme="dark"]) [class*="border-sky-200"],
@@ -230,8 +253,15 @@ html:is(.dark, [data-theme="dark"]) [class*="ring-black/5"] {
   --tw-ring-color: rgba(148, 163, 184, 0.16) !important;
 }
 
+html:is(.dark, [data-theme="dark"]) [class*="ring-slate-100"],
+html:is(.dark, [data-theme="dark"]) [class*="ring-slate-200"] {
+  --tw-ring-color: rgba(148, 163, 184, 0.16) !important;
+}
+
 html:is(.dark, [data-theme="dark"]) .hover\:bg-gray-50:hover,
 html:is(.dark, [data-theme="dark"]) .hover\:bg-gray-100:hover,
+html:is(.dark, [data-theme="dark"]) .hover\:bg-slate-50:hover,
+html:is(.dark, [data-theme="dark"]) .hover\:bg-slate-100:hover,
 html:is(.dark, [data-theme="dark"]) .hover\:bg-white:hover {
   background-color: var(--surface-muted) !important;
 }

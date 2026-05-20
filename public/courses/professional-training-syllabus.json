@@ -460,121 +460,604 @@
     {
       "key": "angular-web-development",
       "category": "Web Development",
-      "title": "Angular Web Development",
-      "subtitle": "Angular + TypeScript + API + Deployment",
-      "level": "Beginner → Intermediate",
+      "title": "Full Stack Angular + .NET Developer Program",
+      "subtitle": "Angular 17 + .NET 8 + C# 12 + ASP.NET Core Web API + SQL Server",
+      "level": "Beginner to Intermediate",
       "mode": "Online (Mentor-led)",
-      "duration": "6–8 weeks",
-      "overview": "Learn Angular with strong TypeScript foundations, RxJS patterns, component architecture, forms, routing, services, and deployment.",
+      "duration": "3 months",
+      "overview": "Build a full stack job portal style application with Angular, TypeScript, .NET 8, C#, ASP.NET Core Web API, Entity Framework Core, SQL Server, JWT authentication, SignalR, testing, and deployment. This program combines Angular frontend development, .NET backend/API development, and end-to-end API integration into one job-ready course.",
       "prerequisites": [
         "Basic HTML/CSS",
-        "Basic JavaScript fundamentals"
+        "Basic JavaScript fundamentals",
+        "Willingness to practice regularly"
       ],
       "outcomes": [
-        "Build Angular apps using components, services, and modules",
-        "Use RxJS effectively for async UI",
-        "Build secure routing and form-heavy apps",
-        "Deploy Angular apps confidently"
+        "Build Angular applications with components, routing, forms, services, RxJS, and Angular Material",
+        "Develop ASP.NET Core Web APIs using C#, Entity Framework Core, SQL Server, middleware, caching, and clean architecture patterns",
+        "Implement JWT authentication, authorization, file uploads, validation, and real-time SignalR features across the stack",
+        "Integrate Angular with .NET APIs using HttpClient, interceptors, typed models, error handling, search, filters, and pagination",
+        "Test, dockerize, deploy, and present a complete full stack application with CI/CD basics"
       ],
       "stack": {
-  "Frontend": ["html", "css", "js", "ts", "react", "next", "bootstrap"],
-  "Backend": ["node"],
-  "Database": ["postgres", "sqlserver", "mongo"],
-  "Cloud / Hosting": ["amplify", "netlify", "vercel"],
-  "CI/CD": ["git", "docker", "gha", "gitlab", "azuredevops", "bitbucket", "jenkins"]
-},
-
+        "Frontend": [
+          "html",
+          "css",
+          "js",
+          "ts",
+          "angular",
+          "bootstrap"
+        ],
+        "Backend": [
+          "csharp",
+          "dotnet"
+        ],
+        "Database": [
+          "sqlserver",
+          "postgres"
+        ],
+        "Cloud / Hosting": [
+          "vercel",
+          "azure"
+        ],
+        "CI/CD": [
+          "git",
+          "docker",
+          "gha",
+          "azuredevops"
+        ]
+      },
       "modules": [
         {
-          "module": "M1",
-          "title": "TypeScript + Angular Basics",
+          "module": "A1",
+          "title": "Angular: TypeScript fundamentals",
           "topics": [
-            "TS essentials for Angular",
-            "Angular CLI and project structure",
-            "Components, templates, bindings",
-            "Directives and pipes",
-            "Component styling patterns"
+            "TypeScript vs JavaScript",
+            "Types, interfaces, enums",
+            "Classes and inheritance",
+            "Generics",
+            "Decorators",
+            "Modules and namespaces",
+            "Arrow functions, async/await",
+            "tsconfig.json setup"
           ],
           "labs": [
-            "Build UI components library",
-            "Pipe + directive practice"
+            "Lab: Build a TypeScript class library: Create Employee, Department, and Project classes with interfaces and generics"
           ]
         },
         {
-          "module": "M2",
-          "title": "Routing + Services + HTTP",
+          "module": "A2",
+          "title": "Angular: Angular architecture and setup",
           "topics": [
-            "Angular routing",
-            "Guards basics",
-            "Services and dependency injection",
-            "HTTP client + interceptors",
-            "Error handling patterns"
+            "Angular CLI — ng new, ng serve",
+            "Project folder structure",
+            "NgModules — AppModule",
+            "Components overview",
+            "Angular lifecycle hooks",
+            "Standalone components (v17+)",
+            "Angular DevTools",
+            "Dev vs production environments"
           ],
           "labs": [
-            "Multi-page app with guards",
-            "HTTP interceptor for auth header"
+            "Lab: Set up Angular app with routing and feature modules: Create routing module, shared module, and lazy-loaded feature modules"
           ]
         },
         {
-          "module": "M3",
-          "title": "RxJS + Reactive Patterns",
+          "module": "A3",
+          "title": "Angular: Components and templates",
           "topics": [
-            "Observables and subscriptions",
-            "Operators (map, switchMap, debounceTime)",
-            "Async pipes",
-            "State patterns basics",
-            "Performance considerations"
+            "Interpolation {{ }}",
+            "Property binding [ ]",
+            "Event binding ( )",
+            "Two-way binding [(ngModel)]",
+            "*ngIf, *ngFor, *ngSwitch",
+            "Built-in pipes — date, currency",
+            "Custom pipes",
+            "@Input() and @Output()",
+            "ViewChild, ContentChild",
+            "Component communication"
           ],
           "labs": [
-            "Search with debounce + switchMap",
-            "Reactive data streams"
+            "Lab: Reusable job-card component: Build a job-card component with @Input for job data and @Output for apply button click event"
           ]
         },
         {
-          "module": "M4",
-          "title": "Forms + Validation",
+          "module": "A4",
+          "title": "Angular: Services and dependency injection",
           "topics": [
-            "Template-driven vs reactive forms",
-            "FormBuilder and validators",
+            "Creating services with CLI",
+            "providedIn: 'root'",
+            "HttpClientModule setup",
+            "GET, POST, PUT, DELETE",
+            "HTTP headers and params",
+            "Error handling — catchError",
+            "Loading indicators",
+            "Environment API URLs"
+          ],
+          "labs": [
+            "API Lab: Connect to .NET Web API: Create JobService calling GET /api/jobs, POST /api/applications with error handling and loading state"
+          ]
+        },
+        {
+          "module": "A5",
+          "title": "Angular: Routing and navigation",
+          "topics": [
+            "RouterModule setup",
+            "router-outlet",
+            "routerLink, routerLinkActive",
+            "Route parameters",
+            "Child routes",
+            "Lazy loading modules",
+            "AuthGuard — CanActivate",
+            "Route resolvers"
+          ],
+          "labs": [
+            "Lab: Job portal navigation: Routes for home, job-list, job-detail/:id, apply, login, dashboard with AuthGuard protection"
+          ]
+        },
+        {
+          "module": "A6",
+          "title": "Angular: Forms — Template and Reactive",
+          "topics": [
+            "Template-driven forms",
+            "Reactive forms — FormBuilder",
+            "FormGroup, FormControl, FormArray",
+            "Built-in validators",
             "Custom validators",
-            "UX patterns for validation",
-            "Handling large forms"
+            "Cross-field validation",
+            "Dynamic form fields",
+            "File upload with FormData"
           ],
           "labs": [
-            "Large form with dynamic fields",
-            "Custom validators"
+            "Lab: Job application form: Reactive form with name, email, phone, experience, resume upload and cover letter with full validation"
           ]
         },
         {
-          "module": "M5",
-          "title": "Deployment + Production Checklist",
+          "module": "A7",
+          "title": "Angular: RxJS and state management",
           "topics": [
-            "Build and bundle",
-            "Environment configs",
-            "Deploy to hosting",
-            "Basic SEO basics for SPAs",
-            "Release checklist"
+            "Observable vs Promise",
+            "Subject, BehaviorSubject",
+            "map, filter, switchMap",
+            "combineLatest, forkJoin",
+            "debounceTime, distinctUntilChanged",
+            "takeUntil, async pipe",
+            "NgRx store, actions, reducers",
+            "Signals (Angular 17+)"
           ],
           "labs": [
-            "Deploy and verify",
-            "Setup environment configs"
+            "Lab: Live job search with RxJS: Real-time job search using debounceTime + switchMap + HttpClient to call the .NET API"
+          ]
+        },
+        {
+          "module": "A8",
+          "title": "Angular: Authentication and JWT",
+          "topics": [
+            "JWT concept and structure",
+            "Login and register API calls",
+            "Storing token in localStorage",
+            "HTTP interceptor — attach token",
+            "Auth service",
+            "AuthGuard implementation",
+            "Token refresh strategy",
+            "Role-based route access"
+          ],
+          "labs": [
+            "API Lab: Full auth flow with .NET JWT: Connect Angular login to .NET /auth/login, store JWT, attach to all requests via interceptor"
+          ]
+        },
+        {
+          "module": "A9",
+          "title": "Angular: Angular Material and UI",
+          "topics": [
+            "Installing Angular Material",
+            "MatTable with pagination, sort",
+            "MatDialog, MatSnackBar",
+            "MatFormField, MatInput",
+            "MatSidenav, MatToolbar",
+            "Custom theming with SCSS",
+            "CDK — overlay, drag-drop",
+            "Responsive layout"
+          ],
+          "labs": [
+            "Lab: Dashboard with Angular Material: Employer dashboard with MatTable for applicants, MatDialog for details, MatSnackBar for notifications"
+          ]
+        },
+        {
+          "module": "A10",
+          "title": "Angular: Testing, build and deployment",
+          "topics": [
+            "Jasmine and Karma setup",
+            "Unit testing components",
+            "Testing services with HttpClientTestingModule",
+            "Cypress e2e testing",
+            "ng build --prod",
+            "Deploy to Vercel / Netlify",
+            "Environment configurations",
+            "Performance optimization"
+          ],
+          "labs": [
+            "Lab: Production build and deploy: Build Angular app, deploy to Vercel, connect to .NET API on Railway"
+          ]
+        },
+        {
+          "module": "D1",
+          "title": ".NET & C#: C# fundamentals",
+          "topics": [
+            "Variables, data types, operators",
+            "Control flow — if, switch, loops",
+            "Classes, objects, constructors",
+            "Inheritance and polymorphism",
+            "Interfaces and abstract classes",
+            "Generics",
+            "Collections — List, Dictionary",
+            "LINQ — query syntax",
+            "Exception handling",
+            "Records and tuples (.NET 8)"
+          ],
+          "labs": [
+            "Lab: Job portal domain models: Create Job, Company, User, Application C# classes with properties, constructors and LINQ queries"
+          ]
+        },
+        {
+          "module": "D2",
+          "title": ".NET & C#: Async programming",
+          "topics": [
+            "Task and Task<T>",
+            "async and await keywords",
+            "ConfigureAwait",
+            "CancellationToken",
+            "Parallel.ForEach",
+            "IAsyncEnumerable",
+            "ValueTask optimization",
+            "Deadlock prevention"
+          ],
+          "labs": [
+            "Lab: Async job service: Write async methods to fetch jobs, process applications and send emails concurrently"
+          ]
+        },
+        {
+          "module": "D3",
+          "title": ".NET & C#: ASP.NET Core Web API",
+          "topics": [
+            "Program.cs minimal API setup",
+            "Controllers and actions",
+            "Route attributes",
+            "HTTP verbs — GET, POST, PUT, DELETE",
+            "IActionResult, ActionResult<T>",
+            "Model binding and validation",
+            "Middleware pipeline",
+            "CORS configuration",
+            "Swagger / OpenAPI setup",
+            "Global error handling"
+          ],
+          "labs": [
+            "API Lab: Jobs Web API: Build JobsController with GET /api/jobs (with filtering), GET /api/jobs/{id}, POST, PUT, DELETE"
+          ]
+        },
+        {
+          "module": "D4",
+          "title": ".NET & C#: Entity Framework Core",
+          "topics": [
+            "DbContext setup",
+            "Entity classes and annotations",
+            "Code-first migrations",
+            "Relationships — one-to-many",
+            "Fluent API configuration",
+            "LINQ — Where, Include, Select",
+            "Eager vs lazy loading",
+            "Pagination and filtering",
+            "Raw SQL queries",
+            "Transactions"
+          ],
+          "labs": [
+            "Lab: Job portal database with EF Core: Create DbContext with Jobs, Companies, Users, Applications — run migrations on SQL Server"
+          ]
+        },
+        {
+          "module": "D5",
+          "title": ".NET & C#: JWT authentication and authorization",
+          "topics": [
+            "JWT structure — header, payload, signature",
+            "Install JwtBearer package",
+            "Generate JWT token",
+            "Validate JWT token",
+            "[Authorize] attribute",
+            "Role-based authorization",
+            "Custom policies",
+            "Refresh token implementation"
+          ],
+          "labs": [
+            "API Lab: Auth endpoints: Build /api/auth/register, /api/auth/login returning JWT. Protect endpoints with [Authorize(Roles = \"Employer\")]"
+          ]
+        },
+        {
+          "module": "D6",
+          "title": ".NET & C#: Repository and service pattern",
+          "topics": [
+            "Repository pattern",
+            "Generic repository",
+            "Service layer",
+            "Dependency injection",
+            "DTOs and AutoMapper",
+            "Unit of Work pattern",
+            "Separation of concerns",
+            "Clean architecture layers"
+          ],
+          "labs": [
+            "Lab: Refactor to clean architecture: Move to Domain, Application, Infrastructure, API layers with IJobRepository and JobService"
+          ]
+        },
+        {
+          "module": "D7",
+          "title": ".NET & C#: Middleware, filters and logging",
+          "topics": [
+            "Custom middleware",
+            "Exception handling middleware",
+            "Action filters",
+            "Resource filters",
+            "ILogger setup",
+            "Serilog integration",
+            "Structured logging",
+            "Health checks"
+          ],
+          "labs": [
+            "Lab: Request logging middleware: Log every API request with method, path, duration and response code using Serilog"
+          ]
+        },
+        {
+          "module": "D8",
+          "title": ".NET & C#: Caching and performance",
+          "topics": [
+            "IMemoryCache",
+            "IDistributedCache",
+            "Redis with StackExchange.Redis",
+            "Response caching middleware",
+            "Cache expiry strategies",
+            "Output caching (.NET 7+)",
+            "EF Core query optimization",
+            "Async streaming"
+          ],
+          "labs": [
+            "Lab: Cache job listings: Cache GET /api/jobs with 5-minute expiry, invalidate on POST/PUT/DELETE"
+          ]
+        },
+        {
+          "module": "D9",
+          "title": ".NET & C#: File handling and email",
+          "topics": [
+            "IFormFile — single and multiple",
+            "Save to wwwroot",
+            "File type and size validation",
+            "Azure Blob Storage basics",
+            "SmtpClient email sending",
+            "SendGrid integration",
+            "HTML email templates",
+            "Background email with IHostedService"
+          ],
+          "labs": [
+            "Lab: Resume upload and email notification: Accept resume via IFormFile, save it, send confirmation email to applicant via SendGrid"
+          ]
+        },
+        {
+          "module": "D10",
+          "title": ".NET & C#: SignalR — real-time communication",
+          "topics": [
+            "SignalR Hub setup",
+            "Hub methods",
+            "Client groups",
+            "Send to specific user",
+            "Broadcast to all",
+            "Connection lifecycle",
+            "Auth in SignalR",
+            "Scale-out with Redis backplane"
+          ],
+          "labs": [
+            "Lab: Real-time application status: Employer updates status → SignalR notifies candidate browser instantly"
+          ]
+        },
+        {
+          "module": "D11",
+          "title": ".NET & C#: Unit testing and integration testing",
+          "topics": [
+            "xUnit setup",
+            "Arrange, Act, Assert pattern",
+            "Moq — mock dependencies",
+            "Testing services",
+            "InMemory database for tests",
+            "WebApplicationFactory",
+            "Integration tests for API",
+            "Test coverage reports"
+          ],
+          "labs": [
+            "Lab: Test job portal API: Unit test JobService with Moq, integration test JobsController with WebApplicationFactory"
+          ]
+        },
+        {
+          "module": "D12",
+          "title": ".NET & C#: Deployment — Docker and cloud",
+          "topics": [
+            "Dockerfile for .NET app",
+            "docker-compose",
+            "Environment variables in Docker",
+            "Azure App Service deploy",
+            "Deploy to Railway",
+            "GitHub Actions CI/CD",
+            "appsettings per environment",
+            "Secrets management"
+          ],
+          "labs": [
+            "Lab: Deploy .NET API to Railway: Dockerize .NET API, push to GitHub, auto-deploy to Railway via GitHub Actions"
+          ]
+        },
+        {
+          "module": "I1",
+          "title": "API Integration: REST API fundamentals",
+          "topics": [
+            "REST principles and constraints",
+            "HTTP methods — GET, POST, PUT, PATCH, DELETE",
+            "HTTP status codes — 200, 201, 400, 401, 404, 500",
+            "Request and response headers",
+            "JSON payload structure",
+            "API versioning",
+            "Postman — test APIs",
+            "Swagger / OpenAPI docs"
+          ],
+          "labs": [
+            "Lab: Test .NET API with Postman: Test all job portal endpoints — GET jobs, POST login, POST apply — inspect headers, status codes, payloads"
+          ]
+        },
+        {
+          "module": "I2",
+          "title": "API Integration: Angular HttpClient + .NET API",
+          "topics": [
+            "TypeScript interfaces matching C# DTOs",
+            "HttpClient GET with params",
+            "POST with JSON body",
+            "PUT and DELETE",
+            "HttpParams for query strings",
+            "Error handling — 400, 401, 500",
+            "Retry logic with RxJS",
+            "Loading and error states in UI"
+          ],
+          "labs": [
+            "Lab: Job portal Angular services: Create JobService, AuthService, ApplicationService mapping to .NET API endpoints with full error handling"
+          ]
+        },
+        {
+          "module": "I3",
+          "title": "API Integration: JWT auth flow — end to end",
+          "topics": [
+            "Angular login form → POST /auth/login",
+            "Store JWT in localStorage",
+            "HTTP Interceptor — add Bearer token",
+            ".NET validate token middleware",
+            "Handle 401 — redirect to login",
+            "Decode JWT — get user role",
+            "Show/hide UI based on role",
+            "Logout — clear token"
+          ],
+          "labs": [
+            "Lab: Complete auth integration: Angular login → .NET JWT → interceptor attaches token → protected endpoints → role-based UI"
+          ]
+        },
+        {
+          "module": "I4",
+          "title": "API Integration: File uploads and FormData",
+          "topics": [
+            "FormData in Angular",
+            "File input binding",
+            "Upload progress tracking",
+            ".NET IFormFile handling",
+            "Save to wwwroot / cloud storage",
+            "File type and size validation",
+            "Return file URL from API",
+            "Azure Blob / AWS S3 basics"
+          ],
+          "labs": [
+            "Lab: Resume upload integration: Angular file upload with progress bar → .NET IFormFile → save → return URL → store in database"
+          ]
+        },
+        {
+          "module": "I5",
+          "title": "API Integration: Search, filter and pagination",
+          "topics": [
+            "Angular search with debounce",
+            "Build query params dynamically",
+            ".NET filter with LINQ",
+            "Server-side pagination",
+            "PagedResult DTO",
+            "Angular paginator component",
+            "Sort by column",
+            "Total count in response header"
+          ],
+          "labs": [
+            "Lab: Job search and filter: Angular search + filters → .NET LINQ query with pagination → display results with page navigation"
+          ]
+        },
+        {
+          "module": "I6",
+          "title": "API Integration: SignalR — real-time features",
+          "topics": [
+            "SignalR Hub in .NET",
+            "@microsoft/signalr in Angular",
+            "HubConnection setup",
+            "Send and receive messages",
+            "Groups — notify specific user",
+            "Connection lifecycle",
+            "Reconnect on disconnect",
+            "Broadcast to all users"
+          ],
+          "labs": [
+            "Lab: Application status notifications: Employer updates status → SignalR notifies candidate in real-time without page refresh"
+          ]
+        },
+        {
+          "module": "I7",
+          "title": "API Integration: Error handling and validation",
+          "topics": [
+            ".NET ValidationProblemDetails",
+            "FluentValidation",
+            "Angular error interceptor",
+            "Display validation errors in forms",
+            "Toast notifications",
+            "Global error boundary",
+            "Retry on network error",
+            "Offline detection"
+          ],
+          "labs": [
+            "Lab: Full validation across stack: FluentValidation in .NET → error response → Angular displays field errors with toast notifications"
+          ]
+        },
+        {
+          "module": "I8",
+          "title": "API Integration: Full stack deployment",
+          "topics": [
+            "ng build --configuration production",
+            "Deploy Angular to Vercel",
+            "Deploy .NET API to Railway",
+            "Connect Neon PostgreSQL in cloud",
+            "Environment variables on each platform",
+            "CORS setup for production",
+            "GitHub Actions CI/CD pipeline",
+            "Custom domain and SSL"
+          ],
+          "labs": [
+            "Lab: Deploy full stack app: Angular on Vercel + .NET on Railway + Neon DB — push to GitHub triggers auto-deployment"
           ]
         }
       ],
       "projects": [
         {
-          "title": "Project 1: Angular Admin Panel",
-          "description": "CRUD admin panel with routing, guards, and form-heavy UX.",
+          "title": "Project 1: Angular Job Portal Frontend",
+          "description": "Build a responsive Angular frontend with reusable components, routing, forms, Material UI, and API-ready service layers.",
           "deliverables": [
-            "CRUD pages",
-            "Reactive forms",
-            "Deployment"
+            "Angular routes and feature modules",
+            "Reactive job application forms",
+            "Dashboard UI with Angular Material"
+          ]
+        },
+        {
+          "title": "Project 2: .NET Job Portal Web API",
+          "description": "Build an ASP.NET Core Web API with C# domain models, EF Core, SQL Server, JWT auth, clean architecture, logging, and caching.",
+          "deliverables": [
+            "CRUD API endpoints with Swagger/Postman coverage",
+            "EF Core schema and migrations",
+            "JWT protected role-based endpoints"
+          ]
+        },
+        {
+          "title": "Project 3: End-to-End Full Stack Integration",
+          "description": "Connect Angular and .NET into one production-style workflow with auth, file upload, search, pagination, SignalR, and deployment.",
+          "deliverables": [
+            "Angular HttpClient services and interceptors",
+            "Integrated auth, upload, search, and notification flows",
+            "Deployment-ready build with CI/CD outline"
           ]
         }
       ],
       "capstone": {
-        "title": "Capstone: Angular Production App",
-        "description": "A complete Angular application featuring routing, services, RxJS patterns, reactive forms, and production deployment."
+        "title": "Capstone: Full Stack Job Portal",
+        "description": "A complete Angular + .NET application with secure APIs, SQL Server persistence, real-time application status updates, testing, and cloud deployment steps."
       }
     },
 
