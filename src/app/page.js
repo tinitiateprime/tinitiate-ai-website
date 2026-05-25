@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import HomeHeroSlider from "./components/HomeHeroSlider";
+import { getCurrentPageUrl, submitNetlifyForm } from "@/lib/netlifyForms";
 import { useState, useEffect, useRef } from "react";
 import {
   ShoppingCart,
@@ -1478,14 +1479,38 @@ export default function HomePage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = () => {
-    setSubmitted(true);
-    setTimeout(() => {
-      setShowModal(false);
-      setSubmitted(false);
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    }, 2500);
+  const handleSubmit = async (event) => {
+    event?.preventDefault();
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      await submitNetlifyForm("request-callback", {
+        ...formData,
+        "bot-field": "",
+        course: "",
+        preferredTime: "",
+        topicType: "general",
+        source: "home-modal",
+        pageUrl: getCurrentPageUrl(),
+      });
+
+      setSubmitted(true);
+      setSubmitting(false);
+      setTimeout(() => {
+        setShowModal(false);
+        setSubmitted(false);
+        setSubmitError("");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      }, 2500);
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Something went wrong. Please try again.");
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -1537,14 +1562,29 @@ export default function HomePage() {
                     </p>
                   </div>
                 ) : (
-                  <div className="space-y-4">
+                  <form
+                    name="request-callback"
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                  >
+                    <input type="hidden" name="form-name" value="request-callback" readOnly />
+                    <input type="hidden" name="bot-field" />
+                    <input type="hidden" name="course" value="" readOnly />
+                    <input type="hidden" name="preferredTime" value="" readOnly />
+                    <input type="hidden" name="topicType" value="general" readOnly />
+                    <input type="hidden" name="source" value="home-modal" readOnly />
                     <div>
                       <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-300">
                         Full Name
                       </label>
                       <input
+                        name="name"
                         type="text"
                         placeholder="John Doe"
+                        required
                         value={formData.name}
                         onChange={(e) =>
                           setFormData((p) => ({ ...p, name: e.target.value }))
@@ -1557,8 +1597,10 @@ export default function HomePage() {
                         Email Address
                       </label>
                       <input
+                        name="email"
                         type="email"
                         placeholder="john@example.com"
+                        required
                         value={formData.email}
                         onChange={(e) =>
                           setFormData((p) => ({ ...p, email: e.target.value }))
@@ -1571,8 +1613,10 @@ export default function HomePage() {
                         Phone Number
                       </label>
                       <input
+                        name="phone"
                         type="tel"
                         placeholder="+91 98765 43210"
+                        required
                         value={formData.phone}
                         onChange={(e) =>
                           setFormData((p) => ({ ...p, phone: e.target.value }))
@@ -1585,6 +1629,7 @@ export default function HomePage() {
                         Message (Optional)
                       </label>
                       <textarea
+                        name="message"
                         placeholder="Tell us what you're looking for..."
                         value={formData.message}
                         onChange={(e) =>
@@ -1598,15 +1643,21 @@ export default function HomePage() {
                       />
                     </div>
                     <button
-                      onClick={handleSubmit}
-                      className="w-full py-3.5 bg-gradient-to-r from-[#c9a227] to-[#e8bc30] text-[#1a1a00] font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm"
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full py-3.5 bg-gradient-to-r from-[#c9a227] to-[#e8bc30] text-[#1a1a00] font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Request My Call Back →
+                      {submitting ? "Sending..." : "Request My Call Back →"}
                     </button>
+                    {submitError ? (
+                      <p className="text-center text-xs font-medium text-red-600">
+                        {submitError}
+                      </p>
+                    ) : null}
                     <p className="text-center text-xs text-gray-400 dark:text-slate-500">
                       No spam, ever. We respect your privacy.
                     </p>
-                  </div>
+                  </form>
                 )}
               </div>
             </motion.div>

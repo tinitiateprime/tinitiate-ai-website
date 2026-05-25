@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Book, Briefcase, Clock, Mail, MessageSquare, Phone, User } from 'lucide-react'
+import { getCurrentPageUrl, submitNetlifyForm } from '@/lib/netlifyForms'
 
 const INITIAL_FORM = {
   name: '',
@@ -11,6 +12,8 @@ const INITIAL_FORM = {
   preferredTime: '',
   message: '',
 }
+
+const FORM_NAME = 'request-callback'
 
 function buildInitialForm(selectedTopic) {
   return {
@@ -32,20 +35,17 @@ export default function RequestCallbackPage({ course = '', service = '' }) {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  const encode = (data) =>
-    Object.keys(data)
-      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-      .join('&')
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     setStatus('sending')
 
     try {
-      await fetch('/__forms.html', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'request-callback', ...form }),
+      await submitNetlifyForm(FORM_NAME, {
+        ...form,
+        'bot-field': '',
+        topicType: selectedTopicType || 'general',
+        source: 'request-callback-page',
+        pageUrl: getCurrentPageUrl(),
       })
 
       setStatus('success')
@@ -120,13 +120,17 @@ export default function RequestCallbackPage({ course = '', service = '' }) {
 
         <div className="rounded-[1.75rem] border border-gray-200 bg-white p-5 shadow-lg transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950 sm:p-7">
           <form
-            name="request-callback"
+            name={FORM_NAME}
             method="POST"
             data-netlify="true"
+            data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="space-y-4"
           >
-            <input type="hidden" name="form-name" value="request-callback" />
+            <input type="hidden" name="form-name" value={FORM_NAME} readOnly />
+            <input type="hidden" name="bot-field" />
+            <input type="hidden" name="topicType" value={selectedTopicType || 'general'} readOnly />
+            <input type="hidden" name="source" value="request-callback-page" readOnly />
 
             <FormField icon={User}>
               <input
