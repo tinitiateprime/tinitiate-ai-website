@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Book, Briefcase, Clock, Mail, MessageSquare, Phone, User } from 'lucide-react'
-import { getCurrentPageUrl, submitNetlifyForm } from '@/lib/netlifyForms'
+import { submitNetlifyForm } from '@/lib/netlifyForms'
 
 const INITIAL_FORM = {
   name: '',
@@ -40,13 +40,7 @@ export default function RequestCallbackPage({ course = '', service = '' }) {
     setStatus('sending')
 
     try {
-      await submitNetlifyForm(FORM_NAME, {
-        ...form,
-        'bot-field': '',
-        topicType: selectedTopicType || 'general',
-        source: 'request-callback-page',
-        pageUrl: getCurrentPageUrl(),
-      })
+      await submitNetlifyForm(event.currentTarget)
 
       setStatus('success')
       setForm(buildInitialForm(selectedTopic))
@@ -122,15 +116,11 @@ export default function RequestCallbackPage({ course = '', service = '' }) {
           <form
             name={FORM_NAME}
             method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
+            action="/__forms.html"
             onSubmit={handleSubmit}
             className="space-y-4"
           >
             <input type="hidden" name="form-name" value={FORM_NAME} readOnly />
-            <input type="hidden" name="bot-field" />
-            <input type="hidden" name="topicType" value={selectedTopicType || 'general'} readOnly />
-            <input type="hidden" name="source" value="request-callback-page" readOnly />
 
             <FormField icon={User}>
               <input

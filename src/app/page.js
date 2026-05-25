@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import HomeHeroSlider from "./components/HomeHeroSlider";
-import { getCurrentPageUrl, submitNetlifyForm } from "@/lib/netlifyForms";
+import { submitNetlifyForm } from "@/lib/netlifyForms";
 import { useState, useEffect, useRef } from "react";
 import {
   ShoppingCart,
@@ -1488,15 +1488,7 @@ export default function HomePage() {
     setSubmitError("");
 
     try {
-      await submitNetlifyForm("request-callback", {
-        ...formData,
-        "bot-field": "",
-        course: "",
-        preferredTime: "",
-        topicType: "general",
-        source: "home-modal",
-        pageUrl: getCurrentPageUrl(),
-      });
+      await submitNetlifyForm(event.currentTarget);
 
       setSubmitted(true);
       setSubmitting(false);
@@ -1565,17 +1557,13 @@ export default function HomePage() {
                   <form
                     name="request-callback"
                     method="POST"
-                    data-netlify="true"
-                    data-netlify-honeypot="bot-field"
+                    action="/__forms.html"
                     onSubmit={handleSubmit}
                     className="space-y-4"
                   >
                     <input type="hidden" name="form-name" value="request-callback" readOnly />
-                    <input type="hidden" name="bot-field" />
                     <input type="hidden" name="course" value="" readOnly />
                     <input type="hidden" name="preferredTime" value="" readOnly />
-                    <input type="hidden" name="topicType" value="general" readOnly />
-                    <input type="hidden" name="source" value="home-modal" readOnly />
                     <div>
                       <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-slate-300">
                         Full Name

@@ -1,24 +1,7 @@
-const NETLIFY_FORM_ENDPOINT = "/";
+const NETLIFY_FORM_ENDPOINT = "/__forms.html";
 
-export function getCurrentPageUrl() {
-  if (typeof window === "undefined") {
-    return "";
-  }
-
-  return window.location.href;
-}
-
-export async function submitNetlifyForm(formName, fields = {}) {
-  const body = new URLSearchParams();
-  body.append("form-name", formName);
-
-  Object.entries(fields).forEach(([key, value]) => {
-    if (value === undefined || value === null) {
-      return;
-    }
-
-    body.append(key, String(value));
-  });
+export async function submitNetlifyForm(formElement) {
+  const body = new URLSearchParams(new FormData(formElement));
 
   const response = await fetch(NETLIFY_FORM_ENDPOINT, {
     method: "POST",
