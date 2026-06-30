@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
 /* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link";
+import Image from "next/image";
 import HomeHeroSlider from "./components/HomeHeroSlider";
 import { submitNetlifyForm } from "@/lib/netlifyForms";
 import { useState, useEffect, useRef } from "react";
@@ -10,15 +11,12 @@ import {
   ShoppingCart,
   Truck,
   Hospital,
-  Plane,
+  DatabaseZap,
   Factory,
   Banknote,
-  GraduationCap,
-  ShieldCheck,
   FlaskConical,
   Users,
   LineChart,
-  ShoppingBag,
   BookOpen,
   Briefcase,
   Code2,
@@ -28,9 +26,21 @@ import {
   CheckCircle,
   ChevronLeft,
   ChevronRight,
+  Clock,
   ArrowRight,
+  Mail,
+  Phone,
   Sparkles,
   Star,
+  Play,
+  Quote,
+  Send,
+  ShieldCheck,
+  X,
+  RotateCcw,
+  Target,
+  Trophy,
+  User,
 } from "lucide-react";
 import {
   motion,
@@ -39,7 +49,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
-/* ─── Scroll Reveal ──────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Scroll Reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function ScrollReveal({ children }) {
   const ref = useRef(null);
   const themeTimerRef = useRef(null);
@@ -109,36 +119,48 @@ function ScrollReveal({ children }) {
   );
 }
 
-/* ─── Course Slider Icons ─────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Course Slider Icons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function AiCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
   return (
-    <img
+    <Image
       src="/images/courses/ai.png"
       alt="AI logo"
-      className={`${className} object-contain scale-125`}
-      loading="lazy"
+      width={192}
+      height={192}
+      className={`${className} object-contain`}
+      loading="eager"
+      sizes="96px"
+      decoding="async"
     />
   );
 }
 
 function MachineLearningCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
   return (
-    <img
+    <Image
       src="/images/courses/ml.png"
       alt="Machine Learning logo"
-      className={`${className} object-contain scale-125`}
-      loading="lazy"
+      width={192}
+      height={192}
+      className={`${className} object-contain`}
+      loading="eager"
+      sizes="96px"
+      decoding="async"
     />
   );
 }
 
 function AgenticAICourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
   return (
-    <img
+    <Image
       src="/images/courses/agentic-ai.png"
       alt="Agentic AI logo"
-      className={`${className} object-contain scale-160`}
-      loading="lazy"
+      width={192}
+      height={192}
+      className={`${className} object-contain`}
+      loading="eager"
+      sizes="96px"
+      decoding="async"
     />
   );
 }
@@ -211,11 +233,15 @@ function JavaCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
 
 function SqlCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
   return (
-    <img
+    <Image
       src="/images/courses/sql.png"
       alt="SQL logo"
+      width={128}
+      height={128}
       className={`${className} object-contain`}
-      loading="lazy"
+      loading="eager"
+      sizes="96px"
+      decoding="async"
     />
   );
 }
@@ -312,23 +338,38 @@ function AzureCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
 
 function PowerBICourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
   return (
-    <img
+    <Image
       src="/images/courses/powerbi.png"
       alt="Power BI logo"
+      width={128}
+      height={128}
       className={`${className} object-contain`}
-      loading="lazy"
+      loading="eager"
+      sizes="96px"
+      decoding="async"
     />
   );
 }
 
-/* ─── LocalSkillIcon — always fills parent ───────────────────────────────────── */
+/* â”€â”€â”€ LocalSkillIcon â€” always fills parent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function LocalSkillIcon({
   src,
   alt,
   className = "w-full h-full",
   idSuffix = "course",
 }) {
-  return <img src={src} alt={alt} className={`${className} object-contain p-[6%] `} />;
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={128}
+      height={128}
+      className={`${className} object-contain p-[6%] `}
+      loading="eager"
+      sizes="96px"
+      decoding="async"
+    />
+  );
 }
 
 const ANGULAR_DOTNET_LOGO = "/images/courses/angular-dotnet.png";
@@ -537,9 +578,10 @@ const courses = [
   },
 ];
 
-/* ─── Course Slider ──────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Course Slider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function CourseSlider() {
   const [active, setActive] = useState(0);
+  const [slideDirection, setSlideDirection] = useState(1);
   const timerRef = useRef(null);
   const touchStartX = useRef(null);
   const DURATION = 5000;
@@ -547,6 +589,7 @@ function CourseSlider() {
   const startTimer = () => {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
+      setSlideDirection(1);
       setActive((cur) => (cur + 1) % courses.length);
     }, DURATION);
   };
@@ -556,12 +599,13 @@ function CourseSlider() {
     return () => clearInterval(timerRef.current);
   }, []);
 
-  const go = (idx) => {
+  const go = (idx, direction = idx >= active ? 1 : -1) => {
+    setSlideDirection(direction);
     setActive(idx);
     startTimer();
   };
-  const prev = () => go((active - 1 + courses.length) % courses.length);
-  const next = () => go((active + 1) % courses.length);
+  const prev = () => go((active - 1 + courses.length) % courses.length, -1);
+  const next = () => go((active + 1) % courses.length, 1);
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0]?.clientX ?? null;
   };
@@ -580,12 +624,19 @@ function CourseSlider() {
   return (
     <section className="bg-white px-3 py-6 transition-colors duration-300 dark:bg-slate-950 sm:px-4 sm:py-10 md:px-10 md:py-12">
       <div className="max-w-[1400px] mx-auto">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" custom={slideDirection}>
           <motion.div
             key={active}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            custom={slideDirection}
+            initial={(direction) => ({
+              opacity: 0,
+              x: direction > 0 ? 64 : -64,
+            })}
+            animate={{ opacity: 1, x: 0 }}
+            exit={(direction) => ({
+              opacity: 0,
+              x: direction > 0 ? -64 : 64,
+            })}
             transition={{ duration: 0.4, ease: "easeOut" }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -715,7 +766,7 @@ function CourseSlider() {
   );
 }
 
-/* ─── Skills Data ─────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Skills Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const beginnerSkills = [
   {
     name: "Artificial Intelligence",
@@ -724,7 +775,7 @@ const beginnerSkills = [
       <LocalSkillIcon
         src="/images/courses/ai.png"
         alt="Artificial Intelligence logo"
-        className="scale-150"
+        className="h-full w-full !p-0"
       />
     ),
   },
@@ -915,7 +966,7 @@ const professionalSkills = [
       <LocalSkillIcon
         src="/images/courses/ml.png"
         alt="Machine Learning logo"
-        className="scale-150"
+        className="h-full w-full !p-0"
       />
     ),
   },
@@ -926,7 +977,7 @@ const professionalSkills = [
       <LocalSkillIcon
         src="/images/courses/agentic-ai.png"
         alt="Agentic AI logo"
-        className="scale-180"
+        className="h-full w-full !p-0"
       />
     ),
   },
@@ -1137,133 +1188,245 @@ const professionalSkills = [
   },
 ];
 
-/* ─── Skills Switcher ─────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Skills Switcher â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const courseCardDetails = {
+  "Artificial Intelligence": {
+    summary:
+      "Start with AI concepts, prompt practice, practical tools, and simple automations you can use in real work.",
+    points: ["AI foundations", "Prompt workflows", "Mini automation projects"],
+  },
+  Python: {
+    summary:
+      "Build a strong coding base with Python syntax, functions, data handling, APIs, and project logic.",
+    points: ["Python basics", "Data and APIs", "Project-ready practice"],
+  },
+  JavaScript: {
+    summary:
+      "Learn browser fundamentals, DOM control, events, async code, and interactive front-end behavior.",
+    points: ["DOM and events", "Async JavaScript", "UI project tasks"],
+  },
+  TypeScript: {
+    summary:
+      "Write cleaner JavaScript with types, interfaces, tooling, and safer patterns for modern apps.",
+    points: ["Type safety", "Interfaces and tooling", "App patterns"],
+  },
+  Java: {
+    summary:
+      "Master OOP, collections, exceptions, JDBC basics, and practical problem-solving with Java.",
+    points: ["Core Java", "OOP and collections", "Coding practice"],
+  },
+  SQL: {
+    summary:
+      "Query relational data using joins, aggregations, subqueries, reporting logic, and database basics.",
+    points: ["Joins and filters", "Reports and queries", "Database basics"],
+  },
+  "Data Structures": {
+    summary:
+      "Understand arrays, stacks, queues, trees, search, and interview-style logic with clear practice.",
+    points: ["Core structures", "Search and sorting", "Problem solving"],
+  },
+  "Machine Learning": {
+    summary:
+      "Build model pipelines from data preparation to evaluation with practical, deployment-aware exercises.",
+    points: ["Data preparation", "Model training", "Evaluation practice"],
+  },
+  "Agentic AI": {
+    summary:
+      "Design AI assistants with tools, memory, workflow orchestration, and practical safety checks.",
+    points: ["Agent workflows", "Tools and memory", "AI automation"],
+  },
+  "Java Full Stack": {
+    summary:
+      "Create Spring APIs, React screens, authentication, database flows, and production-style projects.",
+    points: ["Spring backend", "React frontend", "Full stack projects"],
+  },
+  "React Web Development": {
+    summary:
+      "Create fast responsive interfaces with components, hooks, APIs, state, and deployment practice.",
+    points: ["React components", "Hooks and APIs", "Responsive UI"],
+  },
+  "Next.js": {
+    summary:
+      "Ship full-stack React apps with routing, server rendering, API routes, and performance patterns.",
+    points: ["App routing", "Server rendering", "Optimization"],
+  },
+  "Full Stack Angular + .NET": {
+    summary:
+      "Deliver enterprise apps using Angular, ASP.NET APIs, SQL, authentication, and clean architecture.",
+    points: ["Angular UI", ".NET APIs", "Enterprise projects"],
+  },
+  "AWS Data Engineering": {
+    summary:
+      "Build cloud data pipelines with storage, compute, orchestration, monitoring, and delivery practice.",
+    points: ["AWS services", "Data pipelines", "Cloud delivery"],
+  },
+  "Snowflake Data Engineering": {
+    summary:
+      "Model, load, transform, and tune analytical workloads on Snowflake for real reporting needs.",
+    points: ["Snowflake SQL", "Data modeling", "Performance tuning"],
+  },
+  "Azure Data Engineering": {
+    summary:
+      "Create Azure data flows with Data Factory, Data Lake, Synapse concepts, and governance basics.",
+    points: ["ADF pipelines", "Data Lake", "Azure analytics"],
+  },
+  "GCP Data Engineering": {
+    summary:
+      "Build data solutions with BigQuery, Cloud Storage, pipelines, and analytics delivery practice.",
+    points: ["BigQuery", "Cloud pipelines", "Analytics practice"],
+  },
+  "Power BI": {
+    summary:
+      "Turn raw data into dashboards, DAX measures, reports, and business-ready insights.",
+    points: ["DAX measures", "Dashboards", "Business insights"],
+  },
+};
+
+const getCourseCardDetails = (name) =>
+  courseCardDetails[name] ?? {
+    summary:
+      "Build practical skills through guided lessons, mentor review, and portfolio-ready exercises.",
+    points: ["Guided learning", "Hands-on tasks", "Project outcomes"],
+  };
+
 function SkillsSwitcher() {
   const [tab, setTab] = useState("beginner");
+  const [tabDirection, setTabDirection] = useState(1);
   const skills = tab === "beginner" ? beginnerSkills : professionalSkills;
-  const showProfessionalBadges = tab === "professional";
-  const gridClassName = showProfessionalBadges
-    ? "grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
-    : "grid grid-cols-2 gap-3 min-[420px]:gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-6";
-  const cardClassName = showProfessionalBadges
-    ? "min-h-[184px] justify-start p-4 sm:min-h-[208px] sm:p-6 xl:min-h-[212px] xl:px-5 xl:py-5"
-    : "min-h-[142px] justify-center p-4 sm:min-h-[168px] sm:p-5";
-  const titleWrapClassName = showProfessionalBadges
-    ? "flex min-h-[2.75rem] items-center justify-center text-center sm:min-h-[3.25rem]"
-    : "mt-auto flex min-h-[2.5rem] items-center justify-center sm:min-h-[3rem]";
-  const titleClassName = showProfessionalBadges
-    ? "text-balance text-[0.95rem] font-semibold leading-tight text-gray-800 group-hover:text-black sm:text-base xl:text-[1.02rem]"
-    : "text-balance text-[0.95rem] font-semibold leading-tight text-gray-800 group-hover:text-black sm:text-[1rem]";
+  const isProfessional = tab === "professional";
+  const gridClassName =
+    "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const savedTab = sessionStorage.getItem("skillsTab");
     if (savedTab !== "beginner" && savedTab !== "professional") return;
     const frame = window.requestAnimationFrame(() => {
+      setTabDirection(savedTab === "professional" ? 1 : -1);
       setTab(savedTab);
     });
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const handleTabChange = (t) => {
+    if (t === tab) return;
+    setTabDirection(t === "professional" ? 1 : -1);
     setTab(t);
     if (typeof window !== "undefined") sessionStorage.setItem("skillsTab", t);
   };
 
   return (
-    <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10">
-      <div className="mx-auto max-w-[1400px]">
-        <div className="overflow-hidden rounded-[2rem] border border-gray-100 bg-white p-5 shadow-xl transition-colors duration-300 sm:p-8 md:p-12">
-          <h2 className="mx-auto mb-3 max-w-3xl text-balance text-center text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
-            Explore Our Courses
+    <section className="bg-[linear-gradient(180deg,#ffffff_0%,#f4f8fc_100%)] px-4 py-12 transition-colors duration-300 dark:bg-[linear-gradient(180deg,#020617_0%,#0f172a_100%)] sm:px-6 sm:py-14 md:px-10">
+      <div className="mx-auto max-w-[1500px]">
+        <div className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/95 p-5 shadow-[0_28px_80px_-60px_rgba(15,23,42,0.55)] transition-colors duration-300 dark:border-slate-700/80 dark:bg-slate-900/90 dark:shadow-[0_30px_90px_-58px_rgba(2,6,23,0.95)] sm:p-8 md:p-10">
+          <h2 className="mx-auto mb-3 max-w-6xl whitespace-nowrap text-center text-[1.7rem] font-extrabold text-[#12345f] sm:text-4xl lg:text-5xl">
+            Explore Our Career-Focused Programs
           </h2>
-          <p className="mx-auto mb-6 max-w-xl text-pretty text-center text-sm leading-relaxed text-gray-500 dark:text-slate-300 sm:text-base">
-            Choose your level and start learning today
+          <div className="mx-auto mb-4 h-1 w-24 rounded-full bg-[#e3b526]" />
+          <p className="mx-auto mb-7 max-w-2xl text-pretty text-center text-sm leading-relaxed text-slate-600 sm:text-base">
+            Choose a course path built around practical skills, guided projects,
+            and mentor-led learning.
           </p>
           <div className="mb-8 flex justify-center">
-            <div className="grid w-full max-w-sm grid-cols-2 gap-2 rounded-[1.5rem] bg-gray-100 p-2">
+            <div className="grid w-full max-w-sm grid-cols-2 gap-2 rounded-[1.35rem] border border-slate-200 bg-slate-100 p-1.5 dark:border-slate-700 dark:bg-slate-950/70">
               {["beginner", "professional"].map((t) => (
                 <button
                   key={t}
                   onClick={() => handleTabChange(t)}
-                  className={`touch-target rounded-full px-4 py-3 text-sm font-semibold capitalize transition-all duration-300 sm:px-8 sm:text-base ${tab === t ? "bg-black text-white shadow-md" : "text-gray-600 dark:text-slate-300 hover:text-black dark:hover:text-white"}`}
+                  className={`touch-target rounded-[1rem] px-4 py-3 text-sm font-bold capitalize transition-all duration-300 sm:px-8 sm:text-base ${
+                    tab === t
+                      ? "bg-[#12345f] text-white shadow-[0_12px_30px_-18px_rgba(18,52,95,0.75)]"
+                      : "text-slate-600 hover:bg-white hover:text-[#12345f]"
+                  }`}
                 >
                   {t}
                 </button>
               ))}
             </div>
           </div>
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" custom={tabDirection}>
             <motion.div
               key={tab}
-              initial={false}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
+              custom={tabDirection}
+              initial={(direction) => ({
+                opacity: 0,
+                x: direction > 0 ? 44 : -44,
+              })}
+              animate={{ opacity: 1, x: 0 }}
+              exit={(direction) => ({
+                opacity: 0,
+                x: direction > 0 ? -44 : 44,
+              })}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className={gridClassName}
             >
-              {skills.map((skill) => (
-                <Link
-                  key={skill.name}
-                  href={skill.href}
-                  className={`group flex flex-col rounded-[1.75rem] border border-gray-200/90 bg-white text-center shadow-[0_20px_45px_-35px_rgba(15,23,42,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-gray-400 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900/80 dark:shadow-[0_24px_50px_-36px_rgba(2,6,23,0.85)] ${cardClassName}`}
-                >
-                  {showProfessionalBadges ? (
-                    <div className="mb-4 flex w-full items-center justify-center gap-1.5 sm:mb-5 sm:gap-2">
-                      <span className="inline-flex w-fit min-w-0 items-center justify-center gap-1 rounded-full border border-indigo-200/85 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(238,242,255,0.94))] px-2 py-1 text-[0.6rem] font-semibold leading-none tracking-[0.01em] text-indigo-700 shadow-[0_8px_20px_-18px_rgba(79,70,229,0.48)] backdrop-blur dark:border-indigo-400/35 dark:bg-[linear-gradient(180deg,rgba(49,46,129,0.95),rgba(30,27,75,0.92))] dark:text-indigo-100 dark:shadow-[0_10px_24px_-18px_rgba(99,102,241,0.65)] sm:px-2 sm:py-1 sm:text-[9.5px] lg:gap-1 lg:px-2 lg:py-1 lg:text-[9.5px]">
-                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-400/15 dark:text-indigo-200 sm:h-4 sm:w-4 lg:h-3.5 lg:w-3.5">
-                          <Sparkles className="h-2.5 w-2.5 sm:h-[10px] sm:w-[10px] lg:h-2.5 lg:w-2.5" />
-                        </span>
-                        <span className="whitespace-nowrap">AI Included</span>
-                      </span>
-                      <span className="inline-flex w-fit min-w-0 items-center justify-center gap-1 rounded-full border border-amber-200/85 bg-[linear-gradient(180deg,rgba(255,251,235,0.98),rgba(254,243,199,0.9))] px-2 py-1 text-[0.6rem] font-semibold leading-none tracking-[0.01em] text-amber-700 shadow-[0_8px_20px_-18px_rgba(217,119,6,0.42)] dark:border-amber-400/35 dark:bg-[linear-gradient(180deg,rgba(120,53,15,0.88),rgba(69,26,3,0.84))] dark:text-amber-200 dark:shadow-[0_10px_24px_-18px_rgba(251,191,36,0.48)] sm:px-2 sm:py-1 sm:text-[9.5px] lg:gap-1 lg:px-2 lg:py-1 lg:text-[9.5px]">
-                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600 dark:bg-amber-400/15 dark:text-amber-200 sm:h-4 sm:w-4 lg:h-3.5 lg:w-3.5">
-                          <Star className="h-2.5 w-2.5 sm:h-[10px] sm:w-[10px] lg:h-2.5 lg:w-2.5" />
-                        </span>
-                        <span className="whitespace-nowrap">Premium</span>
-                      </span>
+              {skills.map((skill) => {
+                const details = getCourseCardDetails(skill.name);
+
+                return (
+                  <Link
+                    key={skill.name}
+                    href={skill.href}
+                    prefetch
+                    className="group relative isolate flex min-h-[365px] flex-col overflow-hidden rounded-[1.65rem] border border-slate-200/90 bg-[linear-gradient(180deg,#ffffff_0%,#f7fbff_100%)] p-5 text-left shadow-[0_22px_55px_-38px_rgba(15,23,42,0.5)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#d9b11e]/70 hover:shadow-[0_30px_75px_-45px_rgba(18,52,95,0.7)] dark:border-slate-700/80 dark:bg-[linear-gradient(180deg,#111827_0%,#0f172a_100%)] dark:shadow-[0_28px_70px_-45px_rgba(2,6,23,0.95)]"
+                  >
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#e3b526_0%,#12345f_45%,#2d7ff9_100%)]" />
+                    <div
+                      className={`absolute left-1/2 flex h-24 w-24 max-w-[36%] -translate-x-1/2 items-center justify-center overflow-hidden opacity-95 transition-transform duration-300 group-hover:scale-110 sm:left-auto sm:right-6 sm:top-14 sm:h-28 sm:w-28 sm:translate-x-0 [&>img]:!scale-100 [&>img]:h-full [&>img]:w-full [&>img]:object-contain [&>svg]:h-full [&>svg]:w-full ${
+                        isProfessional ? "top-20" : "top-12"
+                      }`}
+                    >
+                      {skill.svgIcon}
                     </div>
-                  ) : null}
-                  <div className="flex flex-1 flex-col items-center justify-center">
-                    {/* ── Icon wrapper: fixed pixel size forces every icon to identical dimensions ── */}
-<div
-  className={`flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${
-    showProfessionalBadges ? "mb-4" : "mb-3"
-  }`}
->
-  {/* Outer fixed size (BIG ICON SIZE) */}
-  <div
-    className={`flex items-center justify-center ${
-      skill.wideIcon ? "h-20 w-40 sm:h-24 sm:w-56" : "h-16 w-16 sm:h-20 sm:w-20"
-    }`}
-  >
 
-    {/* Full-size normalization box */}
-    <div
-      className="
-        flex items-center justify-center
-        h-full w-full
-
-        [&>svg]:h-full
-        [&>svg]:w-full
-        [&>svg]:object-contain
-
-        [&>img]:h-full
-        [&>img]:w-full
-        [&>img]:object-contain
-      "
-    >
-      {skill.svgIcon}
-    </div>
-
-  </div>
-</div>
-                    <div className={titleWrapClassName}>
-                      <span className={titleClassName}>{skill.name}</span>
+                    <div
+                      className={`relative z-10 flex items-start sm:min-h-[8.5rem] ${
+                        isProfessional ? "min-h-[11rem]" : "min-h-[8.5rem]"
+                      }`}
+                    >
+                      <div className="flex flex-col items-start gap-2">
+                        {isProfessional ? (
+                          <span className="inline-flex items-center gap-1.5 rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-[0.68rem] font-bold uppercase leading-none tracking-[0.1em] text-violet-700">
+                            <Sparkles className="h-3.5 w-3.5" />
+                            AI Included
+                          </span>
+                        ) : null}
+                        <span className="inline-flex items-center rounded-full border border-[#e3b526]/35 bg-[#fff8db] px-3 py-1 text-[0.68rem] font-bold uppercase leading-none tracking-[0.1em] text-[#8a6b00]">
+                          {isProfessional ? "Professional" : "Beginner"}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+
+                    <h3 className="relative z-10 mt-2 min-h-[3.35rem] max-w-[78%] text-balance text-2xl font-extrabold leading-tight text-[#12345f]">
+                      {skill.name}
+                    </h3>
+                    <p className="relative z-10 mt-4 min-h-[4.75rem] text-sm font-medium leading-6 text-slate-600">
+                      {details.summary}
+                    </p>
+
+                    <div className="relative z-10 mt-5 flex flex-1 flex-col">
+                      <ul className="space-y-3">
+                        {details.points.map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-start gap-3 text-sm font-medium leading-6 text-slate-700"
+                          >
+                            <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-[#18a86b]" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-auto flex justify-center pt-6">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-[#12345f] px-5 py-2.5 text-sm font-bold text-white transition-colors duration-300 group-hover:bg-[#d9b11e] group-hover:text-[#111827]">
+                          Learn More
+                          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -1271,152 +1434,1327 @@ function SkillsSwitcher() {
     </section>
   );
 }
-
-/* ─── Training Programs ──────────────────────────────────────────────────────── */
-const trainingPrograms = [
+const assessmentSkills = [
   {
-    title: "Corporate Training",
-    eyebrow: "For Teams & Enterprises",
-    description:
-      "Upskill your workforce with practitioner-led programs shaped around your tech stack, delivery goals, and team schedules.",
-    href: "/training/corporate-training",
-    icon: Briefcase,
-    cardGlow: "bg-teal-400/18",
-    cardGradient: "from-teal-100/80 via-white to-cyan-50/70",
-    darkCardGlow: "dark:bg-teal-400/18",
-    darkCardGradient:
-      "dark:from-[#081a1a] dark:via-[#0d2626] dark:to-[#0b1220]",
-    iconClass: "bg-teal-600 text-white",
-    eyebrowClass: "bg-teal-500/12 text-teal-700",
-    darkEyebrowClass: "dark:bg-teal-400/14 dark:text-teal-200",
-    linkClass: "text-teal-700",
-    darkLinkClass: "dark:text-teal-300",
-    highlights: ["Custom curriculum", "Team-based outcomes"],
+    key: "python",
+    name: "Python",
+    focus: "Logic, automation, backend foundations",
+    logoSrc: "/images/courses/python.png",
+    color: "#3776ab",
   },
   {
-    title: "Campus Training",
-    eyebrow: "For Colleges & Students",
-    description:
-      "Bridge classroom learning with job-ready execution through guided labs, project work, and structured mentoring on campus.",
-    href: "/training/campus-training",
-    icon: GraduationCap,
-    cardGlow: "bg-[#c9a227]/16",
-    cardGradient: "from-[#c9a227]/14 via-white to-amber-50/60",
-    darkCardGlow: "dark:bg-amber-400/12",
-    darkCardGradient:
-      "dark:from-[#1c1710] dark:via-[#261f12] dark:to-[#0b1220]",
-    iconClass: "bg-[#c9a227] text-[#1a1a00]",
-    eyebrowClass: "bg-[#c9a227]/15 text-[#8a6712]",
-    darkEyebrowClass: "dark:bg-amber-400/12 dark:text-amber-200",
-    linkClass: "text-[#a67c12]",
-    darkLinkClass: "dark:text-amber-300",
-    highlights: ["Industry-aligned delivery", "Placement-focused practice"],
+    key: "java",
+    name: "Java",
+    focus: "OOP, enterprise coding, application structure",
+    logoSrc: "/images/courses/java.png",
+    color: "#e11d48",
   },
   {
-    title: "OPT Training",
-    eyebrow: "For International Students",
-    description:
-      "Follow a job-role-focused path with real projects, interview prep, and mentorship designed for F-1 OPT and STEM OPT learners.",
-    href: "/training/opt-training",
-    icon: ShieldCheck,
-    cardGlow: "bg-sky-200/40",
-    cardGradient: "from-sky-100 via-white to-[#c9a227]/8",
-    darkCardGlow: "dark:bg-sky-400/12",
-    darkCardGradient:
-      "dark:from-[#081826] dark:via-[#0f2740] dark:to-[#0b1220]",
-    iconClass: "bg-sky-500 text-white",
-    eyebrowClass: "bg-sky-100 text-sky-700",
-    darkEyebrowClass: "dark:bg-sky-400/12 dark:text-sky-200",
-    linkClass: "text-sky-700",
-    darkLinkClass: "dark:text-sky-300",
-    highlights: ["Portfolio-driven training", "OPT-friendly schedules"],
+    key: "ai",
+    name: "Artificial Intelligence",
+    focus: "AI tools, workflows, prompt discipline",
+    logoSrc: "/images/courses/ai.png",
+    color: "#10b8d7",
+  },
+  {
+    key: "sql",
+    name: "SQL",
+    focus: "Queries, joins, data problem solving",
+    logoSrc: "/images/courses/sql.png",
+    color: "#0f7fb8",
+  },
+  {
+    key: "javascript",
+    name: "JavaScript",
+    focus: "Web logic, browser behavior, interactivity",
+    logoSrc: "/images/courses/js.png",
+    color: "#10a8a6",
+  },
+  {
+    key: "react",
+    name: "React / Next.js",
+    focus: "Components, routing, production UI patterns",
+    logo: ReactCourseIcon,
+    color: "#f59f00",
+  },
+  {
+    key: "ml",
+    name: "Machine Learning",
+    focus: "Models, datasets, evaluation thinking",
+    logoSrc: "/images/courses/ml.png",
+    color: "#16a34a",
+  },
+  {
+    key: "dsa",
+    name: "Data Structures",
+    focus: "Problem solving, patterns, interview basics",
+    logoSrc: "/images/courses/dsa.png",
+    color: "#f97316",
   },
 ];
 
-function MoreTrainingPrograms() {
+const assessmentGold = "#c9a227";
+const assessmentGoldBright = "#ffc20a";
+
+const assessmentPlans = {
+  spark: {
+    name: "Spark",
+    title: "The Spark",
+    stage: "Confident Starter Path",
+    price: "Rs.50K + GST",
+    threshold: "Best when your current confidence is already strong.",
+    summary:
+      "A lean pathway for students who can move faster and need focused project guidance, review, and completion proof.",
+    ideal: ["Fast-track guidance", "Focused projects", "Completion proof"],
+    icon: BookOpen,
+    accent: assessmentGold,
+    soft: "#fff7df",
+    href: "/request-callback?service=Tinitiate%20Spark%20Recommendation",
+  },
+  prime: {
+    name: "Prime",
+    title: "The Prime",
+    stage: "Momentum Path",
+    price: "Rs.99K + GST",
+    threshold: "Best when confidence is steady but project execution needs polish.",
+    summary:
+      "A stronger project pathway for students who can build with support and need mentor review, portfolio proof, and interview readiness.",
+    ideal: ["Mentor review", "Portfolio shaping", "Rs.10K/month R&D"],
+    icon: Target,
+    accent: assessmentGold,
+    soft: "#fff6d7",
+    href: "/request-callback?service=Tinitiate%20Prime%20Recommendation",
+  },
+  apex: {
+    name: "Apex",
+    title: "The Apex",
+    stage: "Ownership Path",
+    price: "Rs.199K + GST",
+    threshold: "Best when you need the highest support and structure.",
+    summary:
+      "A high-touch pathway for students who need deeper mentoring, stronger accountability, and work-style execution from the ground up.",
+    ideal: ["Deep mentoring", "Job from day 1", "Rs.15K/month trainee pay"],
+    icon: Trophy,
+    accent: assessmentGold,
+    soft: "#fff4d6",
+    href: "/request-callback?service=Tinitiate%20Apex%20Recommendation",
+  },
+};
+
+const homePricingPlans = [
+  {
+    name: "Tinitiate Spark",
+    shortName: "Spark",
+    stage: "Foundation",
+    badge: "Foundation-first track",
+    tagline: "Learn - Practice - Build",
+    fee: "Rs.50K",
+    suffix: "+ GST",
+    proof: "Starter project proof on completion",
+    phasePay: "No stipend - skill-building track",
+    href: "/request-callback?service=Tinitiate%20Spark%20Pricing",
+    icon: BookOpen,
+    calloutIcon: BookOpen,
+    calloutTitle: "Build the foundation",
+    calloutText: "Guided R&D exposure with real project review.",
+    tone: "blue",
+    features: [
+      "Python Full Stack with Gen AI",
+      "Java Full Stack with Gen AI",
+      "Corporate R&D environment",
+      "Real-time project build",
+      "Completion certificate",
+    ],
+  },
+  {
+    name: "Tinitiate Prime",
+    shortName: "Prime",
+    stage: "Momentum",
+    badge: "Paid R&D pathway",
+    extraBadge: "Popular",
+    tagline: "Build - Earn - Experience",
+    fee: "Rs.99K",
+    suffix: "+ GST",
+    proof: "Portfolio-ready work on completion",
+    phasePay: "Rs.10K/month paid during the R&D phase",
+    href: "/request-callback?service=Tinitiate%20Prime%20Pricing",
+    icon: Target,
+    calloutIcon: LineChart,
+    calloutTitle: "Earn while building",
+    calloutText: "Paid R&D support while your portfolio takes shape.",
+    tone: "gold",
+    features: [
+      "3 months online learning",
+      "3 months paid R&D at Rs.10K/month",
+      "Portfolio shaping for resume and LinkedIn",
+      "Interview and communication preparation",
+      "Mentor feedback on every project",
+    ],
+  },
+  {
+    name: "Tinitiate Apex",
+    shortName: "Apex",
+    stage: "Ownership",
+    badge: "Job from Day 1",
+    tagline: "Work - Lead - Succeed",
+    fee: "Rs.199K",
+    suffix: "+ GST",
+    proof: "Work-experience proof on completion",
+    phasePay: "Rs.15K/month Trainee Engineer salary support",
+    href: "/request-callback?service=Tinitiate%20Apex%20Pricing",
+    icon: Trophy,
+    calloutIcon: Briefcase,
+    calloutTitle: "Job from Day 1",
+    calloutText: "On-job training with salary-backed execution.",
+    tone: "red",
+    features: [
+      "6 months on-job training",
+      "3 months R&D execution",
+      "Rs.15K/month Trainee Engineer salary",
+      "Work-experience style project ownership",
+      "Career storytelling and placement priority",
+    ],
+  },
+];
+
+const homePricingRows = [
+  {
+    focus: "Pathway Fee",
+    spark: "Rs.50K + GST",
+    prime: "Rs.99K + GST",
+    apex: "Rs.199K + GST",
+  },
+  {
+    focus: "Timeline",
+    spark: "6 months",
+    prime: "6 months",
+    apex: "9 months",
+  },
+  {
+    focus: "Learning Format",
+    spark: "Corporate R&D plus project build",
+    prime: "Online learning plus paid R&D",
+    apex: "On-job training plus R&D execution",
+  },
+  {
+    focus: "Earning Support",
+    spark: "Skill-building track",
+    prime: "Rs.10K/month during R&D",
+    apex: "Rs.15K/month trainee salary",
+  },
+  {
+    focus: "Career Preparation",
+    spark: "Completion certificate",
+    prime: "Resume, LinkedIn, and interview prep",
+    apex: "Career storytelling and placement priority",
+  },
+];
+
+const ratingScale = Array.from({ length: 5 }, (_, index) => index + 1);
+
+function getAssessmentPlanFromRatings(ratings) {
+  const values = assessmentSkills
+    .map((skill) => ratings[skill.key])
+    .filter((value) => typeof value === "number");
+  const average = values.length
+    ? values.reduce((total, value) => total + value, 0) / values.length
+    : 0;
+
+  if (average < 2.6) return assessmentPlans.apex;
+  if (average < 4) return assessmentPlans.prime;
+  return assessmentPlans.spark;
+}
+function getSkillReadinessLabel(rating) {
+  if (rating >= 5) return "Strong";
+  if (rating >= 4) return "Ready";
+  if (rating >= 3) return "Developing";
+  if (rating >= 2) return "Guided";
+  return "Start";
+}
+
+function AssessmentCourseLogo({ skill, className = "h-11 w-11" }) {
+  if (skill.logoSrc) {
+    return (
+      <Image
+        src={skill.logoSrc}
+        alt={`${skill.name} logo`}
+        width={64}
+        height={64}
+        className={`${className} object-contain`}
+        sizes="48px"
+      />
+    );
+  }
+
+  const Logo = skill.logo;
+  return Logo ? (
+    <Logo className={className} idSuffix={`assessment-${skill.key}`} />
+  ) : null;
+}
+
+function SkillRatingControl({ skill, rating, onChange }) {
+  const activeRating = rating ?? 0;
+
   return (
-    <section className="bg-white px-4 pb-12 dark:bg-slate-950 sm:px-6 sm:pb-16 md:px-10">
-      <div className="mx-auto max-w-[1400px]">
-        <div className="relative overflow-hidden rounded-[2rem] border border-gray-100 bg-white px-6 py-8 shadow-xl dark:border-slate-800 dark:bg-slate-950 dark:shadow-[0_32px_90px_-50px_rgba(0,0,0,0.75)] sm:px-8 sm:py-10 lg:px-10">
-          <div className="absolute left-1/3 top-0 h-44 w-44 -translate-x-1/2 rounded-full bg-[#f3d7a0]/25 blur-3xl dark:bg-amber-300/10" />
-          <div className="absolute right-8 top-20 h-52 w-52 rounded-full bg-sky-100/70 blur-3xl dark:bg-sky-400/10" />
-          <div className="absolute bottom-0 left-10 h-44 w-44 rounded-full bg-rose-100/60 blur-3xl dark:bg-fuchsia-400/10" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.14),transparent_42%)] opacity-0 dark:opacity-100" />
-          <div className="relative z-10">
-            <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
-              <span className="inline-flex rounded-full border border-gray-200 bg-white/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-gray-500 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-300">
-                More Training Programs
-              </span>
-              <h2 className="mt-4 text-3xl font-bold text-gray-900 dark:text-slate-100 sm:text-4xl lg:text-5xl">
-                Explore More Training Programs
-              </h2>
-              <p className="mt-3 text-sm text-gray-500 dark:text-slate-300 sm:text-base">
-                Choose a specialized training path built for enterprise teams,
-                campuses, and international learners.
+    <div className="rounded-2xl border border-[#dbe5ef] bg-white p-3 shadow-[0_16px_36px_-34px_rgba(16,24,40,0.6)] transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_20px_55px_-42px_rgba(2,6,23,0.95)] sm:p-4">
+      <div className="grid gap-4 xl:grid-cols-[minmax(205px,0.7fr)_minmax(0,1fr)] xl:items-center">
+        <div className="flex items-start gap-3 sm:gap-4">
+          <AssessmentCourseLogo
+            skill={skill}
+            className="h-12 w-12 shrink-0 sm:h-16 sm:w-16"
+          />
+          <div className="min-w-0">
+            <h4 className="truncate text-sm font-black leading-5 text-[#13233a]">
+              {skill.name}
+            </h4>
+            <p className="mt-0.5 text-xs font-medium leading-5 text-[#64748b]">
+              {skill.focus}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex min-w-0 overflow-hidden rounded-2xl border-2 border-[#ffc20a] bg-white shadow-[0_14px_34px_-30px_rgba(15,23,42,0.7)] transition-colors duration-300 dark:bg-slate-950 dark:shadow-[0_18px_42px_-34px_rgba(2,6,23,0.95)]">
+          <div className="flex w-[62px] shrink-0 flex-col items-center justify-center bg-[#ffc20a] px-1.5 py-2 text-white sm:w-[76px] sm:px-2">
+            <span className="text-lg font-black leading-none sm:text-xl">
+              {activeRating.toFixed(1)}
+            </span>
+            <span className="mt-0.5 text-[9px] font-black uppercase leading-none sm:text-[11px]">
+              Rating
+            </span>
+          </div>
+          <div className="grid min-w-0 flex-1 grid-cols-5 items-center gap-0.5 px-1.5 py-1.5 sm:gap-1 sm:px-3">
+          {ratingScale.map((value) => {
+            const isFilled = value <= activeRating;
+
+            return (
+              <button
+                key={value}
+                type="button"
+                onClick={() => onChange(skill.key, value)}
+                aria-label={`Rate ${skill.name} ${value} out of 5`}
+                aria-pressed={rating === value}
+                className="flex h-8 min-w-0 items-center justify-center rounded-lg transition duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#c9a227]/30 sm:h-10"
+              >
+                <Star
+                  className="h-5 w-5 min-[390px]:h-6 min-[390px]:w-6 sm:h-7 sm:w-7"
+                  fill={isFilled ? assessmentGoldBright : "#e5e7eb"}
+                  strokeWidth={1.4}
+                  style={{
+                    color: isFilled ? assessmentGoldBright : "#d5d9df",
+                  }}
+                />
+              </button>
+            );
+          })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AssessmentGraphBar({ skill, rating, index }) {
+  const safeRating =
+    typeof rating === "number" ? Math.min(Math.max(rating, 1), 5) : 0;
+  const width = `${safeRating * 20}%`;
+
+  return (
+    <div className="grid grid-cols-[96px_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[232px_minmax(0,1fr)] sm:gap-3">
+      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] items-center gap-3 text-right sm:grid-cols-[64px_minmax(0,1fr)]">
+        <div className="hidden items-center justify-center sm:flex">
+          <AssessmentCourseLogo skill={skill} className="h-14 w-14" />
+        </div>
+        <div className="min-w-0">
+          <p className="truncate text-[10px] font-black uppercase leading-tight tracking-[0.08em] text-[#26364d] sm:text-sm">
+            {skill.name}
+          </p>
+          <p className="hidden text-[11px] font-bold text-[#7b8da4] sm:block">
+            {getSkillReadinessLabel(safeRating)}
+          </p>
+        </div>
+      </div>
+      <div className="relative h-8 overflow-hidden rounded-r-full bg-[#eef3f8] shadow-inner sm:h-11">
+        <motion.div
+          className="absolute inset-y-0 left-0 rounded-r-full"
+          initial={{ width: 0 }}
+          animate={{ width }}
+          transition={{
+            duration: 0.72,
+            delay: index * 0.08,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          style={{
+            backgroundColor: skill.color,
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function RecommendedPlanCard({ plan }) {
+  const PlanIcon = plan.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 34 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="relative overflow-hidden rounded-[1.4rem] border border-[#d7e2ee] bg-white p-4 shadow-[0_26px_70px_-52px_rgba(15,23,42,0.85)] transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_30px_80px_-48px_rgba(2,6,23,0.95)] sm:p-6"
+    >
+      <div className="absolute inset-x-0 top-0 h-1.5 bg-[#c9a227]" />
+      <div className="relative z-10">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#697b91]">
+              Recommended Plan
+            </p>
+            <h3 className="mt-2 text-2xl font-black leading-none text-[#13233a] sm:text-3xl">
+              {plan.title}
+            </h3>
+            <p className="mt-2 text-sm font-black" style={{ color: plan.accent }}>
+              {plan.stage}
+            </p>
+          </div>
+          <span
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-[0_16px_36px_-24px_rgba(15,23,42,0.8)]"
+            style={{ backgroundColor: plan.accent }}
+          >
+            <PlanIcon className="h-6 w-6" />
+          </span>
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-[#e0e9f3] p-4 dark:border-slate-700 dark:bg-slate-950/55">
+          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[#697b91]">
+            Pathway Fee
+          </p>
+          <p className="mt-1 text-xl font-black text-[#13233a] sm:text-2xl">
+            {plan.price}
+          </p>
+          <p className="mt-3 text-sm font-semibold leading-6 text-[#53657c]">
+            {plan.threshold}
+          </p>
+        </div>
+
+        <p className="mt-4 text-sm font-medium leading-6 text-[#53657c]">
+          {plan.summary}
+        </p>
+
+        <div className="mt-4 grid gap-2">
+          {plan.ideal.map((item) => (
+            <div
+              key={item}
+              className="flex items-center gap-2 rounded-xl border border-[#e2ebf4] bg-[#f8fbff] px-3 py-2 text-xs font-black text-[#13233a] sm:text-sm"
+            >
+              <CheckCircle
+                className="h-4 w-4 shrink-0"
+                style={{ color: plan.accent }}
+              />
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+
+        <Link
+          href={plan.href}
+          className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-black text-white transition hover:-translate-y-0.5"
+          style={{ backgroundColor: plan.accent }}
+        >
+          Discuss {plan.name}
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
+
+function HomePricingCard({ plan }) {
+  const Icon = plan.icon;
+  const CalloutIcon = plan.calloutIcon;
+  const isPrime = plan.shortName === "Prime";
+  const isApex = plan.shortName === "Apex";
+
+  return (
+    <article
+      className={[
+        "relative flex h-full min-h-[705px] flex-col overflow-hidden rounded-[1.25rem] border bg-white p-5 shadow-[0_24px_65px_-48px_rgba(15,23,42,0.6)] transition duration-300 hover:-translate-y-1 dark:bg-slate-900 sm:p-6",
+        isApex
+          ? "border-[#ef2f2f]/70 ring-1 ring-[#ef2f2f]/18"
+          : isPrime
+            ? "border-[#c9a227]/75 ring-1 ring-[#c9a227]/16"
+            : "border-[#d8e3ee]",
+      ].join(" ")}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(201,162,39,0.1),transparent_34%),radial-gradient(circle_at_100%_18%,rgba(18,52,95,0.08),transparent_32%)]" />
+      <div
+        className={[
+          "absolute inset-x-0 top-0 h-1",
+          isApex ? "bg-[#ef2f2f]" : isPrime ? "bg-[#c9a227]" : "bg-[#2f80ed]",
+        ].join(" ")}
+      />
+
+      <div className="relative flex flex-1 flex-col">
+        <div className="min-h-[126px]">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <div className="mb-4 flex min-h-7 flex-wrap items-center gap-2">
+                <span
+                  className={[
+                    "rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.12em]",
+                    isApex
+                      ? "bg-[#fff1f1] text-[#ef2f2f]"
+                      : isPrime
+                        ? "bg-[#fff8dc] text-[#7a5d00]"
+                        : "bg-[#eef6ff] text-[#1a3c6e]",
+                  ].join(" ")}
+                >
+                  {plan.badge}
+                </span>
+                {plan.extraBadge ? (
+                  <span className="rounded-full border border-[#c9a227]/40 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#7a5d00] dark:bg-slate-950">
+                    {plan.extraBadge}
+                  </span>
+                ) : null}
+              </div>
+              <p className="text-[11px] font-black uppercase tracking-[0.14em] text-[#93a3ba]">
+                {plan.stage} pathway
+              </p>
+              <h3 className="mt-2 text-2xl font-extrabold leading-tight text-[#13233a] dark:text-white">
+                {plan.name}
+              </h3>
+              <p className="mt-2 text-sm font-semibold leading-6 text-[#607089] dark:text-slate-300">
+                {plan.tagline}
               </p>
             </div>
-            <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-12">
-              {trainingPrograms.map((program, index) => {
-                const Icon = program.icon;
-                const cardSpan =
-                  index === 2
-                    ? "xl:col-span-8 xl:col-start-3"
-                    : "xl:col-span-6";
-                return (
-                  <Link
-                    key={program.title}
-                    href={program.href}
-                    className={`group relative overflow-hidden rounded-[1.75rem] border border-gray-200/80 bg-white/90 p-6 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.45)] backdrop-blur transition-all duration-300 hover:-translate-y-1.5 hover:border-gray-300 hover:shadow-[0_32px_70px_-35px_rgba(15,23,42,0.4)] dark:border-slate-700/80 dark:bg-slate-900/80 dark:shadow-[0_28px_70px_-40px_rgba(2,6,23,0.9)] dark:hover:border-slate-500 dark:hover:shadow-[0_32px_80px_-38px_rgba(15,23,42,0.95)] sm:p-8 ${cardSpan}`}
-                  >
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${program.cardGradient} ${program.darkCardGradient} opacity-90 dark:opacity-100`}
-                    />
-                    <div
-                      className={`absolute -right-8 -top-8 h-28 w-28 rounded-full ${program.cardGlow} ${program.darkCardGlow} blur-3xl`}
-                    />
-                    <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:via-slate-400/30" />
-                    <div className="relative z-10 flex h-full flex-col gap-6 sm:gap-7">
-                      <div className="flex items-start justify-between gap-4 sm:gap-5">
-                        <div className="min-w-0 flex-1">
-                          <span
-                            className={`inline-flex rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${program.eyebrowClass} ${program.darkEyebrowClass}`}
-                          >
-                            {program.eyebrow}
-                          </span>
-                          <h3 className="mt-4 max-w-[18ch] text-balance text-[1.85rem] font-bold leading-[1.08] tracking-[-0.02em] text-gray-900 dark:text-slate-100 sm:text-[1.75rem] lg:max-w-[19ch]">
-                            {program.title}
-                          </h3>
-                          <p className="mt-3 max-w-[42ch] text-pretty text-sm leading-7 text-[#5b667a] dark:text-slate-300 sm:text-base">
-                            {program.description}
-                          </p>
-                        </div>
-                        <div
-                          className={`flex h-14 w-14 shrink-0 items-center justify-center self-start rounded-2xl shadow-sm ${program.iconClass}`}
-                        >
-                          <Icon className="h-6 w-6" />
-                        </div>
-                      </div>
-                      <div className="flex flex-wrap gap-3">
-                        {program.highlights.map((item) => (
-                          <span
-                            key={item}
-                            className="rounded-full border border-gray-200/80 bg-white/90 px-3 py-1.5 text-xs font-medium text-gray-600 dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-300"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                      <div
-                        className={`inline-flex items-center gap-2 text-sm font-semibold transition-transform duration-300 group-hover:translate-x-1 ${program.linkClass} ${program.darkLinkClass}`}
-                      >
-                        <span>Explore program</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#13233a] text-[#f2cf5b] shadow-[0_16px_32px_-22px_rgba(18,35,58,0.9)] dark:bg-slate-950">
+              <Icon className="h-5 w-5" />
+            </span>
+          </div>
+        </div>
+
+        <div
+          className={[
+            "mt-4 flex min-h-[104px] items-center gap-4 rounded-[1.15rem] px-4 py-3",
+            isApex
+              ? "apex-day-one text-white"
+              : isPrime
+                ? "border border-[#c9a227]/30 bg-[#fffaf0] dark:border-[#c9a227]/35 dark:bg-[#1f2937]"
+                : "border border-[#cfe0f3] bg-[#f3f8ff] dark:border-slate-700 dark:bg-slate-950",
+          ].join(" ")}
+        >
+          <span
+            className={[
+              "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl",
+              isApex
+                ? "apex-day-one__pulse bg-white text-[#ef2f2f]"
+                : isPrime
+                  ? "bg-[#c9a227] text-[#171100]"
+                  : "bg-[#1a3c6e] text-white",
+            ].join(" ")}
+          >
+            <CalloutIcon className="h-5 w-5" />
+          </span>
+          <div>
+            <p
+              className={[
+                "text-[10px] font-black uppercase tracking-[0.14em]",
+                isApex ? "text-white/76" : "text-[#7f93b0] dark:text-slate-400",
+              ].join(" ")}
+            >
+              {isApex ? "Apex advantage" : plan.badge}
+            </p>
+            <p
+              className={[
+                "mt-1 text-lg font-black leading-tight",
+                isApex ? "text-white" : "text-[#13233a] dark:text-white",
+              ].join(" ")}
+            >
+              {plan.calloutTitle}
+            </p>
+            <p
+              className={[
+                "mt-1 text-xs font-semibold leading-5",
+                isApex ? "text-white/82" : "text-[#607089] dark:text-slate-300",
+              ].join(" ")}
+            >
+              {plan.calloutText}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 min-h-[116px]">
+          <p className="text-[11px] font-black uppercase tracking-[0.14em] text-[#93a3ba]">
+            One-time pathway fee
+          </p>
+          <p className="mt-3 text-4xl font-black text-[#13233a] dark:text-white">
+            {plan.fee}
+            <span className="ml-2 align-middle text-sm font-extrabold tracking-normal text-[#7f93b0]">
+              {plan.suffix}
+            </span>
+          </p>
+          <p className="mt-3 text-sm font-medium leading-6 text-[#607089] dark:text-slate-300">
+            {plan.proof}
+          </p>
+        </div>
+
+        <div className="mt-4 overflow-hidden rounded-[1rem] border border-[#e6edf5] dark:border-slate-700">
+          {plan.features.map((feature) => (
+            <div
+              key={feature}
+              className="grid min-h-[58px] grid-cols-[1.25rem_1fr] items-center gap-3 border-b border-[#e6edf5] px-4 py-3 last:border-b-0 dark:border-slate-700"
+            >
+              <CheckCircle className="h-4 w-4 shrink-0 text-[#13233a] dark:text-[#f2cf5b]" />
+              <p className="text-sm font-semibold leading-6 text-[#26364d] dark:text-slate-200">
+                {feature}
+              </p>
             </div>
+          ))}
+        </div>
+
+        <p className="mt-4 flex min-h-[66px] items-center rounded-2xl bg-[#f7fafc] px-4 py-3 text-sm font-extrabold leading-6 text-[#53677d] dark:bg-slate-950 dark:text-slate-300">
+          {plan.phasePay}
+        </p>
+
+        <Link
+          href={plan.href}
+          className="mt-auto inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-[#13233a] px-5 py-2.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#1f4773] dark:bg-[#f2cf5b] dark:text-[#13233a]"
+        >
+          Discuss {plan.shortName}
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+function HomePricingComparisonTable() {
+  return (
+    <div className="mt-8 overflow-hidden rounded-[1.25rem] border border-[#d8e3ee] bg-white shadow-[0_24px_70px_-56px_rgba(15,23,42,0.72)] dark:border-slate-700 dark:bg-slate-900">
+      <div className="grid gap-2 border-b border-[#e3ebf4] p-5 text-center dark:border-slate-700 sm:text-left lg:grid-cols-[1.1fr_1.9fr] lg:items-center">
+        <div>
+          <h3 className="text-2xl font-black text-[#13233a] dark:text-white">
+            Compare plans
+          </h3>
+          <p className="mt-2 text-sm font-medium leading-6 text-[#607089] dark:text-slate-300">
+            The same pathway details in a quick scan table.
+          </p>
+        </div>
+        <div className="hidden grid-cols-3 gap-3 lg:grid">
+          {homePricingPlans.map((plan) => (
+            <Link
+              key={plan.shortName}
+              href={plan.href}
+              className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#13233a] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1f4773]"
+            >
+              Discuss {plan.shortName}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="p-0 lg:hidden">
+        <table className="w-full table-fixed border-collapse overflow-hidden rounded-[1rem] border border-[#e3ebf4] bg-[#fbfdff] dark:border-slate-700 dark:bg-slate-950">
+          <thead>
+            <tr className="bg-[#f7fafc] dark:bg-slate-950">
+              <th className="w-[24%] border-b border-r border-[#e3ebf4] px-1.5 py-3 text-left text-[9px] font-black uppercase tracking-[0.1em] text-[#7f93b0] dark:border-slate-700 min-[390px]:px-2 min-[390px]:text-[10px]">
+                Focus
+              </th>
+              {homePricingPlans.map((plan) => (
+                <th
+                  key={plan.shortName}
+                  className="border-b border-r border-[#e3ebf4] px-1.5 py-3 text-center text-[9px] font-black uppercase tracking-[0.08em] text-[#13233a] last:border-r-0 dark:border-slate-700 dark:text-white min-[390px]:px-2 min-[390px]:text-[10px]"
+                >
+                  {plan.shortName}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {homePricingRows.map((row) => (
+              <tr key={row.focus}>
+                <th
+                  scope="row"
+                  className="border-b border-r border-[#edf2f7] px-1.5 py-3 text-left align-top text-[10px] font-black leading-4 text-[#13233a] last:border-b-0 dark:border-slate-700 dark:text-white min-[390px]:px-2 min-[390px]:text-[11px]"
+                >
+                  {row.focus}
+                </th>
+                {[row.spark, row.prime, row.apex].map((value, index) => (
+                  <td
+                    key={`${row.focus}-${index}`}
+                    className="break-normal border-b border-r border-[#edf2f7] px-1 py-3 text-center align-top text-[9px] font-semibold leading-4 text-[#53677d] last:border-r-0 dark:border-slate-700 dark:text-slate-300 min-[390px]:px-1.5 min-[390px]:text-[10px]"
+                  >
+                    {value}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="hidden lg:block">
+        <table className="w-full table-fixed border-collapse">
+          <thead>
+            <tr className="bg-[#f7fafc] dark:bg-slate-950">
+              <th className="w-[22%] border-b border-r border-[#e3ebf4] px-4 py-4 text-left text-[11px] font-black uppercase tracking-[0.12em] text-[#7f93b0] dark:border-slate-700">
+                Focus
+              </th>
+              {homePricingPlans.map((plan) => (
+                <th
+                  key={plan.shortName}
+                  className="border-b border-r border-[#e3ebf4] px-4 py-4 text-center text-xs font-black uppercase tracking-[0.12em] text-[#13233a] last:border-r-0 dark:border-slate-700 dark:text-white"
+                >
+                  {plan.shortName}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {homePricingRows.map((row) => (
+              <tr key={row.focus}>
+                <th
+                  scope="row"
+                  className="border-b border-r border-[#edf2f7] px-4 py-4 text-left text-sm font-black text-[#13233a] last:border-b-0 dark:border-slate-700 dark:text-white"
+                >
+                  {row.focus}
+                </th>
+                {[row.spark, row.prime, row.apex].map((value, index) => (
+                  <td
+                    key={`${row.focus}-${index}`}
+                    className="border-b border-r border-[#edf2f7] px-4 py-4 text-center text-sm font-semibold leading-6 text-[#53677d] last:border-r-0 dark:border-slate-700 dark:text-slate-300"
+                  >
+                    {value}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function HomePricingBoard() {
+  return (
+    <div className="mx-auto mt-9 max-w-[1360px]">
+      <div className="mx-auto max-w-5xl text-center">
+        <h3 className="text-balance text-3xl font-extrabold leading-tight text-[#12345f] sm:text-4xl lg:whitespace-nowrap lg:text-[2.8rem]">
+          Compare Spark, Prime, and Apex pricing
+        </h3>
+        <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
+        <p className="mx-auto mt-4 max-w-3xl text-pretty text-sm font-medium leading-7 text-[#53677d] sm:text-base">
+          Use the cards and comparison table after the skill check to see the
+          fee, support, earning path, and project outcome clearly.
+        </p>
+      </div>
+
+      <div className="mt-7 grid items-stretch gap-5 lg:grid-cols-3">
+        {homePricingPlans.map((plan) => (
+          <HomePricingCard key={plan.name} plan={plan} />
+        ))}
+      </div>
+
+      <HomePricingComparisonTable />
+    </div>
+  );
+}
+
+function StudentPlanAssessment() {
+  const [phase, setPhase] = useState("intro");
+  const [ratings, setRatings] = useState({});
+  const [result, setResult] = useState(null);
+
+  const ratedSkills = assessmentSkills.filter(
+    (skill) => typeof ratings[skill.key] === "number"
+  );
+  const hasRatedSkills = ratedSkills.length > 0;
+  const resultSkills = result
+    ? assessmentSkills.filter(
+        (skill) => typeof result.ratings[skill.key] === "number"
+      )
+    : [];
+  const updateRating = (skillKey, value) => {
+    setRatings((current) => ({
+      ...current,
+      [skillKey]: value,
+    }));
+  };
+
+  const startAssessment = () => {
+    setPhase("rate");
+  };
+
+  const closeAssessment = () => {
+    setPhase("intro");
+  };
+
+  const submitAssessment = (event) => {
+    event.preventDefault();
+    if (!hasRatedSkills) return;
+
+    const finalRatings = Object.fromEntries(
+      ratedSkills.map((skill) => [skill.key, ratings[skill.key]])
+    );
+
+    setResult({
+      ratings: finalRatings,
+      plan: getAssessmentPlanFromRatings(finalRatings),
+    });
+    setPhase("result");
+  };
+
+  const retakeAssessment = () => {
+    setRatings(result?.ratings ?? {});
+    setResult(null);
+    setPhase("rate");
+  };
+
+  return (
+    <section className="bg-white px-3 py-8 transition-colors duration-300 dark:bg-slate-950 sm:px-6 sm:py-12 md:px-10">
+      <motion.div
+        layout
+        transition={{ layout: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } }}
+        className={`mx-auto max-w-[1360px] overflow-hidden rounded-[1.35rem] border shadow-[0_30px_90px_-70px_rgba(15,23,42,0.9)] transition-colors duration-300 sm:rounded-[1.75rem] ${
+          phase === "intro"
+            ? "border-[#c9a227] bg-[#c9a227] dark:border-[#c9a227]/70 dark:bg-[linear-gradient(135deg,#0f172a_0%,#13233a_58%,#0b1220_100%)]"
+            : "border-[#d8e3ee] bg-[#fbfdff] dark:border-slate-700 dark:bg-slate-900"
+        }`}
+      >
+        <AnimatePresence mode="wait">
+          {phase === "intro" ? (
+            <motion.div
+              key="assessment-intro"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              className="relative px-5 py-7 sm:min-h-[300px] sm:px-8 sm:py-8 lg:px-12"
+            >
+              <div className="relative z-10 grid min-h-0 items-center gap-7 sm:min-h-[240px] lg:grid-cols-[minmax(0,1fr)_430px] lg:gap-8">
+                <div className="max-w-3xl text-center lg:text-left">
+                  <h2 className="text-balance text-[2rem] font-black leading-[1.08] text-[#13233a] min-[390px]:text-[2.2rem] sm:text-4xl sm:leading-tight lg:text-[2.8rem]">
+                    Find the right plan before choosing your training path.
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm font-semibold leading-6 text-[#26364d] min-[390px]:text-[15px] sm:text-lg sm:leading-7 lg:mx-0">
+                    Rate your current confidence across core courses. The result
+                    turns your selections into a clear skill graph and recommends
+                    Apex, Prime, or Spark.
+                  </p>
+                </div>
+
+                <div className="relative flex min-h-[190px] items-center justify-center sm:min-h-[230px] lg:justify-end">
+                  <motion.div
+                    aria-hidden="true"
+                    className="absolute h-36 w-36 rounded-full bg-white/25 blur-3xl sm:h-44 sm:w-44"
+                    animate={{
+                      opacity: [0.35, 0.75, 0.35],
+                      scale: [0.88, 1.08, 0.88],
+                    }}
+                    transition={{
+                      duration: 3.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  <motion.div
+                    aria-hidden="true"
+                    className="absolute h-28 w-28 rounded-full border border-[#13233a]/20 dark:border-[#c9a227]/25 sm:h-32 sm:w-32"
+                    animate={{ rotate: 360, scale: [1, 1.08, 1] }}
+                    transition={{
+                      rotate: {
+                        duration: 9,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
+                      scale: {
+                        duration: 2.4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
+                    }}
+                  />
+                  <motion.div
+                    aria-hidden="true"
+                    className="absolute h-40 w-40 rounded-full border border-white/35 sm:h-48 sm:w-48"
+                    animate={{ scale: [0.82, 1.18], opacity: [0.5, 0] }}
+                    transition={{
+                      duration: 2.1,
+                      repeat: Infinity,
+                      ease: "easeOut",
+                    }}
+                  />
+
+                  <div className="relative z-10 w-full max-w-full sm:max-w-[430px]">
+                    <motion.p
+                      className="mx-auto mb-4 w-fit rounded-full bg-[#13233a] px-4 py-2 text-[10px] font-black uppercase leading-none tracking-[0.16em] text-white shadow-[0_16px_34px_-24px_rgba(15,23,42,0.95)] dark:bg-[#c9a227] dark:text-[#0b1220] sm:text-xs sm:tracking-[0.18em]"
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{
+                        duration: 1.8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      Start Here
+                    </motion.p>
+                    <div className="relative">
+                    <motion.div
+                      aria-hidden="true"
+                      className="absolute -inset-3 rounded-[1.55rem] bg-white/22"
+                      animate={{
+                        opacity: [0.28, 0.72, 0.28],
+                        scale: [0.96, 1.06, 0.96],
+                      }}
+                      transition={{
+                        duration: 2.05,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                    <motion.button
+                      type="button"
+                      onClick={startAssessment}
+                      animate={{
+                        boxShadow: [
+                          "0 20px 42px -24px rgba(15,23,42,0.95), 0 0 0 0 rgba(255,255,255,0)",
+                          "0 30px 62px -22px rgba(15,23,42,1), 0 0 0 12px rgba(255,255,255,0.22)",
+                          "0 20px 42px -24px rgba(15,23,42,0.95), 0 0 0 0 rgba(255,255,255,0)",
+                        ],
+                        y: [0, -2, 0],
+                      }}
+                      whileHover={{
+                        y: -5,
+                        scale: 1.035,
+                        backgroundColor: "#203958",
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{
+                        boxShadow: {
+                          duration: 2.35,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                        y: {
+                          duration: 2.35,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                        default: { duration: 0.22 },
+                      }}
+                      className="group relative isolate inline-flex min-h-14 w-full overflow-hidden rounded-2xl border border-[#081629]/30 bg-[#13233a] px-4 py-3 text-sm font-black text-white sm:min-h-16 sm:px-7 sm:py-4 sm:text-[15px]"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,255,255,0.24),transparent_34%)]"
+                      />
+                      <motion.span
+                        aria-hidden="true"
+                        className="absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/28 blur-[1px]"
+                        animate={{ x: ["0%", "360%"] }}
+                        transition={{
+                          duration: 2.2,
+                          repeat: Infinity,
+                          repeatDelay: 0.65,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      />
+                      <span className="relative z-10 inline-flex w-full items-center justify-center gap-2 whitespace-nowrap sm:gap-3">
+                        <span className="sm:hidden">Take Skill Check</span>
+                        <span className="hidden sm:inline">Take Skill Check & Find My Plan</span>
+                        <motion.span
+                          aria-hidden="true"
+                          className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#13233a] dark:!bg-white dark:!text-[#13233a] sm:h-8 sm:w-8"
+                          animate={{ x: [0, 7, 0] }}
+                          transition={{
+                            duration: 1.2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        >
+                          <ArrowRight className="h-4 w-4" />
+                        </motion.span>
+                      </span>
+                    </motion.button>
+                    <div
+                      aria-hidden="true"
+                      className="mx-auto mt-5 h-1.5 w-[78%] overflow-hidden rounded-full bg-[#8f721b]/30"
+                    >
+                      <motion.div
+                        className="h-full w-1/3 rounded-full bg-[#13233a]"
+                        animate={{ x: ["-110%", "330%"] }}
+                        transition={{
+                          duration: 1.75,
+                          repeat: Infinity,
+                          repeatDelay: 0.45,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      />
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ) : null}
+
+          {phase === "rate" ? (
+            <motion.form
+              key="assessment-rate"
+              onSubmit={submitAssessment}
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, x: -24 }}
+              transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              className="px-4 py-5 sm:px-7 sm:py-6 lg:px-9"
+            >
+              <div className="relative flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="max-w-3xl pr-14 lg:pr-0">
+                  <h2 className="text-balance text-2xl font-black leading-tight text-[#13233a] sm:text-3xl">
+                    Select your level for the courses you know.
+                  </h2>
+                  <p className="mt-2 text-sm font-medium leading-6 text-[#64748b]">
+                    Rate one course or many. The recommendation uses only your
+                    selected courses, so the plan stays matched to your current
+                    confidence.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeAssessment}
+                  className="absolute right-0 top-0 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d8e3ee] bg-white text-[#13233a] transition hover:bg-[#f3f7fb] dark:border-slate-700 dark:bg-slate-950 dark:hover:bg-slate-800 lg:static"
+                  aria-label="Close assessment"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="mt-5 grid gap-3 sm:mt-6 lg:grid-cols-2">
+                {assessmentSkills.map((skill) => (
+                  <SkillRatingControl
+                    key={skill.key}
+                    skill={skill}
+                    rating={ratings[skill.key]}
+                    onChange={updateRating}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-5 flex justify-end">
+                <button
+                  type="submit"
+                  disabled={!hasRatedSkills}
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#13233a] px-5 py-3 text-sm font-black text-white transition enabled:hover:-translate-y-0.5 enabled:hover:bg-[#203958] disabled:cursor-not-allowed disabled:bg-[#d8c895] disabled:text-white/80 sm:w-auto"
+                >
+                  Show My Recommended Plan
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </motion.form>
+          ) : null}
+
+          {phase === "result" && result ? (
+            <motion.div
+              key="assessment-result"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+              className="px-4 py-5 sm:px-7 sm:py-6 lg:px-9"
+            >
+              <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <h2 className="text-balance text-2xl font-black leading-tight text-[#13233a] sm:text-3xl">
+                    Ratings moved into a plan-ready graph.
+                  </h2>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={retakeAssessment}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[#d8e3ee] bg-white px-4 py-2 text-sm font-black text-[#13233a] transition hover:bg-[#f3f7fb] dark:border-slate-700 dark:bg-slate-950 dark:hover:bg-slate-800"
+                  >
+                    <RotateCcw className="h-4 w-4" />
+                    Retake
+                  </button>
+                  <button
+                    type="button"
+                    onClick={closeAssessment}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#d8e3ee] bg-white text-[#13233a] transition hover:bg-[#f3f7fb] dark:border-slate-700 dark:bg-slate-950 dark:hover:bg-slate-800"
+                    aria-label="Close assessment result"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid items-center gap-5 lg:grid-cols-[minmax(0,1fr)_360px] xl:grid-cols-[minmax(0,1fr)_390px]">
+                <motion.div
+                  initial={{ opacity: 0, x: -34 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+                  className="rounded-[1.4rem] border border-[#d7e2ee] bg-white p-4 shadow-[0_26px_70px_-54px_rgba(15,23,42,0.8)] transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_30px_80px_-50px_rgba(2,6,23,0.95)] sm:p-6"
+                >
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div>
+                      <h3 className="text-xl font-black text-[#13233a]">
+                        Course Star Map
+                      </h3>
+                      <p className="mt-1 text-sm font-medium text-[#64748b]">
+                        Only the courses you rated are included in this graph.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3.5">
+                    {resultSkills.map((skill, index) => (
+                      <AssessmentGraphBar
+                        key={skill.key}
+                        skill={skill}
+                        rating={result.ratings[skill.key]}
+                        index={index}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+
+                <RecommendedPlanCard plan={result.plan} />
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </motion.div>
+      <HomePricingBoard />
+    </section>
+  );
+}
+
+function CorporateLearningEnvironment() {
+  const environmentPoints = [
+    {
+      title: "Real Project Execution",
+      text: "Build assignments with defined scope, checkpoints, and mentor-led delivery standards.",
+      proof: "Hands-on builds",
+      icon: ClipboardCheck,
+    },
+    {
+      title: "Team Workflow Practice",
+      text: "Use Git, task ownership, documentation, reviews, and release habits followed by teams.",
+      proof: "Delivery routine",
+      icon: Code2,
+    },
+    {
+      title: "Mentor Review Loops",
+      text: "Get practical feedback on code quality, communication, problem solving, and readiness.",
+      proof: "Expert feedback",
+      icon: Users,
+    },
+    {
+      title: "Portfolio-Ready Demos",
+      text: "Convert completed work into demos, resume evidence, and confident interview explanations.",
+      proof: "Career proof",
+      icon: FileText,
+    },
+  ];
+
+  return (
+    <section className="bg-white px-4 py-8 transition-colors duration-300 dark:bg-slate-950 sm:px-6 sm:py-12 md:px-10">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="text-balance text-[1.9rem] font-extrabold leading-tight text-[#12345f] min-[390px]:text-3xl sm:text-4xl lg:whitespace-nowrap lg:text-5xl">
+            Learn in a Real Work-Style Environment
+          </h2>
+          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
+          <p className="mx-auto mt-4 max-w-3xl text-pretty text-sm font-medium leading-6 text-[#53677d] sm:text-lg sm:leading-7">
+            Training is designed around real execution: structured projects,
+            mentor review, professional tools, and confident presentation of
+            completed work.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-7 max-w-5xl sm:mt-10">
+          <div className="overflow-hidden rounded-[1.25rem] border border-[#d8e2ee] bg-[#071425] shadow-[0_34px_95px_-54px_rgba(15,23,42,0.95)] dark:border-slate-700 sm:rounded-[1.5rem]">
+            <video
+              className="aspect-video h-auto w-full bg-[#071425] object-cover"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/videos/tinitiate-ai-career-options-poster.jpg"
+            >
+              <source
+                src="/videos/tinitiate-ai-career-options.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div className="grid gap-2 border-t border-white/10 bg-[#071425] px-4 py-3 text-white sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-5 sm:py-4">
+              <div className="min-w-0">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#f2cf5b]">
+                  Career Clarity Video
+                </p>
+                <h3 className="mt-1 text-base font-extrabold leading-tight sm:text-xl">
+                  STEM or Non-STEM? Understand Your Career Options
+                </h3>
+              </div>
+              <span className="w-fit rounded-full border border-white/14 bg-white/8 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white/78">
+                5:54 Guide
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+          {environmentPoints.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.title}
+                className="group min-w-0 rounded-[1rem] border border-[#d8e2ee] bg-white p-4 shadow-[0_18px_48px_-42px_rgba(15,23,42,0.7)] transition duration-300 hover:-translate-y-1 hover:border-[#c9a227]/70 hover:shadow-[0_24px_56px_-42px_rgba(15,23,42,0.85)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_22px_60px_-46px_rgba(2,6,23,0.95)] sm:min-h-[165px] sm:rounded-[1.2rem]"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#12345f] text-white sm:h-10 sm:w-10">
+                  <Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5" />
+                </div>
+                <h3 className="mt-2 text-[13px] font-extrabold leading-tight text-[#12345f] sm:mt-3 sm:text-base">
+                  {item.title}
+                </h3>
+                <p className="mt-1.5 text-[11px] leading-4 text-[#53677d] sm:mt-2 sm:text-[13px] sm:leading-5">
+                  {item.text}
+                </p>
+                <div className="mt-2 inline-flex max-w-full items-center gap-1.5 rounded-full bg-[#f6f9fc] px-2.5 py-1.5 text-[10px] font-extrabold text-[#12345f] sm:mt-3 sm:gap-2 sm:px-3 sm:text-[11px]">
+                  <CheckCircle className="h-3.5 w-3.5 text-[#0f8f70] sm:h-4 sm:w-4" />
+                  {item.proof}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LeadershipVisionMessage() {
+  const ceoPrinciples = [
+    {
+      title: "Execution",
+      text: "Every concept is tied to a task, checkpoint, and outcome.",
+      icon: Briefcase,
+    },
+    {
+      title: "Clarity",
+      text: "Learners practice explaining decisions with professional confidence.",
+      icon: Users,
+    },
+    {
+      title: "Evidence",
+      text: "Finished work becomes proof for interviews, reviews, and portfolios.",
+      icon: LineChart,
+    },
+  ];
+
+  return (
+    <section className="overflow-hidden bg-white px-4 py-9 transition-colors duration-300 dark:bg-slate-950 sm:px-6 sm:py-11 md:px-10">
+      <div className="mx-auto max-w-[1320px]">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="text-balance text-3xl font-extrabold leading-tight text-[#12345f] sm:text-4xl lg:text-5xl">
+            Message From Our CEO
+          </h2>
+          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
+        </div>
+
+        <div className="mt-9 grid items-center gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <div className="order-1">
+            <div className="mx-auto max-w-[760px] overflow-hidden rounded-[1.6rem] border border-[#d8e2ee] bg-white shadow-[0_28px_86px_-62px_rgba(15,23,42,0.9)] transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_32px_90px_-48px_rgba(2,6,23,0.98)] lg:mx-0">
+              <div className="flex items-center justify-between border-b border-[#d8e2ee] bg-[#f8fbff] px-4 py-3 dark:border-slate-700 dark:bg-slate-950/70">
+                <div>
+                  <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#c9a227]">
+                    CEO Message
+                  </p>
+                  <p className="mt-1 text-sm font-extrabold text-[#12345f]">
+                    Standards behind the training
+                  </p>
+                </div>
+                <span className="hidden rounded-xl border border-[#d8e2ee] bg-white px-3 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-[#53677d] dark:border-slate-700 dark:bg-slate-900 sm:inline-flex">
+                  Preview
+                </span>
+              </div>
+
+              <div className="relative aspect-[16/9] overflow-hidden bg-[#12345f]">
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,#12345f_0%,#164b78_48%,#0f6b6b_100%)]" />
+                <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:36px_36px]" />
+                <div className="absolute inset-x-5 top-5 flex items-center justify-between">
+                  <span className="rounded-xl bg-white/92 px-3 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-[#12345f] dark:!text-[#12345f]">
+                    CEO Message
+                  </span>
+                  <span className="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white">
+                    02:45
+                  </span>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white text-[#12345f] shadow-[0_24px_70px_-28px_rgba(0,0,0,0.78)] dark:!bg-white dark:!text-[#12345f] sm:h-24 sm:w-24">
+                    <Play className="ml-1 h-9 w-9 fill-current sm:h-10 sm:w-10" />
+                  </div>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 hidden bg-[linear-gradient(180deg,transparent_0%,rgba(9,25,48,0.94)_100%)] px-5 pb-5 pt-16 sm:block">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#f2cf5b]">
+                    From training to delivery confidence
+                  </p>
+                  <p className="mt-2 max-w-xl text-balance text-xl font-black leading-tight text-white sm:text-2xl">
+                    A message about discipline, standards, and real outcomes.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid border-t border-[#d8e2ee] bg-white dark:border-slate-700 dark:bg-slate-900 sm:grid-cols-3">
+                {["Think clearly", "Build steadily", "Present confidently"].map(
+                  (item) => (
+                    <div
+                      key={item}
+                      className="border-b border-[#d8e2ee] px-4 py-3 text-sm font-extrabold text-[#12345f] last:border-b-0 dark:border-slate-700 sm:border-b-0 sm:border-r sm:last:border-r-0"
+                    >
+                      {item}
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="order-2">
+            <div className="border-l-4 border-[#c9a227] pl-5">
+              <Quote className="mb-3 h-8 w-8 text-[#c9a227]" />
+              <p className="text-pretty text-2xl font-black leading-tight text-[#12345f] sm:text-[2rem] lg:text-[2.15rem]">
+                Training should help learners think, communicate, and deliver
+                like professionals.
+              </p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[#53677d] sm:text-lg">
+                Tinitiate AI is built around practical depth, review habits,
+                and the confidence to explain completed work. The goal is not a
+                certificate alone; it is the ability to show evidence, discuss
+                decisions, and handle real project expectations.
+              </p>
+            </div>
+
+            <div className="mt-5 grid overflow-hidden rounded-[1.15rem] border border-[#d8e2ee] bg-[#fbfcff] shadow-[0_18px_50px_-46px_rgba(15,23,42,0.8)] transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_24px_70px_-52px_rgba(2,6,23,0.95)] md:grid-cols-3">
+              {ceoPrinciples.map(({ title, text, icon: Icon }) => (
+                <div
+                  key={title}
+                  className="flex items-start gap-3 border-b border-[#d8e2ee] p-4 last:border-b-0 dark:border-slate-700 md:border-b-0 md:border-r md:last:border-r-0"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#12345f] text-white">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <h3 className="text-base font-extrabold text-[#12345f]">
+                      {title}
+                    </h3>
+                    <p className="mt-1.5 text-[13px] leading-5 text-[#53677d]">
+                      {text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>
@@ -1424,13 +2762,363 @@ function MoreTrainingPrograms() {
   );
 }
 
-const careerSupport = [
+const careerPlanCourses = [
+  "Python Full Stack",
+  "Java Full Stack",
+  "AI and Machine Learning",
+  "SQL and Data Engineering",
+  "React / Next.js",
+  "Cloud and DevOps",
+  "Not Sure Yet",
+];
+
+const careerPlanTimes = [
+  "Morning: 9am - 12pm",
+  "Afternoon: 12pm - 4pm",
+  "Evening: 4pm - 8pm",
+  "Weekend",
+];
+
+function CareerPathPlanSection() {
+  const guideFormRef = useRef(null);
+  const guideSubmitLockRef = useRef(false);
+  const [guideFormData, setGuideFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    course: "",
+    preferredTime: "",
+  });
+  const [guideSubmitted, setGuideSubmitted] = useState(false);
+  const [guideSubmitting, setGuideSubmitting] = useState(false);
+  const [guideSubmitError, setGuideSubmitError] = useState("");
+
+  const handleGuideChange = (event) => {
+    const { name, value } = event.target;
+    setGuideFormData((current) => ({ ...current, [name]: value }));
+  };
+
+  const submitGuideForm = async (formElement) => {
+    if (!formElement || guideSubmitLockRef.current) return;
+    if (typeof formElement.reportValidity === "function" && !formElement.reportValidity()) {
+      return;
+    }
+
+    guideSubmitLockRef.current = true;
+    setGuideSubmitting(true);
+    setGuideSubmitError("");
+
+    try {
+      await submitNetlifyForm(formElement);
+      setGuideSubmitted(true);
+      setGuideSubmitting(false);
+      setGuideFormData({
+        name: "",
+        email: "",
+        phone: "",
+        course: "",
+        preferredTime: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setGuideSubmitError("Something went wrong. Please try again.");
+      setGuideSubmitting(false);
+    } finally {
+      guideSubmitLockRef.current = false;
+    }
+  };
+
+  const handleGuideSubmit = async (event) => {
+    event.preventDefault();
+    await submitGuideForm(event.currentTarget);
+  };
+
+  useEffect(() => {
+    const formElement = guideFormRef.current;
+    if (!formElement) return undefined;
+
+    const handleNativeSubmit = (event) => {
+      if (event.defaultPrevented) return;
+      event.preventDefault();
+      submitGuideForm(formElement);
+    };
+
+    formElement.addEventListener("submit", handleNativeSubmit);
+    return () => {
+      formElement.removeEventListener("submit", handleNativeSubmit);
+    };
+  }, []);
+
+  const guideMessage = `Course guidance request. Course interest: ${
+    guideFormData.course || "Not selected"
+  }. Preferred time: ${guideFormData.preferredTime || "Not selected"}.`;
+
+  return (
+    <section className="overflow-hidden bg-[#f7fafc] px-4 py-10 transition-colors duration-300 dark:bg-slate-950 sm:px-6 sm:py-12 md:px-10">
+      <div className="mx-auto max-w-[1320px]">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-balance text-3xl font-extrabold leading-tight text-[#12345f] sm:text-4xl lg:text-5xl">
+            Unlock your IT career path
+          </h2>
+          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
+          <p className="mx-auto mt-4 max-w-3xl text-pretty text-base font-medium leading-7 text-[#53677d] sm:text-lg">
+            Get a mentor-reviewed plan that connects your course choice,
+            project sequence, pricing discussion, and placement preparation into
+            one clear next step.
+          </p>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <div className="relative mx-auto w-full max-w-[760px]">
+            <div className="absolute inset-x-8 -top-4 h-8 rounded-t-[1.5rem] bg-[#c9a227]" />
+            <div className="relative overflow-hidden rounded-[1.65rem] border border-[#d8e4f1] bg-white p-5 shadow-[0_30px_90px_-48px_rgba(15,23,42,0.6)] transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_36px_95px_-52px_rgba(2,6,23,0.98)] sm:p-7 lg:p-8">
+            <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#12345f_0%,#c9a227_48%,#0f8f70_100%)]" />
+            <div className="flex items-start gap-4">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#edf4ff] text-[#12345f] dark:bg-slate-950 dark:text-[#f2cf5b]">
+                <UserCircle2 className="h-6 w-6" />
+              </span>
+              <div>
+                <h3 className="text-2xl font-black leading-tight text-[#12345f]">
+                  Talk to a course mentor
+                </h3>
+                <p className="mt-1 text-sm font-medium text-[#64748b]">
+                  Share your details and we will help you choose the right path.
+                </p>
+              </div>
+            </div>
+
+            {guideSubmitted ? (
+              <div className="mt-7 rounded-[1.35rem] border border-[#c8ead9] bg-[#f0fff6] p-6 text-center dark:border-emerald-400/25 dark:bg-emerald-950/25">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#0f8f70] text-white">
+                  <CheckCircle className="h-7 w-7" />
+                </div>
+                <h4 className="mt-4 text-xl font-black text-[#12345f]">
+                  Guidance request received.
+                </h4>
+                <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-[#53677d]">
+                  Our team will review your course interest and contact you with
+                  the next clear step.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setGuideSubmitted(false);
+                    setGuideSubmitError("");
+                  }}
+                  className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl border border-[#12345f]/15 bg-white px-5 py-2 text-sm font-black text-[#12345f] dark:border-slate-700 dark:bg-slate-950"
+                >
+                  Submit another request
+                </button>
+              </div>
+            ) : (
+              <form
+                ref={guideFormRef}
+                name="request-callback"
+                method="POST"
+                action="/"
+                data-netlify="true"
+                onSubmit={handleGuideSubmit}
+                className="mt-7 space-y-4 lg:space-y-5"
+              >
+                <input type="hidden" name="form-name" value="request-callback" readOnly />
+                <input type="hidden" name="message" value={guideMessage} readOnly />
+
+                <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
+                  <label className="block">
+                    <span className="mb-2 block text-xs font-black uppercase tracking-[0.12em] text-[#53677d]">
+                      Full Name
+                    </span>
+                    <span className="relative block">
+                      <User className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#9aa8ba]" />
+                      <input
+                        name="name"
+                        type="text"
+                        required
+                        value={guideFormData.name}
+                        onChange={handleGuideChange}
+                        placeholder="Your name"
+                        className="h-12 w-full rounded-2xl border border-[#d9e3ef] bg-white pl-12 pr-4 text-sm font-semibold text-[#13233a] outline-none transition focus:border-[#c9a227] focus:ring-4 focus:ring-[#c9a227]/15 dark:border-slate-700 dark:bg-slate-950 dark:placeholder:text-slate-500"
+                      />
+                    </span>
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-2 block text-xs font-black uppercase tracking-[0.12em] text-[#53677d]">
+                      Email
+                    </span>
+                    <span className="relative block">
+                      <Mail className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#9aa8ba]" />
+                      <input
+                        name="email"
+                        type="email"
+                        value={guideFormData.email}
+                        onChange={handleGuideChange}
+                        placeholder="Optional"
+                        className="h-12 w-full rounded-2xl border border-[#d9e3ef] bg-white pl-12 pr-4 text-sm font-semibold text-[#13233a] outline-none transition focus:border-[#c9a227] focus:ring-4 focus:ring-[#c9a227]/15 dark:border-slate-700 dark:bg-slate-950 dark:placeholder:text-slate-500"
+                      />
+                    </span>
+                  </label>
+                </div>
+
+                <label className="block">
+                  <span className="mb-2 block text-xs font-black uppercase tracking-[0.12em] text-[#53677d]">
+                    Course Interest
+                  </span>
+                  <select
+                    name="course"
+                    required
+                    value={guideFormData.course}
+                    onChange={handleGuideChange}
+                    className="h-12 w-full rounded-2xl border border-[#d9e3ef] bg-white px-4 text-sm font-semibold text-[#13233a] outline-none transition focus:border-[#c9a227] focus:ring-4 focus:ring-[#c9a227]/15 dark:border-slate-700 dark:bg-slate-950"
+                  >
+                    <option value="">Select a course</option>
+                    {careerPlanCourses.map((course) => (
+                      <option key={course} value={course}>
+                        {course}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_220px] lg:gap-5">
+                  <label className="block">
+                    <span className="mb-2 block text-xs font-black uppercase tracking-[0.12em] text-[#53677d]">
+                      WhatsApp Number
+                    </span>
+                    <span className="relative block">
+                      <Phone className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#9aa8ba]" />
+                      <input
+                        name="phone"
+                        type="tel"
+                        required
+                        value={guideFormData.phone}
+                        onChange={handleGuideChange}
+                        placeholder="+91 98765 43210"
+                        className="h-12 w-full rounded-2xl border border-[#d9e3ef] bg-white pl-12 pr-4 text-sm font-semibold text-[#13233a] outline-none transition focus:border-[#c9a227] focus:ring-4 focus:ring-[#c9a227]/15 dark:border-slate-700 dark:bg-slate-950 dark:placeholder:text-slate-500"
+                      />
+                    </span>
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-2 block text-xs font-black uppercase tracking-[0.12em] text-[#53677d]">
+                      Best Time
+                    </span>
+                    <span className="relative block">
+                      <Clock className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#9aa8ba]" />
+                      <select
+                        name="preferredTime"
+                        required
+                        value={guideFormData.preferredTime}
+                        onChange={handleGuideChange}
+                        className="h-12 w-full rounded-2xl border border-[#d9e3ef] bg-white pl-12 pr-3 text-sm font-semibold text-[#13233a] outline-none transition focus:border-[#c9a227] focus:ring-4 focus:ring-[#c9a227]/15 dark:border-slate-700 dark:bg-slate-950"
+                      >
+                        <option value="">Time</option>
+                        {careerPlanTimes.map((time) => (
+                          <option key={time} value={time}>
+                            {time}
+                          </option>
+                        ))}
+                      </select>
+                    </span>
+                  </label>
+                </div>
+
+                {guideSubmitError ? (
+                  <p className="text-center text-sm font-bold text-red-600">
+                    {guideSubmitError}
+                  </p>
+                ) : null}
+
+                <button
+                  type="submit"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    submitGuideForm(guideFormRef.current);
+                  }}
+                  disabled={guideSubmitting}
+                  className="group inline-flex min-h-13 w-full items-center justify-center gap-3 rounded-2xl bg-[#12345f] px-5 py-4 text-sm font-black text-white shadow-[0_18px_42px_-28px_rgba(18,52,95,0.9)] transition enabled:hover:-translate-y-0.5 enabled:hover:bg-[#1c4778] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {guideSubmitting ? "Sending..." : "Request Mentor Guidance"}
+                  <Send className="h-4 w-4 transition group-enabled:group-hover:translate-x-1" />
+                </button>
+
+                <div className="flex items-start gap-2 rounded-2xl bg-[#f7fafc] px-4 py-3 pr-16 text-xs font-semibold leading-5 text-[#53677d] dark:bg-slate-950/70 sm:pr-4">
+                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#0f8f70]" />
+                  We use your details only to guide the course conversation.
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  );
+}
+
+const whyChooseCards = [
+  {
+    icon: Users,
+    title: "Expert Faculty",
+    description:
+      "Learn from mentors with real delivery experience, not just classroom theory.",
+    href: "/request-callback?service=Expert%20Faculty",
+    tone: "from-[#0e2a50] to-[#174777]",
+    iconTone: "bg-[#e8f1ff] text-[#123d6d]",
+  },
+  {
+    icon: LineChart,
+    title: "Structured Path",
+    description:
+      "Move from fundamentals to advanced work through a clear, role-mapped plan.",
+    href: "/training",
+    tone: "from-[#183a6d] to-[#1f6f8b]",
+    iconTone: "bg-[#e7f8fb] text-[#176a82]",
+  },
+  {
+    icon: Factory,
+    title: "Business Domain Training",
+    description:
+      "Understand how technology is used in banking, healthcare, logistics, and more.",
+    href: "/training/professional-training",
+    tone: "from-[#173b57] to-[#2f5d62]",
+    iconTone: "bg-[#eaf7f0] text-[#27624a]",
+  },
+  {
+    icon: Sparkles,
+    title: "Bonus Technologies",
+    description:
+      "Get exposure to adjacent tools that make your profile stronger in interviews.",
+    href: "/training/professional-training",
+    tone: "from-[#3a2f64] to-[#7750a6]",
+    iconTone: "bg-[#f2edff] text-[#604196]",
+  },
+  {
+    icon: Code2,
+    title: "Development Services",
+    description:
+      "Custom web, Android, API, IoT, and backend solutions shaped for business needs.",
+    href: "/remote-consulting",
+    tone: "from-[#102a43] to-[#315b7c]",
+    iconTone: "bg-[#e8f3ff] text-[#245272]",
+  },
+  {
+    icon: DatabaseZap,
+    title: "Data & Cloud Support",
+    description:
+      "Practical help with AWS, Azure, data engineering, deployment, and testing workflows.",
+    href: "/remote-consulting/enterprise",
+    tone: "from-[#243b53] to-[#486581]",
+    iconTone: "bg-[#edf4fb] text-[#334e68]",
+  },
   {
     icon: Briefcase,
     title: "IT Career Guidance",
     description:
       "Personalized guidance from industry experts to align your goals with real-world roles in IT.",
     href: "/request-callback?service=IT%20Career%20Guidance",
+    tone: "from-[#123d6d] to-[#2266a5]",
+    iconTone: "bg-[#e6f0ff] text-[#1b4f86]",
   },
   {
     icon: BookOpen,
@@ -1438,13 +3126,17 @@ const careerSupport = [
     description:
       "Step-by-step learning paths from foundational concepts to advanced tech stacks and real use cases.",
     href: "/training/beginner-training",
+    tone: "from-[#194569] to-[#5f7a61]",
+    iconTone: "bg-[#eef7ed] text-[#486a39]",
   },
   {
-    icon: Code2,
+    icon: CheckCircle,
     title: "Hands-On Coding Exercises",
     description:
       "Daily challenges and practice labs to build strong coding logic and practical development skills.",
     href: "/work-experience-program",
+    tone: "from-[#0f3d3e] to-[#27746f]",
+    iconTone: "bg-[#e6faf7] text-[#1e6861]",
   },
   {
     icon: FileText,
@@ -1452,6 +3144,8 @@ const careerSupport = [
     description:
       "Build real-world applications with mentorship support to strengthen your portfolio and confidence.",
     href: "/work-experience-program",
+    tone: "from-[#563f1b] to-[#b68422]",
+    iconTone: "bg-[#fff5d7] text-[#846114]",
   },
   {
     icon: UserCircle2,
@@ -1459,6 +3153,8 @@ const careerSupport = [
     description:
       "Get help crafting a standout, recruiter-friendly resume tailored for your desired job roles.",
     href: "/request-callback?service=Resume%20Preparation",
+    tone: "from-[#29335c] to-[#4a5d93]",
+    iconTone: "bg-[#eef1ff] text-[#354981]",
   },
   {
     icon: ClipboardCheck,
@@ -1466,10 +3162,14 @@ const careerSupport = [
     description:
       "Mock interviews, HR tips, and technical assessments to boost your readiness and confidence.",
     href: "/request-callback?service=Interview%20Preparation",
+    tone: "from-[#2b3440] to-[#556575]",
+    iconTone: "bg-[#eef2f5] text-[#415263]",
   },
 ];
 
-/* ─── Main Page ──────────────────────────────────────────────────────────────── */
+const careerSupport = whyChooseCards;
+
+/* â”€â”€â”€ Main Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -1530,7 +3230,7 @@ export default function HomePage() {
                   onClick={() => setShowModal(false)}
                   className="absolute right-5 top-4 text-2xl font-light leading-none text-white/70 hover:text-white"
                 >
-                  ×
+                  Ã—
                 </button>
                 <h3 className="text-white text-xl font-bold">
                   Request a Call Back
@@ -1557,7 +3257,8 @@ export default function HomePage() {
                   <form
                     name="request-callback"
                     method="POST"
-                    action="/__forms.html"
+                    action="/"
+                    data-netlify="true"
                     onSubmit={handleSubmit}
                     className="space-y-4"
                   >
@@ -1635,7 +3336,7 @@ export default function HomePage() {
                       disabled={submitting}
                       className="w-full py-3.5 bg-gradient-to-r from-[#c9a227] to-[#e8bc30] text-[#1a1a00] font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      {submitting ? "Sending..." : "Request My Call Back →"}
+                      {submitting ? "Sending..." : "Request My Call Back â†’"}
                     </button>
                     {submitError ? (
                       <p className="text-center text-xs font-medium text-red-600">
@@ -1658,89 +3359,85 @@ export default function HomePage() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="grid items-start gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-16 xl:gap-20">
-              <div className="max-w-3xl">
-                <span className="inline-block text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">
-                  About Us
-                </span>
-                <h2 className="mb-8 max-w-3xl text-balance text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
-                  Welcome to{" "}
-                  <span className="text-[#1a3c6e]">Tinitiate AI Training</span>
-                </h2>
-                <div className="max-w-[44rem] space-y-7 text-[15px] leading-8 text-[#5b667a] dark:text-slate-300 sm:space-y-8 sm:text-base">
-                  <p className="text-pretty">
-                    <strong className="text-gray-900">
-                      Tinitiate AI Solutions
-                    </strong>{" "}
-                    is a leading IT consulting, development and training
-                    company, dedicated to empowering businesses with
-                    cutting-edge technology solutions and high-quality
-                    professional training. Our vision is to bridge the gap
-                    between industry demands and individual potential — helping
-                    learners and enterprises grow together.
-                  </p>
-                  <p className="text-pretty">
-                    With a highly experienced team carrying years of deep
-                    expertise in IT services, database management, and cloud
-                    computing, we craft tailored solutions that meet the
-                    evolving demands of enterprises worldwide — from ambitious
-                    startups to established global corporations. Every
-                    engagement is backed by real-world experience and a passion
-                    for measurable outcomes.
-                  </p>
-                  <p className="text-pretty">
-                    Our commitment goes beyond training. We partner with our
-                    learners through every step of their journey — delivering
-                    real-world skills, actionable insights, and the career
-                    momentum needed to thrive in today's rapidly changing
-                    digital landscape. With Tinitiate AI Solutions, your next
-                    career breakthrough starts here.
-                  </p>
-                </div>
+        <section className="bg-[#f7fafc] px-4 py-7 transition-colors duration-300 dark:bg-slate-950 sm:px-6 md:px-10">
+          <div className="mx-auto max-w-[1500px]">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-balance text-3xl font-extrabold leading-tight text-[#12345f] sm:text-4xl lg:text-5xl">
+                About Tinitiate
+              </h2>
+              <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
+            </div>
+
+            <div className="mt-5 grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_470px] lg:gap-16 lg:px-20">
+              <div className="mx-auto max-w-[58rem] text-center lg:mx-0 lg:text-left">
+                <p className="mx-auto max-w-[34rem] text-pretty text-sm font-medium leading-7 text-[#5b667a] sm:text-base lg:mx-0">
+                  Practical IT training, project mentoring, and technology
+                  consulting for learners, professionals, and growing teams.
+                </p>
+                <p className="mt-4 text-pretty text-sm leading-7 text-[#53677d] sm:text-base sm:leading-8">
+                  <strong className="text-gray-900">
+                    Tinitiate AI Solutions
+                  </strong>{" "}
+                  is a leading IT consulting, development and training company,
+                  dedicated to empowering businesses with cutting-edge
+                  technology solutions and high-quality professional training.
+                  Our vision is to bridge the gap between industry demands and
+                  individual potential helping learners and enterprises grow
+                  together. With a highly experienced team carrying years of
+                  deep expertise in IT services, database management, and cloud
+                  computing, we craft tailored solutions that meet the evolving
+                  demands of enterprises worldwide from ambitious startups to
+                  established global corporations. Every engagement is backed by
+                  real-world experience and a passion for measurable outcomes.
+                  Our commitment goes beyond training. We partner with our
+                  learners through every step of their journey delivering
+                  real-world skills, actionable insights, and the career
+                  momentum needed to thrive in today's rapidly changing digital
+                  landscape. With Tinitiate AI Solutions, your next career
+                  breakthrough starts here.
+                </p>
               </div>
-              <div className="lg:mt-9 lg:self-stretch">
-                <div className="flex flex-col justify-center rounded-3xl bg-gradient-to-br from-[#1a3c6e] to-[#0e2a50] p-6 text-white shadow-2xl sm:p-8 lg:h-[calc(100%-9px)] lg:p-10">
-                  <div className="mb-8 text-center">
-                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest">
-                      <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <div className="flex justify-center lg:justify-self-end lg:-translate-y-2 lg:translate-x-4">
+                <div className="flex w-full max-w-[470px] flex-col justify-center rounded-[1.35rem] bg-[linear-gradient(135deg,#12345f_0%,#0d2747_100%)] p-5 text-white shadow-[0_22px_58px_rgba(18,52,95,0.22)] sm:rounded-[1.75rem] sm:p-7">
+                  <div className="mb-4 text-center">
+                    <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white">
+                      <span className="h-2 w-2 rounded-full bg-[#24b47e]" />
                       Available Now
                     </div>
-                    <h3 className="mb-3 text-2xl font-bold sm:text-3xl">
+                    <h3 className="text-2xl font-extrabold sm:text-3xl">
                       Talk to an Expert
                     </h3>
-                    <p className="mx-auto max-w-[32rem] text-pretty leading-7 text-blue-100/90">
-                      Get personalized guidance on the right course for your
-                      career goals. No pressure — just honest, expert advice.
+                    <p className="mx-auto mt-3 max-w-[28rem] text-sm leading-7 text-blue-100/90 sm:text-base">
+                      Get clear guidance on the right course, batch, and next
+                      step for your career goal.
                     </p>
                   </div>
-                  <ul className="mx-auto mb-10 w-full max-w-[30rem] space-y-4 text-left">
+                  <ul className="mx-auto mb-5 w-full max-w-[28rem] space-y-3 text-left">
                     {[
-                      "Free 1-on-1 Career Counseling",
-                      "Course Roadmap Tailored for You",
-                      "Job Market Insights & Salary Benchmarks",
-                      "Flexible Batch Schedules to Suit You",
+                      "Free 1-on-1 career guidance",
+                      "Course roadmap matched to your goal",
+                      "Project and portfolio direction",
+                      "Flexible batch timing support",
                     ].map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-3 text-sm leading-7 text-blue-100/95 sm:text-base"
+                        className="flex items-center gap-3 text-sm leading-6 text-blue-50/95 sm:text-base"
                       >
-                        <div className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center shrink-0">
-                          <CheckCircle className="w-4 h-4 text-green-300" />
-                        </div>
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/12">
+                          <CheckCircle className="h-4 w-4 text-[#7ee0b2]" />
+                        </span>
                         {item}
                       </li>
                     ))}
                   </ul>
                   <Link
                     href="/request-callback"
-                    className="touch-target mx-auto flex w-fit max-w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#c9a227] to-[#e8bc30] px-8 py-4 text-center text-base font-bold text-[#1a1a00] transition-all duration-200 hover:scale-[1.02] hover:shadow-xl sm:px-10 sm:py-5 sm:text-lg"
+                    className="touch-target mx-auto flex w-fit max-w-full items-center justify-center rounded-full bg-[#e4b72e] px-8 py-3.5 text-center text-sm font-extrabold text-[#171100] transition hover:bg-[#f0c542]"
                   >
-                    Get Started — Request a Call Back
+                    Request a Call Back
                   </Link>
-                  <p className="text-center text-blue-300 text-sm mt-4">
-                    Our team responds within 24 hours
+                  <p className="mt-3 text-center text-sm text-blue-100/80">
+                    Our team responds within 24 hours.
                   </p>
                 </div>
               </div>
@@ -1754,7 +3451,45 @@ export default function HomePage() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10 lg:px-16">
+        <section className="relative overflow-hidden bg-[#f7fafc] px-4 py-8 transition-colors duration-300 dark:bg-slate-950 sm:px-6 sm:py-12 md:px-10 lg:px-14">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#c9a227]/60 to-transparent" />
+          <div className="mx-auto max-w-[1400px]">
+            <div className="mx-auto mb-6 max-w-3xl text-center sm:mb-9">
+              <h2 className="text-balance text-3xl font-extrabold leading-tight text-[#12345f] sm:text-4xl lg:text-5xl">
+                Why Choose Us
+              </h2>
+              <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+              {whyChooseCards.map(
+                ({ icon: Icon, title, description, tone, iconTone }) => (
+                  <div
+                    key={title}
+                    className="group relative flex min-h-[150px] overflow-hidden rounded-[1.15rem] border border-[#d8e2ee] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] p-4 shadow-[0_18px_45px_-34px_rgba(15,23,42,0.55)] transition duration-300 hover:-translate-y-1 hover:border-[#c9a227]/70 hover:shadow-[0_24px_60px_-32px_rgba(15,23,42,0.65)] dark:border-slate-700/80 dark:bg-[linear-gradient(180deg,#111827_0%,#0f172a_100%)] dark:shadow-[0_24px_65px_-44px_rgba(2,6,23,0.98)] sm:min-h-[190px] sm:rounded-2xl sm:p-5 xl:min-h-[245px]"
+                  >
+                    <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${tone}`} />
+                    <div className="relative z-10 flex h-full flex-col">
+                      <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${iconTone} shadow-[inset_0_0_0_1px_rgba(255,255,255,0.75)] sm:mb-4 sm:h-11 sm:w-11 sm:rounded-2xl`}>
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="max-w-[14rem] text-balance text-base font-extrabold leading-tight text-[#12345f] sm:text-[1.05rem]">
+                        {title}
+                      </h3>
+                      <p className="mt-2 text-pretty text-[12px] leading-5 text-[#53677d] sm:mt-3 sm:text-[13px] sm:leading-6">
+                        {description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className="hidden overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10 lg:px-16">
           <div className="max-w-[1400px] mx-auto">
             <div className="mb-10 text-center lg:text-left">
               <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#c9a227] mb-4">
@@ -1765,7 +3500,7 @@ export default function HomePage() {
                   Where Real Expertise Meets Your Ambition
                 </h2>
                 <p className="max-w-xs text-pretty text-sm leading-7 text-gray-500 dark:text-slate-300 lg:text-right lg:shrink-0">
-                  Not just a training institute — a launchpad engineered for
+                  Not just a training institute a launchpad engineered for
                   career breakthroughs.
                 </p>
               </div>
@@ -1780,7 +3515,7 @@ export default function HomePage() {
                     <span className="text-[#0e2a50]">
                       15+ years of hands-on IT experience
                     </span>
-                    , our training isn't just theory — it's real-time knowledge
+                    , our training isn't just theory it's real-time knowledge
                     paired with live projects, bonus technologies, and business
                     domain immersion.
                   </p>
@@ -1790,7 +3525,7 @@ export default function HomePage() {
                     {
                       label: "Expert Faculty",
                       detail:
-                        "Deep industry background, not just classroom instructors — our mentors have shipped real products.",
+                        "Deep industry background, not just classroom instructors â€” our mentors have shipped real products.",
                     },
                     {
                       label: "Structured Path",
@@ -1800,7 +3535,7 @@ export default function HomePage() {
                     {
                       label: "Business Domain Training",
                       detail:
-                        "Go beyond code. Understand the industry you'll work in — banking, logistics, healthcare, and more.",
+                        "Go beyond code. Understand the industry you'll work in â€” banking, logistics, healthcare, and more.",
                     },
                     {
                       label: "Bonus Technologies",
@@ -1879,7 +3614,7 @@ export default function HomePage() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="relative overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10">
+        <section className="hidden relative overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10">
           <div className="absolute inset-0 bg-gradient-to-br from-white via-yellow-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
           <svg
             className="pointer-events-none absolute inset-0 h-full w-full text-black opacity-10 dark:text-slate-400"
@@ -2031,12 +3766,25 @@ export default function HomePage() {
       <ScrollReveal>
         <SkillsSwitcher />
       </ScrollReveal>
+
       <ScrollReveal>
-        <MoreTrainingPrograms />
+        <StudentPlanAssessment />
       </ScrollReveal>
 
       <ScrollReveal>
-        <section className="bg-gray-50 px-4 py-12 sm:px-6">
+        <CorporateLearningEnvironment />
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <LeadershipVisionMessage />
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <CareerPathPlanSection />
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className="hidden bg-gray-50 px-4 py-12 sm:px-6">
           <div className="max-w-7xl mx-auto">
             <h2 className="mx-auto mb-8 max-w-3xl text-balance text-center text-3xl font-bold text-gray-900 sm:text-4xl">
               Career Support
