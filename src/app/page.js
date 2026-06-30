@@ -2670,9 +2670,6 @@ function LeadershipVisionMessage() {
             <div className="mx-auto max-w-[760px] overflow-hidden rounded-[1.6rem] border border-[#d8e2ee] bg-white shadow-[0_28px_86px_-62px_rgba(15,23,42,0.9)] transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_32px_90px_-48px_rgba(2,6,23,0.98)] lg:mx-0">
               <div className="flex items-center justify-between border-b border-[#d8e2ee] bg-[#f8fbff] px-4 py-3 dark:border-slate-700 dark:bg-slate-950/70">
                 <div>
-                  <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#c9a227]">
-                    Career Clarity Video
-                  </p>
                   <p className="mt-1 text-sm font-extrabold text-[#12345f]">
                     STEM or Non-STEM career options
                   </p>
@@ -2694,19 +2691,6 @@ function LeadershipVisionMessage() {
                   type="video/mp4"
                 />
               </video>
-
-              <div className="grid border-t border-[#d8e2ee] bg-white dark:border-slate-700 dark:bg-slate-900 sm:grid-cols-3">
-                {["Think clearly", "Build steadily", "Present confidently"].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className="border-b border-[#d8e2ee] px-4 py-3 text-sm font-extrabold text-[#12345f] last:border-b-0 dark:border-slate-700 sm:border-b-0 sm:border-r sm:last:border-r-0"
-                    >
-                      {item}
-                    </div>
-                  )
-                )}
-              </div>
             </div>
           </div>
 
