@@ -2890,7 +2890,7 @@ function CareerPathPlanSection() {
                 ref={guideFormRef}
                 name="mentor-guidance"
                 method="POST"
-                action="/"
+                action="/__forms.html"
                 data-netlify="true"
                 onSubmit={handleGuideSubmit}
                 className="mt-7 space-y-4 lg:space-y-5"
@@ -3233,7 +3233,7 @@ export default function HomePage() {
                   <form
                     name="request-callback"
                     method="POST"
-                    action="/"
+                    action="/__forms.html"
                     data-netlify="true"
                     onSubmit={handleSubmit}
                     className="space-y-4"

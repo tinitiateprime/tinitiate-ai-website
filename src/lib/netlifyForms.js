@@ -1,4 +1,14 @@
-const NETLIFY_FORM_ENDPOINTS = ["/", "/__forms.html"];
+const NETLIFY_FORM_ENDPOINT = "/__forms.html";
+
+function encodeFormData(formData) {
+  const body = new URLSearchParams();
+
+  for (const [key, value] of formData.entries()) {
+    body.append(key, typeof value === "string" ? value : value.name);
+  }
+
+  return body.toString();
+}
 
 export async function submitNetlifyForm(formElement) {
   const formData = new FormData(formElement);
@@ -8,31 +18,24 @@ export async function submitNetlifyForm(formElement) {
     formData.set("form-name", formName);
   }
 
-  const body = new URLSearchParams(formData);
-  const failures = [];
+  const body = encodeFormData(formData);
 
-  for (const endpoint of NETLIFY_FORM_ENDPOINTS) {
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Accept: "application/json, text/html",
-        },
-        body: body.toString(),
-      });
+  try {
+    const response = await fetch(NETLIFY_FORM_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json, text/html",
+      },
+      body,
+    });
 
-      if (response.ok) {
-        return response;
-      }
-
-      failures.push(`${endpoint}: ${response.status}`);
-    } catch (error) {
-      failures.push(`${endpoint}: ${error.message}`);
+    if (response.ok) {
+      return response;
     }
-  }
 
-  throw new Error(
-    `Netlify form submission failed (${failures.join(", ")})`
-  );
+    throw new Error(`${NETLIFY_FORM_ENDPOINT}: ${response.status}`);
+  } catch (error) {
+    throw new Error(`Netlify form submission failed (${error.message})`);
+  }
 }

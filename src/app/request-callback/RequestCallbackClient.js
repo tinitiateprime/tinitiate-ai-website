@@ -116,7 +116,7 @@ export default function RequestCallbackPage({ course = '', service = '' }) {
           <form
             name={FORM_NAME}
             method="POST"
-            action="/"
+            action="/__forms.html"
             data-netlify="true"
             onSubmit={handleSubmit}
             className="space-y-4"

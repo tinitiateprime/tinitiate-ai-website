@@ -8,7 +8,7 @@
 </head>
 <body>
   <!-- This file enables Netlify to detect your form fields at build time -->
-  <form name="request-callback" method="POST" action="/" data-netlify="true" hidden>
+  <form name="request-callback" method="POST" action="/__forms.html" data-netlify="true" hidden>
     <input type="hidden" name="form-name" value="request-callback" />
     <input type="text" name="source" />
     <input type="text" name="topicType" />
@@ -21,7 +21,7 @@
     <textarea name="message"></textarea>
   </form>
 
-  <form name="mentor-guidance" method="POST" action="/" data-netlify="true" hidden>
+  <form name="mentor-guidance" method="POST" action="/__forms.html" data-netlify="true" hidden>
     <input type="hidden" name="form-name" value="mentor-guidance" />
     <input type="text" name="source" />
     <input type="text" name="name" />
