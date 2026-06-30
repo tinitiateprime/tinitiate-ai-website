@@ -124,11 +124,13 @@ function AiCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
     <Image
       src="/images/courses/ai.png"
       alt="AI logo"
-      width={192}
-      height={192}
+      width={384}
+      height={384}
       className={`${className} object-contain`}
       loading="eager"
-      sizes="96px"
+      fetchPriority="high"
+      quality={100}
+      sizes="(min-width: 1024px) 192px, 128px"
       decoding="async"
     />
   );
@@ -139,11 +141,13 @@ function MachineLearningCourseIcon({ className = "w-24 h-24", idSuffix = "course
     <Image
       src="/images/courses/ml.png"
       alt="Machine Learning logo"
-      width={192}
-      height={192}
+      width={384}
+      height={384}
       className={`${className} object-contain`}
       loading="eager"
-      sizes="96px"
+      fetchPriority="high"
+      quality={100}
+      sizes="(min-width: 1024px) 192px, 128px"
       decoding="async"
     />
   );
@@ -154,11 +158,13 @@ function AgenticAICourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
     <Image
       src="/images/courses/agentic-ai.png"
       alt="Agentic AI logo"
-      width={192}
-      height={192}
+      width={384}
+      height={384}
       className={`${className} object-contain`}
       loading="eager"
-      sizes="96px"
+      fetchPriority="high"
+      quality={100}
+      sizes="(min-width: 1024px) 192px, 128px"
       decoding="async"
     />
   );
@@ -235,11 +241,12 @@ function SqlCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
     <Image
       src="/images/courses/sql.png"
       alt="SQL logo"
-      width={128}
-      height={128}
+      width={256}
+      height={256}
       className={`${className} object-contain`}
       loading="eager"
-      sizes="96px"
+      quality={100}
+      sizes="(min-width: 1024px) 192px, 128px"
       decoding="async"
     />
   );
@@ -340,11 +347,13 @@ function PowerBICourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
     <Image
       src="/images/courses/powerbi.png"
       alt="Power BI logo"
-      width={128}
-      height={128}
+      width={384}
+      height={384}
       className={`${className} object-contain`}
       loading="eager"
-      sizes="96px"
+      fetchPriority="high"
+      quality={100}
+      sizes="(min-width: 1024px) 192px, 128px"
       decoding="async"
     />
   );
@@ -361,13 +370,38 @@ function LocalSkillIcon({
     <Image
       src={src}
       alt={alt}
-      width={128}
-      height={128}
+      width={256}
+      height={256}
       className={`${className} object-contain p-[6%] `}
       loading="eager"
-      sizes="96px"
+      quality={100}
+      sizes="(min-width: 640px) 128px, 112px"
       decoding="async"
     />
+  );
+}
+
+function CourseIconPreloads() {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0">
+      {[
+        "/images/courses/ai.png",
+        "/images/courses/ml.png",
+        "/images/courses/agentic-ai.png",
+        "/images/courses/powerbi.png",
+      ].map((src) => (
+        <Image
+          key={src}
+          src={src}
+          alt=""
+          width={384}
+          height={384}
+          priority
+          quality={100}
+          sizes="192px"
+        />
+      ))}
+    </div>
   );
 }
 
@@ -622,6 +656,7 @@ function CourseSlider() {
 
   return (
     <section className="bg-white px-3 py-6 transition-colors duration-300 dark:bg-slate-950 sm:px-4 sm:py-10 md:px-10 md:py-12">
+      <CourseIconPreloads />
       <div className="max-w-[1400px] mx-auto">
         <AnimatePresence mode="wait" custom={slideDirection}>
           <motion.div
