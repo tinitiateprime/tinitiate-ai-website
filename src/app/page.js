@@ -32,7 +32,6 @@ import {
   Phone,
   Sparkles,
   Star,
-  Play,
   Quote,
   Send,
   ShieldCheck,
@@ -2571,37 +2570,7 @@ function CorporateLearningEnvironment() {
           </p>
         </div>
 
-        <div className="mx-auto mt-7 max-w-5xl sm:mt-10">
-          <div className="overflow-hidden rounded-[1.25rem] border border-[#d8e2ee] bg-[#071425] shadow-[0_34px_95px_-54px_rgba(15,23,42,0.95)] dark:border-slate-700 sm:rounded-[1.5rem]">
-            <video
-              className="aspect-video h-auto w-full bg-[#071425] object-cover"
-              controls
-              playsInline
-              preload="metadata"
-              poster="/videos/tinitiate-ai-career-options-poster.jpg"
-            >
-              <source
-                src="/videos/tinitiate-ai-career-options.mp4"
-                type="video/mp4"
-              />
-            </video>
-            <div className="grid gap-2 border-t border-white/10 bg-[#071425] px-4 py-3 text-white sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-5 sm:py-4">
-              <div className="min-w-0">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#f2cf5b]">
-                  Career Clarity Video
-                </p>
-                <h3 className="mt-1 text-base font-extrabold leading-tight sm:text-xl">
-                  STEM or Non-STEM? Understand Your Career Options
-                </h3>
-              </div>
-              <span className="w-fit rounded-full border border-white/14 bg-white/8 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white/78">
-                5:54 Guide
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+        <div className="mt-7 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {environmentPoints.map((item) => {
             const Icon = item.icon;
 
@@ -2667,42 +2636,29 @@ function LeadershipVisionMessage() {
               <div className="flex items-center justify-between border-b border-[#d8e2ee] bg-[#f8fbff] px-4 py-3 dark:border-slate-700 dark:bg-slate-950/70">
                 <div>
                   <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#c9a227]">
-                    CEO Message
+                    Career Clarity Video
                   </p>
                   <p className="mt-1 text-sm font-extrabold text-[#12345f]">
-                    Standards behind the training
+                    STEM or Non-STEM career options
                   </p>
                 </div>
                 <span className="hidden rounded-xl border border-[#d8e2ee] bg-white px-3 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-[#53677d] dark:border-slate-700 dark:bg-slate-900 sm:inline-flex">
-                  Preview
+                  5:54 Guide
                 </span>
               </div>
 
-              <div className="relative aspect-[16/9] overflow-hidden bg-[#12345f]">
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,#12345f_0%,#164b78_48%,#0f6b6b_100%)]" />
-                <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:36px_36px]" />
-                <div className="absolute inset-x-5 top-5 flex items-center justify-between">
-                  <span className="rounded-xl bg-white/92 px-3 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-[#12345f] dark:!text-[#12345f]">
-                    CEO Message
-                  </span>
-                  <span className="rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white">
-                    02:45
-                  </span>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white text-[#12345f] shadow-[0_24px_70px_-28px_rgba(0,0,0,0.78)] dark:!bg-white dark:!text-[#12345f] sm:h-24 sm:w-24">
-                    <Play className="ml-1 h-9 w-9 fill-current sm:h-10 sm:w-10" />
-                  </div>
-                </div>
-                <div className="absolute inset-x-0 bottom-0 hidden bg-[linear-gradient(180deg,transparent_0%,rgba(9,25,48,0.94)_100%)] px-5 pb-5 pt-16 sm:block">
-                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#f2cf5b]">
-                    From training to delivery confidence
-                  </p>
-                  <p className="mt-2 max-w-xl text-balance text-xl font-black leading-tight text-white sm:text-2xl">
-                    A message about discipline, standards, and real outcomes.
-                  </p>
-                </div>
-              </div>
+              <video
+                className="aspect-video h-auto w-full bg-[#071425] object-cover"
+                controls
+                playsInline
+                preload="metadata"
+                poster="/videos/tinitiate-ai-career-options-poster.jpg"
+              >
+                <source
+                  src="/videos/tinitiate-ai-career-options.mp4"
+                  type="video/mp4"
+                />
+              </video>
 
               <div className="grid border-t border-[#d8e2ee] bg-white dark:border-slate-700 dark:bg-slate-900 sm:grid-cols-3">
                 {["Think clearly", "Build steadily", "Present confidently"].map(
