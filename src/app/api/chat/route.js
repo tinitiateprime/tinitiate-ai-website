@@ -12,9 +12,9 @@ export const runtime = "nodejs";
 // Centralize contact details (so the model always shows the same, correct info)
 // const CONTACT_CARD = `
 // Contact Tinitiate AI Solutions:
-// • WhatsApp: https://wa.me/919553495553
+// • WhatsApp: https://wa.me/916309123485
 // • Email: contact@tinitiateai.com
-// • Phone (India): +91 95534 95553
+// • Phone (India): +91 6309123485
 // • Phone (USA): +1 973 653 6870, +1 206 802 4102
 // `.trim();
 
@@ -156,9 +156,9 @@ export async function POST(req) {
 // "We don’t have that exact detail here. Please contact our team:" and then provide the contact block.
 
 // Contact block (ALWAYS the same formatting when you give contact info):
-// • WhatsApp: +91 95534 95553
+// • WhatsApp: +91 6309123485
 // • Email: contact@tinitiateai.com
-// • Phone (India): +91 95534 95553
+// • Phone (India): +91 6309123485
 // • Phone (USA): +1 973 653 6870, +1 206 802 4102
 
 // If content is available in Site Facts, answer directly in first-person. When relevant, you may reference a page using the relative URL shown.

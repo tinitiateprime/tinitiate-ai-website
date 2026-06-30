@@ -347,8 +347,8 @@ export default function Footer() {
                   </div>
                   <p className="leading-6 text-[#d9e1ec]">
                     <span className="font-semibold text-white">India:</span>{" "}
-                    <a href="tel:+919848092083" className="transition hover:text-[#f3d472]">
-                      +91 9848092083
+                    <a href="tel:+916309123485" className="transition hover:text-[#f3d472]">
+                      +91 6309123485
                     </a>
                   </p>
                 </div>
@@ -366,6 +366,11 @@ export default function Footer() {
                     <span className="font-semibold text-white">Corporate Office:</span>
                     <br />
                     1-2/10 SBH Colony Mohan Nagar, SBH Colony, Kothapet, 500036, Telangana, India
+                  </address>
+                  <address className="not-italic leading-6">
+                    <span className="font-semibold text-white">US Office:</span>
+                    <br />
+                    1420 Valley Trl, Irving, TX 75063, USA
                   </address>
                 </div>
               </div>

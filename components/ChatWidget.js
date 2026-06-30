@@ -27,10 +27,10 @@ const ASSISTANT_AVATAR = "/images/tinitiatelogoicon.png";
 const USER_AVATAR_LETTER = "You";
 
 // Handoff links
-const WHATSAPP_LINK = "https://wa.me/919553495553";
+const WHATSAPP_LINK = "https://wa.me/916309123485";
 // const EMAIL_LINK = "mailto:contact@tinitiateai.com?subject=Tinitiate AI Solutions%20Website%20Chat&body=Hi%20Tinitiate%20AI%20Solutions%2C%0A%0A";
 const EMAIL_LINK = "mailto:contact@tinitiateai.com?subject=Tinitiate AI Solutions%20Enquiry%20from%20Website%3A%20%5BService%5D%20%E2%80%94%20%5BYour%20Name%2C%20Company%5D&body=Hi%20Tinitiate%20AI%20Solutions%20Team%2C%0A%0AI%20am%20interested%20in%20%5BService%5D.%0A%0AName%3A%20%5BYour%20Name%5D%0ACompany%3A%20%5BCompany%5D%0APhone%2FWhatsApp%3A%20%5B%2B91XXXXXXXXXX%5D%0APreferred%20contact%20time%20(IST)%3A%20%5BTime%5D%0ABrief%3A%20%5BOne-two%20lines%5D%0A%0AThanks%2C%0A%5BYour%20Name%5D";
-const PHONE_LINK_IN = "tel:+919553495553";
+const PHONE_LINK_IN = "tel:+916309123485";
 const PHONE_LINK_US = "tel:+19736536870";
 
 // Larger suggestions pool

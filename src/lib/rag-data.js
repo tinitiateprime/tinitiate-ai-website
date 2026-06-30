@@ -33,7 +33,7 @@ export const DOCS = [
     title: "Admissions & Enrollment",
     url: "/it-training#enroll",
     content:
-      "To enroll, contact us via our website or WhatsApp +91-95534-95553. We’ll suggest the right course, explain fees, and share start dates."
+      "To enroll, contact us via our website or WhatsApp +91 6309123485. We’ll suggest the right course, explain fees, and share start dates."
   },
   {
     id: "faq-corporate",

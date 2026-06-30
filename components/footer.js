@@ -122,7 +122,7 @@ export default function Footer() {
                   <p className="text-gray-500 text-xs uppercase tracking-wider mb-1">USA</p>
                   <a href="tel:+19736536870" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+1 (973) 653-6870</a>
                   <p className="text-gray-500 text-xs uppercase tracking-wider mt-2 mb-1">India</p>
-                  <a href="tel:+919848092083" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+91 9848092083</a>
+                  <a href="tel:+916309123485" className="text-gray-400 hover:text-[#c9a227] transition-colors block">+91 6309123485</a>
                 </div>
               </div>
 
@@ -135,6 +135,8 @@ export default function Footer() {
                   <p className="text-gray-400 leading-relaxed">Plot B 503, Ace Ajanta, Nagole, Hayathnagar, Telangana – 500068</p>
                   <p className="text-gray-500 text-xs uppercase tracking-wider mt-2 mb-1">Corporate Office</p>
                   <p className="text-gray-400 leading-relaxed">1-2/10 SBH Colony, Kothapet, Telangana – 500036</p>
+                  <p className="text-gray-500 text-xs uppercase tracking-wider mt-2 mb-1">US Office</p>
+                  <p className="text-gray-400 leading-relaxed">1420 Valley Trl, Irving, TX 75063, USA</p>
                 </div>
               </div>
 

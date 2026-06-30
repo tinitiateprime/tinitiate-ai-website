@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 /* eslint-disable react/no-unescaped-entities */
 
@@ -48,7 +48,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
-/* â”€â”€â”€ Scroll Reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Scroll Reveal ──────────────────────────────────────────────────────────── */
 function ScrollReveal({ children }) {
   const ref = useRef(null);
   const themeTimerRef = useRef(null);
@@ -118,7 +118,7 @@ function ScrollReveal({ children }) {
   );
 }
 
-/* â”€â”€â”€ Course Slider Icons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Course Slider Icons ─────────────────────────────────────────────────────── */
 function AiCourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
   return (
     <Image
@@ -359,7 +359,7 @@ function PowerBICourseIcon({ className = "w-24 h-24", idSuffix = "course" }) {
   );
 }
 
-/* â”€â”€â”€ LocalSkillIcon â€” always fills parent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── LocalSkillIcon — always fills parent ───────────────────────────────────── */
 function LocalSkillIcon({
   src,
   alt,
@@ -611,7 +611,7 @@ const courses = [
   },
 ];
 
-/* â”€â”€â”€ Course Slider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Course Slider ──────────────────────────────────────────────────────────── */
 function CourseSlider() {
   const [active, setActive] = useState(0);
   const [slideDirection, setSlideDirection] = useState(1);
@@ -800,7 +800,7 @@ function CourseSlider() {
   );
 }
 
-/* â”€â”€â”€ Skills Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Skills Data ─────────────────────────────────────────────────────────────── */
 const beginnerSkills = [
   {
     name: "Artificial Intelligence",
@@ -1222,7 +1222,7 @@ const professionalSkills = [
   },
 ];
 
-/* â”€â”€â”€ Skills Switcher â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Skills Switcher ─────────────────────────────────────────────────────────── */
 const courseCardDetails = {
   "Artificial Intelligence": {
     summary:
@@ -2968,7 +2968,7 @@ function CareerPathPlanSection() {
                         required
                         value={guideFormData.phone}
                         onChange={handleGuideChange}
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 6309123485"
                         className="h-12 w-full rounded-2xl border border-[#d9e3ef] bg-white pl-12 pr-4 text-sm font-semibold text-[#13233a] outline-none transition focus:border-[#c9a227] focus:ring-4 focus:ring-[#c9a227]/15 dark:border-slate-700 dark:bg-slate-950 dark:placeholder:text-slate-500"
                       />
                     </span>
@@ -3144,7 +3144,7 @@ const whyChooseCards = [
 
 const careerSupport = whyChooseCards;
 
-/* â”€â”€â”€ Main Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Main Page ──────────────────────────────────────────────────────────────── */
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -3205,7 +3205,7 @@ export default function HomePage() {
                   onClick={() => setShowModal(false)}
                   className="absolute right-5 top-4 text-2xl font-light leading-none text-white/70 hover:text-white"
                 >
-                  Ã—
+                  ×
                 </button>
                 <h3 className="text-white text-xl font-bold">
                   Request a Call Back
@@ -3279,7 +3279,7 @@ export default function HomePage() {
                       <input
                         name="phone"
                         type="tel"
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 6309123485"
                         required
                         value={formData.phone}
                         onChange={(e) =>
@@ -3311,7 +3311,7 @@ export default function HomePage() {
                       disabled={submitting}
                       className="w-full py-3.5 bg-gradient-to-r from-[#c9a227] to-[#e8bc30] text-[#1a1a00] font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 text-sm disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      {submitting ? "Sending..." : "Request My Call Back â†’"}
+                      {submitting ? "Sending..." : "Request My Call Back →"}
                     </button>
                     {submitError ? (
                       <p className="text-center text-xs font-medium text-red-600">
@@ -3500,7 +3500,7 @@ export default function HomePage() {
                     {
                       label: "Expert Faculty",
                       detail:
-                        "Deep industry background, not just classroom instructors â€” our mentors have shipped real products.",
+                        "Deep industry background, not just classroom instructors — our mentors have shipped real products.",
                     },
                     {
                       label: "Structured Path",
@@ -3510,7 +3510,7 @@ export default function HomePage() {
                     {
                       label: "Business Domain Training",
                       detail:
-                        "Go beyond code. Understand the industry you'll work in â€” banking, logistics, healthcare, and more.",
+                        "Go beyond code. Understand the industry you'll work in — banking, logistics, healthcare, and more.",
                     },
                     {
                       label: "Bonus Technologies",
