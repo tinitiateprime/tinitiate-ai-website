@@ -122,6 +122,8 @@ export default function RequestCallbackPage({ course = '', service = '' }) {
             className="space-y-4"
           >
             <input type="hidden" name="form-name" value={FORM_NAME} readOnly />
+            <input type="hidden" name="source" value="Request callback page" readOnly />
+            <input type="hidden" name="topicType" value={selectedTopicType || ''} readOnly />
 
             <FormField icon={User}>
               <input

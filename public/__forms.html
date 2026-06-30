@@ -10,7 +10,20 @@
   <!-- This file enables Netlify to detect your form fields at build time -->
   <form name="request-callback" method="POST" action="/" data-netlify="true" hidden>
     <input type="hidden" name="form-name" value="request-callback" />
-    <!-- The following fields mirror those in your React component -->
+    <input type="text" name="source" />
+    <input type="text" name="topicType" />
+    <!-- The following fields mirror those in your React components -->
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="course" />
+    <input type="text" name="preferredTime" />
+    <textarea name="message"></textarea>
+  </form>
+
+  <form name="mentor-guidance" method="POST" action="/" data-netlify="true" hidden>
+    <input type="hidden" name="form-name" value="mentor-guidance" />
+    <input type="text" name="source" />
     <input type="text" name="name" />
     <input type="email" name="email" />
     <input type="tel" name="phone" />

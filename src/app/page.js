@@ -2888,14 +2888,15 @@ function CareerPathPlanSection() {
             ) : (
               <form
                 ref={guideFormRef}
-                name="request-callback"
+                name="mentor-guidance"
                 method="POST"
                 action="/"
                 data-netlify="true"
                 onSubmit={handleGuideSubmit}
                 className="mt-7 space-y-4 lg:space-y-5"
               >
-                <input type="hidden" name="form-name" value="request-callback" readOnly />
+                <input type="hidden" name="form-name" value="mentor-guidance" readOnly />
+                <input type="hidden" name="source" value="Home mentor guidance" readOnly />
                 <input type="hidden" name="message" value={guideMessage} readOnly />
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
@@ -3238,6 +3239,8 @@ export default function HomePage() {
                     className="space-y-4"
                   >
                     <input type="hidden" name="form-name" value="request-callback" readOnly />
+                    <input type="hidden" name="source" value="Homepage callback modal" readOnly />
+                    <input type="hidden" name="topicType" value="" readOnly />
                     <input type="hidden" name="course" value="" readOnly />
                     <input type="hidden" name="preferredTime" value="" readOnly />
                     <div>
