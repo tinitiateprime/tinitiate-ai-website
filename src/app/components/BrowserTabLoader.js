@@ -4,9 +4,9 @@ import { useCallback, useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const DEFAULT_FAVICON_PATH = "/favicon.png";
-const LOADING_MINIMUM_MS = 260;
-const LOADING_FAILSAFE_MS = 8000;
-const FAVICON_FRAME_INTERVAL_MS = 110;
+const LOADING_MINIMUM_MS = 0;
+const LOADING_FAILSAFE_MS = 5000;
+const FAVICON_FRAME_INTERVAL_MS = 180;
 const CONTROLLED_FAVICON_LINKS = [
   { id: "app-favicon", rel: "icon" },
   { id: "app-shortcut-icon", rel: "shortcut icon" },

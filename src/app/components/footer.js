@@ -2,19 +2,15 @@
 
 import Link from "next/link";
 import {
-  ArrowRight,
-  BookOpen,
-  Briefcase,
-  GraduationCap,
   Mail,
   MapPin,
   Phone,
-  ShieldCheck,
 } from "lucide-react";
 import ThemeLogo from "./ThemeLogo";
 
 const companyLinks = [
   { href: "/company", label: "About Us" },
+  { href: "/pricing", label: "Program Pricing" },
   { href: "/pricing-policy", label: "Pricing Policy" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/refund-policy", label: "Refund Policy" },
@@ -22,29 +18,12 @@ const companyLinks = [
 ];
 
 const trainingLinks = [
+  { href: "/training/junior-tech-program", label: "Junior Tech Program" },
   { href: "/training/beginner-training", label: "Beginner Training" },
   { href: "/training/professional-training", label: "Professional Training" },
   { href: "/training/corporate-training", label: "Corporate Training" },
   { href: "/training/campus-training", label: "Campus Training" },
   { href: "/work-experience-program", label: "Work Experience Program" },
-];
-
-const footerHighlights = [
-  {
-    title: "Live Project Learning",
-    description: "Practical, real-world experience built into the training journey.",
-    icon: BookOpen,
-  },
-  {
-    title: "Career-Focused Mentorship",
-    description: "Guidance shaped around hiring outcomes and role readiness.",
-    icon: Briefcase,
-  },
-  {
-    title: "Trusted Training Support",
-    description: "Structured pathways with mentorship, flexibility, and clarity.",
-    icon: ShieldCheck,
-  },
 ];
 
 const socialLinks = [
@@ -161,70 +140,8 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-[#d8e0ec] bg-[linear-gradient(180deg,#f8fbff_0%,#edf4ff_34%,#102344_34%,#07172d_100%)] transition-colors duration-300 dark:border-slate-800 dark:bg-[linear-gradient(180deg,#020617_0%,#0b1220_32%,#081228_32%,#020617_100%)]">
-      <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-12 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white p-5 shadow-[0_28px_80px_rgba(8,22,44,0.14)] transition-colors duration-300 dark:border-slate-700/80 dark:bg-slate-900 dark:shadow-[0_28px_80px_rgba(2,6,23,0.42)] sm:p-8 lg:p-10">
-          <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_top_right,rgba(201,162,39,0.18),transparent_58%)] lg:block" />
-
-          <div className="relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#eef4ff] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#1a3c6e] transition-colors duration-300 dark:bg-slate-800 dark:text-sky-200">
-                <GraduationCap className="h-4 w-4" />
-                Built for Career Growth
-              </div>
-              <h2 className="mt-5 max-w-2xl text-balance text-3xl font-black leading-tight text-[#0f2242] transition-colors duration-300 dark:text-slate-50 sm:text-4xl">
-                Learn practical tech skills with real guidance, real projects, and real outcomes.
-              </h2>
-              <p className="mt-4 max-w-2xl text-pretty text-sm leading-7 text-[#5b667a] transition-colors duration-300 dark:text-slate-300 sm:text-base">
-                Tinitiate AI Solutions helps learners move from fundamentals to job-ready confidence through structured training, mentorship, and hands-on industry exposure.
-              </p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3">
-              {footerHighlights.map(({ title, description, icon: Icon }) => (
-                <div
-                  key={title}
-                  className="rounded-2xl border border-[#e8edf7] bg-[#f8faff] p-4 shadow-sm transition-colors duration-300 dark:border-slate-700 dark:bg-slate-950/70"
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0f2242] text-white transition-colors duration-300 dark:bg-slate-800">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-4 max-w-[16ch] text-balance text-sm font-bold text-[#0f2242] transition-colors duration-300 dark:text-slate-50">{title}</h3>
-                  <p className="mt-2 max-w-[28ch] text-pretty text-xs leading-6 text-[#607089] transition-colors duration-300 dark:text-slate-300">{description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative mt-8 flex flex-col gap-4 rounded-[1.75rem] bg-[#0f2242] p-5 text-white transition-colors duration-300 dark:bg-slate-950 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#c9a227]">
-                Ready to Start
-              </p>
-              <p className="mt-2 max-w-[24ch] text-balance text-lg font-bold sm:text-xl">
-                Explore the right training path for your next career move.
-              </p>
-            </div>
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
-              <Link
-                href="/request-callback"
-                className="inline-flex min-h-[44px] w-full items-center justify-center rounded-full bg-[#c9a227] px-5 py-3 text-sm font-semibold text-[#111827] transition hover:bg-[#e0b93c] sm:w-auto"
-              >
-                Request a Callback
-              </Link>
-              <Link
-                href="/training/professional-training"
-                className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/8 sm:w-auto"
-              >
-                View Programs
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mx-auto mt-10 max-w-7xl px-4 pb-8 text-sm text-[#c7d1df] sm:px-6 lg:px-8">
+    <footer className="mt-16 border-t border-[#d8e0ec] bg-[#07172d] transition-colors duration-300 dark:border-slate-800 dark:bg-[#020617]">
+      <div className="mx-auto max-w-7xl px-4 pt-12 pb-8 text-sm text-[#c7d1df] sm:px-6 sm:pt-14 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-[1.15fr_0.8fr_0.9fr_1.2fr] lg:gap-10">
         <div className="sm:col-span-2 lg:col-span-1 lg:pr-4">
           <Link

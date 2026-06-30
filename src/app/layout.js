@@ -1,9 +1,17 @@
 import { Suspense } from 'react';
+import { Poppins } from 'next/font/google';
 import Header from './components/header';
+import CareerPromiseBand from './components/CareerPromiseBand';
 import Footer from './components/footer';
 import ChatWidget from './components/ChatWidget';
 import BrowserTabLoader from './components/BrowserTabLoader';
 import './globals.css';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Tinitiate AI Solutions',
@@ -89,7 +97,7 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-gray-100">
+      <body className={`${poppins.className} flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-gray-100`}>
         <Suspense fallback={null}>
           <BrowserTabLoader />
         </Suspense>
@@ -97,12 +105,15 @@ export default function RootLayout({ children }) {
         {/* ✅ Theme Script (Correct Way) */}
 
         {/* Header */}
-        <header className="fixed inset-x-0 top-0 z-[1000] bg-white/96 backdrop-blur-sm transition-colors duration-300 dark:bg-slate-950/96">
-          <Header />
-        </header>
+        <div className="fixed inset-x-0 top-0 z-[1000]">
+          <header className="relative z-[2] bg-white/96 backdrop-blur-sm transition-colors duration-300 dark:bg-slate-950/96">
+            <Header />
+          </header>
+          <CareerPromiseBand />
+        </div>
 
         {/* Main */}
-        <main className="flex-1 pt-[72px] sm:pt-[84px]">
+        <main className="flex-1 pt-[107.5px] sm:pt-[123px]">
           {children}
         </main>
 

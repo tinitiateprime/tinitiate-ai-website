@@ -25,24 +25,6 @@ export const metadata = {
     "Explore resume support, LinkedIn guidance, mock interviews, project storytelling, and career-readiness pathways from Tinitiate AI Solutions.",
 };
 
-const heroStats = [
-  {
-    value: "Live",
-    label: "Project-first learning approach",
-    detail: "Build portfolio proof you can actually explain in interviews.",
-  },
-  {
-    value: "Role-Mapped",
-    label: "Career guidance support",
-    detail: "Target the right path across software, data, cloud, and reporting.",
-  },
-  {
-    value: "Mentor-Led",
-    label: "Readiness feedback loops",
-    detail: "Get sharper with guided review, practice, and iteration.",
-  },
-];
-
 const supportHighlights = [
   {
     title: "Resume & LinkedIn Positioning",
@@ -218,16 +200,16 @@ export default function PlacementPage() {
         <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.04)_0,rgba(255,255,255,0.04)_1px,transparent_1px,transparent_160px)] opacity-15" />
         <div className="absolute inset-y-0 right-0 hidden w-[46%] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_32%),linear-gradient(90deg,rgba(3,9,18,0)_0%,rgba(3,9,18,0.22)_58%,rgba(3,9,18,0.78)_100%)] lg:block" />
 
-        <div className="relative min-h-[calc(100svh-72px)] sm:min-h-[calc(100svh-84px)] lg:min-h-[44rem]">
-          <div className="grid lg:min-h-[44rem] lg:grid-cols-[minmax(0,0.96fr)_minmax(24rem,46vw)]">
-            <div className="relative z-10 flex px-4 pb-6 pt-5 sm:px-5 sm:pb-7 sm:pt-7 lg:px-8 lg:py-8 xl:px-10 xl:py-10">
+        <div className="relative min-h-[560px] sm:min-h-[600px] lg:min-h-[640px]">
+          <div className="grid min-h-[560px] sm:min-h-[600px] lg:min-h-[640px] lg:grid-cols-[minmax(0,0.96fr)_minmax(24rem,46vw)]">
+            <div className="relative z-10 flex px-4 py-8 sm:px-5 sm:py-10 lg:px-8 xl:px-10">
               <div className="max-w-[46rem] self-center">
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-100 shadow-sm backdrop-blur">
                   <Sparkles className="h-4 w-4" />
                   Placement Support
                 </span>
 
-                <h1 className="mt-5 max-w-4xl text-balance text-4xl font-black leading-[1.02] text-white sm:text-5xl lg:text-[4rem]">
+                <h1 className="mt-5 max-w-4xl text-balance text-4xl font-black leading-[1.04] text-white sm:text-5xl lg:text-[3.75rem]">
                   Placement support that makes your profile interview-ready.
                 </h1>
 
@@ -236,22 +218,6 @@ export default function PlacementPage() {
                   and more confident interview performance with support built around
                   real career outcomes.
                 </p>
-
-                <div className="mt-7 flex flex-wrap gap-2.5">
-                  {[
-                    "Resume-ready portfolio",
-                    "Mock interview loops",
-                    "Role-mapped guidance",
-                    "LinkedIn profile clarity",
-                  ].map((chip) => (
-                    <span
-                      key={chip}
-                      className="rounded-full border border-white/12 bg-white/10 px-3 py-2 text-xs font-medium text-white/88 shadow-sm"
-                    >
-                      {chip}
-                    </span>
-                  ))}
-                </div>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Link
@@ -269,8 +235,8 @@ export default function PlacementPage() {
                   </Link>
                 </div>
 
-                <div className="mt-6 overflow-hidden rounded-[1.7rem] border border-white/10 shadow-[0_24px_65px_-40px_rgba(2,6,23,0.82)] lg:hidden">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[1.7rem]">
+                <div className="mt-5 overflow-hidden rounded-[1.7rem] border border-white/10 shadow-[0_24px_65px_-40px_rgba(2,6,23,0.82)] lg:hidden">
+                  <div className="relative h-[150px] overflow-hidden rounded-[1.7rem] min-[390px]:h-[165px] sm:h-[220px]">
                     <Image
                       src="/images/hero/placement-hero-interview.jpg"
                       alt="Interview-style placement discussion"
@@ -299,27 +265,6 @@ export default function PlacementPage() {
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(3,9,18,0.06)_30%,rgba(3,9,18,0.20)_100%)]" />
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="relative z-10 px-4 pb-7 sm:px-5 sm:pb-8 lg:px-8 lg:pb-10 xl:px-10 xl:pb-12">
-            <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {heroStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex h-full min-w-0 flex-col rounded-[1.6rem] border border-white/80 bg-white/92 p-5 shadow-[0_18px_45px_-32px_rgba(15,23,42,0.24)] backdrop-blur dark:border-slate-800 dark:bg-slate-900/90"
-              >
-                <div className="whitespace-nowrap text-[clamp(1.6rem,2vw,2rem)] leading-none font-black text-[#0f2242] dark:text-slate-50">
-                  {stat.value}
-                </div>
-                <h2 className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                  {stat.label}
-                </h2>
-                <p className="mt-3 text-sm leading-7 text-[#5c6d85] dark:text-slate-300">
-                  {stat.detail}
-                </p>
-              </div>
-            ))}
             </div>
           </div>
         </div>

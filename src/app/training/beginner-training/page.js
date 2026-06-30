@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import {
   FiArrowRight,
-  FiUsers,
   FiCheckCircle,
   FiPhone,
-  FiGitBranch 
+  FiGitBranch,
+  FiCpu,
 } from 'react-icons/fi'
 import {
   SiPython,
@@ -17,12 +17,13 @@ import { FaJava } from 'react-icons/fa'
 
 // -------------------- BRAND COLORS --------------------
 const BRAND = {
+  ai: '#3776AB',
   python: '#3776AB',
   javascript: '#F7DF1E',
   typescript: '#3178C6',
   java: '#007396',
   mysql: '#4479A1',
-  datastructures: '#8B5CF6', // purple for DS
+  datastructures: '#8B5CF6',
 }
 
 // -------------------- DATA --------------------
@@ -35,6 +36,21 @@ const HERO = {
 
 
 const COURSES = [
+  {
+    key: 'artificial-intelligence',
+    name: 'Artificial Intelligence',
+    Icon: FiCpu,
+    color: 'from-blue-500 to-indigo-500',
+    brandKey: 'ai',
+    level: 'Beginner',
+    duration: '6-8 weeks',
+    outcomes: [
+      'AI fundamentals and real use cases',
+      'Prompting and workflow thinking',
+      'Foundation for modern AI tools',
+    ],
+    href: '/courses/artificial-intelligence-beginner-course',
+  },
   {
     key: 'python',
     name: 'Python',
@@ -51,17 +67,17 @@ const COURSES = [
     href: '/courses/python-language-course',
   },
   {
-    key: 'web',
-    name: 'JavaScript / HTML / CSS',
+    key: 'javascript',
+    name: 'JavaScript',
     Icon: SiJavascript,
     color: 'from-emerald-500 to-teal-500',
     brandKey: 'javascript',
     level: 'Beginner',
     duration: '6–8 weeks',
     outcomes: [
-      'Build responsive web pages',
+      'JavaScript language foundations',
       'Understand DOM & events',
-      'Launch your first mini website',
+      'Prepare for frontend frameworks',
     ],
     href: '/courses/javascript-language-course',
   },
@@ -213,6 +229,7 @@ function CourseCard({ course }) {
       <div className="relative mt-5 flex items-center justify-between">
         <Link
           href={course.href}
+          prefetch
           className="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 hover:text-indigo-800"
         >
           View syllabus
@@ -254,14 +271,15 @@ export default function Page() {
         </span>{' '}
         with mentor support. */}
         We focus on the essentials first:
-        Python, JavaScript/HTML/CSS, TypeScript, Java, and SQL.
+        Artificial Intelligence, Python, JavaScript, TypeScript, Java, SQL,
+        and Data Structures.
         Get the fundamentals clear so you can grow into Full Stack,
         Data, Cloud or AI roles with confidence — from anywhere.
       </p>
 
       {/* Quick list of what is covered */}
       <div className="mt-5 flex flex-wrap gap-2 text-xs md:text-sm">
-        {['Python', 'JavaScript / HTML / CSS', 'TypeScript', 'Java', 'SQL'].map((item) => (
+        {['Artificial Intelligence', 'Python', 'JavaScript', 'TypeScript', 'Java', 'SQL', 'Data Structures'].map((item) => (
           <span
             key={item}
             className="rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-slate-100"

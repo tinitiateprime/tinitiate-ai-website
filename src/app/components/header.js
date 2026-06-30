@@ -165,11 +165,13 @@ export default function Header() {
     { label: "Home", href: "/" },
     { label: "Placement", href: "/placement" },
     { label: "Work Experience Program", href: "/work-experience-program" },
+    { label: "Pricing", href: "/pricing" },
     {
       label: "Training",
       href: "/training",
       align: "left",
       dropdown: [
+        { label: "Junior Tech Program", href: "/training/junior-tech-program" },
         { label: "Beginner Training", href: "/training/beginner-training" },
         { label: "Professional Training", href: "/training/professional-training" },
         { label: "Corporate Training", href: "/training/corporate-training" },
