@@ -5,6 +5,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import HomeHeroSlider from "./components/HomeHeroSlider";
+import HomeFAQSection from "./components/HomeFAQSection";
+import { PricingCardsShowcase } from "./components/PricingCards";
 import { submitNetlifyForm } from "@/lib/netlifyForms";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -1567,122 +1569,13 @@ const assessmentPlans = {
     threshold: "Best when you need the highest support and structure.",
     summary:
       "A high-touch pathway for students who need deeper mentoring, stronger accountability, and work-style execution from the ground up.",
-    ideal: ["Deep mentoring", "Job from day 1", "Rs.15K/month trainee pay"],
+    ideal: ["Deep mentoring", "Job from day 1", "Rs.10K/month trainee pay"],
     icon: Trophy,
     accent: assessmentGold,
     soft: "#fff4d6",
     href: "/request-callback?service=Tinitiate%20Apex%20Recommendation",
   },
 };
-
-const homePricingPlans = [
-  {
-    name: "Tinitiate Spark",
-    shortName: "Spark",
-    stage: "Foundation",
-    badge: "Foundation-first track",
-    tagline: "Learn - Practice - Build",
-    fee: "Rs.50K",
-    suffix: "+ GST",
-    proof: "Starter project proof on completion",
-    phasePay: "No stipend - skill-building track",
-    href: "/request-callback?service=Tinitiate%20Spark%20Pricing",
-    icon: BookOpen,
-    calloutIcon: BookOpen,
-    calloutTitle: "Build the foundation",
-    calloutText: "Guided R&D exposure with real project review.",
-    tone: "blue",
-    features: [
-      "Python Full Stack with Gen AI",
-      "Java Full Stack with Gen AI",
-      "Corporate R&D environment",
-      "Real-time project build",
-      "Completion certificate",
-    ],
-  },
-  {
-    name: "Tinitiate Prime",
-    shortName: "Prime",
-    stage: "Momentum",
-    badge: "Paid R&D pathway",
-    extraBadge: "Popular",
-    tagline: "Build - Earn - Experience",
-    fee: "Rs.99K",
-    suffix: "+ GST",
-    proof: "Portfolio-ready work on completion",
-    phasePay: "Rs.10K/month paid during the R&D phase",
-    href: "/request-callback?service=Tinitiate%20Prime%20Pricing",
-    icon: Target,
-    calloutIcon: LineChart,
-    calloutTitle: "Earn while building",
-    calloutText: "Paid R&D support while your portfolio takes shape.",
-    tone: "gold",
-    features: [
-      "3 months online learning",
-      "3 months paid R&D at Rs.10K/month",
-      "Portfolio shaping for resume and LinkedIn",
-      "Interview and communication preparation",
-      "Mentor feedback on every project",
-    ],
-  },
-  {
-    name: "Tinitiate Apex",
-    shortName: "Apex",
-    stage: "Ownership",
-    badge: "Job from Day 1",
-    tagline: "Work - Lead - Succeed",
-    fee: "Rs.199K",
-    suffix: "+ GST",
-    proof: "Work-experience proof on completion",
-    phasePay: "Rs.15K/month Trainee Engineer salary support",
-    href: "/request-callback?service=Tinitiate%20Apex%20Pricing",
-    icon: Trophy,
-    calloutIcon: Briefcase,
-    calloutTitle: "Job from Day 1",
-    calloutText: "On-job training with salary-backed execution.",
-    tone: "red",
-    features: [
-      "6 months on-job training",
-      "3 months R&D execution",
-      "Rs.15K/month Trainee Engineer salary",
-      "Work-experience style project ownership",
-      "Career storytelling and placement priority",
-    ],
-  },
-];
-
-const homePricingRows = [
-  {
-    focus: "Pathway Fee",
-    spark: "Rs.50K + GST",
-    prime: "Rs.99K + GST",
-    apex: "Rs.199K + GST",
-  },
-  {
-    focus: "Timeline",
-    spark: "6 months",
-    prime: "6 months",
-    apex: "9 months",
-  },
-  {
-    focus: "Learning Format",
-    spark: "Corporate R&D plus project build",
-    prime: "Online learning plus paid R&D",
-    apex: "On-job training plus R&D execution",
-  },
-  {
-    focus: "Earning Support",
-    spark: "Skill-building track",
-    prime: "Rs.10K/month during R&D",
-    apex: "Rs.15K/month trainee salary",
-  },
-  {
-    focus: "Career Preparation",
-    spark: "Completion certificate",
-    prime: "Resume, LinkedIn, and interview prep",
-    apex: "Career storytelling and placement priority",
-  },
-];
 
 const ratingScale = Array.from({ length: 5 }, (_, index) => index + 1);
 
@@ -1899,298 +1792,6 @@ function RecommendedPlanCard({ plan }) {
         </Link>
       </div>
     </motion.div>
-  );
-}
-
-function HomePricingCard({ plan }) {
-  const Icon = plan.icon;
-  const CalloutIcon = plan.calloutIcon;
-  const isPrime = plan.shortName === "Prime";
-  const isApex = plan.shortName === "Apex";
-
-  return (
-    <article
-      className={[
-        "relative flex h-full min-h-[705px] flex-col overflow-hidden rounded-[1.25rem] border bg-white p-5 shadow-[0_24px_65px_-48px_rgba(15,23,42,0.6)] transition duration-300 hover:-translate-y-1 dark:bg-slate-900 sm:p-6",
-        isApex
-          ? "border-[#ef2f2f]/70 ring-1 ring-[#ef2f2f]/18"
-          : isPrime
-            ? "border-[#c9a227]/75 ring-1 ring-[#c9a227]/16"
-            : "border-[#d8e3ee]",
-      ].join(" ")}
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(201,162,39,0.1),transparent_34%),radial-gradient(circle_at_100%_18%,rgba(18,52,95,0.08),transparent_32%)]" />
-      <div
-        className={[
-          "absolute inset-x-0 top-0 h-1",
-          isApex ? "bg-[#ef2f2f]" : isPrime ? "bg-[#c9a227]" : "bg-[#2f80ed]",
-        ].join(" ")}
-      />
-
-      <div className="relative flex flex-1 flex-col">
-        <div className="min-h-[126px]">
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <div className="mb-4 flex min-h-7 flex-wrap items-center gap-2">
-                <span
-                  className={[
-                    "rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.12em]",
-                    isApex
-                      ? "bg-[#fff1f1] text-[#ef2f2f]"
-                      : isPrime
-                        ? "bg-[#fff8dc] text-[#7a5d00]"
-                        : "bg-[#eef6ff] text-[#1a3c6e]",
-                  ].join(" ")}
-                >
-                  {plan.badge}
-                </span>
-                {plan.extraBadge ? (
-                  <span className="rounded-full border border-[#c9a227]/40 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#7a5d00] dark:bg-slate-950">
-                    {plan.extraBadge}
-                  </span>
-                ) : null}
-              </div>
-              <p className="text-[11px] font-black uppercase tracking-[0.14em] text-[#93a3ba]">
-                {plan.stage} pathway
-              </p>
-              <h3 className="mt-2 text-2xl font-extrabold leading-tight text-[#13233a] dark:text-white">
-                {plan.name}
-              </h3>
-              <p className="mt-2 text-sm font-semibold leading-6 text-[#607089] dark:text-slate-300">
-                {plan.tagline}
-              </p>
-            </div>
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#13233a] text-[#f2cf5b] shadow-[0_16px_32px_-22px_rgba(18,35,58,0.9)] dark:bg-slate-950">
-              <Icon className="h-5 w-5" />
-            </span>
-          </div>
-        </div>
-
-        <div
-          className={[
-            "mt-4 flex min-h-[104px] items-center gap-4 rounded-[1.15rem] px-4 py-3",
-            isApex
-              ? "apex-day-one text-white"
-              : isPrime
-                ? "border border-[#c9a227]/30 bg-[#fffaf0] dark:border-[#c9a227]/35 dark:bg-[#1f2937]"
-                : "border border-[#cfe0f3] bg-[#f3f8ff] dark:border-slate-700 dark:bg-slate-950",
-          ].join(" ")}
-        >
-          <span
-            className={[
-              "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl",
-              isApex
-                ? "apex-day-one__pulse bg-white text-[#ef2f2f]"
-                : isPrime
-                  ? "bg-[#c9a227] text-[#171100]"
-                  : "bg-[#1a3c6e] text-white",
-            ].join(" ")}
-          >
-            <CalloutIcon className="h-5 w-5" />
-          </span>
-          <div>
-            <p
-              className={[
-                "text-[10px] font-black uppercase tracking-[0.14em]",
-                isApex ? "text-white/76" : "text-[#7f93b0] dark:text-slate-400",
-              ].join(" ")}
-            >
-              {isApex ? "Apex advantage" : plan.badge}
-            </p>
-            <p
-              className={[
-                "mt-1 text-lg font-black leading-tight",
-                isApex ? "text-white" : "text-[#13233a] dark:text-white",
-              ].join(" ")}
-            >
-              {plan.calloutTitle}
-            </p>
-            <p
-              className={[
-                "mt-1 text-xs font-semibold leading-5",
-                isApex ? "text-white/82" : "text-[#607089] dark:text-slate-300",
-              ].join(" ")}
-            >
-              {plan.calloutText}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 min-h-[116px]">
-          <p className="text-[11px] font-black uppercase tracking-[0.14em] text-[#93a3ba]">
-            One-time pathway fee
-          </p>
-          <p className="mt-3 text-4xl font-black text-[#13233a] dark:text-white">
-            {plan.fee}
-            <span className="ml-2 align-middle text-sm font-extrabold tracking-normal text-[#7f93b0]">
-              {plan.suffix}
-            </span>
-          </p>
-          <p className="mt-3 text-sm font-medium leading-6 text-[#607089] dark:text-slate-300">
-            {plan.proof}
-          </p>
-        </div>
-
-        <div className="mt-4 overflow-hidden rounded-[1rem] border border-[#e6edf5] dark:border-slate-700">
-          {plan.features.map((feature) => (
-            <div
-              key={feature}
-              className="grid min-h-[58px] grid-cols-[1.25rem_1fr] items-center gap-3 border-b border-[#e6edf5] px-4 py-3 last:border-b-0 dark:border-slate-700"
-            >
-              <CheckCircle className="h-4 w-4 shrink-0 text-[#13233a] dark:text-[#f2cf5b]" />
-              <p className="text-sm font-semibold leading-6 text-[#26364d] dark:text-slate-200">
-                {feature}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-4 flex min-h-[66px] items-center rounded-2xl bg-[#f7fafc] px-4 py-3 text-sm font-extrabold leading-6 text-[#53677d] dark:bg-slate-950 dark:text-slate-300">
-          {plan.phasePay}
-        </p>
-
-        <Link
-          href={plan.href}
-          className="mt-auto inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-[#13233a] px-5 py-2.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#1f4773] dark:bg-[#f2cf5b] dark:text-[#13233a]"
-        >
-          Discuss {plan.shortName}
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
-    </article>
-  );
-}
-
-function HomePricingComparisonTable() {
-  return (
-    <div className="mt-8 overflow-hidden rounded-[1.25rem] border border-[#d8e3ee] bg-white shadow-[0_24px_70px_-56px_rgba(15,23,42,0.72)] dark:border-slate-700 dark:bg-slate-900">
-      <div className="grid gap-2 border-b border-[#e3ebf4] p-5 text-center dark:border-slate-700 sm:text-left lg:grid-cols-[1.1fr_1.9fr] lg:items-center">
-        <div>
-          <h3 className="text-2xl font-black text-[#13233a] dark:text-white">
-            Compare plans
-          </h3>
-          <p className="mt-2 text-sm font-medium leading-6 text-[#607089] dark:text-slate-300">
-            The same pathway details in a quick scan table.
-          </p>
-        </div>
-        <div className="hidden grid-cols-3 gap-3 lg:grid">
-          {homePricingPlans.map((plan) => (
-            <Link
-              key={plan.shortName}
-              href={plan.href}
-              className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#13233a] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1f4773]"
-            >
-              Discuss {plan.shortName}
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <div className="p-0 lg:hidden">
-        <table className="w-full table-fixed border-collapse overflow-hidden rounded-[1rem] border border-[#e3ebf4] bg-[#fbfdff] dark:border-slate-700 dark:bg-slate-950">
-          <thead>
-            <tr className="bg-[#f7fafc] dark:bg-slate-950">
-              <th className="w-[24%] border-b border-r border-[#e3ebf4] px-1.5 py-3 text-left text-[9px] font-black uppercase tracking-[0.1em] text-[#7f93b0] dark:border-slate-700 min-[390px]:px-2 min-[390px]:text-[10px]">
-                Focus
-              </th>
-              {homePricingPlans.map((plan) => (
-                <th
-                  key={plan.shortName}
-                  className="border-b border-r border-[#e3ebf4] px-1.5 py-3 text-center text-[9px] font-black uppercase tracking-[0.08em] text-[#13233a] last:border-r-0 dark:border-slate-700 dark:text-white min-[390px]:px-2 min-[390px]:text-[10px]"
-                >
-                  {plan.shortName}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {homePricingRows.map((row) => (
-              <tr key={row.focus}>
-                <th
-                  scope="row"
-                  className="border-b border-r border-[#edf2f7] px-1.5 py-3 text-left align-top text-[10px] font-black leading-4 text-[#13233a] last:border-b-0 dark:border-slate-700 dark:text-white min-[390px]:px-2 min-[390px]:text-[11px]"
-                >
-                  {row.focus}
-                </th>
-                {[row.spark, row.prime, row.apex].map((value, index) => (
-                  <td
-                    key={`${row.focus}-${index}`}
-                    className="break-normal border-b border-r border-[#edf2f7] px-1 py-3 text-center align-top text-[9px] font-semibold leading-4 text-[#53677d] last:border-r-0 dark:border-slate-700 dark:text-slate-300 min-[390px]:px-1.5 min-[390px]:text-[10px]"
-                  >
-                    {value}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="hidden lg:block">
-        <table className="w-full table-fixed border-collapse">
-          <thead>
-            <tr className="bg-[#f7fafc] dark:bg-slate-950">
-              <th className="w-[22%] border-b border-r border-[#e3ebf4] px-4 py-4 text-left text-[11px] font-black uppercase tracking-[0.12em] text-[#7f93b0] dark:border-slate-700">
-                Focus
-              </th>
-              {homePricingPlans.map((plan) => (
-                <th
-                  key={plan.shortName}
-                  className="border-b border-r border-[#e3ebf4] px-4 py-4 text-center text-xs font-black uppercase tracking-[0.12em] text-[#13233a] last:border-r-0 dark:border-slate-700 dark:text-white"
-                >
-                  {plan.shortName}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {homePricingRows.map((row) => (
-              <tr key={row.focus}>
-                <th
-                  scope="row"
-                  className="border-b border-r border-[#edf2f7] px-4 py-4 text-left text-sm font-black text-[#13233a] last:border-b-0 dark:border-slate-700 dark:text-white"
-                >
-                  {row.focus}
-                </th>
-                {[row.spark, row.prime, row.apex].map((value, index) => (
-                  <td
-                    key={`${row.focus}-${index}`}
-                    className="border-b border-r border-[#edf2f7] px-4 py-4 text-center text-sm font-semibold leading-6 text-[#53677d] last:border-r-0 dark:border-slate-700 dark:text-slate-300"
-                  >
-                    {value}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-function HomePricingBoard() {
-  return (
-    <div className="mx-auto mt-9 max-w-[1360px]">
-      <div className="mx-auto max-w-5xl text-center">
-        <h3 className="text-balance text-3xl font-extrabold leading-tight text-[#12345f] sm:text-4xl lg:whitespace-nowrap lg:text-[2.8rem]">
-          Compare Spark, Prime, and Apex pricing
-        </h3>
-        <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
-        <p className="mx-auto mt-4 max-w-3xl text-pretty text-sm font-medium leading-7 text-[#53677d] sm:text-base">
-          Use the cards and comparison table after the skill check to see the
-          fee, support, earning path, and project outcome clearly.
-        </p>
-      </div>
-
-      <div className="mt-7 grid items-stretch gap-5 lg:grid-cols-3">
-        {homePricingPlans.map((plan) => (
-          <HomePricingCard key={plan.name} plan={plan} />
-        ))}
-      </div>
-
-      <HomePricingComparisonTable />
-    </div>
   );
 }
 
@@ -2557,7 +2158,7 @@ function StudentPlanAssessment() {
           ) : null}
         </AnimatePresence>
       </motion.div>
-      <HomePricingBoard />
+      <PricingCardsShowcase compact />
     </section>
   );
 }
@@ -3759,6 +3360,10 @@ export default function HomePage() {
 
       <ScrollReveal>
         <CareerPathPlanSection />
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <HomeFAQSection />
       </ScrollReveal>
 
       <ScrollReveal>

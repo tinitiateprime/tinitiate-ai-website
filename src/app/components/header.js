@@ -185,17 +185,7 @@ export default function Header() {
       align: "right",
       dropdown: [
         { label: "About Us", href: "/company" },
-        {
-          label: "FAQ",
-          href: "/faq",
-          dropdown: [
-            { label: "Why Tinitiate AI Solutions", href: "/faq/why-tinitiate" },
-            { label: "STEM Students", href: "/faq/students-stem" },
-            { label: "Non-STEM Students", href: "/faq/students-nonstem" },
-            { label: "Parents - STEM", href: "/faq/parents-stem" },
-            { label: "Parents - Non-STEM", href: "/faq/parents-nonstem" },
-          ],
-        },
+        { label: "FAQ'S", href: "/faq" },
       ],
     },
   ];
