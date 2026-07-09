@@ -1,201 +1,149 @@
-import {
-  FaCheckCircle,
-  FaClock,
-  FaEnvelope,
-  FaSyncAlt,
-  FaTimesCircle,
-} from 'react-icons/fa'
-import PolicyPageShell, {
-  policyInlineLinkClassName,
-} from '../components/PolicyPageShell'
+import LegalPolicyPage from '../components/LegalPolicyPage'
 
 export const metadata = {
-  title: 'Refund Policy | Tinitiate AI Solutions',
+  title: 'Refund & Cancellation Policy | Tinitiate AI Solutions',
   description:
-    'Understand the Tinitiate AI Solutions cancellation and refund policy, including eligibility windows, non-refundable items, and processing times.',
+    'Refund and cancellation terms for Tinitiate AI Solutions training, internships, batch transfers, digital materials, and placement assistance.',
 }
 
 const sections = [
   {
-    id: 'cancellation-policy',
-    title: 'Cancellation Policy',
-    icon: FaTimesCircle,
-    items: [
-      {
-        icon: FaEnvelope,
-        iconClassName:
-          'bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-200',
-        content: (
-          <>
-            Contact us at{' '}
-            <a
-              href="mailto:contact@tinitiateai.com"
-              className={policyInlineLinkClassName}
-            >
-              contact@tinitiateai.com
-            </a>{' '}
-            to initiate a cancellation.
-          </>
-        ),
-      },
-      {
-        icon: FaTimesCircle,
-        iconClassName:
-          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
-        content: (
-          <>
-            A non-refundable administrative fee of <strong>15%</strong> applies
-            to all cancellations.
-          </>
-        ),
-      },
-      {
-        icon: FaCheckCircle,
-        iconClassName:
-          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
-        content:
-          'If you cancel before the course begins, you are eligible for a refund minus the 15% fee.',
-      },
+    id: 'course-registration',
+    title: '1. Course Registration',
+    blocks: [
+      { text: 'Your enrollment is confirmed only after:' },
+      { type: 'list', items: ['Successful submission of the registration form', 'Payment of the applicable course fee', 'Confirmation from Tinitiate AI Solutions'] },
+      { text: 'Seats are limited and allocated on a first-come, first-served basis.' },
     ],
   },
   {
-    id: 'refund-policy',
-    title: 'Refund Policy',
-    icon: FaSyncAlt,
-    items: [
-      {
-        icon: FaCheckCircle,
-        iconClassName:
-          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
-        content:
-          'If a batch is canceled by Tinitiate AI Solutions, students may opt for a full refund or join a different batch.',
-      },
-      {
-        icon: FaCheckCircle,
-        iconClassName:
-          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
-        content:
-          'If a student cancels before class begins, they will receive a refund minus the 15% administrative fee.',
-      },
-      {
-        icon: FaTimesCircle,
-        iconClassName:
-          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
-        content:
-          'No refunds are issued after class has started and the refund window has closed.',
-      },
-      {
-        icon: FaClock,
-        iconClassName:
-          'bg-amber-50 text-amber-700 dark:bg-amber-500/10 dark:text-amber-200',
-        content: (
-          <>
-            Refund requests must be made within <strong>7 days</strong> or
-            before completing <strong>5 hours</strong> of training, whichever
-            comes first.
-          </>
-        ),
-      },
+    id: 'cancellation-by-student',
+    title: '2. Cancellation by Student',
+    blocks: [
+      { text: 'Students wishing to withdraw from a program must submit a written cancellation request to:' },
+      { text: 'Email: contact@tinitiateai.com' },
+      { text: 'Refund eligibility will be determined based on the date the written request is received.' },
     ],
   },
   {
-    id: 'non-refundable-items',
-    title: 'Non-Refundable Items',
-    icon: FaTimesCircle,
-    items: [
-      {
-        icon: FaTimesCircle,
-        iconClassName:
-          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
-        content: 'Refund requests made after the specified refund window.',
-      },
-      {
-        icon: FaTimesCircle,
-        iconClassName:
-          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
-        content:
-          'Accessed downloadable digital content or course materials.',
-      },
-      {
-        icon: FaTimesCircle,
-        iconClassName:
-          'bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
-        content: 'Custom corporate training sessions once scheduled.',
-      },
+    id: 'refund-eligibility',
+    title: '3. Refund Eligibility',
+    blocks: [
+      { type: 'subheading', text: 'Before Course Commencement' },
+      { text: 'Students who cancel at least 7 days before the scheduled course start date are eligible for a 100% refund, excluding any payment gateway, transaction, or administrative charges.' },
+      { type: 'subheading', text: 'Within 7 Days Before Course Start' },
+      { text: 'Students cancelling less than 7 days before the course begins may receive a refund after deducting an administrative fee of 10% of the course fee or Rs.2,000, whichever is higher.' },
+      { type: 'subheading', text: 'After Course Commencement' },
+      { text: 'Once the training program has started and course materials, recordings, or learning platform access have been provided, course fees are generally non-refundable.' },
+      { text: 'Requests for exceptional circumstances (such as medical emergencies) may be reviewed on a case-by-case basis at the sole discretion of Tinitiate AI Solutions.' },
     ],
   },
+  {
+    id: 'internship-programs',
+    title: '4. Internship Programs',
+    blocks: [
+      { text: 'Internship fees (if applicable) become non-refundable once the internship has commenced, project work has been assigned, or company resources have been allocated.' },
+      { text: 'Students are expected to complete the internship according to the published schedule.' },
+    ],
+  },
+  {
+    id: 'batch-transfers',
+    title: '5. Batch Transfers',
+    blocks: [
+      { text: 'Students may request to transfer to a future batch, subject to:' },
+      { type: 'list', items: ['Seat availability', 'Approval by Tinitiate AI Solutions', 'The request being made before substantial completion of the current program'] },
+      { text: 'Additional administrative charges may apply.' },
+    ],
+  },
+  {
+    id: 'course-cancellation-by-tinitiate',
+    title: '6. Course Cancellation by Tinitiate AI Solutions',
+    blocks: [
+      { text: 'Tinitiate AI Solutions reserves the right to postpone, reschedule, or cancel any program due to:' },
+      { type: 'list', items: ['Insufficient enrollments', 'Faculty availability', 'Technical issues', 'Natural disasters', 'Government restrictions', 'Other unforeseen circumstances'] },
+      { text: 'In such cases, students may choose one of the following:' },
+      { type: 'list', items: ['Transfer to the next available batch', 'Enroll in an equivalent program', 'Receive a full refund of the amount paid'] },
+    ],
+  },
+  { id: 'payment-gateway-charges', title: '7. Payment Gateway Charges', blocks: [{ text: 'Any payment gateway fees, bank charges, foreign exchange charges, or transaction processing fees incurred during payment or refund processing may be deducted from the refundable amount where applicable.' }] },
   {
     id: 'refund-processing',
-    title: 'Refund Processing',
-    icon: FaSyncAlt,
-    items: [
-      {
-        icon: FaEnvelope,
-        iconClassName:
-          'bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-200',
-        content:
-          'You will be notified of approval or rejection after your refund request is reviewed.',
-      },
-      {
-        icon: FaSyncAlt,
-        iconClassName:
-          'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
-        content: (
-          <>
-            Approved refunds are processed within{' '}
-            <strong>7 to 10 business days</strong> to the original payment
-            method.
-          </>
-        ),
-      },
+    title: '8. Refund Processing',
+    blocks: [
+      { text: 'Approved refunds will normally be processed within 7-10 business days.' },
+      { text: 'Refunds will be made to the original payment method whenever possible.' },
+      { text: 'Processing time may vary depending on the payment provider or financial institution.' },
+    ],
+  },
+  {
+    id: 'no-refund-situations',
+    title: '9. No Refund Situations',
+    blocks: [
+      { text: 'Refunds will generally not be provided in the following situations:' },
+      { type: 'list', items: ['Failure to attend classes', 'Voluntary withdrawal after substantial course participation', 'Violation of institute policies', 'Academic misconduct', 'Removal from the program due to disciplinary action', 'Failure to meet internship or project requirements'] },
+    ],
+  },
+  {
+    id: 'digital-learning-materials',
+    title: '10. Digital Learning Materials',
+    blocks: [
+      { text: 'All digital resources, including:' },
+      { type: 'list', items: ['Recorded sessions', 'Course notes', 'Presentations', 'Source code', 'Templates', 'Assignments', 'Practice datasets'] },
+      { text: 'are non-refundable once access has been granted.' },
+    ],
+  },
+  {
+    id: 'placement-assistance',
+    title: '11. Placement Assistance',
+    blocks: [
+      { text: 'Placement assistance is provided as an additional career support service.' },
+      { text: 'Fees paid for training programs are not refundable solely because a student does not receive an interview, internship, or job offer.' },
+      { text: 'Employment decisions are made exclusively by recruiting organizations.' },
+    ],
+  },
+  {
+    id: 'force-majeure',
+    title: '12. Force Majeure',
+    blocks: [
+      { text: 'Tinitiate AI Solutions shall not be held responsible for delays or inability to conduct programs due to events beyond our reasonable control, including but not limited to:' },
+      { type: 'list', items: ['Natural disasters', 'Government actions', 'Internet outages', 'Power failures', 'Public health emergencies', 'Civil disturbances'] },
+    ],
+  },
+  {
+    id: 'changes-to-policy',
+    title: '13. Changes to This Policy',
+    blocks: [
+      { text: 'Tinitiate AI Solutions reserves the right to update or modify this Refund & Cancellation Policy at any time.' },
+      { text: 'The latest version will always be available on our website.' },
+    ],
+  },
+  {
+    id: 'contact-us',
+    title: '14. Contact Us',
+    blocks: [
+      { text: 'Tinitiate AI Solutions' },
+      { text: 'Email: contact@tinitiateai.com' },
+      { text: 'Website: www.tinitiateai.com' },
+      { text: 'Phone: +91 6309123485' },
+      { text: 'Address: 1-2/10 SBH Colony Mohan Nagar, SBH Colony, Kothapet, 500036, Telangana, India' },
     ],
   },
 ]
 
-export default function CancellationRefundPolicy() {
+export default function RefundPolicy() {
   return (
-    <PolicyPageShell
+    <LegalPolicyPage
       currentHref="/refund-policy"
-      eyebrow="Cancellations & Refunds"
-      title="Cancellation & Refund Policy"
-      intro={
-        <>
-          At{' '}
-          <span className="font-semibold text-[#1a3c6e] dark:text-sky-200">
-            Tinitiate AI Solutions
-          </span>
-          , we are committed to delivering high-quality IT training and
-          services. We understand that plans may change, so here is our
-          transparent policy regarding cancellations and refunds.
-        </>
-      }
-      highlights={[
-        {
-          title: '15% admin fee',
-          detail: 'All cancellations carry a non-refundable administrative fee of 15%.',
-        },
-        {
-          title: 'Refund window',
-          detail: 'Requests must be made within 7 days or before 5 training hours are completed.',
-        },
-        {
-          title: 'Processing timeline',
-          detail: 'Approved refunds are returned to the original payment method within 7 to 10 business days.',
-        },
+      eyebrow="Refunds & Cancellations"
+      title="Refund & Cancellation Policy"
+      supportEmail="contact@tinitiateai.com"
+      intro={[
+        'At Tinitiate AI Solutions, we strive to provide high-quality training, internship opportunities, and career guidance. This Refund & Cancellation Policy explains the terms governing course cancellations, refunds, transfers, and related matters.',
+        'By enrolling in any of our programs, you acknowledge that you have read and agree to this policy.',
       ]}
       sections={sections}
-      theme="sky"
-      supportTitle="Refund Support"
-      supportDescription={
-        <>
-          To initiate a cancellation or refund query, contact{' '}
-          <a href="mailto:contact@tinitiateai.com" className="font-semibold text-white underline decoration-white/30 underline-offset-4">
-            contact@tinitiateai.com
-          </a>
-          .
-        </>
-      }
-      contactEmail="contact@tinitiateai.com"
+      closingTitle="Our Commitment"
+      closing={['Our goal is to provide industry-relevant education, practical project experience, and career guidance while maintaining a transparent and fair refund process for all students.']}
     />
   )
 }

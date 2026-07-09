@@ -1,4 +1,5 @@
 const NETLIFY_FORM_ENDPOINT = "/__forms.html";
+const UNIFIED_FORM_NAME = "request-callback";
 
 function encodeFormData(formData) {
   const body = new URLSearchParams();
@@ -14,9 +15,10 @@ export async function submitNetlifyForm(formElement) {
   const formData = new FormData(formElement);
   const formName = formData.get("form-name") || formElement.getAttribute("name");
 
-  if (formName && !formData.get("form-name")) {
-    formData.set("form-name", formName);
+  if (formName && formName !== UNIFIED_FORM_NAME && !formData.get("originalFormName")) {
+    formData.set("originalFormName", formName);
   }
+  formData.set("form-name", UNIFIED_FORM_NAME);
 
   const body = encodeFormData(formData);
 

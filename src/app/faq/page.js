@@ -1,53 +1,13 @@
 import { Plus } from "lucide-react";
-import whyTinitiate from "../../../public/data/faq/whyTinitiate.json";
-import studentStem from "../../../public/data/faq/studentFaqStem.json";
-import studentNonStem from "../../../public/data/faq/studentFaqNonStem.json";
-import parentsStem from "../../../public/data/faq/parentsFaqStem.json";
-import parentsNonStem from "../../../public/data/faq/parentsFaqNonStem.json";
+import websiteFaqCategories from "../../../public/data/faq/websiteFaqCategories.json";
 
 export const metadata = {
   title: "FAQ'S | Tinitiate AI Solutions",
   description:
-    "Browse Tinitiate AI Solutions FAQs category-wise for students, parents, and college partners.",
+    "Browse Tinitiate AI Solutions FAQs category-wise for training, careers, students, parents, and college partners.",
 };
 
-const faqCategories = [
-  {
-    id: "why-tinitiate",
-    label: "Why Tinitiate AI Solutions",
-    description:
-      "Training model, remote learning, course value, certificates, breaks, and career use.",
-    data: whyTinitiate,
-  },
-  {
-    id: "students-stem",
-    label: "Students - STEM",
-    description:
-      "For technical students who want practical IT, cloud, data, AI, and project readiness.",
-    data: studentStem,
-  },
-  {
-    id: "students-nonstem",
-    label: "Students - Non-STEM",
-    description:
-      "For learners from non-technical backgrounds who want to enter technology step by step.",
-    data: studentNonStem,
-  },
-  {
-    id: "parents-stem",
-    label: "Parents - STEM",
-    description:
-      "For parents evaluating structured technical training and career preparation.",
-    data: parentsStem,
-  },
-  {
-    id: "parents-nonstem",
-    label: "Parents - Non-STEM",
-    description:
-      "For parents of non-technical learners exploring technology, confidence, and job-ready skills.",
-    data: parentsNonStem,
-  },
-];
+const faqCategories = websiteFaqCategories;
 
 function cleanText(value = "") {
   return String(value)
@@ -63,6 +23,7 @@ function cleanText(value = "") {
 }
 
 function getFaqs(category) {
+  if (Array.isArray(category.faqs)) return category.faqs;
   return Array.isArray(category.data?.faqs) ? category.data.faqs : [];
 }
 
@@ -142,11 +103,6 @@ function renderBlock(block, index) {
 }
 
 export default function FAQPage() {
-  const totalFaqs = faqCategories.reduce(
-    (total, category) => total + getFaqs(category).length,
-    0
-  );
-
   const faqLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -180,11 +136,8 @@ export default function FAQPage() {
             </h1>
             <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#c9a227]" />
             <p className="mx-auto mt-5 max-w-2xl text-pretty text-base font-medium leading-8 text-[#53677d] dark:text-slate-300">
-              All important questions organized by learner, parent, and Tinitiate
-              AI Solutions categories.
-            </p>
-            <p className="mt-3 text-sm font-extrabold uppercase tracking-[0.18em] text-[#7f93b0] dark:text-slate-400">
-              {faqCategories.length} categories / {totalFaqs} questions
+              All important questions organized by training, career, student,
+              parent, and college partnership categories.
             </p>
           </div>
 
@@ -213,7 +166,7 @@ export default function FAQPage() {
                   id={category.id}
                   className="scroll-mt-32 border-t border-gray-200 pt-8 dark:border-slate-700"
                 >
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                  <div className="flex flex-col gap-3">
                     <div>
                       <h2 className="text-2xl font-extrabold leading-tight text-[#12345f] dark:text-white sm:text-3xl">
                         {category.label}
@@ -222,9 +175,6 @@ export default function FAQPage() {
                         {category.description}
                       </p>
                     </div>
-                    <p className="shrink-0 text-sm font-extrabold uppercase tracking-[0.16em] text-[#7f93b0] dark:text-slate-400">
-                      {faqs.length} FAQs
-                    </p>
                   </div>
 
                   <div className="mt-6 border-y border-gray-200 dark:border-slate-700">

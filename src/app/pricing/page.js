@@ -174,8 +174,8 @@ export default function PricingPage() {
           sizes="100vw"
           className="object-cover object-center opacity-50"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(7,17,38,0.98)_0%,rgba(7,17,38,0.92)_44%,rgba(7,17,38,0.66)_100%)]" />
-        <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:54px_54px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(238, 240, 243, 0.98)_0%,rgba(238, 240, 245, 0.92)_44%,rgba(239, 242, 248, 0.66)_100%)]" />
+        <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(to_right,rgba(253, 253, 253, 0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(243, 239, 239, 0.08)_1px,transparent_1px)] [background-size:54px_54px]" />
 
         <Container className="relative flex min-h-[430px] items-center py-10 sm:min-h-[460px] sm:py-12 lg:min-h-[500px] lg:py-14">
           <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,0.94fr)_minmax(360px,0.62fr)]">
@@ -286,7 +286,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section id="plans" className="bg-gray-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
+      <section id="plans" className="scroll-mt-[132px] bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-10 dark:bg-slate-950">
         <Container>
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center">
             <SectionHeading

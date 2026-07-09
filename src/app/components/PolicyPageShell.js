@@ -5,6 +5,7 @@ export const policyDirectory = [
   { label: 'Pricing Policy', href: '/pricing-policy' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Refund Policy', href: '/refund-policy' },
+  { label: 'Cookie Policy', href: '/cookie-policy' },
   { label: 'Terms & Conditions', href: '/terms' },
 ]
 

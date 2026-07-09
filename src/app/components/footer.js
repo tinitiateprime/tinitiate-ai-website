@@ -14,6 +14,7 @@ const companyLinks = [
   { href: "/pricing-policy", label: "Pricing Policy" },
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/refund-policy", label: "Refund Policy" },
+  { href: "/cookie-policy", label: "Cookie Policy" },
   { href: "/terms", label: "Terms & Conditions" },
 ];
 
@@ -28,7 +29,7 @@ const trainingLinks = [
 
 const socialLinks = [
   {
-    href: "https://www.linkedin.com/company/tinitiate/",
+    href: "https://www.linkedin.com/company/tinitiate-ai/",
     label: "LinkedIn",
     icon: (
       <svg

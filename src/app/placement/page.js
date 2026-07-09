@@ -186,6 +186,8 @@ const roleChips = [
   "Reporting Analyst",
 ];
 
+const PLACEMENT_HERO_IMAGE = "/images/hero/placement-hero-indian-career.png";
+
 export default function PlacementPage() {
   return (
     <main className="relative overflow-hidden bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
@@ -200,35 +202,35 @@ export default function PlacementPage() {
         <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.04)_0,rgba(255,255,255,0.04)_1px,transparent_1px,transparent_160px)] opacity-15" />
         <div className="absolute inset-y-0 right-0 hidden w-[46%] bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_32%),linear-gradient(90deg,rgba(3,9,18,0)_0%,rgba(3,9,18,0.22)_58%,rgba(3,9,18,0.78)_100%)] lg:block" />
 
-        <div className="relative min-h-[560px] sm:min-h-[600px] lg:min-h-[640px]">
-          <div className="grid min-h-[560px] sm:min-h-[600px] lg:min-h-[640px] lg:grid-cols-[minmax(0,0.96fr)_minmax(24rem,46vw)]">
-            <div className="relative z-10 flex px-4 py-8 sm:px-5 sm:py-10 lg:px-8 xl:px-10">
+        <div className="relative min-h-[552px] sm:min-h-[552px] lg:min-h-[456px]">
+          <div className="grid min-h-[552px] sm:min-h-[552px] lg:min-h-[456px] lg:grid-cols-[minmax(0,0.96fr)_minmax(24rem,46vw)]">
+            <div className="relative z-10 flex px-4 py-7 sm:px-5 sm:py-8 lg:px-8 lg:py-6 xl:px-10">
               <div className="max-w-[46rem] self-center">
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-100 shadow-sm backdrop-blur">
                   <Sparkles className="h-4 w-4" />
                   Placement Support
                 </span>
 
-                <h1 className="mt-5 max-w-4xl text-balance text-4xl font-black leading-[1.04] text-white sm:text-5xl lg:text-[3.75rem]">
+                <h1 className="mt-4 max-w-[15ch] text-balance text-4xl font-black leading-[1.04] text-white sm:text-5xl lg:text-[2.85rem] xl:text-[3rem]">
                   Placement support that makes your profile interview-ready.
                 </h1>
 
-                <p className="mt-5 max-w-3xl text-pretty text-base leading-7 text-slate-200/88 sm:text-lg">
+                <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-slate-200/88 sm:text-base sm:leading-7">
                   Build a sharper resume, stronger LinkedIn, clearer project storytelling,
                   and more confident interview performance with support built around
                   real career outcomes.
                 </p>
 
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                   <Link
                     href="/request-callback?service=Placement%20Support"
-                    className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+                    className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
                   >
                     Request Guidance
                   </Link>
                   <Link
                     href="/work-experience-program"
-                    className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-white/16 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/14"
+                    className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-white/16 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-white/14"
                   >
                     See Work Program
                     <ArrowRight className="h-4 w-4" />
@@ -238,11 +240,12 @@ export default function PlacementPage() {
                 <div className="mt-5 overflow-hidden rounded-[1.7rem] border border-white/10 shadow-[0_24px_65px_-40px_rgba(2,6,23,0.82)] lg:hidden">
                   <div className="relative h-[150px] overflow-hidden rounded-[1.7rem] min-[390px]:h-[165px] sm:h-[220px]">
                     <Image
-                      src="/images/hero/placement-hero-interview.jpg"
-                      alt="Interview-style placement discussion"
+                      src={PLACEMENT_HERO_IMAGE}
+                      alt="Indian placement guidance discussion with students and a career mentor"
                       fill
                       priority
-                      className="object-cover object-center"
+                      sizes="100vw"
+                      className="object-cover object-[64%_center]"
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,9,18,0.04),rgba(3,9,18,0.10)_38%,rgba(3,9,18,0.24)_100%)]" />
                   </div>
@@ -255,11 +258,12 @@ export default function PlacementPage() {
               <div className="absolute inset-y-0 left-0 right-0 xl:right-0">
                 <div className="relative h-full overflow-hidden rounded-l-[2.8rem] border border-r-0 border-white/10 shadow-[0_36px_90px_-42px_rgba(2,6,23,0.84)]">
                   <Image
-                    src="/images/hero/placement-hero-interview.jpg"
-                    alt="Interview-style placement discussion"
+                    src={PLACEMENT_HERO_IMAGE}
+                    alt="Indian placement guidance discussion with students and a career mentor"
                     fill
                     priority
-                    className="object-cover object-center"
+                    sizes="46vw"
+                    className="object-cover object-[64%_center]"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,9,18,0.12)_0%,rgba(3,9,18,0.04)_34%,rgba(3,9,18,0.10)_66%,rgba(3,9,18,0.34)_100%)]" />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(3,9,18,0.06)_30%,rgba(3,9,18,0.20)_100%)]" />

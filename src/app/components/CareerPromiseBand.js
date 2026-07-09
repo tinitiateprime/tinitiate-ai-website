@@ -27,7 +27,7 @@ export default function CareerPromiseBand() {
             <span className="hidden sm:inline">Appointment</span>
           </Link>
           <Link
-            href="/pricing"
+            href="/pricing#plans"
             className="inline-flex min-h-[30px] items-center justify-center gap-1 whitespace-nowrap rounded-full border border-white/30 px-2.5 py-1.5 text-[11px] font-extrabold text-white transition hover:bg-white/10 sm:gap-2 sm:px-4 sm:text-sm"
           >
             <span className="sm:hidden">Pricing</span>

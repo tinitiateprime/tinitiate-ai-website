@@ -49,6 +49,19 @@ import {
   useReducedMotion,
   AnimatePresence,
 } from "framer-motion";
+import {
+  SiAmazonwebservices,
+  SiClaude,
+  SiDatabricks,
+  SiGit,
+  SiJenkins,
+  SiOpenai,
+  SiReact,
+  SiSnowflake,
+  SiSpringboot,
+  SiVercel,
+} from "react-icons/si";
+import { VscAzureDevops } from "react-icons/vsc";
 
 /* ─── Scroll Reveal ──────────────────────────────────────────────────────────── */
 function ScrollReveal({ children }) {
@@ -407,209 +420,453 @@ function CourseIconPreloads() {
   );
 }
 
+function LogoImage({ src, darkSrc, alt, className = "h-full w-full object-contain" }) {
+  if (darkSrc) {
+    return (
+      <span className={`relative block ${className}`} role="img" aria-label={alt}>
+        <Image
+          src={src}
+          alt=""
+          width={320}
+          height={320}
+          className="absolute inset-0 h-full w-full object-contain opacity-100 transition-opacity duration-200 dark:opacity-0"
+          quality={100}
+          sizes="(min-width: 1024px) 144px, 88px"
+          decoding="async"
+          aria-hidden="true"
+        />
+        <Image
+          src={darkSrc}
+          alt=""
+          width={320}
+          height={320}
+          className="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-200 dark:opacity-100"
+          quality={100}
+          sizes="(min-width: 1024px) 144px, 88px"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={320}
+      height={320}
+      className={className}
+      quality={100}
+      sizes="(min-width: 1024px) 144px, 88px"
+      decoding="async"
+    />
+  );
+}
+
+function TechLogo({ tech, className, idSuffix }) {
+  const logoClassName = `${className} ${tech.logoClassName || ""}`.trim();
+
+  if (tech.src) {
+    return (
+      <LogoImage
+        src={tech.src}
+        darkSrc={tech.darkSrc}
+        alt={`${tech.name} logo`}
+        className={logoClassName}
+      />
+    );
+  }
+
+  const Icon = tech.icon;
+  return tech.custom ? (
+    <Icon className={logoClassName} idSuffix={idSuffix} />
+  ) : (
+    <Icon className={logoClassName} aria-hidden="true" />
+  );
+}
+
+function hexToRgba(hex, alpha) {
+  if (typeof hex !== "string" || !hex.startsWith("#")) return `rgba(37, 99, 235, ${alpha})`;
+
+  const raw = hex.slice(1);
+  const normalized =
+    raw.length === 3
+      ? raw
+          .split("")
+          .map((char) => `${char}${char}`)
+          .join("")
+      : raw;
+
+  if (normalized.length !== 6) return `rgba(37, 99, 235, ${alpha})`;
+
+  const value = Number.parseInt(normalized, 16);
+  const red = (value >> 16) & 255;
+  const green = (value >> 8) & 255;
+  const blue = value & 255;
+
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+}
+
+function TechLogoTile({ tech, index, compact = false, reduceMotion = false }) {
+  const floatY = index % 2 === 0 ? -12 : 10;
+  const floatX = index % 3 === 0 ? -4 : index % 3 === 1 ? 4 : 2;
+  const floatRotate = index % 2 === 0 ? 1.8 : -1.8;
+  const entranceDelay = index * (compact ? 0.055 : 0.085);
+  const idleDelay = entranceDelay + 0.45;
+  const idleDuration = compact ? 4.2 + index * 0.24 : 5 + index * 0.36;
+  const logoSize = compact
+    ? tech.wide
+      ? "h-14 w-28"
+      : "h-16 w-16"
+    : tech.wide
+      ? "h-20 w-40 xl:h-24 xl:w-48"
+      : "h-24 w-24 xl:h-28 xl:w-28";
+  const glowClass = compact
+    ? "drop-shadow-[0_12px_18px_var(--tech-glow-color)] dark:drop-shadow-[0_14px_20px_var(--tech-dark-glow-color)]"
+    : "drop-shadow-[0_18px_26px_var(--tech-glow-color)] dark:drop-shadow-[0_18px_30px_var(--tech-dark-glow-color)]";
+
+  return (
+    <motion.div
+      className={`group flex flex-col items-center justify-center text-center ${
+        compact ? "min-h-[110px] gap-2 px-1 py-2" : "min-h-[172px] gap-3 px-2 py-3"
+      }`}
+      style={{
+        "--tech-color": tech.color,
+        "--tech-dark-color": tech.darkColor || tech.color,
+        "--tech-glow-color": hexToRgba(tech.color, compact ? 0.2 : 0.26),
+        "--tech-dark-glow-color": hexToRgba(tech.darkColor || tech.color, compact ? 0.24 : 0.32),
+        transformPerspective: 900,
+      }}
+      initial={
+        reduceMotion
+          ? false
+          : {
+              opacity: 0,
+              y: 34,
+              scale: 0.82,
+              rotateX: -16,
+              filter: "blur(8px)",
+            }
+      }
+      animate={
+        reduceMotion
+          ? { opacity: 1 }
+          : {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              rotateX: 0,
+              filter: "blur(0px)",
+            }
+      }
+      transition={{
+        delay: entranceDelay,
+        type: "spring",
+        stiffness: 160,
+        damping: 18,
+        mass: 0.8,
+      }}
+    >
+      <motion.div
+        className="relative flex flex-col items-center justify-center gap-3"
+        animate={
+          reduceMotion
+            ? undefined
+            : {
+                y: [0, floatY, floatY * 0.35, 0],
+                x: [0, floatX, -floatX * 0.35, 0],
+                rotate: [0, floatRotate, -floatRotate * 0.45, 0],
+                scale: [1, 1.035, 1.012, 1],
+              }
+        }
+        transition={{
+          delay: idleDelay,
+          duration: idleDuration,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        whileHover={
+          reduceMotion
+            ? undefined
+            : {
+                y: -10,
+                scale: 1.08,
+                rotate: 0,
+                transition: { type: "spring", stiffness: 260, damping: 16 },
+              }
+        }
+      >
+        <motion.div
+          className={`relative flex items-center justify-center text-[var(--tech-color)] dark:text-[var(--tech-dark-color)] ${glowClass} ${logoSize}`}
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  rotateZ: [0, floatRotate * 0.2, 0],
+                  scale: [1, 1.025, 1],
+                }
+          }
+          transition={{
+            delay: idleDelay + 0.18,
+            duration: idleDuration * 0.82,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {!compact && (
+            <motion.span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-1 left-1/2 h-[2px] w-14 origin-center -translate-x-1/2 rounded-full bg-[var(--tech-color)] opacity-30 dark:bg-[var(--tech-dark-color)]"
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
+                      opacity: [0.18, 0.46, 0.22],
+                      scaleX: [0.55, 1, 0.66],
+                    }
+              }
+              transition={{
+                delay: idleDelay + 0.12,
+                duration: idleDuration * 0.72,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          )}
+          <TechLogo
+            tech={tech}
+            className="h-full w-full object-contain"
+            idSuffix={`slider-${tech.key}-${index}`}
+          />
+        </motion.div>
+        <motion.span
+          className={`font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-[var(--tech-color)] dark:text-white dark:group-hover:text-[var(--tech-dark-color)] ${
+            compact ? "text-xs" : "text-base"
+          }`}
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  opacity: [0.86, 1, 0.9],
+                  y: [0, -1.5, 0],
+                }
+          }
+          transition={{
+            delay: idleDelay + 0.2,
+            duration: idleDuration * 0.9,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          {tech.name}
+        </motion.span>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function CategoryTechShowcase({ course, compact = false, reduceMotion = false }) {
+  const balancedGrid =
+    !compact && course.technologies.length <= 4
+      ? "mx-auto max-w-[520px] grid-cols-2 gap-x-14 gap-y-10 xl:gap-x-16"
+      : "mx-auto max-w-[650px] grid-cols-2 gap-x-8 gap-y-9 xl:grid-cols-3 xl:gap-x-10 xl:gap-y-10";
+
+  return (
+    <div
+      className={`relative mx-auto w-full ${
+        compact ? "max-w-[350px]" : "max-w-[680px]"
+      }`}
+    >
+      <div
+        className={`relative grid w-full ${
+          compact ? "grid-cols-2 gap-x-5 gap-y-5" : balancedGrid
+        }`}
+      >
+        {course.technologies.map((tech, index) => (
+          <TechLogoTile
+            key={tech.key}
+            tech={tech}
+            index={index}
+            compact={compact}
+            reduceMotion={reduceMotion}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const ANGULAR_DOTNET_LOGO = "/images/courses/angular-dotnet.png";
 const SNOWFLAKE_LOGO = "/images/courses/snowflake.png";
 
 const courses = [
   {
-    id: "AI",
-    label: "ARTIFICIAL INTELLIGENCE",
-    heading: "AI: Building the Next Intelligence",
+    id: "ai-ml-agentic",
+    label: "AI | ML | Agentic Development",
+    shortLabel: "AI | ML | Agents",
+    heading: "Command the AI Advantage",
     bullets: [
-      "Master LLM Integration & Prompt Engineering",
-      "Direct Route to AI Engineer & Automation Roles",
-      "Build Production-Ready Agentic Workflows",
-      "Turn Static Apps into Cognitive Solutions",
-      "The Ultimate Competitive Edge for Modern Developers",
+      "Master LLM prompts and copilots",
+      "Use Claude, OpenAI, Gemini in workflows",
+      "Shape agents with tools and guardrails",
+      "Evaluate outputs for accuracy and context",
+      "Show AI productivity through real demos",
     ],
     outcomes: [
-      "AI Engineer",
-      "Machine Learning Specialist",
+      "AI Developer",
       "Prompt Engineer",
-      "AI Solutions Architect",
-      "Automation Consultant",
+      "Agentic App Developer",
+      "ML Engineer",
+      "AI Automation Engineer",
     ],
-    fallbackText: "AI",
-    color: "#3776AB",
-    icon: AiCourseIcon,
+    accent: "#2563EB",
+    technologies: [
+      { key: "claude", name: "Claude", icon: SiClaude, color: "#D97757" },
+      { key: "openai", name: "OpenAI", icon: SiOpenai, color: "#111827", darkColor: "#F8FAFC" },
+      { key: "gemini", name: "Gemini", src: "/images/courses/gemini-original.svg", color: "#8B5CF6" },
+      { key: "copilot", name: "Copilot", src: "/images/courses/copilot-original.png", color: "#16A34A" },
+    ],
   },
   {
-    id: "ML",
-    label: "MACHINE LEARNING",
-    heading: "ML: The Engine of Predictive Intelligence",
+    id: "application-development",
+    label: "Application Development",
+    shortLabel: "Application Dev",
+    heading: "Ship Enterprise App Logic",
     bullets: [
-      "From Raw Datasets to Autonomous Forecasting",
-      "Engineer Robust Supervised & Unsupervised Models",
-      "Master the Mathematical Foundations of Algorithm Tuning",
-      "Deploy Scalable Pipelines for Real-Time Feature Engineering",
-      "Convert Historical Patterns into Future-Ready Insights",
+      "Command Java and Spring Boot patterns",
+      "Use Python and FastAPI for clean endpoints",
+      "Turn pandas work into app-ready insights",
+      "Present technical results with matplotlib",
+      "Practice testing, debugging, and releases",
     ],
     outcomes: [
-      "Machine Learning Engineer",
-      "Data Scientist",
-      "M LOps Engineer",
-      "Quantitative Researcher",
-      "Algorithm Developer",
-    ],
-    fallbackText: "ML",
-    color: "#3776AB",
-    icon: MachineLearningCourseIcon,
-  },
-  {
-    id: "Agentic AI",
-    label: "AGENTIC AI",
-    heading: "Agentic AI: Building Autonomous Workforces",
-    bullets: [
-      "Design Multi-Agent Frameworks & Reasoning Loops",
-      "Implement Tool-Use, Function Calling, and Self-Correction",
-      "Develop Goal-Oriented Systems with Long-Term Memory",
-      "Bridge the Gap Between LLM Logic and API Execution",
-      "The Masterclass for Building Self-Sustaining Digital Workers",
-    ],
-    outcomes: [
-      "AI Agent Architect",
-      "Autonomous Systems Developer",
-      "Cognitive Workflow Engineer",
-      "AI Automation Strategist",
-      "Chief AI Integration Officer",
-    ],
-    fallbackText: "AG",
-    color: "#3776AB",
-    icon: AgenticAICourseIcon,
-  },
-  {
-    id: "python",
-    label: "PYTHON",
-    heading: "Redefine Your Professional Trajectory with Python",
-    bullets: [
-      "Master Logic to Advanced Architecture",
-      "Exclusive Gateway to Premium Hiring",
-      "Build High-Stakes Industry Projects",
-      "Elite Mentorship to the Finish Line",
-      "Your Future, Engineered to Lead",
-    ],
-    outcomes: [
-      "Python Web Developer",
-      "Software Engineer",
-      "Fullstack Developer",
       "Backend Developer",
-      "Frontend Developer",
-      "Web Developer",
+      "Java Developer",
+      "Python Developer",
+      "API Developer",
+      "Application Engineer",
     ],
-    fallbackText: "PY",
-    color: "#3776AB",
-    icon: PythonCourseIcon,
+    accent: "#0F766E",
+    technologies: [
+      { key: "java", name: "Java", icon: JavaCourseIcon, color: "#EA2D2E", custom: true },
+      { key: "springboot", name: "Spring Boot", icon: SiSpringboot, color: "#6DB33F" },
+      { key: "python", name: "Python", src: "/images/courses/python-original.svg", color: "#3776AB" },
+      { key: "fastapi", name: "FastAPI", src: "/images/courses/fastapi-original.svg", color: "#009688" },
+      {
+        key: "pandas",
+        name: "pandas",
+        src: "/images/courses/pandas-original.svg",
+        color: "#150458",
+        logoClassName: "dark:brightness-[2.6] dark:saturate-150 dark:drop-shadow-[0_0_18px_rgba(255,255,255,0.12)]",
+      },
+      {
+        key: "matplotlib",
+        name: "matplotlib",
+        src: "/images/courses/matplotlib.svg",
+        darkSrc: "/images/courses/matplotlib-dark.svg",
+        color: "#11557C",
+        wide: true,
+        logoClassName: "dark:drop-shadow-[0_0_18px_rgba(34,211,238,0.18)]",
+      },
+    ],
   },
   {
-    id: "java",
-    label: "JAVA",
-    heading: "Java: The Enterprise Engine",
+    id: "cloud",
+    label: "Cloud",
+    shortLabel: "Cloud",
+    heading: "Run the Modern Cloud Stack",
     bullets: [
-      "Command Core Logic & Advanced OOP",
-      "Fast-Track to High-Stability Tech Careers",
-      "Engineer Resilient, Multi-Threaded Apps",
-      "Master Professional Industry Standards",
-      "Your Entry into Corporate Engineering",
+      "Navigate AWS, Azure, and GCP confidently",
+      "Use compute, storage, and network basics",
+      "Run Snowflake warehouse workflows",
+      "Practice Databricks lakehouse pipelines",
+      "Track security, monitoring, and cost",
     ],
     outcomes: [
-      "Java Full Stack Developer",
-      "Web Developer",
-      "Software Engineer",
-      "Backend Developer",
-      "Frontend Developer",
-      "UI Developer",
-    ],
-    fallbackText: "JV",
-    color: "#5382A1",
-    icon: JavaCourseIcon,
-  },
-  {
-    id: "sql",
-    label: "SQL",
-    heading: "SQL: The Language of Data",
-    bullets: [
-      "Master T-SQL Logic & Relational Design",
-      "Direct Access to Data-Driven Careers",
-      "Engineer High-Performance Database Systems",
-      "Translate Raw Data into Business Value",
-      "The Foundation of Every Modern Tech Stack",
-    ],
-    outcomes: [
-      "Database Administrator",
-      "Data Engineer",
-      "Data Analyst",
-      "Data Architect",
-      "Data Scientist",
-    ],
-    fallbackText: "SQL",
-    color: "#00618A",
-    icon: SqlCourseIcon,
-  },
-  {
-    id: "react",
-    label: "React",
-    heading: "React: Modern UI Engineering",
-    bullets: [
-      "Master Component Logic & Advanced Hooks",
-      "Accelerated Path to Front-End Mastery",
-      "Build Lightning-Fast Interactive Apps",
-      "Scale Professional-Grade Web Products",
-      "The Gold Standard for Modern Developers",
-    ],
-    outcomes: [
-      "React Developer",
-      "Software Engineer",
-      "Frontend Developer",
-      "UI Developer",
-      "Web Developer",
-    ],
-    fallbackText: "RE",
-    color: "#61DAFB",
-    icon: ReactCourseIcon,
-  },
-  {
-    id: "azure",
-    label: "Azure",
-    heading: "Azure: Architect the Data Cloud",
-    bullets: [
-      "Master ADF Pipelines & Databricks Logic",
-      "Direct Entry into High-Scale Cloud Roles",
-      "Build Automated, Industrial Data Lakes",
-      "Command Enterprise-Level Big Data Tools",
-      "The Pinnacle of Modern Data Strategy",
-    ],
-    outcomes: [
-      "Cloud Architect",
-      "Cloud Administrator",
+      "Cloud Engineer",
+      "Data Platform Engineer",
       "Cloud Developer",
-      "Cloud DevOps Engineer",
-      "Cloud Security Engineer",
+      "Data Engineer",
+      "Cloud Solutions Associate",
     ],
-    fallbackText: "AZ",
-    color: "#0089D6",
-    icon: AzureCourseIcon,
+    accent: "#0284C7",
+    technologies: [
+      { key: "aws", name: "AWS", icon: SiAmazonwebservices, color: "#FF9900", wide: true },
+      { key: "azure", name: "Azure", src: "/images/courses/azure-original.svg", color: "#0078D4" },
+      { key: "gcp", name: "GCP", src: "/images/courses/googlecloud-original.svg", color: "#4285F4" },
+      { key: "snowflake", name: "Snowflake", icon: SiSnowflake, color: "#29B5E8" },
+      { key: "databricks", name: "Databricks", icon: SiDatabricks, color: "#FF3621" },
+    ],
   },
   {
-    id: "powerbi",
-    label: "Power BI",
-    heading: "Power BI: Visualize the Future",
+    id: "web-development",
+    label: "Web Development",
+    shortLabel: "Web Development",
+    heading: "Create Frontend Career Proof",
     bullets: [
-      "Master KPI Dashboards & Data Modeling",
-      "Direct Route to Business Intelligence Roles",
-      "Build High-Impact Interactive Reports",
-      "Turn Raw Data into Strategic Decisions",
-      "The Ultimate Competitive Edge for Analysts",
+      "Master React component delivery",
+      "Use Next.js and Vite for modern builds",
+      "Deploy fast through Vercel and Netlify",
+      "Connect forms, APIs, routing, and SEO",
+      "Polish UI for portfolio-grade demos",
     ],
     outcomes: [
-      "Data Analyst",
-      "Reporting Analyst",
-      "Business Analyst",
-      "Information Architect",
-      "Analytics Consultant",
+      "Frontend Developer",
+      "React Developer",
+      "Next.js Developer",
+      "Web Developer",
+      "UI Engineer",
     ],
-    fallbackText: "PBI",
-    color: "#F2C811",
-    icon: PowerBICourseIcon,
+    accent: "#0891B2",
+    technologies: [
+      { key: "react", name: "React", icon: SiReact, color: "#61DAFB" },
+      {
+        key: "nextjs",
+        name: "Next.js",
+        src: "/next.svg",
+        color: "#111827",
+        wide: true,
+        logoClassName: "dark:invert dark:drop-shadow-[0_0_18px_rgba(255,255,255,0.16)]",
+      },
+      { key: "vite", name: "Vite", src: "/images/courses/vite-original.svg", color: "#646CFF" },
+      { key: "vercel", name: "Vercel", icon: SiVercel, color: "#000000", darkColor: "#F8FAFC" },
+      {
+        key: "netlify",
+        name: "Netlify",
+        src: "/images/courses/netlify-original-wordmark.svg",
+        color: "#00C7B7",
+        wide: true,
+        logoClassName: "dark:brightness-[1.9] dark:saturate-150 dark:drop-shadow-[0_0_18px_rgba(45,212,191,0.24)]",
+      },
+    ],
+  },
+  {
+    id: "devops",
+    label: "DevOps",
+    shortLabel: "DevOps",
+    heading: "Own the Release Pipeline",
+    bullets: [
+      "Command Jenkins CI/CD pipelines",
+      "Manage Git workflows and release habits",
+      "Use Terraform for repeatable infrastructure",
+      "Run Azure DevOps boards and builds",
+      "Practice approvals, checks, and rollbacks",
+    ],
+    outcomes: [
+      "DevOps Engineer",
+      "Build Engineer",
+      "Release Engineer",
+      "Cloud DevOps Associate",
+      "Infrastructure Engineer",
+    ],
+    accent: "#F97316",
+    technologies: [
+      { key: "jenkins", name: "Jenkins", icon: SiJenkins, color: "#D24939" },
+      { key: "git", name: "Git", icon: SiGit, color: "#F05032" },
+      { key: "terraform", name: "Terraform", src: "/images/courses/terraform-original.svg", color: "#7B42BC" },
+      { key: "azure-devops", name: "Azure DevOps", icon: VscAzureDevops, color: "#0078D4" },
+    ],
   },
 ];
 
@@ -617,6 +874,7 @@ const courses = [
 function CourseSlider() {
   const [active, setActive] = useState(0);
   const [slideDirection, setSlideDirection] = useState(1);
+  const prefersReducedMotion = useReducedMotion();
   const timerRef = useRef(null);
   const touchStartX = useRef(null);
   const DURATION = 5000;
@@ -654,12 +912,11 @@ function CourseSlider() {
   };
 
   const course = courses[active];
-  const CourseIcon = course.icon;
 
   return (
     <section className="bg-white px-3 py-6 transition-colors duration-300 dark:bg-slate-950 sm:px-4 sm:py-10 md:px-10 md:py-12">
       <CourseIconPreloads />
-      <div className="max-w-[1400px] mx-auto">
+      <div className="mx-auto h-[960px] max-w-[1400px] min-[390px]:h-[900px] lg:h-[620px]">
         <AnimatePresence mode="wait" custom={slideDirection}>
           <motion.div
             key={active}
@@ -677,7 +934,7 @@ function CourseSlider() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             style={{ touchAction: "pan-y" }}
-            className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950 dark:shadow-[0_24px_70px_rgba(2,6,23,0.55)] sm:rounded-3xl sm:shadow-2xl lg:min-h-[620px]"
+            className="relative h-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950 dark:shadow-[0_24px_70px_rgba(2,6,23,0.55)] sm:rounded-3xl sm:shadow-2xl lg:h-[620px]"
           >
             <button
               onClick={prev}
@@ -691,32 +948,39 @@ function CourseSlider() {
             >
               <ChevronRight className="h-6 w-6" />
             </button>
-            <div className="grid gap-0 lg:min-h-[620px] lg:grid-cols-2">
-              <div className="flex flex-col justify-center p-5 sm:p-10 md:p-14 lg:min-h-[620px] lg:pl-20">
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-blue-600 mb-3 sm:mb-4">
+            <div className="grid gap-0 lg:h-full lg:grid-cols-2">
+              <div className="flex flex-col justify-center p-5 sm:p-10 md:p-14 lg:h-full lg:overflow-hidden lg:pb-24 lg:pl-14 lg:pr-8 xl:pl-20 xl:pr-14">
+                <span
+                  className="mb-3 text-xs font-bold uppercase tracking-widest sm:mb-4 sm:text-sm lg:whitespace-nowrap"
+                  style={{ color: course.accent }}
+                >
                   {course.label} Training
                 </span>
-                <h3 className="mb-5 text-xl font-bold leading-snug text-gray-900 dark:text-slate-50 sm:mb-8 sm:text-2xl md:text-3xl">
+                <h3 className="mb-5 text-xl font-bold leading-snug text-gray-900 dark:text-slate-50 sm:mb-8 sm:text-2xl md:text-3xl lg:min-h-[42px] lg:text-2xl xl:text-3xl">
                   {course.heading}
                 </h3>
-                <div className="mb-5 flex items-center justify-center lg:hidden">
-                  <CourseIcon
-                    className="h-20 w-20"
-                    idSuffix={`mobile-${course.id}`}
+                <div className="mb-6 lg:hidden">
+                  <CategoryTechShowcase
+                    course={course}
+                    compact
+                    reduceMotion={prefersReducedMotion}
                   />
                 </div>
-                <ul className="mb-5 space-y-2 sm:mb-10 sm:space-y-3">
+                <ul className="mb-5 space-y-2 sm:mb-10 sm:space-y-3 lg:min-h-[172px]">
                   {course.bullets.map((b, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2 text-sm text-gray-700 dark:text-slate-300 sm:gap-3 sm:text-base"
+                      className="flex items-start gap-2 text-sm text-gray-700 dark:text-slate-300 sm:gap-3 sm:text-base lg:whitespace-nowrap lg:text-[15px] xl:text-base"
                     >
-                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mt-0.5 shrink-0" />
+                      <CheckCircle
+                        className="mt-0.5 h-4 w-4 shrink-0 sm:h-5 sm:w-5"
+                        style={{ color: course.accent }}
+                      />
                       <span>{b}</span>
                     </li>
                   ))}
                 </ul>
-                <div>
+                <div className="lg:min-h-[100px]">
                   <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-slate-300 sm:mb-4">
                     Career Outcomes
                   </p>
@@ -732,45 +996,52 @@ function CourseSlider() {
                   </div>
                 </div>
               </div>
-              <div className="hidden min-h-[620px] flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-10 transition-colors duration-300 dark:from-slate-950 dark:to-slate-900 lg:flex lg:p-16 lg:pr-20">
-                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center">
-                  <CourseIcon
-                    className="h-full w-full"
-                    idSuffix={`desktop-${course.id}`}
-                  />
-                </div>
-                <p className="mt-6 text-lg font-bold tracking-wide text-gray-800 dark:text-slate-100 sm:text-xl">
-                  {course.label}
-                </p>
-                <div className="mt-8 flex gap-2 sm:mt-12 sm:gap-2.5">
-                  {courses.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => go(i)}
-                      className="flex h-5 w-5 items-center justify-center"
-                    >
-                      <span
-                        className={`block rounded-full transition-all duration-300 ${i === active ? "h-2.5 w-5 bg-black dark:bg-blue-400" : "h-2.5 w-2.5 bg-gray-300 dark:bg-slate-700"}`}
-                      />
-                    </button>
-                  ))}
-                </div>
-                <div className="mt-4 h-0.5 w-full max-w-[180px] overflow-hidden rounded-full bg-gray-200 transition-colors duration-300 dark:bg-slate-800 sm:mt-5 sm:max-w-[220px]">
-                  <motion.div
-                    key={`bar-${active}`}
-                    className="h-full rounded-full bg-black dark:bg-blue-400"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: DURATION / 1000, ease: "linear" }}
+              <div className="relative hidden h-full flex-col items-center justify-center overflow-hidden bg-white p-10 transition-colors duration-300 dark:bg-slate-950 lg:flex lg:p-14 lg:pb-24 lg:pr-20">
+                <div className="relative z-10 w-full">
+                  <CategoryTechShowcase
+                    course={course}
+                    reduceMotion={prefersReducedMotion}
                   />
                 </div>
               </div>
             </div>
-            <div className="border-t border-gray-100 bg-gradient-to-br from-gray-50 to-gray-100 px-5 py-4 transition-colors duration-300 dark:border-slate-800 dark:from-slate-950 dark:to-slate-900 lg:hidden">
+            <div className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center lg:flex">
+              <div className="flex gap-2.5">
+                {courses.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => go(i)}
+                    className="flex h-5 w-5 items-center justify-center"
+                    aria-label={`Show ${courses[i].shortLabel} slide`}
+                  >
+                    <span
+                      className={`block rounded-full transition-all duration-300 ${
+                        i === active
+                          ? "h-2.5 w-5"
+                          : "h-2.5 w-2.5 bg-gray-300 dark:bg-slate-700"
+                      }`}
+                      style={i === active ? { backgroundColor: course.accent } : undefined}
+                    />
+                  </button>
+                ))}
+              </div>
+              <div className="mt-4 h-0.5 w-[240px] overflow-hidden rounded-full bg-gray-200 transition-colors duration-300 dark:bg-slate-800">
+                <motion.div
+                  key={`bar-${active}`}
+                  className="h-full rounded-full"
+                  style={{ backgroundColor: course.accent }}
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: DURATION / 1000, ease: "linear" }}
+                />
+              </div>
+            </div>
+            <div className="border-t border-gray-100 bg-white px-5 py-4 transition-colors duration-300 dark:border-slate-800 dark:bg-slate-950 lg:hidden">
               <div className="mx-auto h-0.5 w-full max-w-[180px] overflow-hidden rounded-full bg-gray-200 transition-colors duration-300 dark:bg-slate-800">
                 <motion.div
                   key={`mobile-bar-${active}`}
-                  className="h-full rounded-full bg-black dark:bg-blue-400"
+                  className="h-full rounded-full"
+                  style={{ backgroundColor: course.accent }}
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: DURATION / 1000, ease: "linear" }}
@@ -782,14 +1053,15 @@ function CourseSlider() {
                     key={i}
                     onClick={() => go(i)}
                     className="flex h-5 w-5 items-center justify-center"
-                    aria-label={`Show course ${i + 1}`}
+                    aria-label={`Show ${courses[i].shortLabel} slide`}
                   >
                     <span
                       className={`block rounded-full transition-all duration-300 ${
                         i === active
-                          ? "h-2 w-5 bg-black dark:bg-blue-400"
+                          ? "h-2 w-5"
                           : "h-2 w-2 bg-gray-300 dark:bg-slate-700"
                       }`}
+                      style={i === active ? { backgroundColor: course.accent } : undefined}
                     />
                   </button>
                 ))}
@@ -2489,14 +2761,15 @@ function CareerPathPlanSection() {
             ) : (
               <form
                 ref={guideFormRef}
-                name="mentor-guidance"
+                name="request-callback"
                 method="POST"
                 action="/__forms.html"
                 data-netlify="true"
                 onSubmit={handleGuideSubmit}
                 className="mt-7 space-y-4 lg:space-y-5"
               >
-                <input type="hidden" name="form-name" value="mentor-guidance" readOnly />
+                <input type="hidden" name="form-name" value="request-callback" readOnly />
+                <input type="hidden" name="originalFormName" value="mentor-guidance" readOnly />
                 <input type="hidden" name="source" value="Home mentor guidance" readOnly />
                 <input type="hidden" name="message" value={guideMessage} readOnly />
 
@@ -2957,7 +3230,7 @@ export default function HomePage() {
                   <strong className="text-gray-900">
                     Tinitiate AI Solutions
                   </strong>{" "}
-                  is a leading IT consulting, development and training company,
+                  is a leading training company,
                   dedicated to empowering businesses with cutting-edge
                   technology solutions and high-quality professional training.
                   Our vision is to bridge the gap between industry demands and

@@ -8,6 +8,7 @@ const nextConfig = {
   devIndicators: false,
   images: {
     formats: ['image/avif', 'image/webp'],
+    qualities: [75, 100],
     unoptimized: true,
   },
   turbopack: {

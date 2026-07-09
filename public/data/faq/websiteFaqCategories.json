@@ -1,0 +1,748 @@
+[
+  {
+    "id": "training-faqs",
+    "label": "Training FAQs",
+    "description": "Course structure, learning style, tools, projects, certificates, and class requirements.",
+    "faqs": [
+      {
+        "id": "what-will-i-learn",
+        "title": "What exactly will I learn?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "You will learn the skills that match your selected pathway, with a focus on practical implementation instead of only theory. Tracks can include Python Full Stack with Gen AI, Java Full Stack with Gen AI, MERN Stack with Gen AI, Data Engineering, Cloud and DevSecOps, DevOps and MLOps, SailPoint, and Generative AI."
+          },
+          {
+            "type": "p",
+            "text": "The goal is to help you understand how real software teams build, test, document, deploy, and improve applications using modern tools."
+          }
+        ]
+      },
+      {
+        "id": "classroom-or-project-based",
+        "title": "Is this classroom training or project-based learning?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The training is primarily project-based. Concepts are explained in live sessions and then applied through coding tasks, assignments, and real project modules so learners can build confidence by doing."
+          },
+          {
+            "type": "ul",
+            "items": [
+              "Live explanation for concepts and workflows",
+              "Hands-on coding immediately after learning",
+              "Project reviews to improve quality and clarity",
+              "Practical exposure to Git, testing, deployment, and documentation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "prior-coding-experience",
+        "title": "Do I need prior coding experience?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "It depends on the pathway you choose. Spark is beginner-friendly and can be started without prior coding experience. Prime is better for learners who know basic programming, while Apex is designed for students who are comfortable with coding fundamentals and ready for deeper project execution."
+          }
+        ]
+      },
+      {
+        "id": "how-classes-are-conducted",
+        "title": "How are classes conducted?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Classes are conducted through live instructor-led sessions supported by hands-on practice. Learners receive assignments, weekly project reviews, mentor guidance, and exposure to real-world software development routines."
+          },
+          {
+            "type": "p",
+            "text": "The structure is designed to create consistency: learn the topic, practice the skill, review the work, and improve with mentor feedback."
+          }
+        ]
+      },
+      {
+        "id": "will-i-receive-recordings",
+        "title": "Will I receive recordings?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes, recordings are provided wherever applicable. They help students revise missed concepts, revisit coding demonstrations, and keep learning on track even during busy college or work schedules."
+          }
+        ]
+      },
+      {
+        "id": "will-i-build-real-projects",
+        "title": "Will I build real projects?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students work on industry-style applications and practical modules that mirror how software is built in teams. Projects include planning, Git usage, documentation, testing, reviews, and deployment wherever relevant."
+          },
+          {
+            "type": "p",
+            "text": "This helps students move beyond tutorial-level learning and build portfolio-ready proof of their skills."
+          }
+        ]
+      },
+      {
+        "id": "will-i-learn-ai",
+        "title": "Will I learn AI?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. AI concepts are integrated into the learning pathways so students understand how modern teams use AI tools, Gen AI workflows, and AI-assisted development in practical scenarios."
+          },
+          {
+            "type": "p",
+            "text": "The depth of AI learning depends on the selected track, but every pathway is designed to build awareness of how AI fits into current software and data work."
+          }
+        ]
+      },
+      {
+        "id": "will-i-receive-certificate",
+        "title": "Will I receive a certificate?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students receive a TINITIATE AI Completion Certificate after successfully completing the required learning, assignments, and project work for their pathway."
+          },
+          {
+            "type": "p",
+            "text": "The certificate is useful as supporting proof for resumes, LinkedIn profiles, and interview conversations."
+          }
+        ]
+      },
+      {
+        "id": "what-tools-will-i-use",
+        "title": "What tools will I use?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "You will use tools that are common in real software and cloud environments. These can include Git and GitHub, VS Code, Docker, Postman, cloud platforms such as AWS, Azure, or GCP depending on the track, AI coding assistants, and project management tools."
+          },
+          {
+            "type": "p",
+            "text": "Tool usage is introduced with context so learners understand not only what to click, but why teams use each tool."
+          }
+        ]
+      },
+      {
+        "id": "do-i-need-laptop",
+        "title": "Do I need a laptop?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. A personal laptop with reliable internet access is required because the training includes live sessions, coding practice, assignments, project work, and tool installation."
+          },
+          {
+            "type": "p",
+            "text": "A laptop also helps students practice consistently outside class, which is important for improving coding confidence."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "job-career-faqs",
+    "label": "Job & Career FAQs",
+    "description": "Placement assistance, R&D, work exposure, salary expectations, and career outcomes.",
+    "faqs": [
+      {
+        "id": "is-job-guaranteed",
+        "title": "Is a job guaranteed?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "No institute can honestly guarantee a job because hiring depends on company needs, market conditions, interview performance, and the learner's skill level. TINITIATE AI provides structured placement assistance, portfolio development, interview preparation, and career mentoring to improve readiness."
+          },
+          {
+            "type": "p",
+            "text": "Students who attend consistently, complete projects, and actively participate in preparation usually build stronger chances during the placement process."
+          }
+        ]
+      },
+      {
+        "id": "what-is-placement-assistance",
+        "title": "What is placement assistance?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Placement assistance includes support activities that help students present themselves better to employers. This may include resume building, LinkedIn optimization, mock interviews, technical preparation, HR interview practice, portfolio guidance, and referrals where available."
+          },
+          {
+            "type": "p",
+            "text": "The focus is to make students interview-ready with clear project explanations, stronger fundamentals, and better communication."
+          }
+        ]
+      },
+      {
+        "id": "prime-vs-apex",
+        "title": "What is the difference between Prime and Apex?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Prime focuses on paid R&D exposure, portfolio building, and mentorship after the learning phase. Apex adds a deeper job-style execution model where students practice ownership, documentation, code reviews, delivery discipline, and placement-priority preparation."
+          },
+          {
+            "type": "p",
+            "text": "In simple terms, Prime is for learners who want guided project and R&D experience, while Apex is for learners who want the most intensive career-readiness pathway."
+          }
+        ]
+      },
+      {
+        "id": "what-is-r-and-d",
+        "title": "What is R&D?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "R&D stands for Research and Development. In this program, students work on internal products, SaaS applications, AI tools, automation projects, proof-of-concepts, and practical experiments that help them understand how real solutions are explored and built."
+          },
+          {
+            "type": "p",
+            "text": "It gives students a stronger bridge between training and workplace-style problem solving."
+          }
+        ]
+      },
+      {
+        "id": "will-i-receive-work-experience",
+        "title": "Will I receive work experience?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Students gain practical project experience through real workflows, tasks, and reviews. Formal work experience documentation depends on the selected pathway, eligibility, attendance, performance, and successful completion requirements."
+          },
+          {
+            "type": "p",
+            "text": "The purpose is to help students build credible experience they can explain during interviews."
+          }
+        ]
+      },
+      {
+        "id": "will-companies-interview-me",
+        "title": "Will companies interview me?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Eligible students are supported through the placement process and partner network where opportunities are available. Interview calls depend on market demand, company requirements, role fit, and the student's readiness."
+          },
+          {
+            "type": "p",
+            "text": "TINITIATE AI helps students prepare strongly so they can perform better when interviews are available."
+          }
+        ]
+      },
+      {
+        "id": "expected-salary",
+        "title": "What salary can I expect?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Salary depends on skills, interview performance, project quality, location, employer, and current market demand. Any stipend or trainee salary applies only to eligible participants and according to the terms of the selected pathway."
+          },
+          {
+            "type": "p",
+            "text": "The safest approach is to focus first on building strong fundamentals, a presentable portfolio, and interview confidence."
+          }
+        ]
+      },
+      {
+        "id": "support-after-completion",
+        "title": "Will you help after course completion?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Eligible learners can receive continued support through resume updates, interview practice, technical guidance, portfolio review, and referrals where available."
+          },
+          {
+            "type": "p",
+            "text": "Post-completion support is most effective when students stay active, keep improving their projects, and respond quickly to career guidance."
+          }
+        ]
+      },
+      {
+        "id": "roles-after-apex",
+        "title": "What kind of job roles can I expect after Apex?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Apex can prepare students for roles such as Software Developer, Full Stack Developer, Python Developer, Java Developer, MERN Developer, AI Engineer, Data Engineer, Cloud Engineer, and DevOps Engineer depending on the chosen track and individual performance."
+          },
+          {
+            "type": "p",
+            "text": "The final role direction depends on the student's pathway, project work, interview preparation, and hiring demand."
+          }
+        ]
+      },
+      {
+        "id": "r-and-d-salary-guaranteed",
+        "title": "Is the salary during R&D guaranteed or performance-based?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Any stipend or trainee salary is based on eligibility, attendance, project participation, performance, and the terms of the selected pathway. It is important for students to maintain consistency and complete assigned work responsibly."
+          },
+          {
+            "type": "p",
+            "text": "The admissions team explains applicable conditions before enrollment."
+          }
+        ]
+      },
+      {
+        "id": "which-companies-hire",
+        "title": "Which companies hire from TINITIATE AI?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Students are prepared for opportunities across startups, product companies, service companies, GCCs, and enterprise organizations. Actual hiring depends on market demand, role availability, and candidate performance."
+          },
+          {
+            "type": "p",
+            "text": "The training focuses on helping students build skills that are relevant across many types of technology teams."
+          }
+        ]
+      },
+      {
+        "id": "after-apex-program",
+        "title": "What happens after the 9-month Apex program ends?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Students graduate with practical project exposure, a stronger portfolio, interview preparation, and a clearer career direction. Eligible graduates can continue receiving placement support and mentoring as they apply for roles."
+          },
+          {
+            "type": "p",
+            "text": "The best outcomes come from students who complete the program seriously and keep improving even after the formal timeline ends."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "student-faqs",
+    "label": "Student FAQs",
+    "description": "Confidence, coding practice, mentorship, teamwork, GitHub, LinkedIn, and college compatibility.",
+    "faqs": [
+      {
+        "id": "non-it-background",
+        "title": "I'm from a non-IT background. Can I join?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students from non-IT backgrounds can join, especially through beginner-friendly pathways such as Spark. The learning starts with fundamentals and gradually moves into coding, tools, and projects."
+          },
+          {
+            "type": "p",
+            "text": "Mentors help learners understand the basics step by step so they can build confidence without feeling rushed."
+          }
+        ]
+      },
+      {
+        "id": "afraid-of-coding",
+        "title": "I'm afraid of coding. Can I still start?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Many students feel nervous before they start coding. Spark is designed to build confidence gradually through guided practice, simple examples, regular assignments, and mentor support."
+          },
+          {
+            "type": "p",
+            "text": "The aim is not to make coding scary, but to make it understandable through repetition and practical use."
+          }
+        ]
+      },
+      {
+        "id": "how-much-coding",
+        "title": "How much coding will I actually do?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Around 70-80% of the program is hands-on. Students write code, solve tasks, build project modules, use Git, fix issues, and explain their work during reviews."
+          },
+          {
+            "type": "p",
+            "text": "This practical rhythm is what helps learners move from watching tutorials to actually building."
+          }
+        ]
+      },
+      {
+        "id": "mentor-code-review",
+        "title": "Will mentors review my code?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Mentors review code to help students improve structure, logic, readability, debugging habits, and project quality. Reviews also help students understand how professional teams think about maintainable code."
+          }
+        ]
+      },
+      {
+        "id": "unlimited-doubts",
+        "title": "Can I ask unlimited doubts?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students are encouraged to ask doubts during sessions, practice work, and reviews. The program is designed to support active learning, so asking questions is treated as part of the learning process."
+          },
+          {
+            "type": "p",
+            "text": "Mentors also guide students on how to debug, search, and think through problems independently."
+          }
+        ]
+      },
+      {
+        "id": "will-i-work-in-teams",
+        "title": "Will I work in teams?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Team-style work is included where relevant so students understand how collaboration happens in software companies. This can include task ownership, Git workflows, documentation, communication, and review cycles."
+          }
+        ]
+      },
+      {
+        "id": "will-i-use-git",
+        "title": "Will I use Git?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Git and GitHub are important parts of the training. Students learn how to manage code, track changes, collaborate, and present project work in a way that is useful for portfolios and interviews."
+          }
+        ]
+      },
+      {
+        "id": "will-i-build-portfolio",
+        "title": "Will I build a portfolio?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students build GitHub-ready projects that can be used as portfolio evidence. The portfolio helps students explain what they built, which tools they used, what problems they solved, and how the project can be improved."
+          }
+        ]
+      },
+      {
+        "id": "linkedin-help",
+        "title": "Will you help with LinkedIn?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students receive guidance on improving LinkedIn profiles along with resume and portfolio presentation. The goal is to make the student's skills, projects, and learning journey easier for recruiters and mentors to understand."
+          }
+        ]
+      },
+      {
+        "id": "college-and-training",
+        "title": "Can I continue my college while attending?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Many students attend training while continuing college. The program is structured to support learners through live sessions, assignments, recordings where applicable, and mentor guidance."
+          },
+          {
+            "type": "p",
+            "text": "Students should still plan their weekly time seriously because regular practice is essential for progress."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "parent-faqs",
+    "label": "Parent FAQs",
+    "description": "Program value, student discipline, progress tracking, parent updates, confidence, safety, and policies.",
+    "faqs": [
+      {
+        "id": "why-choose-tinitiate",
+        "title": "Why should I choose TINITIATE AI instead of another institute?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "TINITIATE AI emphasizes practical experience, structured mentorship, project work, and career readiness. The program is designed to help students move from classroom learning to real implementation skills."
+          },
+          {
+            "type": "p",
+            "text": "Parents can review the curriculum, attend free sessions, and speak with the team before making a decision."
+          }
+        ]
+      },
+      {
+        "id": "student-discipline",
+        "title": "Will my child be disciplined during the program?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students follow structured schedules, assignments, project reviews, milestones, and mentor feedback. This creates accountability and helps learners build a professional routine."
+          }
+        ]
+      },
+      {
+        "id": "track-progress",
+        "title": "How do you track progress?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Progress is tracked through attendance, assignments, project completion, coding ability, communication, review participation, and interview readiness. Mentors look at both technical improvement and professional behavior."
+          }
+        ]
+      },
+      {
+        "id": "parent-progress-updates",
+        "title": "Can parents receive progress updates?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes, parents can receive progress updates upon request. These updates can help families understand attendance, learning consistency, project progress, and areas where the student may need more support."
+          }
+        ]
+      },
+      {
+        "id": "investment-worthwhile",
+        "title": "Is my investment worthwhile?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The program is built around practical skills, career readiness, project work, and mentoring. The value of the investment depends strongly on the student's commitment, attendance, practice, and willingness to complete assigned work."
+          },
+          {
+            "type": "p",
+            "text": "Families are encouraged to evaluate the curriculum and free sessions before enrolling."
+          }
+        ]
+      },
+      {
+        "id": "student-struggles",
+        "title": "What if my child struggles?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Mentors provide additional guidance and support when a student struggles. The team helps identify whether the issue is concept clarity, coding practice, confidence, time management, or consistency."
+          },
+          {
+            "type": "p",
+            "text": "The earlier a student communicates difficulties, the easier it is to support them effectively."
+          }
+        ]
+      },
+      {
+        "id": "student-confidence",
+        "title": "Will my child become confident?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Confidence grows through repeated practice, successful project completion, mentor feedback, and interview preparation. The program is designed to help students gradually become more comfortable with coding, communication, and technical explanation."
+          }
+        ]
+      },
+      {
+        "id": "parents-speak-to-mentors",
+        "title": "Can parents speak to mentors?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Parents can speak to mentors or the academic team when required. This helps families understand the student's progress, expectations, and areas where support is needed."
+          }
+        ]
+      },
+      {
+        "id": "values-besides-coding",
+        "title": "What values do you teach besides coding?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Along with technical skills, students are guided on professionalism, accountability, teamwork, communication, problem-solving, time management, and continuous learning."
+          },
+          {
+            "type": "p",
+            "text": "These qualities are important because companies evaluate attitude and ownership along with technical ability."
+          }
+        ]
+      },
+      {
+        "id": "attendance-monitoring",
+        "title": "How is attendance monitored?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Attendance and participation are monitored throughout the program. Consistent attendance is important because project-based learning depends on regular practice and review cycles."
+          }
+        ]
+      },
+      {
+        "id": "safe-career-investment",
+        "title": "Is this a safe and legitimate investment for my child's career?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Families are encouraged to attend free sessions, review the curriculum, understand the pathway terms, and speak with mentors before enrolling. This helps parents make an informed decision."
+          },
+          {
+            "type": "p",
+            "text": "The program focuses on practical career readiness, but final outcomes depend on student effort, eligibility, and market conditions."
+          }
+        ]
+      },
+      {
+        "id": "if-child-not-placed",
+        "title": "What happens if my child doesn't get placed?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "TINITIATE AI continues to provide interview guidance and career mentoring for eligible graduates. Students may receive support with resume updates, portfolio improvement, mock interviews, and referrals where available."
+          },
+          {
+            "type": "p",
+            "text": "Placement success depends on skills, consistency, interview performance, and market demand."
+          }
+        ]
+      },
+      {
+        "id": "refund-policy",
+        "title": "Is there a refund policy if we're not satisfied?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Refund and cancellation terms are handled according to the official policy shared during admissions. Parents and students should review the policy carefully before enrollment and ask the admissions team for clarification if needed."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "college-placement-cell-faqs",
+    "label": "College & Placement Cell FAQs",
+    "description": "Campus partnerships, curriculum customization, internships, bootcamps, certificates, and collaboration.",
+    "faqs": [
+      {
+        "id": "college-partnership",
+        "title": "Can colleges partner with TINITIATE AI?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Colleges can partner with TINITIATE AI for structured skill development, placement preparation, bootcamps, project-based learning, and industry-aligned training programs."
+          },
+          {
+            "type": "p",
+            "text": "The partnership model can be planned based on student level, department needs, academic calendar, and placement goals."
+          }
+        ]
+      },
+      {
+        "id": "partnership-models",
+        "title": "What partnership models do you offer?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "TINITIATE AI offers multiple collaboration models for colleges and placement cells."
+          },
+          {
+            "type": "ul",
+            "items": [
+              "Skill Development Programs",
+              "Finishing School Programs",
+              "Faculty Development Programs",
+              "Placement Preparation Programs",
+              "Internship Programs",
+              "Industry Projects",
+              "AI and Data Engineering Bootcamps"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "campus-training",
+        "title": "Can training be conducted on campus?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Training can be conducted on campus, online, or in a hybrid format depending on the college requirement, student strength, schedule, and available infrastructure."
+          }
+        ]
+      },
+      {
+        "id": "industry-mentors",
+        "title": "Do you provide industry mentors?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Industry mentors can guide students through practical concepts, project workflows, code quality, interview preparation, and career expectations."
+          },
+          {
+            "type": "p",
+            "text": "Mentorship helps students understand the gap between academic learning and real workplace execution."
+          }
+        ]
+      },
+      {
+        "id": "custom-curriculum",
+        "title": "Can colleges customize the curriculum?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Colleges can request curriculum customization based on department needs, student skill level, placement requirements, semester timelines, and target job roles."
+          },
+          {
+            "type": "p",
+            "text": "The curriculum can be adjusted for beginner, intermediate, or advanced learner groups."
+          }
+        ]
+      },
+      {
+        "id": "college-student-certificates",
+        "title": "Do students receive certificates?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Students receive certificates after completing the required training, assignments, and project expectations for the selected program."
+          },
+          {
+            "type": "p",
+            "text": "Certificates can support placement files, resumes, LinkedIn profiles, and student achievement records."
+          }
+        ]
+      },
+      {
+        "id": "placement-bootcamps",
+        "title": "Can you conduct placement bootcamps?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. TINITIATE AI can conduct placement bootcamps focused on resume preparation, interview skills, technical revision, coding practice, project explanation, communication, and HR readiness."
+          }
+        ]
+      },
+      {
+        "id": "hackathons-and-labs",
+        "title": "Do you support hackathons and innovation labs?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. TINITIATE AI can support hackathons, innovation labs, project showcases, and problem-solving events that help students apply technology to practical challenges."
+          }
+        ]
+      },
+      {
+        "id": "project-based-internships",
+        "title": "Can colleges request project-based internships?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yes. Colleges can request project-based internships where students work on practical modules, documentation, Git workflows, reviews, and presentations."
+          },
+          {
+            "type": "p",
+            "text": "These internships can help students build better project proof for placement discussions."
+          }
+        ]
+      },
+      {
+        "id": "college-collaboration-contact",
+        "title": "Who should colleges contact for collaboration?",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Colleges can contact the TINITIATE AI academic partnership team for collaboration discussions. The team can help plan the right program model, schedule, curriculum, delivery format, and student outcomes."
+          }
+        ]
+      }
+    ]
+  }
+]

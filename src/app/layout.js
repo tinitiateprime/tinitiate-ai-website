@@ -36,7 +36,8 @@ const themeInitScript = `
             ? "back_forward"
             : "navigate";
       var shouldRestorePreviousScroll = navigationType === "back_forward";
-      var shouldStartFromTop = !shouldRestorePreviousScroll;
+      var hasHashTarget = !!window.location.hash;
+      var shouldStartFromTop = !shouldRestorePreviousScroll && !hasHashTarget;
 
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = shouldStartFromTop ? "manual" : "auto";
@@ -80,7 +81,7 @@ const themeInitScript = `
 `;
 
 export default function RootLayout({ children }) {
-  const aiEnabled = Boolean(process.env.OPENAI_API_KEY?.trim());
+  const aiEnabled = true;
 
   return (
     <html

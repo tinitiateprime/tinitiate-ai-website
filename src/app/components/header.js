@@ -12,12 +12,60 @@ function getDocumentTheme() {
   return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
-function applyDocumentTheme(nextTheme) {
+const THEME_TRANSITION_MS = 220;
+
+function prefersReducedThemeMotion() {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
+function setThemeTransitioning(active, fromTheme) {
   if (typeof document === "undefined") return;
-  document.documentElement.classList.toggle("dark", nextTheme === "dark");
-  document.documentElement.style.colorScheme = nextTheme;
-  document.documentElement.setAttribute("data-theme", nextTheme);
-  document.documentElement.setAttribute("data-theme-ready", "true");
+  const root = document.documentElement;
+
+  if (window.__tinitiateThemeTransitionTimer) {
+    window.clearTimeout(window.__tinitiateThemeTransitionTimer);
+    window.__tinitiateThemeTransitionTimer = null;
+  }
+
+  if (active) {
+    root.setAttribute("data-theme-transitioning", "true");
+    if (fromTheme === "dark" || fromTheme === "light") {
+      root.setAttribute("data-theme-from", fromTheme);
+    }
+    window.__tinitiateThemeTransitionTimer = window.setTimeout(() => {
+      root.removeAttribute("data-theme-transitioning");
+      root.removeAttribute("data-theme-from");
+      window.__tinitiateThemeTransitionTimer = null;
+    }, THEME_TRANSITION_MS + 60);
+  } else {
+    root.removeAttribute("data-theme-transitioning");
+    root.removeAttribute("data-theme-from");
+  }
+}
+
+function applyDocumentTheme(nextTheme, { animate = false } = {}) {
+  if (typeof document === "undefined") return;
+  const root = document.documentElement;
+  const shouldAnimate =
+    animate &&
+    root.getAttribute("data-theme-ready") === "true" &&
+    !prefersReducedThemeMotion();
+
+  const commitTheme = () => {
+    root.classList.toggle("dark", nextTheme === "dark");
+    root.style.colorScheme = nextTheme;
+    root.setAttribute("data-theme", nextTheme);
+    root.setAttribute("data-theme-ready", "true");
+  };
+
+  if (shouldAnimate && getDocumentTheme() !== nextTheme) {
+    setThemeTransitioning(true, getDocumentTheme());
+  }
+
+  commitTheme();
 }
 
 export default function Header() {
@@ -127,7 +175,7 @@ export default function Header() {
       localStorage.setItem("theme", next);
     }
     setTheme(next);
-    applyDocumentTheme(next);
+    applyDocumentTheme(next, { animate: true });
   };
 
   const isDark = theme === "dark";

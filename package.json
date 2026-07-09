@@ -7,9 +7,12 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
+    "azure:login": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"Import-Module Az.Accounts; Connect-AzAccount -UseDeviceAuthentication\"",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@azure/ai-projects": "^2.3.0",
+    "@azure/identity": "^4.13.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fortawesome/fontawesome-svg-core": "^7.1.0",

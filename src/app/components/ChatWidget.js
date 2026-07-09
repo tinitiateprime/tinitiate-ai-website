@@ -1,19 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  MessageCircle,
   BotMessageSquare,
-  Bot,
-  MessageCircleMore,
-  MessageSquareMore,
   X,
   Send,
   ChevronDown,
   Loader2,
   Phone,
-  Mail,
-  MoreHorizontal
+  Mail
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
@@ -22,6 +17,7 @@ import Image from "next/image";
 
 // --- Config ---
 const LS_KEY = "tinitiate_chat_v1";
+const CONVERSATION_KEY = "tinitiate_azure_conversation_v1";
 // const COACHMARK_KEY = "tinitiate_fab_seen_v1";
 
 const ASSISTANT_AVATAR = "/images/tinitiatelogoicon.png";
@@ -32,24 +28,20 @@ const WHATSAPP_LINK = "https://wa.me/916309123485";
 // const EMAIL_LINK = "mailto:contact@tinitiateai.com?subject=Tinitiate AI Solutions%20Website%20Chat&body=Hi%20Tinitiate%20AI%20Solutions%2C%0A%0A";
 const EMAIL_LINK = "mailto:contact@tinitiateai.com?subject=Tinitiate AI Solutions%20Enquiry%20from%20Website%3A%20%5BService%5D%20%E2%80%94%20%5BYour%20Name%2C%20Company%5D&body=Hi%20Tinitiate%20AI%20Solutions%20Team%2C%0A%0AI%20am%20interested%20in%20%5BService%5D.%0A%0AName%3A%20%5BYour%20Name%5D%0ACompany%3A%20%5BCompany%5D%0APhone%2FWhatsApp%3A%20%5B%2B91XXXXXXXXXX%5D%0APreferred%20contact%20time%20(IST)%3A%20%5BTime%5D%0ABrief%3A%20%5BOne-two%20lines%5D%0A%0AThanks%2C%0A%5BYour%20Name%5D";
 const PHONE_LINK_IN = "tel:+916309123485";
-const PHONE_LINK_US = "tel:+19736536870";
-
-// Larger suggestions pool
-const SUGGESTIONS_POOL = [
-  "What services does Tinitiate AI Solutions offer?",
-  "Tell me about the Work Experience Program.",
-  "How do I enroll?",
-  "Do you provide corporate training?",
-  "What tech stacks do you train on?",
-  "Do you help with job placement?",
-  "What is the fee structure?",
-  "Do you offer weekend batches?",
-  "Can you customize corporate training?",
-  "What are the contact options?",
-  "Do you build web & data engineering projects?",
-  "What is included in maintenance & support?"
+const QUICK_PROMPTS = [
+  "Which course is best for a beginner?",
+  "Explain professional training fees.",
+  "Do you provide placement support?",
+  "What is the Work Experience Program?",
+  "Which cloud course should I choose?",
+  "Do you have weekend batches?",
+  "How do I join Java Full Stack?",
+  "What is included in mentor guidance?",
+  "Tell me about refund policy.",
+  "How can I request a callback?",
+  "Do you offer corporate training?",
+  "What projects will I build?",
 ];
-
 // The model will output this token when it wants UI contact cards to show
 const CONTACT_TOKEN = "<CONTACT_CARD />";
 const AI_DISABLED_MESSAGE = [
@@ -59,6 +51,15 @@ const AI_DISABLED_MESSAGE = [
 ].join("\n");
 
 // --- Helpers ---
+const CITATION_MARKER_RE = /\uE200(?:filecite|cite|source)[\s\S]*?\uE201/g;
+const OPEN_CITATION_MARKER_RE = /\uE200(?:filecite|cite|source)[\s\S]*$/g;
+
+function stripCitationMarkers(text = "") {
+  return String(text)
+    .replace(CITATION_MARKER_RE, "")
+    .replace(OPEN_CITATION_MARKER_RE, "");
+}
+
 function hasContactToken(text = "") {
   return text.includes(CONTACT_TOKEN);
 }
@@ -123,7 +124,7 @@ function appendDeltaSafely(prev, delta) {
 
 // Optional light de-stutter pass once streaming ends
 function cleanupStutter(text) {
-  let t = text;
+  let t = stripCitationMarkers(text);
    // collapse duplicated words, but letters only (avoid touching numbers)
   t = t.replace(/\b([A-Za-z]+)(\s+\1\b)+/g, "$1");      // words only
   // collapse duplicate punctuation
@@ -131,15 +132,6 @@ function cleanupStutter(text) {
   // tidy spaces/newlines
   t = t.replace(/[ \t]{2,}/g, " ").replace(/\n{3,}/g, "\n\n");
   return t.trim();
-}
-
-function pickRandom(arr, n) {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy.slice(0, n);
 }
 
 function Coachmark({ onDismiss, prefersReducedMotion }) {
@@ -231,8 +223,9 @@ function LinkCTA({ href, label }) {
 
 // Render assistant message with token support (safe while streaming)
 function AssistantMessage({ content, isStreaming }) {
+  const cleanContent = stripCitationMarkers(content);
   // 1) Strip the contact token from the text; show your handoff buttons separately (you already do this)
-  const textNoContact = stripContactToken(content);
+  const textNoContact = stripContactToken(cleanContent);
 
   // 2) If streaming the *last* assistant chunk, don't parse LINK tokens yet
   if (isStreaming) {
@@ -253,15 +246,13 @@ function AssistantMessage({ content, isStreaming }) {
           ))}
         </div>
       )}
-      {hasContactToken(content) && <ContactHandoff />}
+      {hasContactToken(cleanContent) && <ContactHandoff />}
     </>
   );
 }
 
 export default function ChatWidget({ aiEnabled = true }) {
-  // Panel and dial
   const [panelOpen, setPanelOpen] = useState(false);
-  const [dialOpen, setDialOpen] = useState(false);
 
   // One-time coachmark next to FAB
   const [showCoach, setShowCoach] = useState(false);
@@ -295,6 +286,11 @@ export default function ChatWidget({ aiEnabled = true }) {
   // Chat state (with localStorage)
   const [busy, setBusy] = useState(false);
   const [input, setInput] = useState("");
+  const [promptOffset, setPromptOffset] = useState(0);
+  const [conversationId, setConversationId] = useState(() => {
+    if (typeof window === "undefined") return "";
+    return localStorage.getItem(CONVERSATION_KEY) || "";
+  });
   const [messages, setMessages] = useState(() => {
     if (typeof window !== "undefined") {
       try {
@@ -306,7 +302,7 @@ export default function ChatWidget({ aiEnabled = true }) {
       {
         role: "assistant",
         content: aiEnabled
-          ? "Hi! I am the Tinitiate AI Solutions Assistant. Ask me about our courses, WEP, or services!"
+          ? "Hi! I am the Tinitiate AI assistant. Ask me about courses, pricing, placement, batches, or policies."
           : AI_DISABLED_MESSAGE
       }
     ];
@@ -315,20 +311,26 @@ export default function ChatWidget({ aiEnabled = true }) {
     if (typeof window !== "undefined") localStorage.setItem(LS_KEY, JSON.stringify(messages));
   }, [messages]);
 
-  // Suggestions visibility + randomization
-  const hasChatted = useMemo(() => messages.some(m => m.role === "user"), [messages]);
-  const [showPrompts, setShowPrompts] = useState(aiEnabled && !hasChatted);
-  const [promptChoices, setPromptChoices] = useState(() => pickRandom(SUGGESTIONS_POOL, 4));
-  useEffect(() => {
-    // Whenever prompts are (re)shown, refresh with random options
-    if (showPrompts) setPromptChoices(pickRandom(SUGGESTIONS_POOL, 4));
-  }, [showPrompts]);
+  function rememberConversationId(nextConversationId) {
+    if (!nextConversationId) return;
+    setConversationId(nextConversationId);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(CONVERSATION_KEY, nextConversationId);
+    }
+  }
 
   useEffect(() => {
     if (aiEnabled) return;
-    setShowPrompts(false);
     setMessages([{ role: "assistant", content: AI_DISABLED_MESSAGE }]);
   }, [aiEnabled]);
+
+  useEffect(() => {
+    if (!panelOpen || busy) return undefined;
+    const timer = window.setInterval(() => {
+      setPromptOffset((current) => (current + 1) % QUICK_PROMPTS.length);
+    }, 4500);
+    return () => window.clearInterval(timer);
+  }, [panelOpen, busy]);
 
   // Scrolling and references
   const [atBottom, setAtBottom] = useState(true);
@@ -336,8 +338,6 @@ export default function ChatWidget({ aiEnabled = true }) {
   const fabRef = useRef(null);
   const messagesRef = useRef(null);
   const messagesEndRef = useRef(null);
-  const moreRef = useRef(null);
-  const [moreOpen, setMoreOpen] = useState(false);
 
   useEffect(() => {
     const el = messagesRef.current;
@@ -347,26 +347,15 @@ export default function ChatWidget({ aiEnabled = true }) {
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Only close the "More" menu on outside click; DO NOT close the panel on outside click
   useEffect(() => {
-    function onDocClick(e) {
-      const more = moreRef.current;
-      if (moreOpen && more && !more.contains(e.target)) setMoreOpen(false);
-    }
     function onEsc(e) {
-      if (e.key === "Escape") {
-        if (moreOpen) setMoreOpen(false);
-        // Optional: allow Esc to close panel. Remove next line if you don't want Esc to close it.
-        else if (panelOpen) setPanelOpen(false); // keep if you want Esc to close chat
-      }
+      if (e.key === "Escape" && panelOpen) setPanelOpen(false);
     }
-    document.addEventListener("mousedown", onDocClick, true);
     document.addEventListener("keydown", onEsc);
     return () => {
-      document.removeEventListener("mousedown", onDocClick, true);
       document.removeEventListener("keydown", onEsc);
     };
-  }, [panelOpen, moreOpen]);
+  }, [panelOpen]);
 
   // Reduced motion
   const prefersReducedMotion =
@@ -381,7 +370,6 @@ export default function ChatWidget({ aiEnabled = true }) {
   function openPanel() {
     hideCoach();
     setPanelOpen(true);
-    setDialOpen(false);
     if (aiEnabled) {
       setTimeout(() => textRef.current?.focus(), 60);
     }
@@ -441,7 +429,6 @@ export default function ChatWidget({ aiEnabled = true }) {
     setMessages(prev => [...prev, { role: "user", content: userText }, { role: "assistant", content: "" }]);
     setInput("");
     setBusy(true);
-    setShowPrompts(false); // hide suggestions after first user message
 
     try {
       const res = await fetch("/api/chat", {
@@ -452,6 +439,7 @@ export default function ChatWidget({ aiEnabled = true }) {
         body: JSON.stringify({
           message: userText,
           history: historyToSend,
+          conversationId,
           pageTitle: document.title,
           pageUrl: window.location.href
         })
@@ -466,6 +454,8 @@ export default function ChatWidget({ aiEnabled = true }) {
         throw new Error("The assistant returned an empty response. Please try again.");
       }
 
+      rememberConversationId(res.headers.get("x-azure-conversation-id"));
+
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let partial = "";
@@ -476,7 +466,7 @@ export default function ChatWidget({ aiEnabled = true }) {
         const chunk = decoder.decode(value, { stream: true });
 
         partial = appendDeltaSafely(partial, chunk);
-        replaceLastAssistantMessage(partial);
+        replaceLastAssistantMessage(stripCitationMarkers(partial));
       }
 
       replaceLastAssistantMessage(cleanupStutter(partial));
@@ -502,95 +492,23 @@ export default function ChatWidget({ aiEnabled = true }) {
       {
         role: "assistant",
         content: aiEnabled
-          ? "Cleared. How can I help you next?"
+          ? "Welcome to Tinitiate AI Solutions. What would you like to know?"
           : AI_DISABLED_MESSAGE
       }
     ]);
     if (typeof window !== "undefined") localStorage.removeItem(LS_KEY);
-    setShowPrompts(aiEnabled); // show randomized prompts again
+    if (typeof window !== "undefined") localStorage.removeItem(CONVERSATION_KEY);
+    setConversationId("");
   }
 
-  // Contact icons (header) + More
-  const ContactIcons = (
-      <>
-        <a
-          href={WHATSAPP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp"
-          className="p-1.5 rounded hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/50"
-          title="WhatsApp"
-        >
-          <FaWhatsapp className="w-[18px] h-[18px] text-white" />
-        </a>
-        <a
-          href={EMAIL_LINK}
-          aria-label="Email us"
-          className="p-1.5 rounded hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/50"
-          title="Email"
-        >
-          <Mail className="w-4 h-4 text-white" />
-        </a>
-        {/* <a
-          href={PHONE_LINK_IN}
-          aria-label="Call India"
-          className="hidden md:inline-flex p-1.5 rounded hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/50"
-          title="Call (India)"
-        >
-          <Phone className="w-4 h-4 text-white" />
-        </a> */}
-
-        {/* More menu (outside click closes only this menu) */}
-        <div className="relative" ref={moreRef}>
-          <button
-            onClick={() => setMoreOpen(v => !v)}
-            className="p-1.5 rounded hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/50"
-            aria-label="More"
-            title="More"
-          >
-            <MoreHorizontal className="w-4 h-4 text-white" />
-          </button>
-          <AnimatePresence>
-            {moreOpen && (
-              <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
-                animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
-                exit={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
-                className="absolute right-0 z-[1005] mt-2 w-44 rounded-xl border border-gray-200 bg-white p-1 text-gray-800 shadow-lg dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:shadow-[0_18px_45px_rgba(2,6,23,0.55)]"
-              >
-                <a
-                  href={PHONE_LINK_IN}
-                  className="block rounded-lg px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
-                  title="Call (India)"
-                  onClick={() => setMoreOpen(false)}
-                >
-                  {/* Call (India) */}
-                  Call
-                </a>
-                <button
-                  onClick={() => { setMoreOpen(false); clearConversation(); }}
-                  className="w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-slate-800"
-                >
-                  Clear conversation
-                </button>
-                {/* <a
-                  href={PHONE_LINK_US}
-                  className="block text-sm px-3 py-2 rounded-lg hover:bg-gray-100"
-                  title="Call (USA)"
-                  onClick={() => setMoreOpen(false)}
-                >
-                  Call (USA)
-                </a> */}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </>
-  );
-  
   const panelTitle = aiEnabled
     ? "Tinitiate AI Solutions Assistant"
     : "Contact Tinitiate AI Solutions";
+  const promptChoices = [
+    QUICK_PROMPTS[promptOffset % QUICK_PROMPTS.length],
+    QUICK_PROMPTS[(promptOffset + 4) % QUICK_PROMPTS.length],
+    QUICK_PROMPTS[(promptOffset + 8) % QUICK_PROMPTS.length],
+  ];
 
   // Chat panel — floating card on ALL screens
   const chatPanel = (
@@ -603,34 +521,43 @@ export default function ChatWidget({ aiEnabled = true }) {
       className={[
         "fixed z-[1003]",
         "inset-x-3 bottom-20",
-        "w-auto sm:inset-x-auto sm:right-6 sm:bottom-24 sm:w-[min(92vw,420px)]",
-        "max-h-[min(75vh,640px)]",
+        "w-auto sm:inset-x-auto sm:right-6 sm:bottom-24 sm:w-[min(92vw,430px)]",
+        "h-[min(76vh,660px)] max-h-[660px]",
         "flex flex-col overflow-hidden",
-        "rounded-2xl border border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.25)] dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_24px_70px_rgba(2,6,23,0.58)]"
+        "rounded-[1.6rem] border border-white/70 bg-white shadow-[0_28px_90px_rgba(15,23,42,0.28)] ring-1 ring-slate-900/5 dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_28px_90px_rgba(2,6,23,0.65)]"
       ].join(" ")}
       role="dialog"
       aria-label="Tinitiate AI Solutions chat"
     >
       {/* Header with Close X on the right */}
-      <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-sm">
-        <div className="flex items-center gap-2">
-<div className="grid h-7 w-7 aspect-square shrink-0 place-items-center self-center overflow-hidden rounded-full bg-white/50 dark:bg-white/20">
+      <div className="flex items-center justify-between bg-[#12345f] px-4 py-3.5 text-white shadow-sm">
+        <div className="flex min-w-0 items-center gap-3">
+<div className="grid h-9 w-9 aspect-square shrink-0 place-items-center self-center overflow-hidden rounded-2xl bg-white shadow-sm">
   <Image
     src={ASSISTANT_AVATAR}
     alt=""
-    width={20}
-    height={20}
-    className="h-5 w-5 object-contain"
+    width={24}
+    height={24}
+    className="h-6 w-6 object-contain"
   />
 </div>
-          <div className="font-medium text-sm tracking-wide">{panelTitle}</div>
+          <div className="min-w-0">
+            <div className="truncate text-sm font-black tracking-wide">{panelTitle}</div>
+            <div className="text-[11px] font-semibold text-blue-100">Azure AI assistant</div>
+          </div>
         </div>
         <div className="flex items-center gap-1.5 md:gap-2">
-          {ContactIcons}
+          <button
+            onClick={clearConversation}
+            className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-bold text-blue-50 transition hover:bg-white/10"
+            title="Clear conversation"
+          >
+            Clear
+          </button>
           <button
             onClick={() => setPanelOpen(false)}
             aria-label="Close chat"
-            className="p-1.5 rounded hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/50"
+            className="rounded-full p-2 transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/50"
             title="Close"
           >
             <X className="w-4 h-4 text-white" />
@@ -638,10 +565,24 @@ export default function ChatWidget({ aiEnabled = true }) {
         </div>
       </div>
 
+      <div className="flex items-center justify-between gap-2 border-b border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-[#12345f] dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100">
+        <span className="text-slate-500 dark:text-slate-400">Human support</span>
+        <div className="flex items-center gap-2">
+          <a href={PHONE_LINK_IN} className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-3 py-1.5 transition hover:border-[#c9a227] dark:border-slate-700">
+            <Phone className="h-3.5 w-3.5" />
+            Call
+          </a>
+          <a href={EMAIL_LINK} className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-3 py-1.5 transition hover:border-[#c9a227] dark:border-slate-700">
+            <Mail className="h-3.5 w-3.5" />
+            Email
+          </a>
+        </div>
+      </div>
+
       {/* Messages */}
       <div
         ref={messagesRef}
-        className="flex-1 space-y-3 overflow-y-auto bg-gray-50 px-3 py-3 dark:bg-slate-900 md:px-4 md:py-4"
+        className="flex-1 space-y-4 overflow-y-auto bg-[linear-gradient(180deg,#f8fbff_0%,#eef5ff_100%)] px-4 py-5 dark:bg-[linear-gradient(180deg,#0f172a_0%,#020617_100%)] md:px-5"
         role="log"
         aria-live="polite"
         aria-relevant="additions text"
@@ -649,9 +590,9 @@ export default function ChatWidget({ aiEnabled = true }) {
         {messages.map((m, i) => {
     const isStreamingLastAssistant = busy && i === messages.length - 1 && m.role === "assistant";
     return (
-          <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"} gap-2 items-end`}>
+          <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"} gap-3 items-start`}>
             {m.role === "assistant" && (
-              <div className="grid h-7 w-7 aspect-square shrink-0 place-items-center overflow-hidden rounded-full border border-gray-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-950">
+              <div className="mt-1 grid h-8 w-8 aspect-square shrink-0 place-items-center overflow-hidden rounded-2xl border border-white bg-white shadow-sm dark:border-slate-700 dark:bg-slate-950">
               <Image
                 src={ASSISTANT_AVATAR}
                 alt=""
@@ -663,10 +604,10 @@ export default function ChatWidget({ aiEnabled = true }) {
             )}
             <div
               className={[
-                "max-w-[85%] md:max-w-[80%] px-3 py-2 rounded-2xl text-[0.95rem] leading-relaxed shadow-sm",
+                "max-w-[82%] whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-[0.94rem] leading-7 shadow-sm",
                 m.role === "user"
-                  ? "bg-indigo-600 text-white rounded-br-none"
-                  : "rounded-bl-none border border-gray-200 bg-white text-gray-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                  ? "rounded-tr-md bg-[#12345f] text-white"
+                  : "rounded-tl-md border border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
               ].join(" ")}
             >
               {m.role === "assistant" ? (
@@ -677,7 +618,7 @@ export default function ChatWidget({ aiEnabled = true }) {
             </div>
             {m.role === "user" && (
               <div
-                className="w-7 h-7 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200 shadow-sm grid place-items-center text-[11px] font-semibold"
+                className="mt-1 grid h-8 w-8 place-items-center rounded-2xl border border-blue-200 bg-blue-50 text-[10px] font-black text-[#12345f] shadow-sm"
                 aria-hidden
               >
                 {USER_AVATAR_LETTER}
@@ -690,75 +631,35 @@ export default function ChatWidget({ aiEnabled = true }) {
         {busy && (
           <div className="flex items-center gap-2 pl-9 text-xs text-gray-500 dark:text-slate-400">
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            Tinitiate AI Solutions is typing…
+            Tinitiate AI Solutions is typing...
           </div>
         )}
 
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Suggestions (random) or a small pill to reopen */}
-      {aiEnabled && !busy && (
-        <div className="border-t border-gray-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-950 md:px-4">
-          {showPrompts ? (
-            <div className="flex flex-wrap gap-2">
-              {promptChoices.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setTimeout(() => sendMessage(s), 0)}
-                  className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-white text-gray-800 transition hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-indigo-500 dark:hover:bg-slate-800 dark:hover:text-indigo-200"
-                >
-                  {s}
-                </button>
-              ))}
+      {aiEnabled ? (
+        <div className="border-t border-slate-200 bg-white px-4 py-3 dark:border-slate-700 dark:bg-slate-950">
+          <div className="mb-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">Try asking</div>
+          <div className="grid gap-2 sm:grid-cols-3">
+            {promptChoices.map((prompt) => (
               <button
-                onClick={() => setShowPrompts(false)}
-                className="px-3 py-1.5 rounded-full text-sm border border-gray-200 bg-gray-50 text-gray-700 transition hover:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
-                title="Hide quick prompts"
+                key={prompt}
+                type="button"
+                onClick={() => sendMessage(prompt)}
+                disabled={busy}
+                className="min-h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-left text-xs font-bold leading-snug text-[#12345f] transition hover:border-[#c9a227] hover:bg-[#fff8df] disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
               >
-                Hide
+                {prompt}
               </button>
-              {/* Optional inline handoff */}
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 rounded-full text-sm border border-emerald-300 bg-emerald-50 text-emerald-800 transition hover:bg-emerald-100 dark:border-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-200 dark:hover:bg-emerald-900/70"
-                title="WhatsApp"
-              >
-                WhatsApp us
-              </a>
-              <a
-                href={EMAIL_LINK}
-                className="px-3 py-1.5 rounded-full text-sm border border-blue-300 bg-blue-50 text-blue-800 transition hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/60 dark:text-blue-200 dark:hover:bg-blue-900/70"
-                title="Email"
-              >
-                Email us
-              </a>
-      <a
-        href={PHONE_LINK_IN}
-        className="px-3 py-1.5 rounded-full text-sm border border-gray-300 bg-gray-50 text-gray-800 transition hover:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
-        title="Call (India)"
-      >
-        {/* Call (India) */}
-        Call
-      </a>
-            </div>
-          ) : hasChatted ? (
-            <button
-              onClick={() => setShowPrompts(true)}
-              className="text-xs text-gray-600 underline hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
-              title="Show quick prompts"
-            >
-              Show quick prompts
-            </button>
-          ) : null}
+            ))}
+          </div>
         </div>
-      )}
+      ) : null}
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="border-t border-gray-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-950 md:px-4">
-        <div className="flex items-end gap-2">
+      <form onSubmit={handleSubmit} className="border-t border-slate-200 bg-white px-4 py-3 dark:border-slate-700 dark:bg-slate-950">
+        <div className="flex items-end gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 shadow-inner focus-within:border-[#c9a227] focus-within:bg-white dark:border-slate-700 dark:bg-slate-900 dark:focus-within:bg-slate-950">
           <textarea
             ref={textRef}
             value={input}
@@ -768,19 +669,19 @@ export default function ChatWidget({ aiEnabled = true }) {
             disabled={!aiEnabled || busy}
             placeholder={
               aiEnabled
-                ? "Type your question... (Shift+Enter for a new line)"
+                ? "Ask about courses, fees, placement..."
                 : "AI chat is unavailable here. Use WhatsApp, email, or call instead."
             }
-            className="flex-1 resize-none rounded-xl border border-gray-300 bg-white px-3 py-2 text-[0.95rem] text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:cursor-not-allowed disabled:bg-gray-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500 dark:disabled:bg-slate-800"
+            className="max-h-28 min-h-10 flex-1 resize-none border-0 bg-transparent px-2 py-2 text-[0.95rem] leading-6 text-slate-900 placeholder:text-slate-500 focus:outline-none disabled:cursor-not-allowed dark:text-slate-100 dark:placeholder:text-slate-500"
           />
           <button
             type="submit"
             disabled={!aiEnabled || !input.trim() || busy}
             className={[
-              "rounded-xl px-3 py-2 font-medium",
+              "grid h-10 w-10 shrink-0 place-items-center rounded-2xl font-medium transition",
               !aiEnabled || busy
-                ? "cursor-not-allowed bg-gray-200 text-gray-500 dark:bg-slate-800 dark:text-slate-400"
-                : "bg-indigo-600 text-white hover:bg-indigo-700"
+                ? "cursor-not-allowed bg-slate-200 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
+                : "bg-[#12345f] text-white hover:bg-[#1d4775]"
             ].join(" ")}
             aria-label="Send message"
             title="Send"
@@ -804,16 +705,13 @@ export default function ChatWidget({ aiEnabled = true }) {
     </motion.div>
   );
 
-  // Single floating button with mini speed-dial (no horizontal shift, clean icon swap)
   const dial = (
     <div className="fixed bottom-4 right-4 z-[1004] sm:bottom-6 sm:right-6" ref={fabRef}>
-      {/* Box ensures the dial never shifts the FAB */}
-      <div className="relative w-14 h-14">
-        {/* Pulse halo behind the FAB (only while coachmark is visible) */}
+      <div className="relative h-16 w-16">
 {showCoach && (
   <span
     aria-hidden="true"
-    className="pointer-events-none absolute bottom-0 right-0 w-14 h-14 rounded-full bg-indigo-500/40 animate-ping"
+    className="pointer-events-none absolute inset-0 rounded-[1.4rem] bg-[#12345f]/30 animate-ping"
   />
 )}
 
@@ -822,73 +720,23 @@ export default function ChatWidget({ aiEnabled = true }) {
   <Coachmark onDismiss={hideCoach} prefersReducedMotion={prefersReducedMotion} />
 )}
 
-        {/* Mini dial items absolutely positioned ABOVE the button, so no layout shifts */}
-        <AnimatePresence>
-          {dialOpen && (
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
-              animate={prefersReducedMotion ? false : { opacity: 1, y: 0 }}
-              exit={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
-              className="absolute bottom-16 right-0 flex max-w-[calc(100vw-4rem)] flex-col items-end gap-2"
-            >
-              <button
-                onClick={openPanel}
-                className="group flex items-center gap-2 rounded-full bg-indigo-600 px-3 py-2 text-white shadow-xl hover:bg-indigo-700"
-              >
-                <span className="text-xs opacity-90">{aiEnabled ? "Ask AI" : "Contact us"}</span>
-                <MessageCircle className="w-5 h-5" />
-              </button>
-
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-2 rounded-full bg-emerald-600 px-3 py-2 text-white shadow-xl hover:bg-emerald-700"
-              >
-                <span className="text-xs opacity-90">WhatsApp</span>
-                <FaWhatsapp className="w-[18px] h-[18px]" />
-              </a>
-
-              <a
-                href={EMAIL_LINK}
-                className="group flex items-center gap-2 rounded-full bg-blue-600 px-3 py-2 text-white shadow-xl hover:bg-blue-700"
-              >
-                <span className="text-xs opacity-90">Email</span>
-                <Mail className="w-5 h-5" />
-              </a>
-
-              <a
-                href={PHONE_LINK_IN}
-                className="group flex items-center gap-2 rounded-full bg-gray-800 px-3 py-2 text-white shadow-xl hover:bg-black"
-              >
-                <span className="text-xs opacity-90">Call</span>
-                <Phone className="w-5 h-5" />
-              </a>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Main FAB — absolutely anchored in this box; icons crossfade so there’s never any “slide left” */}
         <button
-          onClick={() => { hideCoach(); setDialOpen(v => !v); }}
-          aria-label="Open quick actions"
-          className="absolute bottom-0 right-0 grid place-items-center w-14 h-14 rounded-full bg-indigo-600 hover:bg-indigo-700 shadow-2xl transition focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          onClick={() => (panelOpen ? setPanelOpen(false) : openPanel())}
+          aria-label={panelOpen ? "Close AI chat" : "Open AI chat"}
+          className="absolute inset-0 grid place-items-center rounded-[1.4rem] bg-[#12345f] text-white shadow-[0_18px_45px_rgba(18,52,95,0.35)] ring-4 ring-white transition hover:-translate-y-0.5 hover:bg-[#1d4775] focus:outline-none focus:ring-[#c9a227]/40 dark:ring-slate-900"
         >
           <span
             className={`absolute inset-0 grid place-items-center pointer-events-none transition-[opacity,transform] duration-200 ${
-              dialOpen ? "opacity-0 scale-95" : "opacity-100 scale-100"
+              panelOpen ? "opacity-0 scale-95 rotate-6" : "opacity-100 scale-100 rotate-0"
             }`}
             aria-hidden="true"
           >
-            {/* <MessageCircle className="w-6 h-6 text-white" /> */}
             <BotMessageSquare className="w-6 h-6 text-white" />
-            {/* <Bot className="w-6 h-6 text-white" /> */}
-            {/* <MessageCircleMore className="w-6 h-6 text-white" /> */}
-            {/* <MessageSquareMore className="w-6 h-6 text-white" /> */}
           </span>
           <span
             className={`absolute inset-0 grid place-items-center pointer-events-none transition-[opacity,transform] duration-200 ${
-              dialOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              panelOpen ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-95 -rotate-6"
             }`}
             aria-hidden="true"
           >

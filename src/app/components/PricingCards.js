@@ -162,21 +162,21 @@ function SectionBlock({ title, color, children, className = "" }) {
   return (
     <section
       className={[
-        "overflow-hidden rounded-xl border border-white/70 bg-white/78 shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_16px_34px_-30px_rgba(15,23,42,0.7)] backdrop-blur dark:border-slate-700 dark:bg-slate-950/80",
+        "border-t border-[#dfe8f2] pt-4",
         className,
       ].join(" ")}
     >
       <div
-        className="border-b px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.16em]"
-        style={{
-          borderColor: `${color}33`,
-          color,
-          background: `linear-gradient(90deg,${color}18 0%,rgba(255,255,255,0.68) 100%)`,
-        }}
+        className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em]"
+        style={{ color }}
       >
+        <span
+          className="h-1.5 w-1.5 rounded-full"
+          style={{ backgroundColor: color }}
+        />
         {title}
       </div>
-      <div className="p-4">{children}</div>
+      <div>{children}</div>
     </section>
   );
 }
@@ -186,7 +186,7 @@ function InfoTile({ label, value, color, variant = "cool" }) {
   return (
     <div
       className={[
-        "flex min-h-[82px] flex-col justify-center rounded-xl border bg-white/72 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.84),0_16px_34px_-32px_rgba(15,23,42,0.72)] backdrop-blur dark:bg-slate-950/72",
+        "flex min-h-[82px] flex-col justify-center rounded-[1rem] border bg-white/78 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_18px_38px_-34px_rgba(15,23,42,0.68)] backdrop-blur dark:bg-slate-900/78",
       ].join(" ")}
       style={{
         borderColor: `${color}${isCool ? "45" : "38"}`,
@@ -201,7 +201,7 @@ function InfoTile({ label, value, color, variant = "cool" }) {
       >
         {label}
       </p>
-      <p className="mt-1 text-sm font-extrabold leading-6 text-[#13233a] dark:text-white">
+      <p className="pricing-plan-title mt-1 text-sm font-extrabold leading-6 text-[#13233a]">
         {value}
       </p>
     </div>
@@ -214,7 +214,7 @@ function PricingCard({ plan, compact = false }) {
   return (
     <article
       className={[
-        "group relative flex h-full flex-col overflow-hidden rounded-[1.2rem] border bg-white shadow-[0_28px_80px_-56px_rgba(15,23,42,0.75)] transition duration-300 hover:-translate-y-1 dark:bg-slate-900",
+        "pricing-plan-card group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border bg-white shadow-[0_30px_90px_-58px_rgba(15,23,42,0.78)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_38px_105px_-60px_rgba(15,23,42,0.9)] dark:bg-slate-950",
         compact ? "min-h-[820px]" : "min-h-[860px]",
       ].join(" ")}
       style={{
@@ -224,20 +224,20 @@ function PricingCard({ plan, compact = false }) {
       }}
     >
       <header
-        className="relative overflow-hidden px-5 py-5 text-white sm:px-6"
+        className="pricing-plan-header relative overflow-hidden px-5 py-5 text-white sm:px-6 sm:py-6"
         style={{ backgroundImage: plan.headerGradient }}
       >
-        <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(to_right,rgba(255,255,255,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:28px_28px]" />
-        <div className="absolute -right-12 -top-16 h-36 w-36 rounded-full bg-white/[0.14] blur-2xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(118deg,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0.05)_34%,rgba(255,255,255,0.16)_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
         <div className="relative flex items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="mb-3 flex min-h-7 flex-wrap items-center gap-2">
-              <span className="rounded-full bg-white/[0.18] px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white ring-1 ring-white/[0.24]">
+              <span className="rounded-full bg-white/[0.18] px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white ring-1 ring-white/[0.24] backdrop-blur">
                 Tinitiate AI Pathway
               </span>
               {plan.featured ? (
-                <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-[#7a4d00] shadow-[0_10px_24px_-18px_rgba(0,0,0,0.85)]">
+                <span className="pricing-plan-popular rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-[#7a4d00] shadow-[0_10px_24px_-18px_rgba(0,0,0,0.85)]">
                   Popular
                 </span>
               ) : null}
@@ -245,11 +245,11 @@ function PricingCard({ plan, compact = false }) {
             <h3 className="text-3xl font-black leading-tight tracking-normal text-white">
               {plan.title}
             </h3>
-            <p className="mt-2 text-sm font-bold leading-6 text-white/[0.88]">
+            <p className="pricing-plan-tagline mt-2 whitespace-nowrap text-[13px] font-bold leading-6 text-white/[0.88] sm:text-sm">
               {plan.tagline}
             </p>
           </div>
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.16] text-white ring-1 ring-white/[0.22] shadow-[inset_0_1px_0_rgba(255,255,255,0.22)]">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.18] text-white ring-1 ring-white/[0.26] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_18px_42px_-32px_rgba(0,0,0,0.75)] backdrop-blur">
             <Icon className="h-6 w-6" />
           </span>
         </div>
@@ -257,13 +257,13 @@ function PricingCard({ plan, compact = false }) {
 
       <div className="flex flex-1 flex-col p-4 sm:p-5">
         <div
-          className="rounded-xl border border-white/80 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_18px_42px_-34px_rgba(15,23,42,0.82)] dark:border-slate-700 dark:bg-slate-950"
+          className="rounded-[1.05rem] border border-white/80 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.92),0_20px_46px_-36px_rgba(15,23,42,0.82)] dark:border-slate-800 dark:bg-slate-900"
           style={{ background: plan.priceGradient }}
         >
-          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[#7f93b0]">
+          <p className="pricing-plan-muted text-[11px] font-black uppercase tracking-[0.16em] text-[#7f93b0]">
             Pathway Fee
           </p>
-          <p className="mt-2 text-4xl font-black leading-none text-[#13233a] dark:text-white">
+          <p className="pricing-plan-title mt-2 text-4xl font-black leading-none text-[#13233a]">
             {plan.price}
           </p>
         </div>
@@ -273,18 +273,18 @@ function PricingCard({ plan, compact = false }) {
           <InfoTile label="Free Trial" value={plan.freeTrial} color={plan.color} variant="warm" />
         </div>
 
-        <SectionBlock title="Best For" color={plan.color} className="mt-3">
-          <p className="text-sm font-semibold leading-6 text-[#26364d] dark:text-slate-200">
+        <SectionBlock title="Best For" color={plan.color} className="mt-4">
+          <p className="pricing-plan-copy text-sm font-semibold leading-6 text-[#26364d]">
             {plan.bestFor}
           </p>
         </SectionBlock>
 
-        <SectionBlock title="Program Details" color={plan.color} className="mt-3">
+        <SectionBlock title="Program Details" color={plan.color} className="mt-4">
           <div className="grid gap-2">
             {plan.programDetails.map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-2 text-sm font-semibold leading-6 text-[#26364d] dark:text-slate-200"
+                className="pricing-plan-copy flex items-center gap-2 text-sm font-semibold leading-6 text-[#26364d]"
               >
                 <CheckCircle2
                   className="h-4 w-4 shrink-0"
@@ -296,12 +296,12 @@ function PricingCard({ plan, compact = false }) {
           </div>
         </SectionBlock>
 
-        <SectionBlock title="What You Get" color={plan.color} className="mt-3">
+        <SectionBlock title="What You Get" color={plan.color} className="mt-4">
           <div className="grid gap-2.5">
             {plan.benefits.map((benefit) => (
               <div
                 key={benefit}
-                className="grid grid-cols-[1rem_1fr] gap-2 text-[13px] font-semibold leading-5 text-[#26364d] dark:text-slate-200 sm:text-sm sm:leading-6"
+                className="pricing-plan-copy grid grid-cols-[1rem_1fr] gap-2 text-[13px] font-semibold leading-5 text-[#26364d] sm:text-sm sm:leading-6"
               >
                 <CheckCircle2
                   className="mt-0.5 h-4 w-4 shrink-0"
@@ -313,12 +313,12 @@ function PricingCard({ plan, compact = false }) {
           </div>
         </SectionBlock>
 
-        <SectionBlock title="Tags" color={plan.color} className="mt-3">
+        <SectionBlock title="Tags" color={plan.color} className="mt-4">
           <div className="flex flex-wrap gap-2">
             {plan.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex min-h-8 items-center rounded-full border bg-white px-3 py-1 text-xs font-black text-[#13233a] dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                className="pricing-plan-tag inline-flex min-h-8 items-center rounded-full border bg-white px-3 py-1 text-xs font-black text-[#13233a]"
                 style={{ borderColor: `${plan.color}66` }}
               >
                 {tag}
