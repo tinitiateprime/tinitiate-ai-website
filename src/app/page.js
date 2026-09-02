@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HomeHeroSlider from "./components/HomeHeroSlider";
 import HomeFAQSection from "./components/HomeFAQSection";
+import CampusPlacementVisits from "./components/CampusPlacementVisits";
 import { PricingCardsShowcase } from "./components/PricingCards";
 import { submitNetlifyForm } from "@/lib/netlifyForms";
 import { useState, useEffect, useRef } from "react";
@@ -3625,6 +3626,10 @@ export default function HomePage() {
 
       <ScrollReveal>
         <CorporateLearningEnvironment />
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <CampusPlacementVisits />
       </ScrollReveal>
 
       <ScrollReveal>
